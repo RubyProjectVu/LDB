@@ -1,11 +1,6 @@
 Savybių sąrašas (taikom į 150): 
 
 1.	vartotojas gali sukurti naują projektą.
-  1.	vartotojai turi vardą ir pavardę, lytis
-  2.	turi projekto numerį
-  3.	vartotojo ID
-  4.	vartotojo el.paštas, telefono nr.
-  5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
 	1.	vartotojai turi vardą ir pavardę, lytis
 	2.	turi projekto numerį
 	3.	vartotojo ID
@@ -19,16 +14,11 @@ Savybių sąrašas (taikom į 150):
 7.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
 8.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
 9.	vartotojas pagal atstovaujamą sritį gali matyti ir jei turi teises, valdyti:
-  1.	resusrsus
-  2.	medžiagas
-  3.	išlaidas
 	1.	resusrsus
 	2.	medžiagas
 	3.	išlaidas
 10.	vartotojas gali matyti bendrą projekto aprašą:
-  1.	ataskaitas
-  2.	numatytą biudžetą
-  3.	svarbiausius pakeitimus	1.	ataskaitas
+	1.	ataskaitas
 	2.	numatytą biudžetą
 	3.	svarbiausius pakeitimus
 11.	vartotojas gali pažymėti svarbius klausimus, problemas
