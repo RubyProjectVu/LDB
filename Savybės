@@ -1,36 +1,25 @@
 Savybių sąrašas (taikom į 150): 
 
-1.	vartotojas gali prisijungti prie projekto.
-2.	Vartotojas gali sukurti projektą.
+1.	vartotojas gali sukurti naują projektą.
 	1.	vartotojai turi vardą ir pavardę, lytis
 	2.	turi projekto numerį
 	3.	vartotojo ID
 	4.	vartotojo el.paštą, telefono nr.
 	5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
-3.	vartotojas gali prisijungti prie sistemos
-4.	vartotojas gali matyti prie to pačio projekto dirbančius asmenis
-5.	vartototojas gali parašyti kitam vartotojui
-6.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
-7.	vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
-8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
-9.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
-10.	Vartotojas gali prie padaryto pakeitimo palikti komentarą
-11.	vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
-12.	vartotojas pagal atstovaujamą sritį gali matyti ir jei turi teises, valdyti:
+2.	vartotojas gali prisijungti prie sistemos
+3.	vartotojas gali matyti prie to pačio projekto dirbančius asmenis
+4.	vartototojas gali parašyti kitam vartotojui
+5.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
+6.	vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
+7.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
+8.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
+9.	vartotojas pagal atstovaujamą sritį gali matyti ir jei turi teises, valdyti:
 	1.	resusrsus
 	2.	medžiagas
 	3.	išlaidas
-13.	vartotojas gali matyti bendrą projekto aprašą:
+10.	vartotojas gali matyti bendrą projekto aprašą:
 	1.	ataskaitas
 	2.	numatytą biudžetą
 	3.	svarbiausius pakeitimus
-	4.	artėjančius galutinius darbų terminus
-14.	vartotojas gali pažymėti svarbius klausimus, problemas
-15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
-16.	vartotojas gali kurti užduotis ir priskirti jas kitiems vartotojams
-17.	vartotojas gali kurti/ redaguoti objekto vaizdą
-18.	vartotojas gali objekto vaizdą pasukti kitu kampu
-19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
-20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
-21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
-22.	vartotojas gali importuoti/eksportuoti projektus
+11.	vartotojas gali pažymėti svarbius klausimus, problemas
+12.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
