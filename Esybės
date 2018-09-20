@@ -23,3 +23,7 @@ Paieškos sistema (?)
 Produkto informacija
 Produktu "follow" sistema
 BIM board (basically fav list)
+
+Rolė (vienas vartotojas gali turėti kelias roles, kurios savo ruožtu duoda prieigą)
+Logų/Įrašų istorija (realiai logų trackinimas, absoliučiai visų išvardintų objektų su timestampais etc.)
+Suvartojimas (konkretaus projekto elektra/vanduo/dujos/internetas etc. sąnaudos)
