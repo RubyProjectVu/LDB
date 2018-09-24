@@ -93,16 +93,24 @@ Savybių sąrašas (taikom į 150):
 72.	Vartotojas gali pagreitinti/sulėtinti vaizdo įrašą.
 73.	Vartotojas gali paleisti/sustabdyti vaizdo įrašą.
 74.	Vartotojas gali žiūrėti vaizdo įrašą per visą ekraną.
+75.	Vartotojas gali pakeisti vaizdo įrašo kokybę
+76.	Vartotojas gali nušokti į tam tikrą įrašo vietą
 
 	****** Postai/Komentarai ****** 
-75.	Vartotojas gali koreguoti savo postą/komentarą.
-76.	Vartotojas gali pamėgti kitų vartotojų postus/komentarus.
-77.	Vartotojas gali ištrinti savo postą/komentarą.
+77.	Vartotojas gali koreguoti savo postą/komentarą.
+78.	Vartotojas gali pamėgti kitų vartotojų postus/komentarus.
+79.	Vartotojas gali ištrinti savo postą/komentarą.
+80.	Vartotojas gali pranešti apie įžeidžiantį/piktybinį komentarą
+81.	Vartotojas gali cituoti (Quote) kitų žmonių komentarus
+82.	Vartotojas gali gali dalintis komentaru kituose tinkluose (arba nuoroda)
+83. 	Vartotojas gali pridėti nuotrauką prie komentaro
 
 	****** Paieškos sistema ****** 
-78.	Vartotojas įvedant paieškos žodį gali matyti pasiūlymus paieškai.
-79.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
-80.	Vartotojas gali filtruoti paieškos rezultatus pagal. (Pvz. Objekto tipą, palaikomą programą)
-81.	Vartotojas užvedęs pėlytę ant produkto gali matyti padidintą jo vaizdą ir trumpą aprašymą.
-82.	Vartotojas gali followint/pamėgti objekta neatidarius to objekto puslapio.
-83.	Vartotojas gali matyti produktų kiekį rezultate.
+84.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
+85.	Vartotojas gali filtruoti paieškos rezultatus pagal. (Pvz. Objekto tipą, palaikomą programą)
+86.	Vartotojas užvedęs pėlytę ant produkto gali matyti padidintą jo vaizdą ir trumpą aprašymą.
+87.	Vartotojas gali followint/pamėgti objekta neatidarius to objekto puslapio.
+88.	Vartotojas gali matyti produktų kiekį rezultate.
+89.	Vartotojas įvedant paieškos žodį gali matyti pasiūlymus paieškai.
+90.	Vartotojas gali pasirinki, kiek produktų rodyti viename puslapyje
+91.	Vartotojas gali pasirinkti, kokios kategorijos produktus rodyti
