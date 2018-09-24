@@ -1,4 +1,4 @@
-CURRENT_MAX: 128
+CURRENT_MAX: 129
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -27,6 +27,7 @@ Savybių sąrašas (taikom į 150):
 22.	vartotojas gali importuoti/eksportuoti projektus
 8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
 50.	Projekto vadovas gali turėti kelis projektus.
+129	Vartotojas gali priklausyti keliems projektams.
 29.	Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
 54.	Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
 53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
