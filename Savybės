@@ -139,11 +139,11 @@ Savybių sąrašas (taikom į 150):
 104.	Vienas tiekėjas gali turėti daug užsakymų.
 106.	Tiekėjas gali siūlyti paslaugas projekto vadovui, jeigu jis yra tarp konkurso dalyvių.
 107.	Tiekėjas gali keisti paslaugos sąlygas - tokiu atveju projekto vadovas gauna jam priskirtą individualizuotą užduotį.
+48.	Projekto vadovas gali sekti kelis medžiagų/produktų tiekėjus bei jų siūlomas sąlygas.
 	
 	****** Ataskaita ******
 30.	Vartotojas gali, jei turi teises, suformuoti ataskaitą apie pasirinktą projekto aspektą.
 41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
-48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
 
 	****** Paieškos sistema ****** 
 84.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
