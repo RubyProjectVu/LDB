@@ -1,4 +1,4 @@
-CURRENT_MAX: 125
+CURRENT_MAX: 127
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -172,6 +172,8 @@ Savybių sąrašas (taikom į 150):
 99.	Vartotojas gali pridėti produktą į mėgstamų sąrašą
 100.	Vartotojas gali peržiūrėti visus pamėgtus produktus.
 101.	Vartotojas gali pašalinti produktą iš mėgstamų sąrašo.
+126.	Rodomas bendras mėgstamų produktų atsiuntimų kiekis
+127.	Galimybė pasidalinti savo BIM board
 
 	****** Rolė ******
 46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
