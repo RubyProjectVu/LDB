@@ -1,4 +1,4 @@
-CURRENT_MAX: 129
+CURRENT_MAX: 130
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -181,6 +181,7 @@ Savybių sąrašas (taikom į 150):
 46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
 25.	Projekto vadovas gali priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
 47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
+130.	Projekto vadovas gali nustatyti, kad sistema jį asmeniškai informuotų apie bandymus pasinaudoti ištekliais neturint teisės.
 
 	****** Logų/Įrašų istorija ******
 55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
