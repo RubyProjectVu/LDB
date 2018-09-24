@@ -1,4 +1,4 @@
-CURRENT_MAX: 113
+CURRENT_MAX: 117
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -58,6 +58,7 @@ Savybių sąrašas (taikom į 150):
 	****** Dokumentas ******
 111.	Sistema gali pasiūlyti pasirašyti dokumentą elektroniniu parašu.
 113.	Vartotojas gali redaguoti dokumentą per sistemą.
+115.	Vartotojas turi galimybę išsaugoti dokumentą skirtingais failų plėtiniais.
 	
 	****** Vartotojas ******
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
@@ -84,6 +85,7 @@ Savybių sąrašas (taikom į 150):
 43.	Vartotojas gali matyti, kas reitingavo jo įrašą.
 79.	Vartotojas gali ištrinti savo postą/komentarą.
 80.	Vartotojas gali pranešti apie įžeidžiantį/piktybinį komentarą
+117.	Vartotojas gali paslėpti nepatinkantį/įžeidžiantį komentarą pats (sau).
 81.	Vartotojas gali cituoti (Quote) kitų žmonių komentarus
 82.	Vartotojas gali gali dalintis komentaru kituose tinkluose (arba nuoroda)
 42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
@@ -100,6 +102,7 @@ Savybių sąrašas (taikom į 150):
 69.	Vartotojas gali naudoti emoji savo žinutėse kitiems vartotojams.
 70.	Vartotojas gali paslėpti/atidaryti pokalbio langą.
 37.	Vartotojas gali personalizuoti tekstinio pokalbio su kitu vartotoju sąsają.
+114.	Vartotojas gali ištrinti savo pranešimą (dingsta tik jam).
 
 	****** Adresų knyga ******
 40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
@@ -122,6 +125,7 @@ Savybių sąrašas (taikom į 150):
 	****** Medžiaga ******
 103. 	Vartotojas gali matyti naujausius medžiagos standumo testus.
 31.	Darbo grupės vadovas gali pažymėti, kad darbo eigai trūksta medžiagų - apie tai informuojamas projekto vadovas.
+116.	Sistema gali pasufleruoti panašaus pobūdžio medžiagas, tinkančias tai pačiai užduočiai.
 
 	****** Tiekėjas ******
 104.	Vienas tiekėjas gali turėti daug užsakymų.
