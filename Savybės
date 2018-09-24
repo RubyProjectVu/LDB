@@ -1,4 +1,4 @@
-CURRENT_MAX: 134
+CURRENT_MAX: 135
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -34,6 +34,7 @@ Savybių sąrašas (taikom į 150):
 21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
 58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
 134.	Projektas gali buti tam tikram vystymo etape priklausant nuo projekto progreso
+135.	Vartotojas gali nustatyti ir matyti progreso juostą prie timeline.
 	
 	****** Darbų grupė ******
 26.	Projekto vadovas gali sukurti darbo grupę, priskirti jai kitus vartotojus bei nustatyti terminus ir užduotis.
