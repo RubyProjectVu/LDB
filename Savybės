@@ -1,5 +1,4 @@
 Savybių sąrašas (taikom į 150): 
-
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 2.	Vartotojas gali sukurti projektą.
 	1.	vartotojai turi vardą ir pavardę, lytis
@@ -33,9 +32,9 @@ Savybių sąrašas (taikom į 150):
 18.	vartotojas gali objekto vaizdą pasukti kitu kampu
 19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
 20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
+
 21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
 22.	vartotojas gali importuoti/eksportuoti projektus
-
 23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
 24.	Vartotojas gali pasinaudoti paieškos sistema norėdamas surasti reikiamą projekto objektą.
 25.	Projekto vadovas gali sukurti ir priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
@@ -54,6 +53,7 @@ Savybių sąrašas (taikom į 150):
 38.	Projekto vadovas gali suspenduoti/panaikinti projektą arba darbo grupę.
 39.	Sistema automatiškai sukuria specialią individualizuotą užduotį, skirtą derinti projekto suspendavimo/panaikinimo sąlygas. 
 40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
+
 41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
 42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
 43.	Vartotojas gali matyti, kas reitingavo jo įrašą.
@@ -74,5 +74,14 @@ Savybių sąrašas (taikom į 150):
 58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
 59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
+
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
 62.	Sistema gali sekti, ar vartotojai nenaudoja 
+
+
+70.	Vartotojas gali sukurti vartotojų grupei bendrą pokalbio langą.
+71.	Vartotojai gali naudoti vaizdo kameras pokalbiuose.
+72.	Vartotojas gali išsiųsti svarbią žinutę kitiems vartotojams kuri yra išskiriama skirtinga spalva/simboliais vartotojo menių.
+73.	Vartotojas gali naudoti judančius paveikliukus savo žinutėse pokalbių lange.
+74.	
+
