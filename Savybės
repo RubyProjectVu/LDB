@@ -40,7 +40,7 @@ Savybių sąrašas (taikom į 150):
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
 
-	##****** Projektas ******
+	## ****** Projektas ******
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 2.	Vartotojas gali sukurti projektą.
 	1.	vartotojai turi vardą ir pavardę, lytis
