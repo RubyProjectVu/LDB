@@ -1,4 +1,4 @@
-CURRENT_MAX: 130
+CURRENT_MAX: 131
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -16,6 +16,7 @@ Savybių sąrašas (taikom į 150):
 	4.	vartotojo el.paštą, telefono nr.
 	5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
 	6.	turi rolę
+131.	Vartotjas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
 4.	vartotojas gali matyti prie to pačio projekto/darbo grupės dirbančius asmenis
 7.	vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
 13.	vartotojas gali matyti bendrą projekto aprašą:
@@ -139,11 +140,11 @@ Savybių sąrašas (taikom į 150):
 104.	Vienas tiekėjas gali turėti daug užsakymų.
 106.	Tiekėjas gali siūlyti paslaugas projekto vadovui, jeigu jis yra tarp konkurso dalyvių.
 107.	Tiekėjas gali keisti paslaugos sąlygas - tokiu atveju projekto vadovas gauna jam priskirtą individualizuotą užduotį.
-48.	Projekto vadovas gali sekti kelis medžiagų/produktų tiekėjus bei jų siūlomas sąlygas.
 	
 	****** Ataskaita ******
 30.	Vartotojas gali, jei turi teises, suformuoti ataskaitą apie pasirinktą projekto aspektą.
 41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
+48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
 
 	****** Paieškos sistema ****** 
 84.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
