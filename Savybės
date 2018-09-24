@@ -1,4 +1,4 @@
-CURRENT_MAX: 117
+CURRENT_MAX: 121
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -47,6 +47,7 @@ Savybių sąrašas (taikom į 150):
 	
 	****** Modelis ******
 17.	vartotojas gali kurti/redaguoti objekto vaizdą
+119.	vartotojas gali keisti mąstelį (priartinti/patolinti)
 18.	vartotojas gali objekto vaizdą pasukti kitu kampu
 19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
 	
@@ -64,6 +65,7 @@ Savybių sąrašas (taikom į 150):
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 3.	vartotojas gali atsijungti/prisijungti prie sistemos
 20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
+120.	vartotojas gali išsitrinti save iš sistemos, jei nedalyvauja nepabaigtuose projektuose arba jei patvirtina projekto vadovas
 	
 	****** Nuotrauka ******
 83. 	Vartotojas gali pridėti nuotrauką prie komentaro
@@ -116,6 +118,7 @@ Savybių sąrašas (taikom į 150):
 	****** To-do sąrašiukas ******
 15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
+118.	Vartotojas gali prikabinti failą(-us) prie užrašo.
 	
 	****** Užsakymas ******
 27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
@@ -159,6 +162,7 @@ Savybių sąrašas (taikom į 150):
 
 	****** Produktu "follow" sistema ******
 98.	Vartotojas gali pradėti sekti produktą.
+121.	Vartotojas gali nutraukti produkto sekimą.
 
 	****** BIM board ******
 99.	Vartotojas gali pridėti produktą į mėgstamų sąrašą
