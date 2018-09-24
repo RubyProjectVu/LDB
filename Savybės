@@ -28,7 +28,7 @@ Savybių sąrašas (taikom į 150):
 	4.	artėjančius galutinius darbų terminus
 14.	vartotojas gali pažymėti svarbius klausimus, problemas
 15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
-16.	vartotojas gali kurti individualias užduotis, nepriklausomas nuo darbo grupės, ir priskirti jas kitiems vartotojams
+16.	Darbo grupės vadovas gali kurti individualias užduotis ir priskirti jas kitiems vartotojams
 17.	vartotojas gali kurti/redaguoti objekto vaizdą
 18.	vartotojas gali objekto vaizdą pasukti kitu kampu
 19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
@@ -58,4 +58,15 @@ Savybių sąrašas (taikom į 150):
 42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
 43.	Vartotojas gali matyti, kas reitingavo jo įrašą.
 44.	Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
-45.	
+45.	Sistemos automatiškai generuojami sekamieji įrašai negali būti niekieno redaguojami, nepriklausomai nuo rolės ar teisių.
+46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
+47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
+48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
+49.	Sistema gali automatiškai generuoti sąskaitų ruošinius už resursų sunaudojimą.
+50.	Projekto vadovas gali turėti kelis projektus.
+51.	Darbo grupės vadovas gali būti kelių grupių vadovu.
+52.	Sistema gali tikrinti komentarų/įrašų/užrašų rašybą pagal nustatytą kalbą.
+53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
+54.	Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
+55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
+56.	
