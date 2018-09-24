@@ -1,4 +1,4 @@
-CURRENT_MAX: 121
+CURRENT_MAX: 124
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -55,11 +55,13 @@ Savybių sąrašas (taikom į 150):
 109.	Vartotojas gali pasinaudoti prijungta paišymo planšete brėžiniui kurti/redaguoti.
 110.	Vartotojas gali sukurti laikinai nesusietą su projektu brėžinį-eskizą.
 112.	Brėžinį pašalinti gali tik darbo grupės ir projekto vadovas.
+122.	Vartotojas gali importuoti/eksportuoti brėžinį.
 	
 	****** Dokumentas ******
 111.	Sistema gali pasiūlyti pasirašyti dokumentą elektroniniu parašu.
 113.	Vartotojas gali redaguoti dokumentą per sistemą.
 115.	Vartotojas turi galimybę išsaugoti dokumentą skirtingais failų plėtiniais.
+123.	Vartotojas gali importuoti/eksportuoti dokumentą.
 	
 	****** Vartotojas ******
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
@@ -110,6 +112,7 @@ Savybių sąrašas (taikom į 150):
 40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
 32.	Vartotojas gali atnaujinti savo kontaktinius duomenis.
 6.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
+124.	Vartotojas gali importuoti/eksportuoti adresų knygos įrašus, jei turi tam teisę.
 	
 	****** Įrašo reitingas ******
 36.	Vartotojas gali peržvelgti, surūšiuoti reitingus pagal dominantį projektą, užduotį ar kita. 
