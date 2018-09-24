@@ -86,14 +86,20 @@ Savybių sąrašas (taikom į 150):
 67.	Vartotojas gali naudoti judančius paveikliukus (GIFs) savo žinutėse pokalbių lange.
 68.	Vartotojas gali nurodyti projekto elementa apie kurį bus šnekama pokalbių lange. (Pvz. Objekto nuotrauka, Objekto aprašymas)
 69.	Vartotojas gali naudoti emoji savo žinutėse kitiems vartotojams.
+70.	Vartotojas gali paslėpti/atidaryti pokalbio langą.
 
 	****** Vaizdo įrašai ****** 
-70.	Vartotojas gali pagarsinti/nutildyti vaizdo įrašą.
-71.	Vartotojas gali pagreitinti/sulėtinti vaizdo įrašą.
-72.	Vartotojas gali paleisti/sustabdyti vaizdo įrašą.
-73.	Vartotojas gali žiūrėti vaizdo įrašą per visą ekraną.
+71.	Vartotojas gali pagarsinti/nutildyti vaizdo įrašą.
+72.	Vartotojas gali pagreitinti/sulėtinti vaizdo įrašą.
+73.	Vartotojas gali paleisti/sustabdyti vaizdo įrašą.
+74.	Vartotojas gali žiūrėti vaizdo įrašą per visą ekraną.
 
 	****** Postai/Komentarai ****** 
-74.	Vartotojas gali koreguoti savo postą/komentarą.
-75.	Vartotojas gali pamėgti kitų vartotojų postus/komentarus.
-76.	Vartotojas gali ištrinti savo postą/komentarą.
+75.	Vartotojas gali koreguoti savo postą/komentarą.
+76.	Vartotojas gali pamėgti kitų vartotojų postus/komentarus.
+77.	Vartotojas gali ištrinti savo postą/komentarą.
+
+	****** Paieškos sistema ****** 
+78.	Vartotojas įvedant paieškos žodį gali matyti pasiūlymus paieškai.
+79.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
+80.	Vartotojas gali filtruoti paieškos rezultatus pagal. (Pvz. Objekto tipą, palaikomą programą)
