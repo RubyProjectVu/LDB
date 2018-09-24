@@ -1,4 +1,46 @@
-Savybių sąrašas (taikom į 150): 
+Savybių sąrašas (taikom į 150):
+
+3.	vartotojas gali atsijungti/prisijungti prie sistemos
+5.	vartototojas gali parašyti kitam vartotojui
+6.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
+9.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
+10.	Vartotojas gali prie padaryto pakeitimo palikti komentarą
+11.	vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
+12.	vartotojas pagal atstovaujamą sritį gali matyti ir jei turi teises, valdyti:
+	1.	resusrsus
+	2.	medžiagas
+	3.	išlaidas
+14.	vartotojas gali pažymėti svarbius klausimus, problemas
+15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
+17.	vartotojas gali kurti/redaguoti objekto vaizdą
+18.	vartotojas gali objekto vaizdą pasukti kitu kampu
+19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
+
+21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
+23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
+25.	Projekto vadovas gali sukurti ir priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
+26.	Projekto vadovas gali sukurti darbo grupę, priskirti jai kitus vartotojus bei nustatyti terminus ir užduotis.
+27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
+28.	Tiekėjas gali nepriimti užsakymo - apie tai informuojamas projekto vadovas, sudaromos sąlygos užsakymą derinti.
+30.	Vartotojas gali, jei turi teises, suformuoti ataskaitą apie pasirinktą projekto aspektą.
+31.	Darbo grupės vadovas gali pažymėti, kad darbo eigai trūksta medžiagų - apie tai informuojamas projekto vadovas.
+32.	Vartotojas gali atnaujinti savo kontaktinius duomenis.
+35.	Vartotojas gali įvertinti/reitinguoti kito vartotojo įrašą.
+36.	Vartotojas gali peržvelgti, surūšiuoti reitingus pagal dominantį projektą, užduotį ar kita. 
+40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
+41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
+
+44.	Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
+46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
+47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
+48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
+51.	Darbo grupės vadovas gali būti kelių grupių vadovu.
+58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
+59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
+60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
+61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
+
+	****** Projektas ******
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 2.	Vartotojas gali sukurti projektą.
 	1.	vartotojai turi vardą ir pavardę, lytis
@@ -7,66 +49,24 @@ Savybių sąrašas (taikom į 150):
 	4.	vartotojo el.paštą, telefono nr.
 	5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
 	6.	turi rolę
-3.	vartotojas gali atsijungti/prisijungti prie sistemos
 4.	vartotojas gali matyti prie to pačio projekto/darbo grupės dirbančius asmenis
-5.	vartototojas gali parašyti kitam vartotojui
-6.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
 7.	vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
-8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
-9.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
-10.	Vartotojas gali prie padaryto pakeitimo palikti komentarą
-11.	vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
-12.	vartotojas pagal atstovaujamą sritį gali matyti ir jei turi teises, valdyti:
-	1.	resusrsus
-	2.	medžiagas
-	3.	išlaidas
 13.	vartotojas gali matyti bendrą projekto aprašą:
 	1.	ataskaitas
 	2.	numatytą biudžetą
 	3.	svarbiausius pakeitimus
 	4.	artėjančius galutinius darbų terminus
-14.	vartotojas gali pažymėti svarbius klausimus, problemas
-15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
 16.	Darbo grupės vadovas gali kurti individualias užduotis ir priskirti jas kitiems vartotojams
-17.	vartotojas gali kurti/redaguoti objekto vaizdą
-18.	vartotojas gali objekto vaizdą pasukti kitu kampu
-19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
-20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
-
-21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
 22.	vartotojas gali importuoti/eksportuoti projektus
-23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
-24.	Vartotojas gali pasinaudoti paieškos sistema norėdamas surasti reikiamą projekto objektą.
-25.	Projekto vadovas gali sukurti ir priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
-26.	Projekto vadovas gali sukurti darbo grupę, priskirti jai kitus vartotojus bei nustatyti terminus ir užduotis.
-27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
-28.	Tiekėjas gali nepriimti užsakymo - apie tai informuojamas projekto vadovas, sudaromos sąlygos užsakymą derinti.
-29.	Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
-30.	Vartotojas gali, jei turi teises, suformuoti ataskaitą apie pasirinktą projekto aspektą.
-31.	Darbo grupės vadovas gali pažymėti, kad darbo eigai trūksta medžiagų - apie tai informuojamas projekto vadovas.
-32.	Vartotojas gali atnaujinti savo kontaktinius duomenis.
-34.	Sistema automatiškai išsiunčia pranešimus vartotojams, kurie pageidauja žinoti apie projekto pakeitimus.
-35.	Vartotojas gali įvertinti/reitinguoti kito vartotojo įrašą.
-36.	Vartotojas gali peržvelgti, surūšiuoti reitingus pagal dominantį projektą, užduotį ar kita.
-37.	Vartotojas gali personalizuoti tekstinio pokalbio su kitu vartotoju sąsają.
-38.	Projekto vadovas gali suspenduoti/panaikinti projektą arba darbo grupę.
-39.	Sistema automatiškai sukuria specialią individualizuotą užduotį, skirtą derinti projekto suspendavimo/panaikinimo sąlygas. 
-40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
-41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
-
-44.	Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
-46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
-47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
-48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
-49.	Sistema gali automatiškai generuoti sąskaitų ruošinius už resursų sunaudojimą.
+8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
+20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
 50.	Projekto vadovas gali turėti kelis projektus.
-51.	Darbo grupės vadovas gali būti kelių grupių vadovu.
-53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
+29.	Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
 54.	Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
-58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
-59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
-60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
-61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
+53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
+34.	Sistema automatiškai išsiunčia pranešimus vartotojams, kurie pageidauja žinoti apie projekto pakeitimus.
+38.	Projekto vadovas gali suspenduoti/panaikinti projektą arba darbo grupę.
+39.	Sistema automatiškai sukuria specialią individualizuotą užduotį, skirtą derinti projekto suspendavimo/panaikinimo sąlygas.
 
 	****** Pokalbių langas ******
 63.	Vartotojas gali pridėti vartotojų prie pokalbio lango.
@@ -77,6 +77,7 @@ Savybių sąrašas (taikom į 150):
 68.	Vartotojas gali nurodyti projekto elementa apie kurį bus šnekama pokalbių lange. (Pvz. Objekto nuotrauka, Objekto aprašymas)
 69.	Vartotojas gali naudoti emoji savo žinutėse kitiems vartotojams.
 70.	Vartotojas gali paslėpti/atidaryti pokalbio langą.
+37.	Vartotojas gali personalizuoti tekstinio pokalbio su kitu vartotoju sąsają.
 
 	****** Vaizdo įrašai ****** 
 71.	Vartotojas gali pagarsinti/nutildyti vaizdo įrašą.
@@ -103,6 +104,7 @@ Savybių sąrašas (taikom į 150):
 	****** Paieškos sistema ****** 
 84.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
 85.	Vartotojas gali filtruoti paieškos rezultatus pagal. (Pvz. Objekto tipą, palaikomą programą)
+24.	Vartotojas gali pasinaudoti paieškos sistema norėdamas surasti reikiamą projekto objektą.
 86.	Vartotojas užvedęs pėlytę ant produkto gali matyti padidintą jo vaizdą ir trumpą aprašymą.
 87.	Vartotojas gali followint/pamėgti objekta neatidarius to objekto puslapio.
 88.	Vartotojas gali matyti produktų kiekį rezultate.
@@ -133,3 +135,4 @@ Savybių sąrašas (taikom į 150):
 33.	Sistema be vartotojų įsikišimo seka kiekvieną projekto pekeitimą, patvirtinimą, atnaujinimą, prisijungimą.
 
 	****** Suvartojimas ******
+49.	Sistema gali automatiškai generuoti sąskaitų ruošinius už resursų sunaudojimą.
