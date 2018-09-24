@@ -1,4 +1,5 @@
 CURRENT_MAX: 102
+FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
 3.	vartotojas gali atsijungti/prisijungti prie sistemos
