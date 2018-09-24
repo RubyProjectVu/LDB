@@ -1,4 +1,4 @@
-CURRENT_MAX: 132
+CURRENT_MAX: 133
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -125,6 +125,7 @@ Savybių sąrašas (taikom į 150):
 15.	vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
 118.	Vartotojas gali prikabinti failą(-us) prie užrašo.
+133.	Vartotojas gali matyti varnelėmis žymimus laukus sąraše.
 	
 	****** Užsakymas ******
 27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
