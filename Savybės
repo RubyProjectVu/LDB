@@ -1,4 +1,4 @@
-CURRENT_MAX: 124
+CURRENT_MAX: 125
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -72,6 +72,7 @@ Savybių sąrašas (taikom į 150):
 	****** Nuotrauka ******
 83. 	Vartotojas gali pridėti nuotrauką prie komentaro
 108.	Sistema gali pasiūlyti prikabinti nuorodą į nuotrauką iš konkrečios dokumento ar brėžinio vietos.
+125.	Sistema gali pasufleruoti nuotraukos vietovę, jeigu jai tai pavyksta nustatyti.
 	
 	****** Vaizdo įrašai ****** 
 71.	Vartotojas gali pagarsinti/nutildyti vaizdo įrašą.
