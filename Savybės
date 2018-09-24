@@ -17,7 +17,6 @@ Savybių sąrašas (taikom į 150):
 	2.	numatytą biudžetą
 	3.	svarbiausius pakeitimus
 	4.	artėjančius galutinius darbų terminus
-16.	Darbo grupės vadovas gali kurti individualias užduotis ir priskirti jas kitiems vartotojams
 22.	vartotojas gali importuoti/eksportuoti projektus
 8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
 50.	Projekto vadovas gali turėti kelis projektus.
@@ -37,6 +36,7 @@ Savybių sąrašas (taikom į 150):
 	
 	****** Darbų grupė ******
 26.	Projekto vadovas gali sukurti darbo grupę, priskirti jai kitus vartotojus bei nustatyti terminus ir užduotis.
+16.	Darbo grupės vadovas gali kurti individualias užduotis ir priskirti jas kitiems vartotojams
 51.	Darbo grupės vadovas gali būti kelių grupių vadovu.
 44.	Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
 	
