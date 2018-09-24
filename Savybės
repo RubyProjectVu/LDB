@@ -1,4 +1,4 @@
-CURRENT_MAX: 138
+CURRENT_MAX: 139
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -47,6 +47,7 @@ Savybių sąrašas (taikom į 150):
 119.	vartotojas gali keisti mąstelį (priartinti/patolinti)
 18.	vartotojas gali objekto vaizdą pasukti kitu kampu
 19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
+139.	sistema gali sugeneruoti modelį iš brėžinio
 	
 	****** Brėžinys ******
 109.	Vartotojas gali pasinaudoti prijungta paišymo planšete brėžiniui kurti/redaguoti.
@@ -188,7 +189,6 @@ Savybių sąrašas (taikom į 150):
 25.	Projekto vadovas gali priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
 47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
 130.	Projekto vadovas gali nustatyti, kad sistema jį asmeniškai informuotų apie bandymus pasinaudoti ištekliais neturint teisės.
-138.	Projekto vadovui matomas konkretus vartotojų sų atitinkamomis rolėmis skaičius.
 
 	****** Logų/Įrašų istorija ******
 55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
