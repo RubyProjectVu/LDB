@@ -77,11 +77,12 @@ Savybių sąrašas (taikom į 150):
 
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
 62.	Sistema gali sekti, ar vartotojai nenaudoja 
-
+......
 
 70.	Vartotojas gali sukurti vartotojų grupei bendrą pokalbio langą.
 71.	Vartotojai gali naudoti vaizdo kameras pokalbiuose.
 72.	Vartotojas gali išsiųsti svarbią žinutę kitiems vartotojams kuri yra išskiriama skirtinga spalva/simboliais vartotojo menių.
-73.	Vartotojas gali naudoti judančius paveikliukus savo žinutėse pokalbių lange.
-74.	
+73.	Vartotojas gali naudoti judančius paveikliukus (GIFs) savo žinutėse pokalbių lange.
+74.	Vartotojas gali nurodyti projekto elementa apie kurį bus šnekama pokalbių lange. (Pvz. Objekto nuotrauka, Objekto aprašymas)
+75.	Vartotojas gali naudoti emoji savo žinutėse kitiems vartotojams.
 
