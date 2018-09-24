@@ -69,4 +69,6 @@ Savybių sąrašas (taikom į 150):
 53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
 54.	Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
 55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
-56.	
+56.	Paieškos sistema gali būti susieta ne tik su projektu, bet ir paplitusiais paieškos varikliais.
+57.	Vartotojas objekto 3D apžvalgą gali išsaugoti kaip demonstracinį vaizdo įrašą.
+58.	
