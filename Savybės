@@ -1,4 +1,4 @@
-CURRENT_MAX: 135
+CURRENT_MAX: 136
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -173,6 +173,7 @@ Savybių sąrašas (taikom į 150):
 	****** Produktu "follow" sistema ******
 98.	Vartotojas gali pradėti sekti produktą.
 121.	Vartotojas gali nutraukti produkto sekimą.
+136.	Tiekėjas gali būti informuotas, kuomet jo produktas pradedamas sekti.
 
 	****** BIM board ******
 99.	Vartotojas gali pridėti produktą į mėgstamų sąrašą
