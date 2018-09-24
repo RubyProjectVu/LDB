@@ -45,7 +45,6 @@ Savybių sąrašas (taikom į 150):
 30.	Vartotojas gali, jei turi teises, suformuoti ataskaitą apie pasirinktą projekto aspektą.
 31.	Darbo grupės vadovas gali pažymėti, kad darbo eigai trūksta medžiagų - apie tai informuojamas projekto vadovas.
 32.	Vartotojas gali atnaujinti savo kontaktinius duomenis.
-33.	Sistema be vartotojų įsikišimo seka kiekvieną projekto pekeitimą, patvirtinimą, atnaujinimą, prisijungimą.
 34.	Sistema automatiškai išsiunčia pranešimus vartotojams, kurie pageidauja žinoti apie projekto pakeitimus.
 35.	Vartotojas gali įvertinti/reitinguoti kito vartotojo įrašą.
 36.	Vartotojas gali peržvelgti, surūšiuoti reitingus pagal dominantį projektą, užduotį ar kita.
@@ -53,30 +52,21 @@ Savybių sąrašas (taikom į 150):
 38.	Projekto vadovas gali suspenduoti/panaikinti projektą arba darbo grupę.
 39.	Sistema automatiškai sukuria specialią individualizuotą užduotį, skirtą derinti projekto suspendavimo/panaikinimo sąlygas. 
 40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
-
 41.	Sistema gali automatiškai formuoti ataskaitą kas tam tikrą laiko periodą ir pateikti ją užsakiusiam asmeniui.
-42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
-43.	Vartotojas gali matyti, kas reitingavo jo įrašą.
+
 44.	Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
-45.	Sistemos automatiškai generuojami sekamieji įrašai negali būti niekieno redaguojami, nepriklausomai nuo rolės ar teisių.
 46.	Projekto vadovas gali sukurti/panaikinti/redaguoti rolę.
 47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
 48.	Projekto vadovas gali sekti kelis medžiagų tiekėjus bei jų siūlomas sąlygas.
 49.	Sistema gali automatiškai generuoti sąskaitų ruošinius už resursų sunaudojimą.
 50.	Projekto vadovas gali turėti kelis projektus.
 51.	Darbo grupės vadovas gali būti kelių grupių vadovu.
-52.	Sistema gali tikrinti komentarų/įrašų/užrašų rašybą pagal nustatytą kalbą.
 53.	Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
 54.	Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
-55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
-56.	Paieškos sistema gali būti susieta ne tik su projektu, bet ir paplitusiais paieškos varikliais.
-57.	Vartotojas objekto 3D apžvalgą gali išsaugoti kaip demonstracinį vaizdo įrašą.
 58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
 59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
-
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
-62.	Sistema gali sekti, ar vartotojai nenaudoja neleistinų žodžių savo pranešimuose.
 
 	****** Pokalbių langas ******
 63.	Vartotojas gali pridėti vartotojų prie pokalbio lango.
@@ -95,15 +85,20 @@ Savybių sąrašas (taikom į 150):
 74.	Vartotojas gali žiūrėti vaizdo įrašą per visą ekraną.
 75.	Vartotojas gali pakeisti vaizdo įrašo kokybę
 76.	Vartotojas gali nušokti į tam tikrą įrašo vietą
+57.	Vartotojas objekto 3D apžvalgą gali išsaugoti kaip demonstracinį vaizdo įrašą.
 
 	****** Postai/Komentarai ****** 
 77.	Vartotojas gali koreguoti savo postą/komentarą.
 78.	Vartotojas gali pamėgti kitų vartotojų postus/komentarus.
+43.	Vartotojas gali matyti, kas reitingavo jo įrašą.
 79.	Vartotojas gali ištrinti savo postą/komentarą.
 80.	Vartotojas gali pranešti apie įžeidžiantį/piktybinį komentarą
 81.	Vartotojas gali cituoti (Quote) kitų žmonių komentarus
 82.	Vartotojas gali gali dalintis komentaru kituose tinkluose (arba nuoroda)
+42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
 83. 	Vartotojas gali pridėti nuotrauką prie komentaro
+62.	Sistema gali sekti, ar vartotojai nenaudoja neleistinų žodžių savo pranešimuose.
+52.	Sistema gali tikrinti komentarų/įrašų/užrašų rašybą pagal nustatytą kalbą.
 
 	****** Paieškos sistema ****** 
 84.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
@@ -114,6 +109,7 @@ Savybių sąrašas (taikom į 150):
 89.	Vartotojas įvedant paieškos žodį gali matyti pasiūlymus paieškai.
 90.	Vartotojas gali pasirinki, kiek produktų rodyti viename puslapyje
 91.	Vartotojas gali pasirinkti, kokios kategorijos produktus rodyti
+56.	Paieškos sistema gali būti susieta ne tik su projektu, bet ir paplitusiais paieškos varikliais.
 
 	****** Produkto informacija ****** 
 92.	Vartotojas mato bendra produkto informacija (Gamintojas, paskelbimo data, tipas, ausktis/plotis/gylis etc.)
@@ -130,3 +126,10 @@ Savybių sąrašas (taikom į 150):
 99.	Vartotojas gali pridėti produktą į mėgstamų sąrašą
 100.	Vartotojas gali peržiūrėti visus pamėgtus produktus.
 101.	Vartotojas gali pašalinti produktą iš mėgstamų sąrašo.
+
+	****** Logų/Įrašų istorija ******
+55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
+45.	Sistemos automatiškai generuojami sekamieji įrašai negali būti niekieno redaguojami, nepriklausomai nuo rolės ar teisių.
+33.	Sistema be vartotojų įsikišimo seka kiekvieną projekto pekeitimą, patvirtinimą, atnaujinimą, prisijungimą.
+
+	****** Suvartojimas ******
