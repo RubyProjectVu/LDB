@@ -1,5 +1,5 @@
 CURRENT_MAX: 140
-FREE_LIST: [139]
+FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
 9.	vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
@@ -190,6 +190,7 @@ Savybių sąrašas (taikom į 150):
 25.	Projekto vadovas gali priskirti roles su atitinkamomis teisėmis kitiems vartotojams.
 47.	Vartotojas, neturėdamas reikiamų teisių, gauna galimybę jų automatiškai paprašyti projektų vadovo.
 130.	Projekto vadovas gali nustatyti, kad sistema jį asmeniškai informuotų apie bandymus pasinaudoti ištekliais neturint teisės.
+139.	Projekto vadovui matomas konkretus vartotoju su atitinkamomis rolemis skaicius.
 
 	****** Logų/Įrašų istorija ******
 55.	Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
