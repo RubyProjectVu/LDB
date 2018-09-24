@@ -1,4 +1,4 @@
-CURRENT_MAX: 141
+CURRENT_MAX: 144
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -103,6 +103,9 @@ Savybių sąrašas (taikom į 150):
 42.	Vartotojas gali persiųsti savo įrašą tam pačiam vartotojui per kitas informavimo priemones.
 62.	Sistema gali sekti, ar vartotojai nenaudoja neleistinų žodžių savo pranešimuose.
 52.	Sistema gali tikrinti komentarų/įrašų/užrašų rašybą pagal nustatytą kalbą.
+142.	Postas gali turėti tagus
+143.	Moderatorius gali uždaryti susirašinėjimą
+144	Moderatorius gali keisti vartotojų komentarus
 	
 	****** Pokalbių langas ******
 63.	Vartotojas gali pridėti vartotojų prie pokalbio lango.
