@@ -10,7 +10,6 @@ Savybių sąrašas (taikom į 150):
 
 	****** Projektas ******
 2.	Vartotojas gali sukurti projektą.
-131.	Vartotjas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
 4.	vartotojas gali matyti prie to pačio projekto/darbo grupės dirbančius asmenis
 7.	vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
 13.	vartotojas gali matyti bendrą projekto aprašą:
@@ -66,6 +65,7 @@ Savybių sąrašas (taikom į 150):
 	4.	vartotojo el.paštą, telefono nr.
 	5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
 	6.	turi rolę
+131.	Vartotjas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 3.	vartotojas gali atsijungti/prisijungti prie sistemos
 20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
