@@ -1,4 +1,4 @@
-CURRENT_MAX: 136
+CURRENT_MAX: 137
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -72,6 +72,7 @@ Savybių sąrašas (taikom į 150):
 3.	vartotojas gali atsijungti/prisijungti prie sistemos
 20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
 120.	vartotojas gali išsitrinti save iš sistemos, jei nedalyvauja nepabaigtuose projektuose arba jei patvirtina projekto vadovas
+137.	Vartotojas gali paprašyti sistemos priminti/pakeisti savo prisijungimo slaptažodį.
 	
 	****** Nuotrauka ******
 83. 	Vartotojas gali pridėti nuotrauką prie komentaro
