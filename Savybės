@@ -79,7 +79,7 @@ Savybių sąrašas (taikom į 150):
 62.	Sistema gali sekti, ar vartotojai nenaudoja neleistinų žodžių savo pranešimuose.
 
 	****** Pokalbių langas ******
-63.	Vartotojas gali sukurti vartotojų grupei bendrą pokalbio langą.
+63.	Vartotojas gali pridėti vartotojų prie pokalbio lango.
 64.	Vartotojas gali paskambinti vartotojams pokalbių lange.
 65.	Vartotojai gali naudoti vaizdo kameras pokalbiuose.
 66.	Vartotojas gali išsiųsti svarbią žinutę kitiems vartotojams, kuri yra išskiriama skirtinga spalva/simboliais vartotojo menių.
@@ -103,3 +103,6 @@ Savybių sąrašas (taikom į 150):
 78.	Vartotojas įvedant paieškos žodį gali matyti pasiūlymus paieškai.
 79.	Vartotojas gali keisti paieškos rezultato išsidėstyma. (Pvz. Pagal įkelimo datą, populiarumą)
 80.	Vartotojas gali filtruoti paieškos rezultatus pagal. (Pvz. Objekto tipą, palaikomą programą)
+81.	Vartotojas užvedęs pėlytę ant produkto gali matyti padidintą jo vaizdą ir trumpą aprašymą.
+82.	Vartotojas gali followint/pamėgti objekta neatidarius to objekto puslapio.
+83.	Vartotojas gali matyti produktų kiekį rezultate.
