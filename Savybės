@@ -1,4 +1,4 @@
-CURRENT_MAX: 144
+CURRENT_MAX: 145
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -140,6 +140,7 @@ Savybių sąrašas (taikom į 150):
 27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
 28.	Tiekėjas gali nepriimti užsakymo - apie tai informuojamas projekto vadovas, sudaromos sąlygos užsakymą derinti.
 105.	Sistema gali automatiškai suformuoti užsakymo išklotinę.
+145.	Vartotojas gali atsidaryti žemėlapį ir pamatyti esamą užsakymo vietą.
 	
 	****** Medžiaga ******
 103. 	Vartotojas gali matyti naujausius medžiagos standumo testus.
