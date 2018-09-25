@@ -1,4 +1,4 @@
-CURRENT_MAX: 147
+CURRENT_MAX: 148
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -120,6 +120,7 @@ Savybių sąrašas (taikom į 150):
 37.	Vartotojas gali personalizuoti tekstinio pokalbio su kitu vartotoju sąsają.
 114.	Vartotojas gali ištrinti savo pranešimą (dingsta tik jam).
 140. 	Vartotojas gali matyti visus su pokalbiu susijusius failus viename sąraše.
+148.	Vartotojas gali matyti sąrašą, kas šiuo metu prisijungęs.
 
 	****** Adresų knyga ******
 40.	Projekto vadovas gali paslėpti tam tikrus pasirinktus asmenis iš adresų knygos - tuomet kontaktas matomas tik jam vienam.
