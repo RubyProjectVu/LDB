@@ -1,4 +1,4 @@
-CURRENT_MAX: 145
+CURRENT_MAX: 146
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -61,6 +61,7 @@ Savybių sąrašas (taikom į 150):
 113.	Vartotojas gali redaguoti dokumentą per sistemą.
 115.	Vartotojas turi galimybę išsaugoti dokumentą skirtingais failų plėtiniais.
 123.	Vartotojas gali importuoti/eksportuoti dokumentą.
+146.	Vartotojas gali lygiuoti, formatuoti ir spalvinti dokumento tekstą.
 	
 	****** Vartotojas ******
 132.	vartotojai turi vardą ir pavardę, lytis
