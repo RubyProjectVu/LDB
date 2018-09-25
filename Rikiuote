@@ -51,7 +51,7 @@ Vartotojas gali importuoti/eksportuoti projektus.
 Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
 Du projektus galima sutraukti (merge) į vieną.
 Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
-vartototojas gali parašyti kitam vartotojui.
+Vartototojas gali parašyti kitam vartotojui.
 Vartotojas gali importuoti/eksportuoti dokumentą.
 Vartotojas gali pridėti nuotrauką prie komentaro.
 Vartotojas gali įtraukti naujų tekstūrų objekto elementams.
@@ -64,7 +64,7 @@ Projekto vadovas gali priskirti roles su atitinkamomis teisėmis kitiems vartoto
 Brėžinį pašalinti gali tik darbo grupės ir projekto vadovas.
 Vartotojas gali sukurti laikinai nesusietą su projektu brėžinį-eskizą.
 Vartotojas gali importuoti/eksportuoti brėžinį.
-vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo.
+Vartotojas gali kurti/redaguoti užrašus, kuriuos matys tik juos sukūręs asmuo.
 Vartotojas gali redaguoti dokumentą per sistemą.
 Vartotojas gali pridėti vartotojų prie pokalbio lango.
 Vartotojas gali koreguoti savo postą/komentarą.
