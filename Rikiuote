@@ -49,7 +49,6 @@ Vartotojas gali matyti projekto dalyvių aktyvumo statistiką.
 Vartotojas gali matyti prie to pačio projekto/darbo grupės dirbančius asmenis.
 Vartotojas gali importuoti/eksportuoti projektus.
 Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
-Du projektus galima sutraukti (merge) į vieną.
 Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
 Vartototojas gali parašyti kitam vartotojui.
 Vartotojas gali importuoti/eksportuoti dokumentą.
@@ -142,6 +141,7 @@ Sistema gali automatiškai generuoti sąskaitų ruošinius už resursų sunaudoj
 Sistema gali pasiūlyti rekomenduojamą produktų sąrašą vartotojui.
 Vartotojas gali pridėti produktą į mėgstamų sąrašą.
 Vartotojas gali parsisiųsti sistemos sekimo įrašus, jeigu turi tam teisę.
+Du projektus galima sutraukti (merge) į vieną.
 Sistema gali sugeneruoti modelį iš brėžinio.
 Vartotojas objekto 3D apžvalgą gali išsaugoti kaip demonstracinį vaizdo įrašą.
 Sistema gali tikrinti komentarų/įrašų/užrašų rašybą pagal nustatytą kalbą.
