@@ -1,5 +1,4 @@
 CURRENT_MAX: 150
-4 DUPLICATES [23, 8, 21, 121]; Change them into something unique
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -7,7 +6,6 @@ Savybių sąrašas (taikom į 150):
 10.	Vartotojas gali prie padaryto pakeitimo palikti komentarą
 11.	vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
 14.	vartotojas gali pažymėti svarbius klausimus, problemas
-[DUPLICATE - 83?]	23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
 
 	****** Projektas ******
 2.	Vartotojas gali sukurti projektą.
@@ -19,7 +17,8 @@ Savybių sąrašas (taikom į 150):
 	3.	svarbiausius pakeitimus
 	4.	artėjančius galutinius darbų terminus
 22.	vartotojas gali importuoti/eksportuoti projektus
-[DUPLICATE - 19, 122, 123, 131]	8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
+23.	Du projektus galima sutraukti (merge) į vieną.
+8.	Sistema gali interaktyviai vartotoją vesti pažingsniui projekto kūrimui (parodyti visual tutorial).
 50.	Projekto vadovas gali turėti kelis projektus.
 129	Vartotojas gali priklausyti keliems projektams.
 29.	Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
@@ -32,7 +31,7 @@ Savybių sąrašas (taikom į 150):
 	****** Projekto timeline ******
 59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
-[DUPLICATE - 61]	21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
+21.	vartotojas gali interaktyviai pasirinkti datas iš kalendoriaus
 58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
 134.	Projektas gali buti tam tikram vystymo etape priklausant nuo projekto progreso
 135.	Vartotojas gali nustatyti ir matyti progreso juostą prie timeline.
@@ -184,9 +183,9 @@ Savybių sąrašas (taikom į 150):
 97.	Vartotojas gali atsisiųti produkto individualų brėžinį/instrukciją.
 128.	Matoma, kiek žmonių seka produktą
 
-	****** Produktu "follow" sistema ******
-98.	Vartotojas gali pradėti sekti produktą.
-[DUPLICATE - 98 (include into one?)]	121.	Vartotojas gali nutraukti produkto sekimą.
+	****** Produktų "follow" sistema ******
+98.	Vartotojas gali pradėti/nustoti sekti produktą.
+121.	Sistema gali pasiūlyti rekomenduojamą produktų sąrašą vartotojui.
 136.	Tiekėjas gali būti informuotas, kuomet jo produktas pradedamas sekti.
 
 	****** BIM board ******
