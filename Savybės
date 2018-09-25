@@ -1,4 +1,4 @@
-CURRENT_MAX: 149
+CURRENT_MAX: 150
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -6,7 +6,7 @@ Savybių sąrašas (taikom į 150):
 10.	Vartotojas gali prie padaryto pakeitimo palikti komentarą
 11.	vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
 14.	vartotojas gali pažymėti svarbius klausimus, problemas
-23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
+[DUPLICATE - 83?]	23.	Vartotojas gali pridėti nuotrauką/vaizdo įrašą prie pranešimo kitam vartotojui.
 
 	****** Projektas ******
 2.	Vartotojas gali sukurti projektą.
@@ -18,7 +18,7 @@ Savybių sąrašas (taikom į 150):
 	3.	svarbiausius pakeitimus
 	4.	artėjančius galutinius darbų terminus
 22.	vartotojas gali importuoti/eksportuoti projektus
-8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
+[DUPLICATE - 19, 122, 123, 131]	8.	vartotojas gali įkelti failą/failus į projektą(brėžiniai, sutartys, kiti dokumentai)
 50.	Projekto vadovas gali turėti kelis projektus.
 129	Vartotojas gali priklausyti keliems projektams.
 29.	Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
@@ -31,7 +31,7 @@ Savybių sąrašas (taikom į 150):
 	****** Projekto timeline ******
 59.	Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
 61.	Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
-21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
+[DUPLICATE - 61]	21.	vartotojas gali susikurti/matyti atskirą lentelę su mažėjančiu terminuotu laiku(countdown timer)
 58.	Vartotojai gali žymėti praleistas valandas prie užduoties.
 134.	Projektas gali buti tam tikram vystymo etape priklausant nuo projekto progreso
 135.	Vartotojas gali nustatyti ir matyti progreso juostą prie timeline.
@@ -45,7 +45,7 @@ Savybių sąrašas (taikom į 150):
 	
 	****** Modelis ******
 17.	vartotojas gali kurti/redaguoti objekto vaizdą
-119.	vartotojas gali keisti mąstelį (priartinti/patolinti)
+119.	vartotojas gali keisti mastelį (priartinti/patolinti)
 18.	vartotojas gali objekto vaizdą pasukti kitu kampu
 19.	vartotojas gali įtraukti naujų tekstūrų objekto elementams
 138.	sistema gali sugeneruoti modelį iš brėžinio
@@ -70,7 +70,7 @@ Savybių sąrašas (taikom į 150):
 	4.	vartotojo el.paštą, telefono nr.
 	5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
 	6.	turi rolę
-131.	Vartotjas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
+131.	Vartotojas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
 1.	vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
 3.	vartotojas gali atsijungti/prisijungti prie sistemos
 20.	vartotojas gali matyti projekto dalyvių aktyvumo statistiką
@@ -139,6 +139,7 @@ Savybių sąrašas (taikom į 150):
 60.	Sistema gali automatiškai sufleruoti vartotojo užrašų knygutę (to-do sąrašą) pagal užduotis, jeigu vartotojas to pageidauja.
 118.	Vartotojas gali prikabinti failą(-us) prie užrašo.
 133.	Vartotojas gali matyti varnelėmis žymimus laukus sąraše.
+150.	Sistema gali siųsti priminimus į vartotojo įrenginį apie neatliktus žingsnius.
 	
 	****** Užsakymas ******
 27.	Projekto vadovas gali suformuoti užsakymą tiekėjui.
@@ -179,12 +180,12 @@ Savybių sąrašas (taikom į 150):
 94.	Vartotojas gali peržiūrėti specifikacijas.
 95. 	Vartotojas gali peržiūrėti susijusias nuoroda (Pvz.: kaip sumontuoti, techninis aprašymas, instruktažinis video).
 96.	Vartotojas gali peržiūrėti regionus, kuriuose juos galima įsigyti/atsisiųsti (?)
-97.	Vartotojas gali atsisiųti brėžinį.
-128.	Matoma kiek žmonių seka produktą
+97.	Vartotojas gali atsisiųti produkto individualų brėžinį/instrukciją.
+128.	Matoma, kiek žmonių seka produktą
 
 	****** Produktu "follow" sistema ******
 98.	Vartotojas gali pradėti sekti produktą.
-121.	Vartotojas gali nutraukti produkto sekimą.
+[DUPLICATE - 98 (include into one?)]	121.	Vartotojas gali nutraukti produkto sekimą.
 136.	Tiekėjas gali būti informuotas, kuomet jo produktas pradedamas sekti.
 
 	****** BIM board ******
