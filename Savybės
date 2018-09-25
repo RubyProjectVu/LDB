@@ -1,4 +1,4 @@
-CURRENT_MAX: 146
+CURRENT_MAX: 147
 FREE_LIST: []
 Savybių sąrašas (taikom į 150):
 
@@ -126,6 +126,7 @@ Savybių sąrašas (taikom į 150):
 32.	Vartotojas gali atnaujinti savo kontaktinius duomenis.
 6.	vartotojas gali matyti/redaguoti adresų knygą, kurioje matomi visi prie projekto prisidėję asmenys 
 124.	Vartotojas gali importuoti/eksportuoti adresų knygos įrašus, jei turi tam teisę.
+147.	Vartotojui slenkant sąrašu gali būti grafiškai rodoma, kurioje abėcėlės raidėje jis yra.
 	
 	****** Įrašo reitingas ******
 36.	Vartotojas gali peržvelgti, surūšiuoti reitingus pagal dominantį projektą, užduotį ar kita. 
