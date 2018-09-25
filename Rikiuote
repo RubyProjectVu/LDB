@@ -1,1 +1,71 @@
-Surikiuotas sarasas:
+Surikiuotas sarasas (WORK IN PROGRESS: jau ideta [Vartotojas, Projektas, (no-name virsuje), Projekto timeline,
+                        Darbų grupė, Modelis, Brėžinys, Dokumentas, ]):
+
+132.  vartotojai turi vardą ir pavardę, lytis
+	    2.	turi projekto numerį
+	    3.	vartotojo ID
+	    4.	vartotojo el.paštą, telefono nr.
+	    5.	vartotojas turi pasirinkti sritį(architektūra/marketingas/statyba/teisininkai/ekspertai?)
+	    6.	turi rolę
+3.    vartotojas gali atsijungti/prisijungti prie sistemos
+1.    vartotojas gali prisijungti prie projekto, patvirtinus projekto vadovui.
+137.	Vartotojas gali paprašyti sistemos priminti/pakeisti savo prisijungimo slaptažodį.
+2.    Vartotojas gali sukurti projektą.
+53.	  Sistema automatiškai sutikrina, ar projektas turi visus reikiamus failus.
+7.	  vartotojas gali, jei turi teises, kurti/keisti failus esančius projekte
+13.	  vartotojas gali matyti bendrą projekto aprašą:
+	    1.	ataskaitas
+	    2.	numatytą biudžetą
+	    3.	svarbiausius pakeitimus
+	    4.	artėjančius galutinius darbų terminus
+120.	vartotojas gali išsitrinti save iš sistemos, jei nedalyvauja nepabaigtuose projektuose arba jei patvirtina projekto vadovas
+38.	  Projekto vadovas gali suspenduoti/panaikinti projektą arba darbo grupę.
+39.	  Sistema automatiškai sukuria specialią individualizuotą užduotį, skirtą derinti projekto suspendavimo/panaikinimo sąlygas.
+29.	  Vartotojai gali matyti visus projekto užfiksuotus žingsnius, jeigu turi tam teisę.
+50.	  Projekto vadovas gali turėti kelis projektus.
+26.	  Projekto vadovas gali sukurti darbo grupę, priskirti jai kitus vartotojus bei nustatyti terminus ir užduotis.
+141. 	Darbo grupės vadovas gali kviesti kitus vartotojus prisijungti į jo grupę.
+51.	  Darbo grupės vadovas gali būti kelių grupių vadovu.
+16.	  Darbo grupės vadovas gali kurti individualias užduotis ir priskirti jas kitiems vartotojams
+129	  Vartotojas gali priklausyti keliems projektams.
+34.	  Sistema automatiškai išsiunčia pranešimus vartotojams, kurie pageidauja žinoti apie projekto pakeitimus.
+134.	Projektas gali buti tam tikram vystymo etape priklausant nuo projekto progreso
+17.	  vartotojas gali kurti/redaguoti objekto vaizdą
+119.	vartotojas gali keisti mastelį (priartinti/patolinti)
+18.	  vartotojas gali objekto vaizdą pasukti kitu kampu
+54.	  Vartotojas gali parsisiųsti projekto individualų failą, jeigu turi tam teisę.
+20.   vartotojas gali matyti projekto dalyvių aktyvumo statistiką
+4.	  vartotojas gali matyti prie to pačio projekto/darbo grupės dirbančius asmenis
+22.	  vartotojas gali importuoti/eksportuoti projektus
+61.	  Sistema gali vizualiai signalizuoti vartotojams, jeigu artėja užduoties terminas.
+23.	  Du projektus galima sutraukti (merge) į vieną.
+59.	  Sistema gali automatiškai generuoti užduoties ID, jei to pageidaujama.
+123.	Vartotojas gali importuoti/eksportuoti dokumentą.
+19.	  vartotojas gali įtraukti naujų tekstūrų objekto elementams
+58.	  Vartotojai gali žymėti praleistas valandas prie užduoties.
+44.	  Vartotojas gali paprašyti darbo grupės vadovo perskirstyti užduotį kitam vartotojui.
+135.	Vartotojas gali nustatyti ir matyti progreso juostą prie timeline.
+112.	Brėžinį pašalinti gali tik darbo grupės ir projekto vadovas.
+110.	Vartotojas gali sukurti laikinai nesusietą su projektu brėžinį-eskizą.
+122.	Vartotojas gali importuoti/eksportuoti brėžinį.
+113.	Vartotojas gali redaguoti dokumentą per sistemą.
+131.  Vartotojas gali prie savo profilio anketos prikabinti failus (sertifikatus), įrodančius jo kvalifikacijos lygį.
+115.	Vartotojas turi galimybę išsaugoti dokumentą skirtingais failų plėtiniais.
+146.	Vartotojas gali lygiuoti, formatuoti ir spalvinti dokumento tekstą.
+
+
+TODO - sukopijuoti is likusiu kategoriju savybes ir prideti kazkur virsuje (pagal svarba).
+
+
+[Nesurikiuota, bet pasideta]
+111.	Sistema gali pasiūlyti pasirašyti dokumentą elektroniniu parašu.
+8.	  Sistema gali interaktyviai vartotoją vesti pažingsniui projekto kūrimui (parodyti visual tutorial).
+138.	sistema gali sugeneruoti modelį iš brėžinio
+21.	  vartotojas gali interaktyviai pasirinkti datas iš kalendoriaus
+9.	  vartotojo padaryti pakeitimai kitai sričiai yra išryškinami
+10.	  Vartotojas gali prie padaryto pakeitimo palikti komentarą
+11.	  vartotojas gali patvirtinti iš kitos srities padarytus pakeitimus, kurie yra išryškinti
+14.	  vartotojas gali pažymėti svarbius klausimus, problemas
+109.	Vartotojas gali pasinaudoti prijungta paišymo planšete brėžiniui kurti/redaguoti.
+
+
