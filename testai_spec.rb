@@ -1,4 +1,4 @@
-require_relative 'Projektas'
+require_relative 'projektas'
 require 'rspec'
 
 describe Projektas do
