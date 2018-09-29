@@ -1,5 +1,5 @@
 class Projektas
-	@value = 0
+	attr_accessor value
 	def return_value
 		return @value
 	end
