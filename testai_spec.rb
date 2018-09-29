@@ -12,10 +12,15 @@ describe Projektas do
 		end
 	end
 	
-	context "The project opens its metadata file after being created" do
-		it "Should be able to find and open the file" do
+	context "The project is validating its metadata and owner" do
+		it "Should be able to find and open the metadata file created after initialising" do
 			proj = Projektas.new
 			expect(proj.check_metadata).to be true
+		end
+		
+		it "Should initially have its owner undefined after creation by default" do
+			proj = Projektas.new
+			expect(proj.project_manager).to eq "undefined"
 		end
 	end
 	
@@ -32,7 +37,7 @@ describe Projektas do
 		
 		it "Should return true on file creation" do
 			proj = Projektas.new
-			expect(proj.modify_file("created_file.txt", true)).to be false
+			expect(proj.modify_file("created_file.txt", true)).to be true
 		end
 	end
 	

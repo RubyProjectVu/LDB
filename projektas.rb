@@ -3,10 +3,12 @@ require 'date'
 class Projektas
 	attr_accessor :meta_filename
 	attr_accessor :project_name
+	attr_accessor :project_manager
 	
 	def initialize(project_name = "Default_project_" + Date.today.to_s, meta_filename = "metadata.txt")
 		@project_name = project_name
 		@meta_filename = meta_filename
+		define_manager("undefined")
 		metafile = File.new(meta_filename, "w")
 		metafile.close
 	end
@@ -34,6 +36,10 @@ class Projektas
 		end
 	end
 	
+	def define_manager(name)
+		#should ideally receive input from user
+		@project_manager = name
+	end
 	
 	#def save_metadata
 		
