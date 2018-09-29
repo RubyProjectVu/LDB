@@ -1,5 +1,6 @@
 require_relative 'projektas'
 require 'rspec'
+require 'securerandom' #random hash kuriantis metodas yra
 
 describe Projektas do
 	
@@ -17,4 +18,23 @@ describe Projektas do
 			expect(proj.check_metadata).to be true
 		end
 	end
+	
+	context "Performing action with project files" do
+		it "Should return false on non existant file deletion" do
+			proj = Projektas.new
+			expect(proj.modify_file("filename.txt", false)).to be false
+		end
+		
+		#it "Should return true on existing file deletion" do
+		#	proj = Projektas.new
+		#	expect(proj.modify_file("file_to_delete.txt", false)).to be true
+		#end
+		
+		it "Should return true on file creation" do
+			proj = Projektas.new
+			expect(proj.modify_file("created_file.txt", true)).to be false
+		end
+	end
+	
+	
 end

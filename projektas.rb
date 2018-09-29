@@ -21,6 +21,20 @@ class Projektas
 		end
 	end
 	
+	def modify_file(file_name, create_file)
+		if(create_file)
+			File.new(file_name, "w")
+			return true;
+		else
+			begin  
+				return File.delete(file_name) == 1
+			rescue  
+				return false  
+			end 
+		end
+	end
+	
+	
 	#def save_metadata
 		
 	#end
