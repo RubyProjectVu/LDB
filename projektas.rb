@@ -1,11 +1,6 @@
 require 'date'
 
 class Projektas
-<<<<<<< HEAD
-	attr_accessor value
-	def return_value
-		return @value
-=======
 	attr_accessor :meta_filename
 	attr_accessor :project_name
 	
@@ -14,7 +9,6 @@ class Projektas
 		@meta_filename = meta_filename
 		metafile = File.new(meta_filename, "w")
 		metafile.close
->>>>>>> paulius
 	end
 	
 	def check_metadata
