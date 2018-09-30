@@ -6,8 +6,9 @@ class Projektas
 	attr_reader :project_name
 	attr_reader :project_manager
 	attr_reader :project_status
+  attr_reader :project_deleted
 	attr_reader :members
-  
+
 	def initialize(project_name: "Default_project_" + Date.today.to_s, meta_filename: "metadata.txt")
 		@project_name = project_name
 		@meta_filename = meta_filename
@@ -15,6 +16,7 @@ class Projektas
 		metafile = File.new(meta_filename, "w")
 		metafile.close
 		@members = Array.new
+		@project_deleted = false
 	end
 
 	def check_metadata
@@ -70,12 +72,12 @@ class Projektas
 
 	def add_member(vart)
 		if vart == nil
-			puts "Invalid Vartotojas"
+			#puts "Invalid Vartotojas"
 			return false
 		end
 
 		if @members.include?(vart.user_id)
-			puts "This member is already assigned to this project"
+			#puts "This member is already assigned to this project"
 			return false
 		end
 
@@ -85,16 +87,26 @@ class Projektas
 
 	def remove_member(vart)
 		if vart == nil
-			puts "Invalid Vartotojas"
+			#puts "Invalid Vartotojas"
 			return false
 		end
 
 		if !@members.include?(vart.user_id)
-			puts "This member is not assigned to this project"
+			#puts "This member is not assigned to this project"
 			return false
 		end
 
 		@members.delete(vart.user_id)
+		return true
+	end
+
+	def set_deleted_status
+		if @project_deleted == true
+			# puts "Project is already deleted"
+			return false
+		end
+
+		@project_deleted = true
 		return true
 	end
 

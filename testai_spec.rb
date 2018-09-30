@@ -31,7 +31,7 @@ describe Projektas do
 			expect(proj.project_status).to eq "Proposed"
 		end
 	end
-	
+
 	context "A user tries to remove its account" do
 		it "Should not be able to remove itself if there are active projects" do
 			proj = Projektas.new(project_name: "Name")
@@ -64,6 +64,40 @@ describe Projektas do
 
 	context "A new member is being added to the project" do
 		it "Should return true when a new member is added to the project" do
+			proj = Projektas.new
+			expect(proj.add_member(Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com"))).to be true
+		end
+
+		it "Should return false when existing member is being added to the project" do
+			proj = Projektas.new
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			proj.add_member(vart)
+			expect(proj.add_member(vart)).to be false
+		end
+
+		it "Should return false when invalid Vartotojas object is passed" do
+			proj = Projektas.new
+			expect(proj.add_member(nil)).to be false
+		end
+	end
+
+	context "A member is being removed from the project" do
+		it "Should return true when an existing member gets removed from the project" do
+			proj = Projektas.new
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			proj.add_member(vart)
+			expect(proj.remove_member(vart)).to be true
+		end
+
+		it "Should return false when non-existing member is being removed from the project" do
+			proj = Projektas.new
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			expect(proj.remove_member(vart)).to be false
+		end
+
+		it "Should return false when invalid Vartotojas object is passed" do
+			proj = Projektas.new
+			expect(proj.remove_member(nil)).to be false
 		end
 	end
 end
@@ -139,9 +173,29 @@ describe Vartotojas do
 	end
 
 	context "Vartotojas creates a new project" do
-		it "Shoud not return nil on project creation" do
+		it "Should return true when a new project is created" do
 			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
 			expect(vart.create_project("Project", "Project.txt")).to be_truthy
+		end
+	end
+
+	context "Vartotojas deletes a project" do
+		it "Should return false when nil is being passed to delete_project" do
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			expect(vart.delete_project(nil)).to be false
+		end
+
+		it "Should return true when project is deleted" do
+			proj = Projektas.new
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			expect(vart.delete_project(proj)).to be true
+		end
+
+		it "Should return false when project is already deleted" do
+			proj = Projektas.new
+			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
+			vart.delete_project(proj)
+			expect(vart.delete_project(proj)).to be false
 		end
 	end
 
