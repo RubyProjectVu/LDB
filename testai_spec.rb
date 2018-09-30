@@ -1,7 +1,12 @@
+require 'simplecov'
+SimpleCov.start
+
 require_relative 'projektas'
 require 'rspec'
 require 'securerandom' #random hash kuriantis metodas yra
 require 'etc'
+
+
 
 describe Projektas do
 	

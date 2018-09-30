@@ -20,8 +20,6 @@ class Projektas
 		if outcome
 			File.foreach(@meta_filename, "r") {|line| print "Check if #{line} exists"}
 			return true
-		else 
-			return false
 		end
 	end
 	
