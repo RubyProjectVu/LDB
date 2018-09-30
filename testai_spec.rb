@@ -57,4 +57,10 @@ describe Projektas do
 		end
 	end
 
+	context "A new member is being added to the project" do
+		it "Should return true when a new member is added to the project" do
+
+		end
+	end
+
 end

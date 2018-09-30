@@ -1,3 +1,3 @@
 # LDB
 
-Nigga
+:)
