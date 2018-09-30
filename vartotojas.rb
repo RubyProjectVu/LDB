@@ -50,10 +50,12 @@ class Vartotojas
 	
 	def add_project(project, status)
 		#should ideally determine if project manager approves first
-		@projects[:project] = status
+		key = project.to_s.to_sym
+		@projects[project] = status
 	end
 	
 	def change_project_status(project, status)
-		@projects[:project] = status
+		key = project.to_s.to_sym
+		@projects[project] = status
 	end
 end
