@@ -6,8 +6,8 @@ class Projektas
 	attr_reader :project_name
 	attr_reader :project_manager
 	attr_reader :project_status
-  attr_reader :members
-	attr_reader :project_deleted
+  attr_reader :project_deleted
+	attr_reader :members
 
 	def initialize(project_name: "Default_project_" + Date.today.to_s, meta_filename: "metadata.txt")
 		@project_name = project_name
