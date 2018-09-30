@@ -1,4 +1,6 @@
 require_relative 'vartotojas'
+require 'time'
+
 class Sistema
 	attr_reader :logged_in_users
 	
@@ -30,6 +32,30 @@ class Sistema
 	def logout(user_to_logout)
 		return @logged_in_users.delete(user_to_logout)
 	end
+	
+	def log_user_login_logout(name, last_name, logs_in = true)
+		if logs_in
+			File.open("syslog.txt", "a") do |log|
+				log.puts "User: #{name} #{last_name} logged in at #{Time.now.getutc}."
+			end
+		else
+			File.open("syslog.txt", "a") do |log|
+				log.puts "User: #{name} #{last_name} logged out at #{Time.now.getutc}."
+			end
+		end
+	end
+	
+	def log_project_creation(name, user)
+		File.open("syslog.txt", "a") do |log|
+			log.puts "Project: #{name} created by #{user.get_unique_id} at #{Time.now.getutc}."
+		end
+	end
+	
 
+	def get_latest_entry
+		lines = File.readlines("syslog.txt")
+		
+		return lines.last
+	end
 end
 

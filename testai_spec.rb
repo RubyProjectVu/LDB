@@ -91,6 +91,7 @@ describe Vartotojas do
 			v1.set_unique_id("48c7dcc645d82e57f049bd414daa5ae2")
 			expect(sys.login(v1)).to be false
 		end
+		
 	end
 
 	context "User tries to logout" do
@@ -108,6 +109,7 @@ describe Vartotojas do
 			v1.set_unique_id("48c7dcc645d82e57f049bd414daa5ae2")
 			expect(Sistema.new.logout(v1)).to be nil
 		end
+		
 	end
 
 	context "User uploads qualification certificates" do
@@ -143,4 +145,31 @@ describe Vartotojas do
 		end
 	end
 
+end
+
+describe Sistema do
+	
+	context "The system should monitor user loggin in and out activity" do
+		it "The system should log a user login/logout" do
+			sys = Sistema.new
+			usr = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")
+			sys.login(usr)
+			sys.log_user_login_logout("tomas", "genut")
+			expect(sys.get_latest_entry).to start_with "User: tomas genut "
+			expect(sys.get_latest_entry).to include("logged in at")
+			sys.logout(usr)
+			sys.log_user_login_logout("tomas", "genut", false)
+			expect(sys.get_latest_entry).to start_with "User: tomas genut "
+			expect(sys.get_latest_entry).to include("logged out at")
+		end
+		
+		it "The system should log a project creation" do
+			sys = Sistema.new
+			usr = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")
+			usr.set_unique_id
+			proj = usr.create_project("some name", "some_meta.txt")
+			sys.log_project_creation(proj.parm_project_name, usr)
+			expect(sys.get_latest_entry).to start_with "Project: #{proj.parm_project_name} created by #{usr.get_unique_id} at"
+		end
+	end
 end

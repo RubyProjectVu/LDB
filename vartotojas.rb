@@ -8,7 +8,7 @@ class Vartotojas
 	attr_reader	:gender
 	attr_reader :user_id
 	attr_reader :phone_number
-  attr_reader :projects
+	attr_reader :projects
 	
 	def initialize(name: "", last_name: "", email: "")
 		@name = name
@@ -20,6 +20,10 @@ class Vartotojas
 
 	def set_unique_id(id = SecureRandom.hex)
 		@user_id = id
+	end
+	
+	def get_unique_id
+		return @user_id
 	end
 
 	def equals(other_user)

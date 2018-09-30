@@ -1,0 +1,6 @@
+User: tomas genut logged in at 2018-09-30 20:48:07 UTC.
+User: tomas genut logged out at 2018-09-30 20:48:07 UTC.
+Project: some name created by 56561625dbcae35d7eab69a5ab6ceec8 at 2018-09-30 20:48:07 UTC.
+User: tomas genut logged in at 2018-09-30 20:48:31 UTC.
+User: tomas genut logged out at 2018-09-30 20:48:31 UTC.
+Project: some name created by e8d5457f495f456b88e077955acd6d0e at 2018-09-30 20:48:31 UTC.
