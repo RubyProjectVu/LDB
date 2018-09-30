@@ -139,7 +139,7 @@ describe Vartotojas do
 	context "Vartotojas creates a new project" do
 		it "Shoud not return nil on project creation" do
 			vart = Vartotojas.new(name: "Jhon", last_name: "Peterson", email: "jhonpeterson@mail.com")
-			expect(vart.create_project(project_name: "Project", meta_filename: "Project.txt")).to be_truthy
+			expect(vart.create_project("Project", "Project.txt")).to be_truthy
 		end
 	end
 

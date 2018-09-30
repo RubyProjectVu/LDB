@@ -59,6 +59,7 @@ class Vartotojas
 	def change_project_status(project, status)
 		key = project.to_s.to_sym
 		@projects[project] = status
+	end
 
 	def create_project(project_name, project_file_name)
 		object = Projektas.new(project_name: project_name, meta_filename: project_file_name)
