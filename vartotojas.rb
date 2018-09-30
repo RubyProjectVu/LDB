@@ -1,6 +1,5 @@
 require 'securerandom' #random hash kuriantis metodas yra
 require_relative 'projektas'
-require 'date'
 
 class Vartotojas
 	attr_reader :name
@@ -10,10 +9,13 @@ class Vartotojas
 	attr_reader :user_id
 	attr_reader :phone_number
 
+	attr_reader :qualification_certificates
+
 	def initialize(name, last_name, email)
 		@name = name
 		@last_name = last_name
 		@email = email
+		@qualification_certificates = Array.new
 	end
 
 	def set_unique_id(id = SecureRandom.hex)
@@ -30,5 +32,11 @@ class Vartotojas
 	def create_project(project_name, project_file_name)
 		object = Projektas.new(project_name, project_file_name)
 		return object
+	end
+
+	def upload_certificate(file)
+		regex = Regexp.new("([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$")
+
+		return regex.match?(file)
 	end
 end
