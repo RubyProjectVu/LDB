@@ -60,7 +60,7 @@ class Projektas
 		end
 	end
 
-	def add_member(Vartotojas vart)
+	def add_member(vart)
 		if vart == nil
 			puts "Invalid Vartotojas"
 			return false
@@ -75,7 +75,7 @@ class Projektas
 		return true
 	end
 
-	def remove_member(Vartotojas vart)
+	def remove_member(vart)
 		if vart == nil
 			puts "Invalid Vartotojas"
 			return false
