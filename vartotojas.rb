@@ -8,13 +8,13 @@ class Vartotojas
 	attr_reader	:gender
 	attr_reader :user_id
 	attr_reader :phone_number
-
-	attr_reader :qualification_certificates
-
-	def initialize(name, last_name, email)
+  attr_reader :projects
+	
+	def initialize(name: "", last_name: "", email: "")
 		@name = name
 		@last_name = last_name
 		@email = email
+		@projects = {}
 		@qualification_certificates = Array.new
 	end
 
@@ -28,9 +28,40 @@ class Vartotojas
 		end
 		return false
 	end
+	
+	def prepare_deletion
+		active_projects = gather_active_projects
+		if !active_projects.any?
+			#should ideally mark userid as deleted on another entity {System}
+			return true
+		else	
+			#should ideally contact project managers
+			return false
+		end
+	end
+	
+	def gather_active_projects
+		active_projects = []
+		@projects.each {|name, status| 
+				if status.eql? 'In progress' 
+					active_projects << name
+				end
+			}
+		return active_projects
+	end
+	
+	def add_project(project, status)
+		#should ideally determine if project manager approves first
+		key = project.to_s.to_sym
+		@projects[project] = status
+	end
+	
+	def change_project_status(project, status)
+		key = project.to_s.to_sym
+		@projects[project] = status
 
 	def create_project(project_name, project_file_name)
-		object = Projektas.new(project_name, project_file_name)
+		object = Projektas.new(project_name: project_name, meta_filename: project_file_name)
 		return object
 	end
 
