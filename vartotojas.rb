@@ -9,7 +9,7 @@ class Vartotojas
 	attr_reader :user_id
 	attr_reader :phone_number
   attr_reader :projects
-	
+
 	def initialize(name: "", last_name: "", email: "")
 		@name = name
 		@last_name = last_name
@@ -28,42 +28,51 @@ class Vartotojas
 		end
 		return false
 	end
-	
+
 	def prepare_deletion
 		active_projects = gather_active_projects
 		if !active_projects.any?
 			#should ideally mark userid as deleted on another entity {System}
 			return true
-		else	
+		else
 			#should ideally contact project managers
 			return false
 		end
 	end
-	
+
 	def gather_active_projects
 		active_projects = []
-		@projects.each {|name, status| 
-				if status.eql? 'In progress' 
+		@projects.each {|name, status|
+				if status.eql? 'In progress'
 					active_projects << name
 				end
 			}
 		return active_projects
 	end
-	
+
 	def add_project(project, status)
 		#should ideally determine if project manager approves first
 		key = project.to_s.to_sym
 		@projects[project] = status
 	end
-	
+
 	def change_project_status(project, status)
 		key = project.to_s.to_sym
 		@projects[project] = status
 	end
 
-	def create_project(project_name, project_file_name)
-		object = Projektas.new(project_name: project_name, meta_filename: project_file_name)
+	def create_project(project_name, file_name)
+		object = Projektas.new(project_name: project_name, meta_filename: file_name)
 		return object
+	end
+
+	def delete_project(proj)
+		if proj == nil
+			# puts "Invalid object reference"
+			return false
+		end
+
+		return proj.set_deleted_status;
 	end
 
 	def upload_certificate(file)
