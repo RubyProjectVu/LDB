@@ -6,8 +6,9 @@ class Projektas
 	attr_reader :project_name
 	attr_reader :project_manager
 	attr_reader :project_status
+
 	
-	def initialize(project_name = "Default_project_" + Date.today.to_s, meta_filename = "metadata.txt")
+	def initialize(project_name: "Default_project_" + Date.today.to_s, meta_filename: "metadata.txt")
 		@project_name = project_name
 		@meta_filename = meta_filename
 		@project_manager = Etc.getlogin
@@ -47,15 +48,22 @@ class Projektas
 	
 	def parm_project_status(status = "")
 		if !status.to_s.empty?
-			if ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].include? status
+			if ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress'].include? status
 				#should ideally notify participants if status changes to 'suspended' or so
 				@project_status = status
 			else
-				return "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].join(", ")
+				return "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress'].join(", ")
 			end
 		else
 			return @project_status
 		end
 	end
 	
+	def parm_project_name(name = "")
+		if !name.to_s.empty?
+			@project_name = name
+		else
+			return @project_name
+		end
+	end
 end

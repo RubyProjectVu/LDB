@@ -7,11 +7,13 @@ class Vartotojas
 	attr_reader	:gender
 	attr_reader :user_id
 	attr_reader :phone_number
+	attr_reader :projects
 	
-	def initialize(name, last_name, email)
+	def initialize(name: "", last_name: "", email: "")
 		@name = name
 		@last_name = last_name
 		@email = email
+		@projects = {}
 	end
 	
 	def set_unique_id(id = SecureRandom.hex)
@@ -23,5 +25,35 @@ class Vartotojas
 			return true
 		end
 		return false
+	end
+	
+	def prepare_deletion
+		active_projects = gather_active_projects
+		if !active_projects.any?
+			#should ideally mark userid as deleted on another entity {System}
+			return true
+		else	
+			#should ideally contact project managers
+			return false
+		end
+	end
+	
+	def gather_active_projects
+		active_projects = []
+		@projects.each {|name, status| 
+				if status.eql? 'In progress' 
+					active_projects << name
+				end
+			}
+		return active_projects
+	end
+	
+	def add_project(project, status)
+		#should ideally determine if project manager approves first
+		@projects[:project] = status
+	end
+	
+	def change_project_status(project, status)
+		@projects[:project] = status
 	end
 end

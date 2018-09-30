@@ -2,15 +2,14 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative 'projektas'
+require_relative 'vartotojas'
 require 'rspec'
 require 'securerandom' #random hash kuriantis metodas yra
 require 'etc'
 
-
-
 describe Projektas do
 	
-	context "The project is validating its metadata, status and owner" do
+	context "A project is validating its metadata, status and owner" do
 		it "Should be able to find and open the metadata file created after initialising" do
 			proj = Projektas.new
 			expect(proj.check_metadata).to be true
@@ -26,9 +25,22 @@ describe Projektas do
 		it "Should check what the status is, whether it's correct, and set/return it" do
 			proj = Projektas.new
 			expect(proj.parm_project_status).to be nil
-			expect(proj.parm_project_status("ddd")).to eq "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].join(", ")
+			expect(proj.parm_project_status("ddd")).to eq "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress'].join(", ")
 			proj.parm_project_status("Proposed")
 			expect(proj.project_status).to eq "Proposed"
+		end
+	end
+	
+	context "A user tries to remove its account" do
+		it "Should not be able to remove itself if there are active projects" do
+			proj = Projektas.new(project_name: "Name")
+			proj.parm_project_status("In progress")
+			usr = Vartotojas.new
+			usr.add_project(proj.parm_project_name, proj.parm_project_status)
+			expect(usr.prepare_deletion).to be false
+			proj.parm_project_status("Postponed")
+			usr.change_project_status(proj.parm_project_name, "Postponed")
+			expect(usr.prepare_deletion).to be true
 		end
 	end
 	
