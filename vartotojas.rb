@@ -8,10 +8,13 @@ class Vartotojas
 	attr_reader :user_id
 	attr_reader :phone_number
 	
+	attr_reader :qualification_certificates
+	
 	def initialize(name, last_name, email)
 		@name = name
 		@last_name = last_name
 		@email = email
+		@qualification_certificates = Array.new
 	end
 	
 	def set_unique_id(id = SecureRandom.hex)
@@ -23,5 +26,11 @@ class Vartotojas
 			return true
 		end
 		return false
+	end
+	
+	def upload_certificate(file)
+		regex = Regexp.new("([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$")
+		
+		return regex.match?(file)
 	end
 end

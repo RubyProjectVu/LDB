@@ -1,4 +1,4 @@
-require 'D:\Aivaras\VU\IT\Ruby\LDB-Aivaras\vartotojas'
+require_relative 'vartotojas'
 class Sistema
 	attr_reader :logged_in_users
 	
@@ -6,7 +6,7 @@ class Sistema
 		@logged_in_users = Array.new
 	end
 	
-	def login(user_to_log_in)
+	def login(user_to_login)
 		if(File.file?("users.txt"))
 			File.foreach("users.txt", "r") do |line| 
 				users = line.split(";")
@@ -15,8 +15,8 @@ class Sistema
 					new_user = Vartotojas.new(user_data[0], user_data[1], user_data[2])
 					new_user.set_unique_id(user_data[3])
 					
-					if new_user.equals(user_to_log_in)
-						@logged_in_users.push(user_to_log_in)
+					if new_user.equals(user_to_login)
+						@logged_in_users.push(user_to_login)
 						return true
 					end
 				end
@@ -26,11 +26,10 @@ class Sistema
 			return false
 		end
 	end
+	
+	def logout(user_to_logout)
+		return @logged_in_users.delete(user_to_logout)
+	end
 
 end
-
-u = Sistema.new
-v= Vartotojas.new("q","w","t@a.com")
-v.set_unique_id("17c1993f2ff2378e5bcbe8dd9f909c94")
-puts u.login(v)
 
