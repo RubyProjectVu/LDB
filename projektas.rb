@@ -1,4 +1,5 @@
 require 'date'
+require 'etc'
 
 class Projektas
 	attr_reader :meta_filename
@@ -9,7 +10,7 @@ class Projektas
 	def initialize(project_name = "Default_project_" + Date.today.to_s, meta_filename = "metadata.txt")
 		@project_name = project_name
 		@meta_filename = meta_filename
-		define_manager("undefined")
+		@project_manager = Etc.getlogin
 		metafile = File.new(meta_filename, "w")
 		metafile.close
 	end
@@ -37,9 +38,13 @@ class Projektas
 		end
 	end
 	
-	def define_manager(name)
+	def parm_manager(name = "")
 		#should ideally receive input from user
-		@project_manager = name
+		if !name.to_s.empty?
+			@project_manager = name
+		else
+			return @project_manager
+		end
 	end
 	
 	def parm_project_status(status = "")

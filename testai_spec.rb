@@ -1,6 +1,7 @@
 require_relative 'projektas'
 require 'rspec'
 require 'securerandom' #random hash kuriantis metodas yra
+require 'etc'
 
 describe Projektas do
 	
@@ -10,9 +11,9 @@ describe Projektas do
 			expect(proj.check_metadata).to be true
 		end
 		
-		it "Should initially have its owner undefined after creation by default" do
+		it "Should initially have its owner defined as the user after creation by default" do
 			proj = Projektas.new
-			expect(proj.project_manager).to eq "undefined"
+			expect(proj.parm_manager).to eq Etc.getlogin
 		end
 		
 		it "Should check what the status is, whether it's correct, and set/return it" do
