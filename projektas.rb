@@ -1,9 +1,10 @@
 require 'date'
 
 class Projektas
-	attr_accessor :meta_filename
-	attr_accessor :project_name
-	attr_accessor :project_manager
+	attr_reader :meta_filename
+	attr_reader :project_name
+	attr_reader :project_manager
+	attr_reader :project_status
 	
 	def initialize(project_name = "Default_project_" + Date.today.to_s, meta_filename = "metadata.txt")
 		@project_name = project_name
@@ -41,11 +42,17 @@ class Projektas
 		@project_manager = name
 	end
 	
-	#def save_metadata
-		
-	#end
+	def parm_project_status(status = "")
+		if !status.to_s.empty?
+			if ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].include? status
+				#should ideally notify participants if status changes to 'suspended' or so
+				@project_status = status
+			else
+				return "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].join(", ")
+			end
+		else
+			return @project_status
+		end
+	end
 	
-	#def tear_down_project
-		
-	#end
 end
