@@ -14,6 +14,8 @@ describe Projektas do
 		it "Should initially have its owner defined as the user after creation by default" do
 			proj = Projektas.new
 			expect(proj.parm_manager).to eq Etc.getlogin
+			proj.parm_manager("some name")
+			expect(proj.parm_manager).to eq "some name"
 		end
 		
 		it "Should check what the status is, whether it's correct, and set/return it" do
