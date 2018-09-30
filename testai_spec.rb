@@ -4,15 +4,7 @@ require 'securerandom' #random hash kuriantis metodas yra
 
 describe Projektas do
 	
-	context "Add stuff to Projektas as needed" do
-		it "Should emit something here" do
-			#proj = Projektas.new
-			#proj.set_value(3)
-			#expect(proj.return_value).to eq 3
-		end
-	end
-	
-	context "The project is validating its metadata and owner" do
+	context "The project is validating its metadata, status and owner" do
 		it "Should be able to find and open the metadata file created after initialising" do
 			proj = Projektas.new
 			expect(proj.check_metadata).to be true
@@ -21,6 +13,14 @@ describe Projektas do
 		it "Should initially have its owner undefined after creation by default" do
 			proj = Projektas.new
 			expect(proj.project_manager).to eq "undefined"
+		end
+		
+		it "Should check what the status is, whether it's correct, and set/return it" do
+			proj = Projektas.new
+			expect(proj.parm_project_status).to be nil
+			expect(proj.parm_project_status("ddd")).to eq "Please set status as one of: " + ['Proposed', 'Suspended', 'Postponed', 'Cancelled'].join(", ")
+			proj.parm_project_status("Proposed")
+			expect(proj.project_status).to eq "Proposed"
 		end
 	end
 	
@@ -40,6 +40,5 @@ describe Projektas do
 			expect(proj.modify_file("created_file.txt", true)).to be true
 		end
 	end
-	
 	
 end
