@@ -13,7 +13,7 @@ class Sistema
 				users = line.split(";")
 				users.each do |user|
 					user_data = user.split(",")
-					new_user = Vartotojas.new(user_data[0], user_data[1], user_data[2])
+					new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1], email: user_data[2])
 					new_user.set_unique_id(user_data[3])
 
 					if new_user.equals(user_to_login)
