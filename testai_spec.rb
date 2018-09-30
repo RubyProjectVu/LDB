@@ -198,6 +198,16 @@ describe Vartotojas do
 			expect(vart.delete_project(proj)).to be false
 		end
 	end
+	
+	context "User asks for a new password" do
+		it "Should determine whether the email is legit and capable of receiving the link" do
+			sys = Sistema.new
+			usr = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")
+			expect(usr.resend_password_link).to be false
+			usr = Vartotojas.new(name: "some name", last_name: "pavardenis", email: "emailname@gmail.com")
+			expect(usr.resend_password_link).to be true
+		end
+	end
 
 end
 
@@ -215,6 +225,14 @@ describe Sistema do
 			sys.log_user_login_logout("tomas", "genut", false)
 			expect(sys.get_latest_entry).to start_with "User: tomas genut "
 			expect(sys.get_latest_entry).to include("logged out at")
+		end
+		
+		it "The system should log a password reset link request and see the email and user" do
+			sys = Sistema.new
+			usr = Vartotojas.new(name: "some name", last_name: "pavardenis", email: "emailname@gmail.com")
+			usr.resend_password_link
+			sys.log_password_request("some name", "pavardenis", "emailname@gmail.com")
+			expect(sys.get_latest_entry).to start_with "Password request for user: some name pavardenis to emailname@gmail.com"
 		end
 		
 		it "The system should log a project creation" do

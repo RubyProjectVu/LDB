@@ -1,5 +1,6 @@
 require 'securerandom' #random hash kuriantis metodas yra
 require_relative 'projektas'
+require 'uri'
 
 class Vartotojas
 	attr_reader :name
@@ -84,4 +85,13 @@ class Vartotojas
 
 		return regex.match?(file)
 	end
+	
+  def resend_password_link
+		#should ideally work based on Rails gem 'EmailVeracity'
+		if @email.match(/\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/)
+			return true
+		else
+			return false
+		end
+  end
 end

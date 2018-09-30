@@ -51,10 +51,15 @@ class Sistema
 		end
 	end
 	
+	def log_password_request(name, last_name, email)
+		File.open("syslog.txt", "a") do |log|
+			log.puts "Password request for user: #{name} #{last_name} to #{email} at #{Time.now.getutc}."
+		end
+	end
 
 	def get_latest_entry
 		lines = File.readlines("syslog.txt")
-		
 		return lines.last
 	end
+	
 end
