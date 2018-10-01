@@ -8,7 +8,8 @@ class Sistema
     @logged_in_users = [] # Array.new
   end
   
-  def user_validate(user)
+  def user_input_validate(user)
+	#Useris iveda savo Varda pavarde ir el pasta (butina) ir jie turi atitikti reikalavimus
 	validate = true;
 	if !user.name.match(/[A-Z][a-z]+/ )
 		validate = false
