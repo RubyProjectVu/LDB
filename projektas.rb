@@ -33,7 +33,14 @@ class Projektas
 			return true;
 		else
 			begin
-				return File.delete(file_name) == 1
+				var = File.delete(file_name)
+				if(var == 1)
+					file = File.new(file_name, "w")#TEST PURPOSES
+					file.puts("a")#TEST PURPOSES
+					file.close#TEST PURPOSES
+					puts "before retrun"
+					return true
+				end
 			rescue
 				return false
 			end
