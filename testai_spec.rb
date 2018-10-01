@@ -107,6 +107,26 @@ describe Projektas do
       expect(proj.remove_member(nil)).to be false
     end
   end
+
+  context 'Project subscriber list manipulation' do
+    it 'Should allow one member per name' do
+      proj = Projektas.new
+      e = 'u1email@gmail.com'
+      expect(proj.add_subscriber('name lastname', e)).not_to be false
+      expect(proj.add_subscriber('name lastname', e)).to be_falsey
+      expect(proj.remove_subscriber('name lastname')).not_to be false
+    end
+
+    it 'Should correctly find current subscribers' do
+      proj = Projektas.new
+      e = 'u1email@gmail.com'
+      proj.add_subscriber('name lastname', e)
+      proj.add_subscriber('josh lastname', e)
+      expect(proj.notify_subscribers).to eq ['name lastname', 'josh lastname']
+      proj.remove_subscriber('name lastname')
+      expect(proj.notify_subscribers).to eq ['josh lastname']
+    end
+  end
 end
 
 describe Vartotojas do
@@ -114,7 +134,7 @@ describe Vartotojas do
     it 'user1 should be equal to user1' do
       e = 'email@email.com'
       v1 = Vartotojas.new(name: 'name', last_name: 'lastname', email: e)
-      v1.set_unique_id('123456789')
+      v1.unique_id_setter('123456789')
       expect(v1.equals(v1)).to be true
     end
 
@@ -123,7 +143,7 @@ describe Vartotojas do
       e = 't@a.com'
       # existing user
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
-      v1.set_unique_id('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(sys.login(v1)).to be true
     end
 
@@ -132,16 +152,16 @@ describe Vartotojas do
       e = 't@a.com'
       # not existing user
       v1 = Vartotojas.new(name: 'no', last_name: 'user', email: e)
-      v1.set_unique_id('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(sys.login(v1)).to be false
     end
 
-    it 'A user should not be able to login if it has  already done that' do
+    it 'A user should not be able to login if it has already done that' do
       sys = Sistema.new
       e = 't@a.com'
       # existing user
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
-      v1.set_unique_id('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(sys.login(v1)).to be true
       expect(sys.login(v1)).to be false
     end
@@ -151,7 +171,7 @@ describe Vartotojas do
     it 'should logout if user exists' do
       # existing user
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
-      v1.set_unique_id('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
 
       sys = Sistema.new
       expect(sys.login(v1)).to be true
@@ -161,7 +181,7 @@ describe Vartotojas do
     it 'should return nil on error' do
       # existing user
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
-      v1.set_unique_id('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(Sistema.new.logout(v1)).to be nil
     end
   end
@@ -169,7 +189,7 @@ describe Vartotojas do
   context 'User uploads qualification certificates' do
     it 'should return true if file is accepted' do
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
-      v1.set_unique_id
+      v1.unique_id_setter
       expect(v1.upload_certificate('file.docx')).to be true
       expect(v1.upload_certificate('file.doc')).to be true
       expect(v1.upload_certificate('file.pdf')).to be true
@@ -177,7 +197,7 @@ describe Vartotojas do
 
     it 'should return false if file is of wrong format' do
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
-      v1.set_unique_id
+      v1.unique_id_setter
       expect(v1.upload_certificate('file.ff')).to be false
       expect(v1.upload_certificate('file.exe')).to be false
       expect(v1.upload_certificate('file.png')).to be false
@@ -233,6 +253,36 @@ describe Vartotojas do
 end
 
 describe Sistema do
+  context 'User tries to register' do
+    it 'Should return false if user with that email already exists' do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      usr2 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@a.com')
+      expect(sys.register(usr1)).to be false
+      expect(sys.register(usr2)).to be false
+    end
+
+    it 'Should return false if users email wont match email template' do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: 'qwert', last_name: 'setas', email: 'ga23am')
+      usr2 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@am')
+      expect(sys.user_input_validation(usr1)).to be false
+      expect(sys.user_input_validation(usr2)).to be false
+    end
+
+    it 'Should return true if all user input passes validation' do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: 'jonas', last_name: 'jon', email: 'j@j.com')
+      expect(sys.user_input_validation(usr1)).to be true
+    end
+
+    it 'Should return true if user successfully registered' do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: 'jonas', last_name: 'jon', email: 'j@j.com')
+      expect(sys.user_input_validation(usr1)).to be true
+      expect(sys.register(usr1)).to be true
+    end
+  end
   context 'System should monitor user loggin in, out' do
     it 'The system should log a user login or logout' do
       sys = Sistema.new
@@ -240,11 +290,11 @@ describe Sistema do
       sys.login(usr)
       sys.log_user_login_logout('tomas', 'genut')
       expect(sys.latest_entry).to start_with 'User: tomas genut '
-      expect(sys.latest_entry).to include('logged in at')
+      expect(sys.latest_entry).to include('logs in at')
       sys.logout(usr)
       sys.log_user_login_logout('tomas', 'genut', false)
       expect(sys.latest_entry).to start_with 'User: tomas genut '
-      expect(sys.latest_entry).to include('logged out at')
+      expect(sys.latest_entry).to include('logs out at')
     end
 
     it 'The system should log a request and see the email and user' do
@@ -254,7 +304,7 @@ describe Sistema do
       usr.resend_password_link
       e = 'emailname@gmail.com'
       sys.log_password_request('some name', 'pavardenis', e)
-      s1 = 'Password request for user: some name '
+      s1 = 'Pass req for user: some name '
       s2 = 'pavardenis to emailname@gmail.com'
       expect(sys.latest_entry).to start_with s1 + s2
     end
@@ -263,12 +313,23 @@ describe Sistema do
       sys = Sistema.new
       e = 't@a.com'
       usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
-      usr.set_unique_id
+      usr.unique_id_setter
       proj = usr.create_project('some name', 'some_meta.txt')
       sys.log_project_creation(proj.parm_project_name, usr)
       s1 = "Project: #{proj.parm_project_name} created "
-      s2 = "by #{usr.get_unique_id} at"
+      s2 = "by #{usr.unique_id_getter} at"
       expect(sys.latest_entry).to start_with s1 + s2
+    end
+
+    it 'Should log a certificate upload' do
+      sys = Sistema.new
+      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      v1.unique_id_setter
+      fname = 'file.pdf'
+      v1.upload_certificate(fname)
+      sys.log_certificate_upload('tomas', 'genut', fname)
+      str = "User: tomas genut uploaded a certification #{fname}"
+      expect(sys.latest_entry).to start_with str
     end
   end
 end
