@@ -18,8 +18,11 @@ class Sistema
 					new_user.set_unique_id(user_data[3])
 
 					if new_user.equals(user_to_login)
-						@logged_in_users.push(user_to_login)
-						return true
+						if !@logged_in_users.include? user_to_login
+							@logged_in_users.push(user_to_login)
+							return true
+						end
+						
 					end
 				end
 			end

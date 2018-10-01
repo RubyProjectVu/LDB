@@ -126,6 +126,14 @@ describe Vartotojas do
 			expect(sys.login(v1)).to be false
 		end
 		
+		it "A user should not be able to login if it's already done that" do
+			sys = Sistema.new
+			v1 = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")#existing user
+			v1.set_unique_id("48c7dcc645d82e57f049bd414daa5ae2")
+			expect(sys.login(v1)).to be true
+			expect(sys.login(v1)).to be false
+		end
+		
 	end
 
 	context "User tries to logout" do
