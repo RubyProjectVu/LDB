@@ -239,12 +239,12 @@ describe Sistema do
       usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
       sys.login(usr)
       sys.log_user_login_logout('tomas', 'genut')
-      expect(sys.get_latest_entry).to start_with 'User: tomas genut '
-      expect(sys.get_latest_entry).to include('logged in at')
+      expect(sys.latest_entry).to start_with 'User: tomas genut '
+      expect(sys.latest_entry).to include('logged in at')
       sys.logout(usr)
       sys.log_user_login_logout('tomas', 'genut', false)
-      expect(sys.get_latest_entry).to start_with 'User: tomas genut '
-      expect(sys.get_latest_entry).to include('logged out at')
+      expect(sys.latest_entry).to start_with 'User: tomas genut '
+      expect(sys.latest_entry).to include('logged out at')
     end
 
     it 'The system should log a request and see the email and user' do
@@ -256,7 +256,7 @@ describe Sistema do
       sys.log_password_request('some name', 'pavardenis', e)
       s1 = 'Password request for user: some name '
       s2 = 'pavardenis to emailname@gmail.com'
-      expect(sys.get_latest_entry).to start_with s1 + s2
+      expect(sys.latest_entry).to start_with s1 + s2
     end
 
     it 'The system should log a project creation' do
@@ -268,7 +268,7 @@ describe Sistema do
       sys.log_project_creation(proj.parm_project_name, usr)
       s1 = "Project: #{proj.parm_project_name} created "
       s2 = "by #{usr.get_unique_id} at"
-      expect(sys.get_latest_entry).to start_with s1 + s2
+      expect(sys.latest_entry).to start_with s1 + s2
     end
   end
 end
