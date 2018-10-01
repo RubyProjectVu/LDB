@@ -298,7 +298,7 @@ describe Sistema do
       fname = 'file.pdf'
       v1.upload_certificate(fname)
       sys.log_certificate_upload('tomas', 'genut', fname)
-      str = "User: tomas genut uploaded a certification #{fname}."
+      str = "User: tomas genut uploaded a certification #{fname}"
       expect(sys.latest_entry).to start_with str
     end
   end

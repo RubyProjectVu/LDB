@@ -91,7 +91,7 @@ class Vartotojas
   end
 
   def resend_password_link
-    # should ideally work based on Rails gem 'EmailVeracity'
+    # should later work based on Rails gem 'EmailVeracity'
     if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
       true
     else

@@ -11,26 +11,32 @@ class Sistema
 
   def login(user_to_login)
     if File.file?('users.txt')
-      File.foreach('users.txt', 'r') do |line|
-        users = line.split(';')
-        users.each do |user|
-          user_data = user.split(',')
-          new_user = Vartotojas.new(name: user_data[0],
-                                    last_name: user_data[1],
-                                    email: user_data[2])
-          new_user.set_unique_id(user_data[3])
-
-          if new_user.equals(user_to_login)
-            unless @logged_in_users.include? user_to_login
-              @logged_in_users.push(user_to_login)
-              return true
-            end
-          end
+      File.foreach('users.txt', 'r') do |line| 
+        if construct_user(line, user_to_login)
+          return true
         end
       end
-      # false
+      false
     else
       false
+    end
+    false
+  end
+
+  def construct_user(line, user_to_login)
+    users = line.split(';')
+    users.each do |user|
+      user_data = user.split(',')
+      new_user = Vartotojas.new(name: user_data[0],
+                  last_name: user_data[1],
+                  email: user_data[2])
+      new_user.set_unique_id(user_data[3])
+      if new_user.equals(user_to_login)
+        unless @logged_in_users.include? user_to_login
+          @logged_in_users.push(user_to_login)
+          return true
+        end
+      end
     end
     false
   end
@@ -74,7 +80,7 @@ class Sistema
       n = name
       l = last_name
       f = file
-      log.puts "User: #{n} #{l} uploaded a certification #{f}."
+      log.puts "User: #{n} #{l} uploaded a certification #{f} at #{v1}."
     end
   end
 
