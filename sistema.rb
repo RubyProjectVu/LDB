@@ -67,6 +67,16 @@ class Sistema
       log.puts "Password request for user: #{n} #{l} to #{email} at #{v1}."
     end
   end
+  
+  def log_certificate_upload(name, last_name, file)
+    File.open('syslog.txt', 'a') do |log|
+      v1 = Time.now.getutc
+      n = name
+      l = last_name
+      f = file
+      log.puts "User: #{n} #{l} uploaded a certification #{f}."
+    end
+  end
 
   def latest_entry
     lines = File.readlines('syslog.txt')

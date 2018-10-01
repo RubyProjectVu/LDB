@@ -156,7 +156,7 @@ describe Vartotojas do
       expect(sys.login(v1)).to be false
     end
 
-    it 'A user should not be able to login if it has  already done that' do
+    it 'A user should not be able to login if it has already done that' do
       sys = Sistema.new
       e = 't@a.com'
       # existing user
@@ -289,6 +289,17 @@ describe Sistema do
       s1 = "Project: #{proj.parm_project_name} created "
       s2 = "by #{usr.get_unique_id} at"
       expect(sys.latest_entry).to start_with s1 + s2
+    end
+
+    it 'Should log a certificate upload' do
+      sys = Sistema.new
+      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      v1.set_unique_id
+      fname = 'file.pdf'
+      v1.upload_certificate(fname)
+      sys.log_certificate_upload('tomas', 'genut', fname)
+      str = "User: tomas genut uploaded a certification #{fname}."
+      expect(sys.latest_entry).to start_with str
     end
   end
 end
