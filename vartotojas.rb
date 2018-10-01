@@ -11,7 +11,7 @@ class Vartotojas
   attr_reader :phone_number
   attr_reader :projects
 
-  def initialize(name: '', last_name: '', email: '')
+  def initialize(name: '', last_name: '', email: '', phone_number: "")
     @name = name
     @last_name = last_name
     @email = email
