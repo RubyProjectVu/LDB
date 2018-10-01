@@ -35,15 +35,15 @@ class Projektas
       begin
         var = File.delete(file_name)
         if(var == 1)
-          file = File.new(file_name, "w")#TEST PURPOSES
-          file.puts("a")#TEST PURPOSES
-          file.close#TEST PURPOSES
+          file = File.new(file_name, "w")# TEST PURPOSES
+          file.puts("a")# TEST PURPOSES
+          file.close# TEST PURPOSES
           puts "before retrun"
           return true
         end
       rescue
         return false
-			end
+      end
     end
   end
 
@@ -51,7 +51,7 @@ class Projektas
     #should ideally receive input from user
     if !name.to_s.empty?
       @project_manager = name
-		else
+    else
       return @project_manager
     end
   end

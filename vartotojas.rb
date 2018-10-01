@@ -16,13 +16,13 @@ class Vartotojas
     @last_name = last_name
     @email = email
     @projects = {}
-    @qualification_certificates = Array.new
+    @qualification_certificates = [] # Array.new
   end
 
   def set_unique_id(id = SecureRandom.hex)
     @user_id = id
   end
-	
+  
   def get_unique_id
     return @user_id
   end
@@ -48,10 +48,10 @@ class Vartotojas
   def gather_active_projects
     active_projects = []
     @projects.each {|name, status|
-				if status.eql? 'In progress'
-					active_projects << name
-				end
-			}
+        if status.eql? 'In progress'
+          active_projects << name
+        end
+      }
     return active_projects
   end
 
@@ -72,11 +72,12 @@ class Vartotojas
   end
 
   def delete_project(proj)
-    if proj == nil
+    if proj.nil?
       # puts 'Invalid object reference'
       return false
     end
-    return proj.set_deleted_status;
+
+    return proj.set_deleted_status
   end
 
   def upload_certificate(file)
