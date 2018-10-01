@@ -9,14 +9,19 @@ class Projektas
   attr_reader :project_status
   attr_reader :project_deleted
   attr_reader :members
+  attr_reader :subscriber_members
 
-  def initialize(project_name: 'Default_project_' + Date.today.to_s, meta_filename: 'metadata.txt')
+  def initialize(
+    project_name: 'Default_project_' + Date.today.to_s,
+    meta_filename: 'metadata.txt'
+  )
     @project_name = project_name
     @meta_filename = meta_filename
     @project_manager = Etc.getlogin
     metafile = File.new(meta_filename, 'w')
     metafile.close
     @members = []
+    @subscriber_members = {}
     @project_deleted = false
   end
 
@@ -44,16 +49,16 @@ class Projektas
   end
 
   def delete_file(file_name)
-    begin
-      var = File.delete(file_name) # delete gali mest exception
-      if var == 1
-        file = File.new(file_name, 'w') # TEST PURPOSES
-        file.puts('a') # TEST PURPOSES
-        return true
-      end
-    rescue StandardError
-      return false
+    # begin
+    var = File.delete(file_name) # delete gali mest exception
+    if var == 1
+      file = File.new(file_name, 'w') # TEST PURPOSES
+      file.puts('a') # TEST PURPOSES
+      return true
     end
+  rescue StandardError
+    false
+    # end
   end
 
   def parm_manager(name = '')
@@ -77,6 +82,33 @@ class Projektas
     end
   end
 
+  def add_subscriber(name, email)
+    if !@subscriber_members.key?(name)
+      @subscriber_members[name] = email
+    else
+      false
+    end
+  end
+
+  def remove_subscriber(name)
+    if @subscriber_members.key?(name)
+      @subscriber_members.delete(name)
+    else
+      false
+    end
+  end
+
+  def notify_subscribers
+    names_sent = []
+    @subscriber_members.each do |name, email|
+      if email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
+        # should ideally send template mesasges
+        names_sent.push(name)
+      end
+    end
+    names_sent
+  end
+
   def project_status_array
     var = []
     var.push('Proposed').push('Suspended').push('Postponed')
@@ -85,7 +117,8 @@ class Projektas
   end
 
   def project_status__message
-    postfix = project_status_array.join(', ')
+    var = ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
+    postfix = var.join(', ')
     prefix = 'Please set status as one of: '
     prefix + postfix
   end

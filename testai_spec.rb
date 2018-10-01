@@ -107,6 +107,26 @@ describe Projektas do
       expect(proj.remove_member(nil)).to be false
     end
   end
+
+  context 'Project subscriber list manipulation' do
+    it 'Should allow one member per name' do
+      proj = Projektas.new
+      e = 'u1email@gmail.com'
+      expect(proj.add_subscriber('name lastname', e)).not_to be false
+      expect(proj.add_subscriber('name lastname', e)).to be false
+      expect(proj.remove_subscriber('name lastname')).not_to be false
+    end
+
+    it 'Should correctly find current subscribers' do
+      proj = Projektas.new
+      e = 'u1email@gmail.com'
+      proj.add_subscriber('name lastname', e)
+      proj.add_subscriber('josh lastname', e)
+      expect(proj.notify_subscribers).to eq ['name lastname', 'josh lastname']
+      proj.remove_subscriber('name lastname')
+      expect(proj.notify_subscribers).to eq ['josh lastname']
+    end
+  end
 end
 
 describe Vartotojas do
