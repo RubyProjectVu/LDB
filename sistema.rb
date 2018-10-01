@@ -9,17 +9,17 @@ class Sistema
   end
   
   def user_validate(user)
-		validate = true;
-		if !user.name.match(/[A-Z][a-z]+/ )
-			validate = false
-		elsif !user.last_name.match(/[A-Z][a-z]+/ )
-			validate = false
-		elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
-			validate = false
-		end
-		
-		return validate
+	validate = true;
+	if !user.name.match(/[A-Z][a-z]+/ )
+		validate = false
+	elsif !user.last_name.match(/[A-Z][a-z]+/ )
+		validate = false
+	elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
+		validate = false
 	end
+
+	validate
+  end
 	
 	def register(user_to_register)
 		if ( File.file?("users.txt") )
