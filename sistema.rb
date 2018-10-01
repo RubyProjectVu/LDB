@@ -68,7 +68,7 @@ class Sistema
     end
   end
 
-  def get_latest_entry
+  def latest_entry
     lines = File.readlines('syslog.txt')
     lines.last
   end
