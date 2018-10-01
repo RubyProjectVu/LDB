@@ -104,7 +104,7 @@ class Projektas
     end
 
     @members.delete(vart.user_id)
-    return true
+    true
   end
 
   def set_deleted_status
@@ -116,5 +116,4 @@ class Projektas
     @project_deleted = true
     return true
   end
-
 end
