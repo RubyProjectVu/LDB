@@ -9,37 +9,37 @@ class Sistema
   end
   
   def user_input_validate(user)
-	#Useris iveda savo Varda pavarde ir el pasta (butina) ir jie turi atitikti reikalavimus
-	validate = true;
-	if !user.name.match(/[A-Z][a-z]+/ )
-		validate = false
-	elsif !user.last_name.match(/[A-Z][a-z]+/ )
-		validate = false
-	elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
-		validate = false
-	end
+    #Useris iveda savo Varda pavarde ir el pasta (butina) ir jie turi atitikti reikalavimus
+    validate = true;
+    if !user.name.match(/[A-Z][a-z]+/ )
+      validate = false
+    elsif !user.last_name.match(/[A-Z][a-z]+/ )
+      validate = false
+    elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
+      validate = false
+    end
 
-	validate
+    validate
   end
-	
-	def register(user_to_register)
-		if ( File.file?("users.txt") )
-			File.foreach("users.txt", "r") do |line|
-				users = line.split(";")
-				users.each do |user|
-					user_data = user.split(",")
-					if user_data[2].equal?(user_to_register.email)
-						file.close
-						return false
-					end
-				end
-			end
-		end
-		File.open("users.txt", "a") do |reg|
-			reg.puts "#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id};"
-			reg.close
-		end
-	end
+
+  def register(user_to_register)
+    if ( File.file?("users.txt") )
+      File.foreach("users.txt", "r") do |line|
+        users = line.split(";")
+        users.each do |user|
+          user_data = user.split(",")
+          if user_data[2].equal?(user_to_register.email)
+            file.close
+            return false
+          end
+        end
+      end
+    end
+    File.open("users.txt", "a") do |reg|
+      reg.puts "#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id};"
+      reg.close
+    end
+  end
 
   def login(user_to_login)
     if (File.file?('users.txt'))
