@@ -8,6 +8,39 @@ class Sistema
   def initialize
     @logged_in_users = [] # Array.new
   end
+  
+  def user_input_validation(user)
+	  validate = true;
+    if !user.name.match(/[a-zA-Z][a-z]+/ )
+      validate = false
+    elsif !user.last_name.match(/[a-zA-Z][a-z]+/ )
+      validate = false
+    elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
+      validate = false
+    end
+		
+    validate
+  end
+	
+  def register(user_to_register)
+    if ( File.file?("users.txt") )
+      File.foreach("users.txt", "r") do |line|
+        users = line.split(";")
+        users.each do |user|
+          user_data = user.split(",")
+          if user_data[2].match(user_to_register.email)
+            return false
+          end
+        end
+      end
+    end
+    user_to_register.set_unique_id
+    # File.open("users.txt", "a") do |reg|
+      # reg.puts ";#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id}"
+      # reg.close
+    # end
+    true
+  end
 
   def login(user_to_login)
     if File.file?('users.txt')
