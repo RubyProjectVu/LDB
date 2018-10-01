@@ -45,7 +45,7 @@ class Sistema
   def login(user_to_login)
     if File.file?('users.txt')
       File.foreach('users.txt', 'r') do |line| 
-        if construct_user(line, user_to_login)
+        if construct_user(line.split(';'), user_to_login)
           return true
         end
       end
@@ -57,8 +57,8 @@ class Sistema
   end
 
   def construct_user(line, user_to_login)
-    users = line.split(';')
-    users.each do |user|
+    #users = line.split(';')
+    line.each do |user|
       user_data = user.split(',')
       new_user = Vartotojas.new(name: user_data[0],
                   last_name: user_data[1],
@@ -79,14 +79,12 @@ class Sistema
   end
 
   def log_user_login_logout(name, last_name, logs_in = true)
-    if logs_in
-      File.open('syslog.txt', 'a') do |log|
-        log.puts "User: #{name} #{last_name} logged in at #{Time.now.getutc}."
-      end
-    else
-      File.open('syslog.txt', 'a') do |log|
-        log.puts "User: #{name} #{last_name} logged out at #{Time.now.getutc}."
-      end
+    File.open('syslog.txt', 'a') do |log|
+			if logs_in
+			  log.puts "User: #{name} #{last_name} logs in at #{Time.now.getutc}."
+			else
+				log.puts "User: #{name} #{last_name} logs out at #{Time.now.getutc}."
+			end
     end
   end
 

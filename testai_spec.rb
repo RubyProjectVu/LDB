@@ -292,11 +292,11 @@ describe Sistema do
       sys.login(usr)
       sys.log_user_login_logout('tomas', 'genut')
       expect(sys.latest_entry).to start_with 'User: tomas genut '
-      expect(sys.latest_entry).to include('logged in at')
+      expect(sys.latest_entry).to include('logs in at')
       sys.logout(usr)
       sys.log_user_login_logout('tomas', 'genut', false)
       expect(sys.latest_entry).to start_with 'User: tomas genut '
-      expect(sys.latest_entry).to include('logged out at')
+      expect(sys.latest_entry).to include('logs out at')
     end
 
     it 'The system should log a request and see the email and user' do
