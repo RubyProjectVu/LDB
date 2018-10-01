@@ -35,10 +35,10 @@ class Sistema
       end
     end
     user_to_register.set_unique_id
-    File.open("users.txt", "a") do |reg|
-      reg.puts ";#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id}"
-      reg.close
-    end
+    # File.open("users.txt", "a") do |reg|
+      # reg.puts ";#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id}"
+      # reg.close
+    # end
     true
   end
 
