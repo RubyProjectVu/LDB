@@ -1,7 +1,8 @@
-require 'securerandom' #random hash kuriantis metodas yra
+require 'securerandom' # random hash kuriantis metodas yra
 require_relative 'projektas'
 require 'uri'
 
+# Documentation
 class Vartotojas
   attr_reader :name
   attr_reader :last_name
@@ -22,37 +23,40 @@ class Vartotojas
   def set_unique_id(id = SecureRandom.hex)
     @user_id = id
   end
-  
+
   def get_unique_id
-    return @user_id
+    @user_id
   end
 
   def equals(other_user)
-    if (@name == other_user.name and @last_name == other_user.last_name and @email == other_user.email and @user_id == other_user.user_id)
+    if @name == other_user.name &&
+       @last_name == other_user.last_name &&
+       @email == other_user.email &&
+       @user_id == other_user.user_id
       return true
     end
-    return false
+
+    false
   end
 
   def prepare_deletion
     active_projects = gather_active_projects
-    if !active_projects.any?
-      # should ideally mark userid as deleted on another entity {System}
-      return true
-    else
-      # should ideally contact project managers
-      return false
-    end
+    return true if active_projects.none?
+
+    # should ideally mark userid as deleted on another entity {System}
+    # return true
+    # else
+    # should ideally contact project managers
+    false
+    # end
   end
 
   def gather_active_projects
     active_projects = []
-    @projects.each {|name, status|
-        if status.eql? 'In progress'
-          active_projects << name
-        end
-      }
-    return active_projects
+    @projects.each do |name, status|
+      active_projects.push(name) if status.eql? 'In progress'
+    end
+    active_projects
   end
 
   def add_project(project, status)
@@ -67,8 +71,9 @@ class Vartotojas
   end
 
   def create_project(project_name, file_name)
-    object = Projektas.new(project_name: project_name, meta_filename: file_name)
-    return object
+    # object =
+    Projektas.new(project_name: project_name, meta_filename: file_name)
+    # return object
   end
 
   def delete_project(proj)
@@ -77,7 +82,7 @@ class Vartotojas
       return false
     end
 
-    return proj.set_deleted_status
+    proj.set_deleted_status
   end
 
   def upload_certificate(file)
@@ -87,7 +92,7 @@ class Vartotojas
 
   def resend_password_link
     # should ideally work based on Rails gem 'EmailVeracity'
-    if @email.match(/\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/)
+    if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
       true
     else
       false
