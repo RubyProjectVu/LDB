@@ -51,10 +51,10 @@ describe Projektas do
 			expect(proj.modify_file("filename.txt", false)).to be false
 		end
 
-		#it "Should return true on existing file deletion" do
-		#	proj = Projektas.new
-		#	expect(proj.modify_file("file_to_delete.txt", false)).to be true
-		#end
+		it "Should return true on existing file deletion" do
+			proj = Projektas.new
+			expect(proj.modify_file("file_to_delete.txt", false)).to be true
+		end
 
 		it "Should return true on file creation" do
 			proj = Projektas.new
