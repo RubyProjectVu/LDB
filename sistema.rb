@@ -10,7 +10,7 @@ class Sistema
   end
   
   def user_input_validation(user)
-	  validate = true;
+    validate = true
     if !user.name.match(/[a-zA-Z][a-z]+/ )
       validate = false
     elsif !user.last_name.match(/[a-zA-Z][a-z]+/ )
@@ -18,10 +18,10 @@ class Sistema
     elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/ )
       validate = false
     end
-		
+
     validate
   end
-	
+  
   def register(user_to_register)
     if ( File.file?("users.txt") )
       File.foreach("users.txt", "r") do |line|
@@ -100,10 +100,11 @@ class Sistema
 
   def log_password_request(name, last_name, email)
     File.open('syslog.txt', 'a') do |log|
-      v1 = Time.now.getutc
-      n = name
+			sho = [Time.now.getutc, name]
+      #v1 = Time.now.getutc
+      #n = name
       l = last_name
-      log.puts "Password request for user: #{n} #{l} to #{email} at #{v1}."
+      log.puts "Pass req for user: #{sho[1]} #{l} to #{email} at #{sho[0]}."
     end
   end
   
@@ -118,7 +119,7 @@ class Sistema
   end
 
   def latest_entry
-    lines = File.readlines('syslog.txt')
-    lines.last
+    File.readlines('syslog.txt').last
+    #lines.last
   end
 end

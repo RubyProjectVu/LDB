@@ -113,7 +113,7 @@ describe Projektas do
       proj = Projektas.new
       e = 'u1email@gmail.com'
       expect(proj.add_subscriber('name lastname', e)).not_to be false
-      expect(proj.add_subscriber('name lastname', e)).to be false
+      expect(proj.add_subscriber('name lastname', e)).to be_falsey
       expect(proj.remove_subscriber('name lastname')).not_to be false
     end
 
@@ -256,17 +256,17 @@ describe Sistema do
   context 'User tries to register' do
     it 'Should return false if user with that email already exists' do
       sys = Sistema.new
-      usr1 = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")
-      usr2 = Vartotojas.new(name: "genut", last_name: "tomas", email: "g@a.com")
+      usr1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      usr2 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@a.com')
       expect(sys.register(usr1)).to be false
       expect(sys.register(usr2)).to be false
     end
 
-    it 'Should return false if users email won't match email template' do
+    it 'Should return false if users email wont match email template' do
       sys = Sistema.new
-      usr1 = Vartotojas.new(name: "tomas", last_name: "genut", email: "ts2a@@a.com")
-      usr2 = Vartotojas.new(name: "qwert", last_name: "setas", email: "ga23am")
-      usr3 = Vartotojas.new(name: "genut", last_name: "tomas", email: "g@am")
+      usr1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 'ts2a@@a.com')
+      usr2 = Vartotojas.new(name: 'qwert', last_name: 'setas', email: 'ga23am')
+      usr3 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@am')
       expect(sys.user_input_validation(usr1)).to be false
       expect(sys.user_input_validation(usr2)).to be false
       expect(sys.user_input_validation(usr3)).to be false
@@ -306,7 +306,7 @@ describe Sistema do
       usr.resend_password_link
       e = 'emailname@gmail.com'
       sys.log_password_request('some name', 'pavardenis', e)
-      s1 = 'Password request for user: some name '
+      s1 = 'Pass req for user: some name '
       s2 = 'pavardenis to emailname@gmail.com'
       expect(sys.latest_entry).to start_with s1 + s2
     end
