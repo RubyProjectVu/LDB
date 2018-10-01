@@ -253,6 +253,38 @@ describe Vartotojas do
 end
 
 describe Sistema do
+  context " User tries to register " do
+    it " Should return false if user with that email already exists" do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: "tomas", last_name: "genut", email: "t@a.com")
+      usr2 = Vartotojas.new(name: "genut", last_name: "tomas", email: "g@a.com")
+      expect(sys.register(usr1)).to be false
+      expect(sys.register(usr2)).to be false
+    end
+
+    it " Should return false if users email won't match email template " do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: "tomas", last_name: "genut", email: "ts2a@@a.com")
+      usr2 = Vartotojas.new(name: "qwert", last_name: "setas", email: "ga23am")
+      usr3 = Vartotojas.new(name: "genut", last_name: "tomas", email: "g@am")
+      expect(sys.user_input_validation(usr1)).to be false
+      expect(sys.user_input_validation(usr2)).to be false
+      expect(sys.user_input_validation(usr3)).to be false
+    end
+
+    it " Should return true if all user input passes validation " do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: "jonas", last_name: "jonaitis", email: "jonas@jonaitis.com")
+      expect(sys.user_input_validation(usr1)).to be true
+    end
+
+    it " Should return true if user successfully registered " do
+      sys = Sistema.new
+      usr1 = Vartotojas.new(name: "jonas", last_name: "jonaitis", email: "jonas@jonaitis.com")
+      expect(sys.user_input_validation(usr1)).to be true
+      expect(sys.register(usr1)).to be true
+    end
+  end
   context 'System should monitor user loggin in, out' do
     it 'The system should log a user login or logout' do
       sys = Sistema.new
