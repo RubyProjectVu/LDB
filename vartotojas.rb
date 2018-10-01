@@ -12,19 +12,20 @@ class Vartotojas
   attr_reader :phone_number
   attr_reader :projects
 
-  def initialize(name: '', last_name: '', email: '', phone_number: "")
+  def initialize(name: '', last_name: '', email: '', phone_number: '')
     @name = name
     @last_name = last_name
     @email = email
+    @phone_number = phone_number
     @projects = {}
     @qualification_certificates = [] # Array.new
   end
 
-  def set_unique_id(id = SecureRandom.hex)
+  def unique_id_setter(id = SecureRandom.hex)
     @user_id = id
   end
 
-  def get_unique_id
+  def unique_id_getter
     @user_id
   end
 
@@ -91,7 +92,7 @@ class Vartotojas
   end
 
   def resend_password_link
-    # should ideally work based on Rails gem 'EmailVeracity'
+    # should later work based on Rails gem 'EmailVeracity'
     if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
       true
     else
