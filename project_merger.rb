@@ -1,7 +1,8 @@
 # Controls project merges
-class Project_merger
+class ProjectMerger
   def prepare_merge(meta_one, meta_two)
     return false if !File.file?(meta_one) || !File.file?(meta_two)
+
     fileone = File.open(meta_one, 'r')
     strone = fileone.gets
     fileone.close
@@ -10,24 +11,22 @@ class Project_merger
     filetwo.close
 
     return false if strone.eql? strtwo
+
     true
   end
 
   def notify_managers(meta_one, meta_two)
     # should ideally postpone this until agreement is reached
     return false if !File.file?(meta_one) || !File.file?(meta_two)
+
     # return false if prepare_merge(meta_one, meta_two)
     manone = ''
     mantwo = ''
     File.readlines(meta_one).each do |line|
-      if line.start_with? 'manager'
-        manone = line.partition(': ').last.chomp
-      end
+      manone = line.partition(': ').last.chomp if line.start_with? 'manager'
     end
     File.readlines(meta_two).each do |line|
-      if line.start_with? 'manager'
-        mantwo = line.partition(': ').last.chomp
-      end
+      mantwo = line.partition(': ').last.chomp if line.start_with? 'manager'
     end
     # notification
     [manone, mantwo]

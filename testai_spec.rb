@@ -376,19 +376,19 @@ describe Sistema do
   end
 end
 
-describe Project_merger do
+describe ProjectMerger do
   it 'should not continue merging when a file is missing' do
-    pm = Project_merger.new
+    pm = ProjectMerger.new
     expect(pm.prepare_merge('nofile.txt', 'nofile2.txt')).to be false
   end
 
   it 'should not continue notifying when a file is missing' do
-    pm = Project_merger.new
+    pm = ProjectMerger.new
     expect(pm.notify_managers('nofile.txt', 'nofile2.txt')).to be false
   end
 
   it 'should not be able to merge into self' do
-    pm = Project_merger.new
+    pm = ProjectMerger.new
     projone = Projektas.new
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('projid: 1')
@@ -397,7 +397,7 @@ describe Project_merger do
   end
 
   it 'should have no issues on different ids' do
-    pm = Project_merger.new
+    pm = ProjectMerger.new
     projone = Projektas.new
     projtwo = Projektas.new(meta_filename: 'metadata2.txt')
     # write ids to both
@@ -411,7 +411,7 @@ describe Project_merger do
   end
   
   it 'should notify managers of both projects' do
-    pm = Project_merger.new
+    pm = ProjectMerger.new
     projone = Projektas.new
     projtwo = Projektas.new(meta_filename: 'metadata2.txt')
     fileone = File.open('metadata.txt', 'w')
