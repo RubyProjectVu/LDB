@@ -27,7 +27,7 @@ class Projektas
     if File.file?(@name_and_meta[1]) # outcome
       # File.foreach(@meta_filename, 'r') do |line|
       File.foreach(@name_and_meta[1], 'r') do |line|
-        print "Check if #{line} exists"
+        # print "Check if #{line} exists"
       end
       true
     end

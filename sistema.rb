@@ -56,7 +56,7 @@ class Sistema
       new_user = Vartotojas.new(name: user_data[0],
                   last_name: user_data[1],
                   email: user_data[2])
-      new_user.set_unique_id(user_data[3])
+      new_user.unique_id_setter(user_data[3])
       if new_user.equals(user_to_login)
         unless @logged_in_users.include? user_to_login
           @logged_in_users.push(user_to_login)

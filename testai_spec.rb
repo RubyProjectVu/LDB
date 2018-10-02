@@ -2,6 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative 'projektas'
+require_relative 'project_merger'
 require_relative 'sistema'
 require_relative 'vartotojas'
 require 'rspec'
@@ -18,17 +19,35 @@ describe Projektas do
     it 'Should have its owner defined as the user after creation by default' do
       proj = Projektas.new
       expect(proj.parm_manager).to eq Etc.getlogin
+      # proj.parm_manager('some name')
+      # expect(proj.parm_manager).to eq 'some name'
+    end
+
+    it 'Should have its owner set correctly' do
+      proj = Projektas.new
+      # expect(proj.parm_manager).to eq Etc.getlogin
       proj.parm_manager('some name')
       expect(proj.parm_manager).to eq 'some name'
     end
 
-    it 'Should check the status is, whether it is correct, and set/return it' do
+    it 'Should not set an undefined status' do
       proj = Projektas.new
       expect(proj.parm_project_status).to be nil
       str1 = 'Please set status as one of: '
       str2 = ['Proposed', 'Suspended', 'Postponed',
               'Cancelled', 'In progress'].join(', ')
       expect(proj.parm_project_status('ddd')).to eq str1 + str2
+      # proj.parm_project_status('Proposed')
+      # expect(proj.project_status).to eq 'Proposed'
+    end
+
+    it 'Should set/return valid status' do
+      proj = Projektas.new
+      expect(proj.parm_project_status).to be nil
+      # str1 = 'Please set status as one of: '
+      # str2 = ['Proposed', 'Suspended', 'Postponed',
+      #        'Cancelled', 'In progress'].join(', ')
+      # expect(proj.parm_project_status('ddd')).to eq str1 + str2
       proj.parm_project_status('Proposed')
       expect(proj.project_status).to eq 'Proposed'
     end
@@ -41,9 +60,20 @@ describe Projektas do
       usr = Vartotojas.new
       usr.add_project(proj.parm_project_name, proj.parm_project_status)
       expect(usr.prepare_deletion).to be false
+      # proj.parm_project_status('Postponed')
+      # usr.change_project_status(proj.parm_project_name, 'Postponed')
+      # expect(usr.prepare_deletion).to be true
+    end
+
+    it 'Should be able to remove itself if there are no active projects' do
+      proj = Projektas.new(project_name: 'Name')
       proj.parm_project_status('Postponed')
-      usr.change_project_status(proj.parm_project_name, 'Postponed')
+      usr = Vartotojas.new
+      usr.add_project(proj.parm_project_name, proj.parm_project_status)
       expect(usr.prepare_deletion).to be true
+      # proj.parm_project_status('Postponed')
+      # usr.change_project_status(proj.parm_project_name, 'Postponed')
+      # expect(usr.prepare_deletion).to be true
     end
   end
 
@@ -283,14 +313,26 @@ describe Sistema do
       expect(sys.register(usr1)).to be true
     end
   end
+
   context 'System should monitor user loggin in, out' do
-    it 'The system should log a user login or logout' do
+    it 'The system should log a user login' do
       sys = Sistema.new
       usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
       sys.login(usr)
       sys.log_user_login_logout('tomas', 'genut')
       expect(sys.latest_entry).to start_with 'User: tomas genut '
       expect(sys.latest_entry).to include('logs in at')
+      sys.logout(usr)
+      sys.log_user_login_logout('tomas', 'genut', false)
+      expect(sys.latest_entry).to start_with 'User: tomas genut '
+      expect(sys.latest_entry).to include('logs out at')
+    end
+
+    it 'The system should log a user logout' do
+      sys = Sistema.new
+      usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      sys.login(usr)
+      sys.log_user_login_logout('tomas', 'genut')
       sys.logout(usr)
       sys.log_user_login_logout('tomas', 'genut', false)
       expect(sys.latest_entry).to start_with 'User: tomas genut '
@@ -331,5 +373,30 @@ describe Sistema do
       str = "User: tomas genut uploaded a certification #{fname}"
       expect(sys.latest_entry).to start_with str
     end
+  end
+end
+
+describe Project_merger do
+  it 'should not be able to merge into self' do
+    pm = Project_merger.new
+    projone = Projektas.new
+    fileone = File.open('metadata.txt', 'w')
+    fileone.puts('projid: 1')
+    fileone.close
+    expect(pm.prepare_merge('metadata.txt', 'metadata.txt')).to be false
+  end
+
+  it 'should have no issues on different ids' do
+    pm = Project_merger.new
+    projone = Projektas.new
+    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    # write ids to both
+    fileone = File.open('metadata.txt', 'w')
+    filetwo = File.open('metadata2.txt', 'w')
+    fileone.puts('projid: 1')
+    filetwo.puts('projid: 2')
+    fileone.close
+    filetwo.close
+    expect(pm.prepare_merge('metadata.txt', 'metadata2.txt')).to be true
   end
 end
