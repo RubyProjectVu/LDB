@@ -433,8 +433,24 @@ describe Sistema do
 end
 
 describe ProjectMerger do
+<<<<<<< HEAD
   it 'should not be able to merge into self' do
     pm = ProjectMerger.new
+=======
+  it 'should not continue merging when a file is missing' do
+    pm = ProjectMerger.new
+    expect(pm.prepare_merge('nofile.txt', 'nofile2.txt')).to be false
+  end
+
+  it 'should not continue notifying when a file is missing' do
+    pm = ProjectMerger.new
+    expect(pm.notify_managers('nofile.txt', 'nofile2.txt')).to be false
+  end
+
+  it 'should not be able to merge into self' do
+    pm = ProjectMerger.new
+    projone = Projektas.new
+>>>>>>> master
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('projid: 1')
     fileone.close
@@ -443,6 +459,11 @@ describe ProjectMerger do
 
   it 'should have no issues on different ids' do
     pm = ProjectMerger.new
+<<<<<<< HEAD
+=======
+    projone = Projektas.new
+    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+>>>>>>> master
     # write ids to both
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')
@@ -451,6 +472,20 @@ describe ProjectMerger do
     fileone.close
     filetwo.close
     expect(pm.prepare_merge('metadata.txt', 'metadata2.txt')).to be true
+  end
+  
+  it 'should notify managers of both projects' do
+    pm = ProjectMerger.new
+    projone = Projektas.new
+    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    fileone = File.open('metadata.txt', 'w')
+    filetwo = File.open('metadata2.txt', 'w')
+    # set managers to both
+    fileone.puts('manager: somename')
+    filetwo.puts('manager: othername')
+    fileone.close
+    filetwo.close
+    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql ['somename', 'othername']
   end
 end
 

@@ -690,6 +690,7 @@ User: tomas genut logs out at 2018-10-02 08:16:08 UTC.
 Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 08:16:08 UTC.
 Project: some name created by 95fd8bde91faac75444be6bd37303b8e at 2018-10-02 08:16:08 UTC.
 User: tomas genut uploaded a certification file.pdf at 2018-10-02 08:16:08 UTC.
+<<<<<<< HEAD
 User: tomas genut logs in at 2018-10-02 08:39:52 UTC.
 User: tomas genut logs out at 2018-10-02 08:39:52 UTC.
 User: tomas genut logs in at 2018-10-02 08:39:52 UTC.
@@ -939,3 +940,61 @@ Project: some name created by 96ef0b14beb5b3efd38e6a70f9508d33 at 2018-10-02 10:
 User: tomas genut uploaded a certification file.pdf at 2018-10-02 10:29:11 UTC.
 Work group: some name created by c4e29f189370fdddddd4aa4268edf209 at 2018-10-02 10:29:11 UTC.
 Work group: Default_work_group_2018-10-02 deleted by 437294f5f0caec6efc0fd200fe3e0bb9 at 2018-10-02 10:29:11 UTC.
+=======
+User: tomas genut logs in at 2018-10-02 08:51:08 UTC.
+User: tomas genut logs out at 2018-10-02 08:51:08 UTC.
+User: tomas genut logs in at 2018-10-02 08:51:08 UTC.
+User: tomas genut logs out at 2018-10-02 08:51:08 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 08:51:08 UTC.
+Project: some name created by 3f6b5e7374e5bc169f1ece59c2321a86 at 2018-10-02 08:51:08 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 08:51:08 UTC.
+User: tomas genut logs in at 2018-10-02 09:03:17 UTC.
+User: tomas genut logs out at 2018-10-02 09:03:17 UTC.
+User: tomas genut logs in at 2018-10-02 09:03:17 UTC.
+User: tomas genut logs out at 2018-10-02 09:03:17 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:03:17 UTC.
+Project: some name created by e1425f060baa4b307451bee04bc3967d at 2018-10-02 09:03:17 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:03:17 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:17 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:17 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:17 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:17 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:04:17 UTC.
+Project: some name created by e4fd6cfd4f2a3fe0d8a9ddd32682740f at 2018-10-02 09:04:17 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:04:17 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:46 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:46 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:46 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:46 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:04:46 UTC.
+Project: some name created by 1e7176ff8a9927a25cd120fe05ddeb78 at 2018-10-02 09:04:46 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:04:46 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:56 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:56 UTC.
+User: tomas genut logs in at 2018-10-02 09:04:56 UTC.
+User: tomas genut logs out at 2018-10-02 09:04:56 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:04:56 UTC.
+Project: some name created by 8b5f143fad5558108f5ecca614ac990f at 2018-10-02 09:04:56 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:04:56 UTC.
+User: tomas genut logs in at 2018-10-02 09:05:10 UTC.
+User: tomas genut logs out at 2018-10-02 09:05:10 UTC.
+User: tomas genut logs in at 2018-10-02 09:05:10 UTC.
+User: tomas genut logs out at 2018-10-02 09:05:10 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:05:10 UTC.
+Project: some name created by a8cbef47e849a92d8da346f16d8c7efb at 2018-10-02 09:05:10 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:05:10 UTC.
+User: tomas genut logs in at 2018-10-02 09:08:22 UTC.
+User: tomas genut logs out at 2018-10-02 09:08:22 UTC.
+User: tomas genut logs in at 2018-10-02 09:08:22 UTC.
+User: tomas genut logs out at 2018-10-02 09:08:22 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:08:22 UTC.
+Project: some name created by 59569a1d9bd170bb238cdf4dc3e05a55 at 2018-10-02 09:08:22 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:08:22 UTC.
+User: tomas genut logs in at 2018-10-02 09:10:00 UTC.
+User: tomas genut logs out at 2018-10-02 09:10:00 UTC.
+User: tomas genut logs in at 2018-10-02 09:10:00 UTC.
+User: tomas genut logs out at 2018-10-02 09:10:00 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:10:00 UTC.
+Project: some name created by 4cbf4bac77e908ace48e436210521463 at 2018-10-02 09:10:00 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:10:00 UTC.
+>>>>>>> master

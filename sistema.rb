@@ -18,7 +18,6 @@ class Sistema
     elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
       validate = false
     end
-
     validate
   end
 
@@ -32,12 +31,18 @@ class Sistema
         end
       end
     end
-    user_to_register.unique_id_setter
-    # File.open("users.txt", "a") do |reg|
-    # reg.puts ";#{user_to_register.name},#{user_to_register.last_name},#{user_to_register.email},#{user_to_register.user_id}"
-    # reg.close
-    # end
+    # save_registered_user(user_to_register)
     true
+  end
+
+  def save_registered_user(user_to_register)
+    user_to_register.unique_id_setter
+    File.open('users.txt', 'a') do |reg|
+      output_string = "#{user_to_register.name},#{user_to_register.last_name}"
+      output_string += ",#{user_to_register.email},#{user_to_register.user_id}"
+      reg.puts ";#{output_string}"
+      reg.close
+    end
   end
 
   def login(user_to_login)
@@ -50,21 +55,23 @@ class Sistema
   end
 
   def construct_user(line, user_to_login)
-    #users = line.split(';')
     line.each do |user|
       user_data = user.split(',')
-      new_user = Vartotojas.new(name: user_data[0],
-                  last_name: user_data[1],
-                  email: user_data[2])
+      new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1],
+                                email: user_data[2])
       new_user.unique_id_setter(user_data[3])
-      if new_user.equals(user_to_login)
-        unless @logged_in_users.include? user_to_login
-          @logged_in_users.push(user_to_login)
-          return true
-        end
-      end
+      return try_logging_in(new_user, user_to_login)
     end
     false
+  end
+
+  def try_logging_in(new_user, user_to_login)
+    if new_user.equals(user_to_login)
+      unless @logged_in_users.include? user_to_login
+        @logged_in_users.push(user_to_login)
+        true
+      end
+    end
   end
 
   def logout(user_to_logout)

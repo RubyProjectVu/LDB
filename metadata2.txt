@@ -1,1 +1,1 @@
-projid: 2
+manager: othername
