@@ -5,13 +5,14 @@ require_relative 'projektas'
 require_relative 'project_merger'
 require_relative 'sistema'
 require_relative 'vartotojas'
+require_relative 'darbo_grupe'
 require 'rspec'
 require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
 
 describe Projektas do
-  context 'A project is validating its metadata, status and owner' do
-    it 'Should be able to find and open the metadata file created after init' do
+  context 'Project is validating its metadata, status, owner' do
+    it 'Should be able to find/open the metadata file created after init' do
       proj = Projektas.new
       expect(proj.check_metadata).to be true
     end
@@ -280,6 +281,37 @@ describe Vartotojas do
       expect(usr.resend_password_link).to be true
     end
   end
+
+  context 'User creates a new work group' do
+    it 'Should return true if new work group was created' do
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      expect(vart.create_work_group('Marketing')).to be_truthy
+    end
+  end
+
+  context 'User deletes a work group' do
+    it 'Should return false when nil is being passed to delete_work_group' do
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      expect(vart.delete_work_group(nil)).to be false
+    end
+
+    it 'Should return true when work group is deleted' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      expect(vart.delete_work_group(group)).to be true
+    end
+
+    it 'Should return false when work group is already deleted' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      vart.delete_work_group(group)
+      expect(vart.delete_work_group(group)).to be false
+    end
+  end
 end
 
 describe Sistema do
@@ -373,6 +405,29 @@ describe Sistema do
       str = "User: tomas genut uploaded a certification #{fname}"
       expect(sys.latest_entry).to start_with str
     end
+
+    it 'The system should log a work group creation' do
+      sys = Sistema.new
+      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      v1.unique_id_setter
+      group = v1.create_work_group('some name')
+      sys.log_work_group_creation(group.parm_work_group_name, v1)
+      s1 = "Work group: #{group.parm_work_group_name} created "
+      s2 = "by #{v1.unique_id_getter} at"
+      expect(sys.latest_entry).to start_with s1 + s2
+    end
+
+    it 'The system should log a work group deletion' do
+      sys = Sistema.new
+      group = DarboGrupe.new
+      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      v1.unique_id_setter
+      sys.log_work_group_deletion(group.parm_work_group_name, v1)
+      s1 = "Work group: #{group.parm_work_group_name} deleted "
+      s2 = "by #{v1.unique_id_getter} at"
+      expect(sys.latest_entry).to start_with s1 + s2
+      v1.delete_work_group(group)
+    end
   end
 end
 
@@ -439,5 +494,60 @@ describe ProjectMerger do
     filetwo.close
     words = %w[somename othername]
     expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql words
+  end
+end
+
+describe DarboGrupe do
+  context 'Work group is validating its name, and owner' do
+    it 'initially defines creator as am owner' do
+      group = DarboGrupe.new
+      expect(group.parm_manager).to eq Etc.getlogin
+      group.parm_manager('some name')
+      expect(group.parm_manager).to eq 'some name'
+    end
+  end
+
+  context 'A new member is being added to the work_group' do
+    it 'Returns true when a new member is added to the work_group' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      expect(group.add_member(vart)).to be true
+    end
+
+    it 'false if work group member is added again to the same work_group' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      group.add_member(vart)
+      expect(group.add_member(vart)).to be false
+    end
+
+    it 'Returns false when invalid Vartotojas object is passed' do
+      group = DarboGrupe.new
+      expect(group.add_member(nil)).to be false
+    end
+  end
+
+  context 'A member is being removed from the work_group' do
+    it 'true when an existing member gets removed from the work_group' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      group.add_member(vart)
+      expect(group.remove_member(vart)).to be true
+    end
+
+    it 'false if trying to remove non-existing member from the work_group' do
+      group = DarboGrupe.new
+      e = 'jhonpeterson@mail.com'
+      vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      expect(group.remove_member(vart)).to be false
+    end
+
+    it 'Returns false when invalid Vartotojas object is passed' do
+      group = DarboGrupe.new
+      expect(group.remove_member(nil)).to be false
+    end
   end
 end
