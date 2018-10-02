@@ -21,11 +21,11 @@ class Vartotojas
     @qualification_certificates = [] # Array.new
   end
 
-  def set_unique_id(id = SecureRandom.hex)
+  def unique_id_setter(id = SecureRandom.hex)
     @user_id = id
   end
 
-  def get_unique_id
+  def unique_id_getter
     @user_id
   end
 
