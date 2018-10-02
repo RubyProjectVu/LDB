@@ -445,7 +445,7 @@ describe ProjectMerger do
 
   it 'should not be able to merge into self' do
     pm = ProjectMerger.new
-    projone = Projektas.new
+    Projektas.new
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('projid: 1')
     fileone.close
@@ -454,8 +454,8 @@ describe ProjectMerger do
 
   it 'should have no issues on different ids' do
     pm = ProjectMerger.new
-    projone = Projektas.new
-    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    Projektas.new
+    Projektas.new(meta_filename: 'metadata2.txt')
     # write ids to both
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')
@@ -465,11 +465,27 @@ describe ProjectMerger do
     filetwo.close
     expect(pm.prepare_merge('metadata.txt', 'metadata2.txt')).to be true
   end
-  
+
+  it 'should find the manager in metafile' do
+    pm = ProjectMerger.new
+    Projektas.new
+    # write manager
+    fileone = File.open('metadata.txt', 'w')
+    fileone.puts('manager: somename')
+    fileone.close
+    expect(pm.get_manager_from_meta('metadata.txt')).to eq 'somename'
+  end
+
+  it 'should return empty string otherwise' do
+    pm = ProjectMerger.new
+    Projektas.new
+    expect(pm.get_manager_from_meta('metadata.txt')).to eq ''
+  end
+
   it 'should notify managers of both projects' do
     pm = ProjectMerger.new
-    projone = Projektas.new
-    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    Projektas.new
+    Projektas.new(meta_filename: 'metadata2.txt')
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')
     # set managers to both
@@ -479,6 +495,7 @@ describe ProjectMerger do
     filetwo.close
     words = %w[somename othername]
     expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql words
+<<<<<<< HEAD
   end
 end
 
@@ -536,5 +553,7 @@ describe DarboGrupe do
       group = DarboGrupe.new
       expect(group.remove_member(nil)).to be false
     end
+=======
+>>>>>>> master
   end
 end
