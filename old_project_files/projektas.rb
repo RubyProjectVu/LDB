@@ -24,9 +24,10 @@ class Projektas
 
   def check_metadata
     # outcome = File.file?(@name_and_meta[1]) # File.file?(@meta_filename)
-    if File.file?(@name_and_meta[1]) # outcome
+    var = @name_and_meta[1]
+    if File.file?(var) # outcome
       # File.foreach(@meta_filename, 'r') do |line|
-      File.foreach(@name_and_meta[1], 'r') do |line|
+      File.foreach(var, 'r') do |line|
         # print "Check if #{line} exists"
       end
       true
@@ -125,7 +126,8 @@ class Projektas
   end
 
   def add_member(vart)
-    return false if vart.nil? || @members.include?(vart.user_id)
+    # return false if vart.nil? || @members.include?(vart.user_id)
+    return false if @members.include?(vart.user_id)
 
     # return false if @members.include?(vart.user_id)
     @members.push(vart.user_id)
@@ -133,7 +135,7 @@ class Projektas
   end
 
   def remove_member(vart)
-    return false if vart.nil?
+    # return false if vart.nil?
     return false unless @members.include?(vart.user_id)
 
     @members.delete(vart.user_id)

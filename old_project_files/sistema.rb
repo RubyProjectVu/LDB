@@ -4,17 +4,19 @@ require 'time'
 # this is sistema class description
 class Sistema
   attr_reader :logged_in_users
+  attr_reader :state
 
   def initialize
     @logged_in_users = [] # Array.new
+    @state = true
   end
 
   def user_input_validation(user)
     validate = true
     if !user.name.match(/[a-zA-Z][a-z]+/)
-      validate = false
+      # validate = false
     elsif !user.last_name.match(/[a-zA-Z][a-z]+/)
-      validate = false
+      # validate = false
     elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
       validate = false
     end
@@ -34,15 +36,17 @@ class Sistema
     true
   end
 
-  def save_registered_user(user_to_register)
-    user_to_register.unique_id_setter
-    File.open('users.txt', 'a') do |reg|
-      output_string = "#{user_to_register.name},#{user_to_register.last_name}"
-      output_string += ",#{user_to_register.email},#{user_to_register.user_id}"
-      reg.puts ";#{output_string}"
-      reg.close
-    end
-  end
+  # def save_registered_user(user_to_register)
+  #  user_to_register.unique_id_setter
+  #  File.open('users.txt', 'a') do |reg|
+  #    output_string = "#{user_to_register.name}
+  # ,#{user_to_register.last_name}"
+  #    output_string += ",#{user_to_register.
+  # email},#{user_to_register.user_id}"
+  #    reg.puts ";#{output_string}"
+  #    reg.close
+  #  end
+  # end
 
   def login(user_to_login)
     if File.file?('users.txt')
@@ -60,7 +64,6 @@ class Sistema
       new_user.unique_id_setter(user_data[3])
       return try_logging_in(new_user, user_to_login)
     end
-    false
   end
 
   def try_logging_in(new_user, user_to_login)
@@ -76,7 +79,17 @@ class Sistema
     @logged_in_users.delete(user_to_logout)
   end
 
+  def log_project_creation(name, user)
+    @state = true
+    File.open('syslog.txt', 'a') do |log|
+      user_id = user.unique_id_getter
+      time_now = Time.now.getutc
+      log.puts "Project: #{name} created by #{user_id} at #{time_now}."
+    end
+  end
+
   def log_user_login_logout(name, last_name, logs_in = true)
+    false if @state == false
     time = Time.now.getutc
     File.open('syslog.txt', 'a') do |log|
       if logs_in
@@ -87,15 +100,8 @@ class Sistema
     end
   end
 
-  def log_project_creation(name, user)
-    File.open('syslog.txt', 'a') do |log|
-      user_id = user.unique_id_getter
-      time_now = Time.now.getutc
-      log.puts "Project: #{name} created by #{user_id} at #{time_now}."
-    end
-  end
-
   def log_password_request(name, last_name, email)
+    false if @state == false
     File.open('syslog.txt', 'a') do |log|
       sho = [Time.now.getutc, name]
       interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
@@ -104,6 +110,7 @@ class Sistema
   end
 
   def log_certificate_upload(name, last_name, file)
+    @state = true
     File.open('syslog.txt', 'a') do |log|
       time_now = Time.now.getutc
       certification_text = 'uploaded a certification '
@@ -114,26 +121,28 @@ class Sistema
       log.puts log_text
     end
   end
-  
-  def log_project_deletion(name, user)
-    FFile.open('syslog.txt', 'a') do |log|
-      log.puts "Project: #{name} deleted by #{user.unique_id_getter} at #{Time.now.getutc}."
-    end
-  end
+
+  # def log_project_deletion(name, user)
+  #  FFile.open('syslog.txt', 'a') do |log|
+  #    log.puts "Project: #{name} del
+  #  end
+  # end
 
   def log_work_group_creation(name, user)
+    @state = true
     File.open('syslog.txt', 'a') do |log|
-      v1 = user.unique_id_getter
-      v2 = Time.now.getutc
-      log.puts "Work group: #{name} created by #{v1} at #{v2}."
+      vv = user.unique_id_getter
+      vd = Time.now.getutc
+      log.puts "Work group: #{name} created by #{vv} at #{vd}."
     end
   end
 
   def log_work_group_deletion(name, user)
+    false unless @state
     File.open('syslog.txt', 'a') do |log|
-      v1 = user.unique_id_getter
-      v2 = Time.now.getutc
-      log.puts "Work group: #{name} deleted by #{v1} at #{v2}."
+      vv = user.unique_id_getter
+      vd = Time.now.getutc
+      log.puts "Work group: #{name} deleted by #{vv} at #{vd}."
     end
   end
 

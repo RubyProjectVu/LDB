@@ -1,7 +1,7 @@
 require 'date'
 require 'etc'
 
-# Documentation
+# Documentation for darbo grupe
 class DarboGrupe
   attr_reader :work_group_name
   attr_reader :work_group_manager
@@ -27,27 +27,29 @@ class DarboGrupe
   end
 
   def add_member(vart)
-    return false if vart.nil? || @members.include?(vart.user_id)
+    # id = ''
+    # return false if vart.nil? || @members.include?(id = vart.user_id)
+    return false if @members.include?(id = vart.user_id)
 
     # return false if @members.include?(vart.user_id)
-    @members.push(vart.user_id)
+    @members.push(id)
     true
   end
 
   def remove_member(vart)
-    return false if vart.nil?
-    return false unless @members.include?(vart.user_id)
+    # return false if vart.nil?
+    return false unless @members.include?(id = vart.user_id)
 
-    @members.delete(vart.user_id)
+    @members.delete(id)
     true
   end
 
   def set_deleted_status
     if @work_group_deleted == true
       # puts "Work_group is already deleted"
-      return false
+      false
+    else
+      @work_group_deleted = true
     end
-
-    @work_group_deleted == true ? false : @work_group_deleted = true
   end
 end
