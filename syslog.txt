@@ -1068,3 +1068,12 @@ Project: some name created by 6da025aabdf140d7e5e8bb22224d24b6 at 2018-10-02 11:
 User: tomas genut uploaded a certification file.pdf at 2018-10-02 11:20:00 UTC.
 Work group: s created by 9ca53f67a3c4fe688a35b423654a979b at 2018-10-02 11:20:00 UTC.
 Work group: D deleted by e18e08713204310a4e01ab7e86063fad at 2018-10-02 11:20:00 UTC.
+User: tomas genut logs in at 2018-10-02 11:27:50 UTC.
+User: tomas genut logs out at 2018-10-02 11:27:50 UTC.
+User: tomas genut logs in at 2018-10-02 11:27:50 UTC.
+User: tomas genut logs out at 2018-10-02 11:27:50 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 11:27:50 UTC.
+Project: some name created by 526aa3fa2ab1a6ecc157a0bfa5469810 at 2018-10-02 11:27:50 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 11:27:50 UTC.
+Work group: s created by bfb492f0548535b697786fbf2dee3820 at 2018-10-02 11:27:50 UTC.
+Work group: D deleted by 84d793ac98fa7d0328e646e3c811a31c at 2018-10-02 11:27:50 UTC.

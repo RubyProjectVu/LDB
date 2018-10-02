@@ -39,7 +39,7 @@ class DarboGrupe
     return false unless @members.include?(vart.user_id)
 
     @members.delete(vart.user_id)
-    true  
+    true
   end
 
   def set_deleted_status
@@ -47,7 +47,7 @@ class DarboGrupe
       # puts "Work_group is already deleted"
       return false
     end
-    @work_group_deleted = true
-    return true
+
+    @work_group_deleted == true ? false : @work_group_deleted = true
   end
 end
