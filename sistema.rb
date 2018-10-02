@@ -1,7 +1,7 @@
 require_relative 'vartotojas'
 require 'time'
 
-# Documentation
+# this is sistema class description
 class Sistema
   attr_reader :logged_in_users
 
@@ -23,12 +23,11 @@ class Sistema
 
   def register(user_to_register)
     if File.file?('users.txt')
-      File.foreach('users.txt', 'r') do |line|
-        users = line.split(';')
-        users.each do |user|
-          user_data = user.split(',')
-          return false if user_data[2].match(user_to_register.email)
-        end
+      user_file = File.read('users.txt')
+      users = user_file.split(';')
+      users.each do |user|
+        user_data = user.split(',')
+        return false if user_data[2].match(user_to_register.email)
       end
     end
     # save_registered_user(user_to_register)
@@ -47,9 +46,8 @@ class Sistema
 
   def login(user_to_login)
     if File.file?('users.txt')
-      File.foreach('users.txt', 'r') do |line|
-        return true if construct_user(line.split(';'), user_to_login)
-      end
+      user_file = File.read('users.txt')
+      return true if construct_user(user_file.split(';'), user_to_login)
     end
     false
   end
@@ -79,40 +77,41 @@ class Sistema
   end
 
   def log_user_login_logout(name, last_name, logs_in = true)
+    time = Time.now.getutc
     File.open('syslog.txt', 'a') do |log|
       if logs_in
-        log.puts "User: #{name} #{last_name} logs in at #{Time.now.getutc}."
+        log.puts "User: #{name} #{last_name} logs in at #{time}."
       else
-        log.puts "User: #{name} #{last_name} logs out at #{Time.now.getutc}."
+        log.puts "User: #{name} #{last_name} logs out at #{time}."
       end
     end
   end
 
   def log_project_creation(name, user)
     File.open('syslog.txt', 'a') do |log|
-      v1 = user.unique_id_getter
-      v2 = Time.now.getutc
-      log.puts "Project: #{name} created by #{v1} at #{v2}."
+      user_id = user.unique_id_getter
+      time_now = Time.now.getutc
+      log.puts "Project: #{name} created by #{user_id} at #{time_now}."
     end
   end
 
   def log_password_request(name, last_name, email)
     File.open('syslog.txt', 'a') do |log|
       sho = [Time.now.getutc, name]
-      # v1 = Time.now.getutc
-      # n = name
-      l = last_name
-      log.puts "Pass req for user: #{sho[1]} #{l} to #{email} at #{sho[0]}."
+      interpolated _text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
+      log.puts 'Pass req for user: ' + interpolated_text
     end
   end
 
   def log_certificate_upload(name, last_name, file)
     File.open('syslog.txt', 'a') do |log|
-      v1 = Time.now.getutc
-      n = name
-      l = last_name
-      f = file
-      log.puts "User: #{n} #{l} uploaded a certification #{f} at #{v1}."
+      time_now = Time.now.getutc
+      certification_text = 'uploaded a certification'
+      log_text = "User: #{name} #{last_name}"
+      log_text += certification_text
+      log_text += "#{file} at #{time_now}."
+
+      log.puts log_text
     end
   end
 
