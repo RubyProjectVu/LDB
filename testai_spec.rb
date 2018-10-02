@@ -398,8 +398,8 @@ describe ProjectMerger do
 
   it 'should have no issues on different ids' do
     pm = ProjectMerger.new
-    projone = Projektas.new
-    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    Projektas.new
+    Projektas.new(meta_filename: 'metadata2.txt')
     # write ids to both
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')
@@ -412,8 +412,8 @@ describe ProjectMerger do
   
   it 'should notify managers of both projects' do
     pm = ProjectMerger.new
-    projone = Projektas.new
-    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    Projektas.new
+    Projektas.new(meta_filename: 'metadata2.txt')
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')
     # set managers to both
@@ -421,6 +421,7 @@ describe ProjectMerger do
     filetwo.puts('manager: othername')
     fileone.close
     filetwo.close
-    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql ['somename', 'othername']
+    words = %w[somename othername]
+    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql words
   end
 end
