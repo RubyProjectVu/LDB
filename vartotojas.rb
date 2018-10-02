@@ -2,7 +2,7 @@ require 'securerandom' # random hash kuriantis metodas yra
 require_relative 'projektas'
 require 'uri'
 
-# Documentation
+# Documentation about class vartotojas
 class Vartotojas
   attr_reader :name
   attr_reader :last_name
@@ -19,6 +19,7 @@ class Vartotojas
     @phone_number = phone_number
     @projects = {}
     @qualification_certificates = [] # Array.new
+	  @user_id = ''
   end
 
   def unique_id_setter(id = SecureRandom.hex)
