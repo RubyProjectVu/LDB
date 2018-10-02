@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative 'projektas'
-require_relative 'projectmerger'
+require_relative 'project_merger'
 require_relative 'sistema'
 require_relative 'vartotojas'
 require 'rspec'
