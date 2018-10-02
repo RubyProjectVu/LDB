@@ -17,10 +17,9 @@ class Project_merger
     # should ideally postpone this until agreement is reached
     return false if !File.file?(meta_one) || !File.file?(meta_two)
     fileone = File.open(meta_one, 'r')
-    strone = fileone.gets
     fileone.close
     filetwo = File.open(meta_two, 'r')
-    strtwo = filetwo.gets
     filetwo.close
   end
+  
 end

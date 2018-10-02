@@ -1,5 +1,6 @@
 require 'securerandom' # random hash kuriantis metodas yra
 require_relative 'projektas'
+require_relative 'darbo_grupe'
 require 'uri'
 
 # Documentation
@@ -84,6 +85,19 @@ class Vartotojas
     end
 
     proj.set_deleted_status
+  end
+
+  def create_work_group(work_group_name)
+    object = Darbo_grupe.new(work_group_name: work_group_name)
+    return object
+  end
+
+  def delete_work_group(group)
+    if group == nil
+      return false
+    end
+    
+    return group.set_deleted_status
   end
 
   def upload_certificate(file)

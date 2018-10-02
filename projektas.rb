@@ -60,7 +60,7 @@ class Projektas
   end
 
   def parm_manager(name = '')
-    @project_manager = name if !name.to_s.empty?
+    @project_manager = name unless name.to_s.empty?
       # else
       @project_manager
     # end
@@ -106,7 +106,6 @@ class Projektas
     var = ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
     # var.push('Proposed').push('Suspended').push('Postponed')
     # var.push('Cancelled').push('In progress')
-    # var
   end
 
   def project_status__message
