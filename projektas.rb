@@ -60,9 +60,9 @@ class Projektas
   end
 
   def parm_manager(name = '')
-    @project_manager = name if !name.to_s.empty?
-      # else
-      @project_manager
+    @project_manager = name unless name.to_s.empty?
+    # else
+    @project_manager
     # end
   end
 
@@ -95,15 +95,15 @@ class Projektas
     # names_sent = []
     @subscriber_members.each do |name, email|
       str = /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
-      names_sent.push(name) if email =~ str # /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
-    # should ideally send template mesasges
-    # end
+      names_sent.push(name) if email =~ str
+      # should ideally send template mesasges
+      # end
     end
     names_sent
   end
 
   def project_status_array
-    var = ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
+    ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
     # var.push('Proposed').push('Suspended').push('Postponed')
     # var.push('Cancelled').push('In progress')
     # var
@@ -118,14 +118,15 @@ class Projektas
 
   def parm_project_name(name = '')
     # @project_name = name if !name.to_s.empty?
-    @name_and_meta[0] = name if !name.to_s.empty?
-      # else
-      @name_and_meta[0] # @project_name
+    @name_and_meta[0] = name unless name.to_s.empty?
+    # else
+    @name_and_meta[0] # @project_name
     # end
   end
 
   def add_member(vart)
     return false if vart.nil? || @members.include?(vart.user_id)
+
     # return false if @members.include?(vart.user_id)
     @members.push(vart.user_id)
     true
@@ -134,6 +135,7 @@ class Projektas
   def remove_member(vart)
     return false if vart.nil?
     return false unless @members.include?(vart.user_id)
+
     @members.delete(vart.user_id)
     true
   end
