@@ -103,14 +103,14 @@ end
 describe Projektas do
   context 'A new member is being added to the project' do
     it 'Should return true when a new member is added to the project' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'jhonpeterson@mail.com'
       usr = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       expect(proj.add_member(usr)).to be true
     end
 
     it 'Return false when existing member is being added to the project' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       proj.add_member(vart)
@@ -127,7 +127,7 @@ end
 describe Projektas do
   context 'A member is being removed from the project' do
     it 'True when an existing member gets removed from the project' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       proj.add_member(vart)
@@ -135,7 +135,7 @@ describe Projektas do
     end
 
     it 'Should return false when nonmember is being removed from the project' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       expect(proj.remove_member(vart)).to be false
@@ -151,7 +151,7 @@ end
 describe Projektas do
   context 'Project subscriber list manipulation' do
     it 'Should allow one member per name' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'u1email@gmail.com'
       expect(proj.add_subscriber('name lastname', e)).not_to be false
       expect(proj.add_subscriber('name lastname', e)).to be_falsey
@@ -159,7 +159,7 @@ describe Projektas do
     end
 
     it 'Should correctly find current subscribers' do
-      proj = Projektas.new
+      proj = described_class.new
       e = 'u1email@gmail.com'
       proj.add_subscriber('name lastname', e)
       proj.add_subscriber('josh lastname', e)
@@ -174,7 +174,7 @@ describe Vartotojas do
   context 'User tries to login' do
     it 'user1 should be equal to user1' do
       e = 'email@email.com'
-      v1 = Vartotojas.new(name: 'name', last_name: 'lastname', email: e)
+      v1 = described_class.new(name: 'name', last_name: 'lastname', email: e)
       v1.unique_id_setter('123456789')
       expect(v1.equals(v1)).to be true
     end
@@ -183,7 +183,7 @@ describe Vartotojas do
       sys = Sistema.new
       e = 't@a.com'
       # existing user
-      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
+      v1 = described_class.new(name: 'tomas', last_name: 'genut', email: e)
       v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(sys.login(v1)).to be true
     end
@@ -192,7 +192,7 @@ describe Vartotojas do
       sys = Sistema.new
       e = 't@a.com'
       # not existing user
-      v1 = Vartotojas.new(name: 'no', last_name: 'user', email: e)
+      v1 = described_class.new(name: 'no', last_name: 'user', email: e)
       v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
       expect(sys.login(v1)).to be false
     end
@@ -204,7 +204,7 @@ describe Vartotojas do
     sys = Sistema.new
     e = 't@a.com'
     # existing user
-    v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
+    v1 = described_class.new(name: 'tomas', last_name: 'genut', email: e)
     v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
     expect(sys.login(v1)).to be true
     expect(sys.login(v1)).to be false
@@ -213,7 +213,7 @@ describe Vartotojas do
   context 'User tries to logout' do
     it 'should logout if user exists' do
       # existing user
-      v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+      v1 = described_class.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
       v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
 
       sys = Sistema.new
