@@ -88,15 +88,15 @@ class Vartotojas
   end
 
   def create_work_group(work_group_name)
-    object = Darbo_grupe.new(work_group_name: work_group_name)
+    object = DarboGrupe.new(work_group_name: work_group_name)
     return object
   end
 
   def delete_work_group(group)
-    if group == nil
+    if group.nil?
       return false
     end
-    
+
     return group.set_deleted_status
   end
 

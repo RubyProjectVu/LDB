@@ -1,5 +1,5 @@
 # Controls project merges
-class Project_merger
+class ProjectMerger
   def prepare_merge(meta_one, meta_two)
     return false if !File.file?(meta_one) || !File.file?(meta_two)
     fileone = File.open(meta_one, 'r')
@@ -21,5 +21,5 @@ class Project_merger
     filetwo = File.open(meta_two, 'r')
     filetwo.close
   end
-  
+
 end

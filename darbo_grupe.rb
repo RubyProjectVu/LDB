@@ -2,7 +2,7 @@ require 'date'
 require 'etc'
 
 # Documentation
-class Darbo_grupe
+class DarboGrupe
   attr_reader :work_group_name
   attr_reader :work_group_manager
   attr_reader :work_group_deleted

@@ -90,13 +90,13 @@ class Sistema
   end
 
   def log_project_deletion(name, user)
-    File.open("syslog.txt", "a") do |log|
+    File.open('syslog.txt', "a") do |log|
       log.puts "Project: #{name} deleted by #{user.unique_id_getter} at #{Time.now.getutc}."
     end
   end
 
   def log_work_group_creation(name, user)
-    File.open("syslog.txt", "a") do |log|
+    File.open('syslog.txt', "a") do |log|
     v1 = user.unique_id_getter
       v2 = Time.now.getutc
       log.puts "Work group: #{name} created by #{v1} at #{v2}."
@@ -104,7 +104,7 @@ class Sistema
   end
 
   def log_work_group_deletion(name, user)
-    File.open("syslog.txt", "a") do |log|
+    File.open('syslog.txt', "a") do |log|
     v1 = user.unique_id_getter
         v2 = Time.now.getutc
         log.puts "Work group: #{name} deleted by #{v1} at #{v2}."
