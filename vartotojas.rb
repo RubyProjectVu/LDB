@@ -88,16 +88,16 @@ class Vartotojas
   end
 
   def create_work_group(work_group_name)
-    object = DarboGrupe.new(work_group_name: work_group_name)
-    return object
+    DarboGrupe.new(work_group_name: work_group_name)
   end
 
   def delete_work_group(group)
     if group.nil?
+      # puts 'Invalid object reference'
       return false
     end
 
-    return group.set_deleted_status
+    group.set_deleted_status
   end
 
   def upload_certificate(file)

@@ -11,7 +11,7 @@ require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
 
 describe Projektas do
-  context 'A project is validating its metadata, status, owner' do
+  context 'A project is validating its metadata, status and owner' do
     it 'Should be able to find and open the metadata file created after init' do
       proj = Projektas.new
       expect(proj.check_metadata).to be true
@@ -282,29 +282,29 @@ describe Vartotojas do
     end
   end
 
-  context "User creates a new work group" do
+  context 'User creates a new work group' do
     it "Should return true if new work group was created" do
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(vart.create_work_group("Marketing")).to be_truthy
+      expect(vart.create_work_group('Marketing')).to be_truthy
     end
   end
 
-  context "User deletes a work group" do
-    it "Should return false when nil is being passed to delete_work_group" do
+  context 'User deletes a work group' do
+    it 'Should return false when nil is being passed to delete_work_group' do
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       expect(vart.delete_work_group(nil)).to be false
     end
 
-    it "Should return true when work group is deleted" do
+    it 'Should return true when work group is deleted' do
       group = DarboGrupe.new
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       expect(vart.delete_work_group(group)).to be true
     end
 
-    it "Should return false when work group is already deleted" do
+    it 'Should return false when work group is already deleted' do
       group = DarboGrupe.new
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
@@ -495,14 +495,11 @@ describe ProjectMerger do
     filetwo.close
     words = %w[somename othername]
     expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql words
-<<<<<<< HEAD
   end
 end
 
 describe DarboGrupe do
-
   context 'Work group is validating its name, and owner' do
-
     it 'initially defines creator as am owner' do
       group = DarboGrupe.new
       expect(group.parm_manager).to eq Etc.getlogin
@@ -553,7 +550,5 @@ describe DarboGrupe do
       group = DarboGrupe.new
       expect(group.remove_member(nil)).to be false
     end
-=======
->>>>>>> master
   end
 end

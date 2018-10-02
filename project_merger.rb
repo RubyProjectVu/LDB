@@ -35,4 +35,3 @@ class ProjectMerger
     str
   end
 end
-
