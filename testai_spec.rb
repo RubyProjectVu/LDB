@@ -11,8 +11,8 @@ require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
 
 describe Projektas do
-  context 'A project is validating its metadata, status and owner' do
-    it 'Should be able to find and open the metadata file created after init' do
+  context 'Project is validating its metadata, status, owner' do
+    it 'Should be able to find/open the metadata file created after init' do
       proj = Projektas.new
       expect(proj.check_metadata).to be true
     end
@@ -283,7 +283,7 @@ describe Vartotojas do
   end
 
   context 'User creates a new work group' do
-    it "Should return true if new work group was created" do
+    it 'Should return true if new work group was created' do
       e = 'jhonpeterson@mail.com'
       vart = Vartotojas.new(name: 'Jhon', last_name: 'Peterson', email: e)
       expect(vart.create_work_group('Marketing')).to be_truthy
@@ -428,7 +428,6 @@ describe Sistema do
       expect(sys.latest_entry).to start_with s1 + s2
       v1.delete_work_group(group)
     end
-
   end
 end
 
