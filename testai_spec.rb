@@ -389,7 +389,7 @@ describe ProjectMerger do
 
   it 'should not be able to merge into self' do
     pm = ProjectMerger.new
-    projone = Projektas.new
+    Projektas.new
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('projid: 1')
     fileone.close
@@ -409,7 +409,23 @@ describe ProjectMerger do
     filetwo.close
     expect(pm.prepare_merge('metadata.txt', 'metadata2.txt')).to be true
   end
-  
+
+  it 'should find the manager in metafile' do
+    pm = ProjectMerger.new
+    Projektas.new
+    # write manager
+    fileone = File.open('metadata.txt', 'w')
+    fileone.puts('manager: somename')
+    fileone.close
+    expect(pm.get_manager_from_meta('metadata.txt')).to eq 'somename'
+  end
+
+  it 'should return empty string otherwise' do
+    pm = ProjectMerger.new
+    Projektas.new
+    expect(pm.get_manager_from_meta('metadata.txt')).to eq ''
+  end
+
   it 'should notify managers of both projects' do
     pm = ProjectMerger.new
     Projektas.new
