@@ -95,6 +95,26 @@ class Sistema
     end
   end
 
+  def log_password_request(name, last_name, email)
+    File.open('syslog.txt', 'a') do |log|
+      sho = [Time.now.getutc, name]
+      interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
+      log.puts 'Pass req for user: ' + interpolated_text
+    end
+  end
+
+  def log_certificate_upload(name, last_name, file)
+    File.open('syslog.txt', 'a') do |log|
+      time_now = Time.now.getutc
+      certification_text = 'uploaded a certification '
+      log_text = "User: #{name} #{last_name} "
+      log_text += certification_text
+      log_text += "#{file} at #{time_now}."
+
+      log.puts log_text
+    end
+  end
+  
   def log_project_deletion(name, user)
     FFile.open('syslog.txt', 'a') do |log|
       log.puts "Project: #{name} deleted by #{user.unique_id_getter} at #{Time.now.getutc}."
@@ -114,26 +134,6 @@ class Sistema
       v1 = user.unique_id_getter
       v2 = Time.now.getutc
       log.puts "Work group: #{name} deleted by #{v1} at #{v2}."
-    end
-  end
-
-  def log_password_request(name, last_name, email)
-    File.open('syslog.txt', 'a') do |log|
-      sho = [Time.now.getutc, name]
-      interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
-      log.puts 'Pass req for user: ' + interpolated_text
-    end
-  end
-
-  def log_certificate_upload(name, last_name, file)
-    File.open('syslog.txt', 'a') do |log|
-      time_now = Time.now.getutc
-      certification_text = 'uploaded a certification '
-      log_text = "User: #{name} #{last_name} "
-      log_text += certification_text
-      log_text += "#{file} at #{time_now}."
-
-      log.puts log_text
     end
   end
 
