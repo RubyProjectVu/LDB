@@ -477,7 +477,8 @@ describe ProjectMerger do
     filetwo.puts('manager: othername')
     fileone.close
     filetwo.close
-    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql ['somename', 'othername']
+    words = %w[somename othername]
+    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql words
   end
 end
 

@@ -14,49 +14,32 @@ class DarboGrupe
     @members = []
     @work_group_deleted = false
   end
-  
-  def parm_manager(name = "")
+
+  def parm_manager(name = '')
     # should ideally receive input from user
-    unless name.to_s.empty?
-      @work_group_manager = name
-    end
-    return @work_group_manager
+    @work_group_manager = name unless name.to_s.empty?
+    @work_group_manager
   end
 
-  def parm_work_group_name(name = "")
-    unless name.to_s.empty?
-      @work_group_name = name
-    else
-      return @work_group_name
-    end
+  def parm_work_group_name(name = '')
+    @work_group_name[0] = name unless name.to_s.empty?
+    @work_group_name[0]
   end
 
   def add_member(vart)
-    if vart == nil
-      # puts "Invalid Vartotojas"
-      return false
-    end
+    return false if vart.nil? || @members.include?(vart.user_id)
 
-    if @members.include?(vart.user_id)
-      # puts "This member is already assigned to this work_group"
-      return false
-    end
-
+    # return false if @members.include?(vart.user_id)
     @members.push(vart.user_id)
-    return true
+    true
   end
 
   def remove_member(vart)
-    if vart == nil
-      # puts "Invalid Vartotojas"
-      return false
-    end
-    if !@members.include?(vart.user_id)
-      # puts "This member is not assigned to this work_group"
-      return false
-    end
+    return false if vart.nil?
+    return false unless @members.include?(vart.user_id)
+
     @members.delete(vart.user_id)
-    return true
+    true  
   end
 
   def set_deleted_status
