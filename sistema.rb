@@ -98,7 +98,7 @@ class Sistema
   def log_password_request(name, last_name, email)
     File.open('syslog.txt', 'a') do |log|
       sho = [Time.now.getutc, name]
-      interpolated _text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
+      interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
       log.puts 'Pass req for user: ' + interpolated_text
     end
   end
