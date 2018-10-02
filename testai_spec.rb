@@ -399,4 +399,18 @@ describe Project_merger do
     filetwo.close
     expect(pm.prepare_merge('metadata.txt', 'metadata2.txt')).to be true
   end
+  
+  it 'should notify managers of both projects' do
+    pm = Project_merger.new
+    projone = Projektas.new
+    projtwo = Projektas.new(meta_filename: 'metadata2.txt')
+    fileone = File.open('metadata.txt', 'w')
+    filetwo = File.open('metadata2.txt', 'w')
+    # set managers to both
+    fileone.puts('manager: somename')
+    filetwo.puts('manager: othername')
+    fileone.close
+    filetwo.close
+    expect(pm.notify_managers('metadata.txt', 'metadata2.txt')).to eql ['somename', 'othername']
+  end
 end
