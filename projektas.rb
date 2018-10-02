@@ -61,13 +61,8 @@ class Projektas
 
   def parm_manager(name = '')
     @project_manager = name unless name.to_s.empty?
-<<<<<<< HEAD
-      # else
-      @project_manager
-=======
     # else
     @project_manager
->>>>>>> master
     # end
   end
 
@@ -111,6 +106,7 @@ class Projektas
     ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
     # var.push('Proposed').push('Suspended').push('Postponed')
     # var.push('Cancelled').push('In progress')
+    # var
   end
 
   def project_status__message

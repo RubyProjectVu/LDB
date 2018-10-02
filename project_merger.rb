@@ -18,15 +18,6 @@ class ProjectMerger
   def notify_managers(meta_one, meta_two)
     # should ideally postpone this until agreement is reached
     return false if !File.file?(meta_one) || !File.file?(meta_two)
-<<<<<<< HEAD
-    fileone = File.open(meta_one, 'r')
-    fileone.close
-    filetwo = File.open(meta_two, 'r')
-    filetwo.close
-  end
-
-end
-=======
 
     # return false if prepare_merge(meta_one, meta_two)
     manone = ''
@@ -41,4 +32,4 @@ end
     [manone, mantwo]
   end
 end
->>>>>>> master
+

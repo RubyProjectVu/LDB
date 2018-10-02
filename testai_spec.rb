@@ -433,10 +433,6 @@ describe Sistema do
 end
 
 describe ProjectMerger do
-<<<<<<< HEAD
-  it 'should not be able to merge into self' do
-    pm = ProjectMerger.new
-=======
   it 'should not continue merging when a file is missing' do
     pm = ProjectMerger.new
     expect(pm.prepare_merge('nofile.txt', 'nofile2.txt')).to be false
@@ -450,7 +446,6 @@ describe ProjectMerger do
   it 'should not be able to merge into self' do
     pm = ProjectMerger.new
     projone = Projektas.new
->>>>>>> master
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('projid: 1')
     fileone.close
@@ -459,11 +454,8 @@ describe ProjectMerger do
 
   it 'should have no issues on different ids' do
     pm = ProjectMerger.new
-<<<<<<< HEAD
-=======
     projone = Projektas.new
     projtwo = Projektas.new(meta_filename: 'metadata2.txt')
->>>>>>> master
     # write ids to both
     fileone = File.open('metadata.txt', 'w')
     filetwo = File.open('metadata2.txt', 'w')

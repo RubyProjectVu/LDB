@@ -998,3 +998,12 @@ Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 09:
 Project: some name created by 4cbf4bac77e908ace48e436210521463 at 2018-10-02 09:10:00 UTC.
 User: tomas genut uploaded a certification file.pdf at 2018-10-02 09:10:00 UTC.
 >>>>>>> master
+User: tomas genut logs in at 2018-10-02 10:43:45 UTC.
+User: tomas genut logs out at 2018-10-02 10:43:45 UTC.
+User: tomas genut logs in at 2018-10-02 10:43:45 UTC.
+User: tomas genut logs out at 2018-10-02 10:43:45 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 10:43:45 UTC.
+Project: some name created by c990103353647b99380dd931e22b1f9b at 2018-10-02 10:43:45 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-02 10:43:45 UTC.
+Work group: some name created by 4c124ff610d91f0ae97813a6364cfa00 at 2018-10-02 10:43:45 UTC.
+Work group: Default_work_group_2018-10-02 deleted by aa52c4f1b8fb33f5fc1cd5f795dc5048 at 2018-10-02 10:43:45 UTC.
