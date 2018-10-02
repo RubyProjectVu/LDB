@@ -377,6 +377,16 @@ describe Sistema do
 end
 
 describe Project_merger do
+  it 'should not continue merging when a file is missing' do
+    pm = Project_merger.new
+    expect(pm.prepare_merge('nofile.txt', 'nofile2.txt')).to be false
+  end
+
+  it 'should not continue notifying when a file is missing' do
+    pm = Project_merger.new
+    expect(pm.notify_managers('nofile.txt', 'nofile2.txt')).to be false
+  end
+
   it 'should not be able to merge into self' do
     pm = Project_merger.new
     projone = Projektas.new
