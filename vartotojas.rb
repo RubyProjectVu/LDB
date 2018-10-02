@@ -20,7 +20,7 @@ class Vartotojas
     @phone_number = phone_number
     @projects = {}
     @qualification_certificates = [] # Array.new
-	  @user_id = ''
+    @user_id = ''
   end
 
   def unique_id_setter(id = SecureRandom.hex)
@@ -68,10 +68,10 @@ class Vartotojas
     @projects[project] = status
   end
 
-  def change_project_status(project, status)
-    # key = project.to_s.to_sym
-    @projects[project] = status
-  end
+  # def change_project_status(project, status)
+  # key = project.to_s.to_sym
+  # @projects[project] = status
+  # end
 
   def create_project(project_name, file_name)
     # object =
