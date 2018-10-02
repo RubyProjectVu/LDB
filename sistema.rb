@@ -107,7 +107,7 @@ class Sistema
     File.open('syslog.txt', 'a') do |log|
       time_now = Time.now.getutc
       certification_text = 'uploaded a certification'
-      log_text = "User: #{name} #{last_name}"
+      log_text = "User: #{name} #{last_name} "
       log_text += certification_text
       log_text += "#{file} at #{time_now}."
 
