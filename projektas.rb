@@ -4,8 +4,6 @@ require 'etc'
 # rubocop comment?
 class Projektas
   attr_reader :name_and_meta
-  # attr_reader :meta_filename
-  # attr_reader :project_name
   attr_reader :project_manager
   attr_reader :project_status
   attr_reader :project_deleted
@@ -17,11 +15,8 @@ class Projektas
     meta_filename: 'metadata.txt'
   )
     @name_and_meta = [project_name, meta_filename]
-    # @project_name = project_name
-    # @meta_filename = meta_filename
     @project_manager = Etc.getlogin
     File.new(@name_and_meta[1], 'w').close # File.new(meta_filename, 'w')
-    # metafile.close
     @members = []
     @subscriber_members = {}
     @project_deleted = false
@@ -131,7 +126,6 @@ class Projektas
 
   def add_member(vart)
     return false if vart.nil? || @members.include?(vart.user_id)
-
     # return false if @members.include?(vart.user_id)
     @members.push(vart.user_id)
     true
@@ -140,7 +134,6 @@ class Projektas
   def remove_member(vart)
     return false if vart.nil?
     return false unless @members.include?(vart.user_id)
-
     @members.delete(vart.user_id)
     true
   end
