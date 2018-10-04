@@ -6,4 +6,4 @@ require 'rspec'
 
 
 # Class Tests
-require_relative 'System_test'
+require_relative 'FileManager_test'
