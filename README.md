@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/RubyProjectVu/LDB.svg?branch=master)](https://travis-ci.org/RubyProjectVu/LDB)
 
 # LDB
 
