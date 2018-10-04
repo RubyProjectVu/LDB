@@ -39,7 +39,6 @@ class FileManager
          }
 
       end
-      return true
 
    end
 
