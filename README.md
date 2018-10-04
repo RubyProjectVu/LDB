@@ -8,7 +8,7 @@ Galimybė keistis tekstine, vaizdine informacija tarp vartotojų.
 # Tests
 
 RSpec must be ran from the root directory:
-```ruby
+```
 rspec tests/rspec.rb
 ```
 
