@@ -13,7 +13,7 @@ class FileManager
       lines = File.readlines(filename)
       line = lines[line_id]
       res = line.split(',')
-      return res[index]
+      res[index]
 
    end
 
@@ -46,7 +46,7 @@ class FileManager
    def read_line(filename, line_id)
 
       lines = File.readlines(filename)
-      return lines[line_id]
+      lines[line_id]
 
    end
 
