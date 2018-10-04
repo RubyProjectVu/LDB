@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/RubyProjectVu/LDB.svg?branch=master)](https://travis-ci.org/RubyProjectVu/LDB)
+
 # LDB
 
 Loosely Developed BIM (building infrastructure management/modeling)
