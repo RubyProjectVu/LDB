@@ -1,10 +1,9 @@
-require_relative 'file_manager/FileManager'
+require_relative 'data/Data'
 
 class System
 
    def initialize
-      @FileManager = FileManager.new
+      @Data = Data.new
    end
 
 end
-
