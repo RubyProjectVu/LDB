@@ -6,6 +6,7 @@ require_relative 'project_merger'
 require_relative 'sistema'
 require_relative 'vartotojas'
 require_relative 'darbo_grupe'
+require_relative 'system_project_logger'
 require 'rspec'
 require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
@@ -584,5 +585,10 @@ describe DarboGrupe do
     #  group = DarboGrupe.new
     #  expect(group.add_member(nil)).to be false
     # end
+    
+    it '' do
+      item = SystemProjectLogger.new(["projname", "1410154"])
+      item.log_project_creation
+    end
   end
 end
