@@ -1716,3 +1716,39 @@ Work group: s created by 1eb7ce76ebb8e9eab6011fd9b587d716 at 2018-10-02 18:14:42
 User: tomas genut logs in at 2018-10-02 18:14:42 UTC.
 User: tomas genut logs out at 2018-10-02 18:14:42 UTC.
 Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-02 18:14:42 UTC.
+Work group: D deleted by 8f0e45007334ba531ddea7ec38a172cb at 2018-10-05 19:46:02 UTC.
+User: tomas genut logs in at 2018-10-05 19:46:02 UTC.
+User: tomas genut logs out at 2018-10-05 19:46:02 UTC.
+Project: some name created by af1d75498724c1ffe44980a0a63da600 at 2018-10-05 19:46:02 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-05 19:46:02 UTC.
+Work group: s created by d7005bf995a1895a619080076997fbbd at 2018-10-05 19:46:02 UTC.
+User: tomas genut logs in at 2018-10-05 19:46:02 UTC.
+User: tomas genut logs out at 2018-10-05 19:46:02 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-05 19:46:02 UTC.
+Work group: D deleted by 2bbda4a266b474288d6dfd9d78e887c1 at 2018-10-05 20:00:44 UTC.
+User: tomas genut logs in at 2018-10-05 20:00:44 UTC.
+User: tomas genut logs out at 2018-10-05 20:00:44 UTC.
+Project: some name created by d10cb44f0590e40323eb303dc77efb43 at 2018-10-05 20:00:44 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-05 20:00:44 UTC.
+Work group: s created by addcfdf424d2bf7b233549f1922004d5 at 2018-10-05 20:00:44 UTC.
+User: tomas genut logs in at 2018-10-05 20:00:44 UTC.
+User: tomas genut logs out at 2018-10-05 20:00:44 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-05 20:00:44 UTC.
+Work group: D deleted by c2eeb31306d3f0ec6c28f2210dc557e9 at 2018-10-05 20:01:21 UTC.
+User: tomas genut logs in at 2018-10-05 20:01:21 UTC.
+User: tomas genut logs out at 2018-10-05 20:01:21 UTC.
+Project: some name created by 9adcc51480332356e75fd306fdf581ac at 2018-10-05 20:01:21 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-05 20:01:21 UTC.
+Work group: s created by 9e405b6cc7068b0008946511f7c133c5 at 2018-10-05 20:01:21 UTC.
+User: tomas genut logs in at 2018-10-05 20:01:21 UTC.
+User: tomas genut logs out at 2018-10-05 20:01:21 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-05 20:01:21 UTC.
+Work group: D deleted by da38e978bb7337d7373587caeacd6137 at 2018-10-05 20:02:19 UTC.
+User: tomas genut logs in at 2018-10-05 20:02:19 UTC.
+User: tomas genut logs out at 2018-10-05 20:02:19 UTC.
+Project: some name created by e3c89d56d6110da916055f324e544310 at 2018-10-05 20:02:19 UTC.
+User: tomas genut uploaded a certification file.pdf at 2018-10-05 20:02:19 UTC.
+Work group: s created by 6ae951c288d2a0c5fdcd12cdb5610224 at 2018-10-05 20:02:19 UTC.
+User: tomas genut logs in at 2018-10-05 20:02:19 UTC.
+User: tomas genut logs out at 2018-10-05 20:02:19 UTC.
+Pass req for user: some name pavardenis to emailname@gmail.com at 2018-10-05 20:02:19 UTC.
