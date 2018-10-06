@@ -5,6 +5,7 @@ class SystemProjectLogger
   attr_reader :system_file
   # [0] - project name
   # [1] - user id
+  # [2] - metafile
   attr_reader :latest_project_info
 
   def initialize(info)

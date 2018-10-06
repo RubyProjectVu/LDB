@@ -75,6 +75,8 @@ class Vartotojas
 
   def create_project(project_name, file_name)
     # object =
+    sysprojlog = SystemProjectLogger.new([project_name, @user_id, file_name])
+    sysprojlog.log_project_creation
     Projektas.new(project_name: project_name, meta_filename: file_name)
     # return object
   end

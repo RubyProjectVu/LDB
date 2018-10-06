@@ -71,7 +71,7 @@ end
 
 describe Sistema do
   context 'when a user tries to remove its account' do
-    it 'do not be able to remove itself if there are active projects' do
+    it 'is not able to remove itself if there are active projects' do
       proj = Projektas.new(project_name: 'Name')
       proj.parm_project_status('In progress')
       usr = Vartotojas.new
@@ -403,7 +403,7 @@ describe Sistema do
     usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: e)
     usr.unique_id_setter
     proj = usr.create_project('some name', 'some_meta.txt')
-    sys.log_project_creation(proj.parm_project_name, usr)
+    # sys.log_project_creation(proj.parm_project_name, usr)
     s1 = "Project: #{proj.parm_project_name} created "
     s2 = "by #{usr.unique_id_getter} at"
     expect(sys.latest_entry).to start_with s1 + s2

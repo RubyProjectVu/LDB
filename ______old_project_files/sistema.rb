@@ -79,14 +79,14 @@ class Sistema
     @logged_in_users.delete(user_to_logout)
   end
 
-  def log_project_creation(name, user)
-    @state = true
-    File.open('syslog.txt', 'a') do |log|
-      user_id = user.unique_id_getter
-      time_now = Time.now.getutc
-      log.puts "Project: #{name} created by #{user_id} at #{time_now}."
-    end
-  end
+  # def log_project_creation(name, user)
+  #  @state = true
+  #  File.open('syslog.txt', 'a') do |log|
+  #    user_id = user.unique_id_getter
+  #    time_now = Time.now.getutc
+  #    log.puts "Project: #{name} created by #{user_id} at #{time_now}."
+  #  end
+  # end
 
   def log_user_login_logout(name, last_name, logs_in = true)
     false if @state == false
