@@ -22,8 +22,8 @@ class DarboGrupe
   end
 
   def parm_work_group_name(name = '')
-    @work_group_name[0] = name unless name.to_s.empty?
-    @work_group_name[0]
+    @work_group_name = name unless name.to_s.empty?
+    @work_group_name
   end
 
   def add_member(vart)
@@ -44,11 +44,13 @@ class DarboGrupe
     true
   end
 
-  def set_deleted_status
+  def set_deleted_status(user_id)
     if @work_group_deleted == true
       # puts "Work_group is already deleted"
       false
     else
+      sysgrlog = SystemGroupLogger.new([@work_group_name, user_id])
+      sysgrlog.log_work_group_deletion
       @work_group_deleted = true
     end
   end

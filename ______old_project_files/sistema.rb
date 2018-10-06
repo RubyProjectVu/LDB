@@ -69,6 +69,8 @@ class Sistema
   def try_logging_in(new_user, user_to_login)
     if new_user.equals(user_to_login)
       unless @logged_in_users.include? user_to_login
+        sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
+        sysusrlog.log_user_login
         @logged_in_users.push(user_to_login)
         true
       end
@@ -76,6 +78,8 @@ class Sistema
   end
 
   def logout(user_to_logout)
+    sysusrlog = SystemUserLogger.new([user_to_logout.name_lastname_getter])
+    sysusrlog.log_user_logout
     @logged_in_users.delete(user_to_logout)
   end
 
@@ -100,27 +104,27 @@ class Sistema
     end
   end
 
-  def log_password_request(name, last_name, email)
-    false if @state == false
-    File.open('syslog.txt', 'a') do |log|
-      sho = [Time.now.getutc, name]
-      interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
-      log.puts 'Pass req for user: ' + interpolated_text
-    end
-  end
+  # def log_password_request(name, last_name, email)
+  #  false if @state == false
+  #  File.open('syslog.txt', 'a') do |log|
+  #    sho = [Time.now.getutc, name]
+  #    interpolated_text = "#{sho[1]} #{last_name} to #{email} at #{sho[0]}."
+  #    log.puts 'Pass req for user: ' + interpolated_text
+  #  end
+  # end
 
-  def log_certificate_upload(name, last_name, file)
-    @state = true
-    File.open('syslog.txt', 'a') do |log|
-      time_now = Time.now.getutc
-      certification_text = 'uploaded a certification '
-      log_text = "User: #{name} #{last_name} "
-      log_text += certification_text
-      log_text += "#{file} at #{time_now}."
+  # def log_certificate_upload(name, last_name, file)
+  #  @state = true
+  #  File.open('syslog.txt', 'a') do |log|
+  #    time_now = Time.now.getutc
+  #    certification_text = 'uploaded a certification '
+  #    log_text = "User: #{name} #{last_name} "
+  #    log_text += certification_text
+  #    log_text += "#{file} at #{time_now}."
 
-      log.puts log_text
-    end
-  end
+  #    log.puts log_text
+  #  end
+  # end
 
   # def log_project_deletion(name, user)
   #  FFile.open('syslog.txt', 'a') do |log|

@@ -7,6 +7,8 @@ require_relative 'sistema'
 require_relative 'vartotojas'
 require_relative 'darbo_grupe'
 require_relative 'system_project_logger'
+require_relative 'system_user_logger'
+require_relative 'system_group_logger'
 require 'rspec'
 require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
@@ -375,11 +377,11 @@ describe Sistema do
     group = DarboGrupe.new
     v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
     v1.unique_id_setter
-    sys.log_work_group_deletion(group.parm_work_group_name, v1)
+    # sys.log_work_group_deletion(group.parm_work_group_name, v1)
     s1 = "Work group: #{group.parm_work_group_name} deleted "
     s2 = "by #{v1.unique_id_getter} at"
-    expect(sys.latest_entry).to start_with s1 + s2
     v1.delete_work_group(group)
+    expect(sys.latest_entry).to start_with s1 + s2
   end
 end
 
@@ -418,7 +420,7 @@ describe Sistema do
       v1.unique_id_setter
       fname = 'file.pdf'
       v1.upload_certificate(fname)
-      sys.log_certificate_upload('tomas', 'genut', fname)
+      # sys.log_certificate_upload('tomas', 'genut', fname)
       str = "User: tomas genut uploaded a certification #{fname}"
       expect(sys.latest_entry).to start_with str
     end
@@ -441,10 +443,10 @@ describe Sistema do
     sys = described_class.new
     usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
     sys.login(usr)
-    sys.log_user_login_logout('tomas', 'genut')
+    # sys.log_user_login_logout('tomas', 'genut')
     sys.logout(usr)
-    sys.log_user_login_logout('tomas', 'genut', false)
-    expect(sys.latest_entry).to start_with 'User: tomas genut '
+    # sys.log_user_login_logout('tomas', 'genut', false)
+    expect(sys.latest_entry).to start_with 'User: ["tomas", "genut"] '
     # expect(sys.latest_entry).to include('logs out at')
   end
 
@@ -454,10 +456,9 @@ describe Sistema do
     usr = Vartotojas.new(name: 'some name', last_name: 'pavardenis', email: e)
     usr.resend_password_link
     e = 'emailname@gmail.com'
-    sys.log_password_request('some name', 'pavardenis', e)
-    s1 = 'Pass req for user: some name '
-    s2 = 'pavardenis to emailname@gmail.com'
-    expect(sys.latest_entry).to start_with s1 + s2
+    # sys.log_password_request('some name', 'pavardenis', e)
+    s1 = 'Password request for user:'
+    expect(sys.latest_entry).to start_with s1
   end
 end
 

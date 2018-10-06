@@ -52,5 +52,6 @@ class SystemUserLogger
                "#{latest_user_info[1]} uploaded a certification " \
                "#{latest_user_info[4]} at #{time}"
     end
+    true
   end
 end

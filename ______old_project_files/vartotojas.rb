@@ -23,6 +23,10 @@ class Vartotojas
     @user_id = ''
   end
 
+  def name_lastname_getter
+    [@name, @last_name]
+  end
+
   def unique_id_setter(id = SecureRandom.hex)
     @user_id = id
   end
@@ -91,6 +95,8 @@ class Vartotojas
   end
 
   def create_work_group(work_group_name)
+    sysgrlog = SystemGroupLogger.new([work_group_name, @user_id])
+    sysgrlog.log_work_group_creation
     DarboGrupe.new(work_group_name: work_group_name)
   end
 
@@ -100,17 +106,22 @@ class Vartotojas
       return false
     end
 
-    group.set_deleted_status
+    group.set_deleted_status(@user_id)
   end
 
   def upload_certificate(file)
     regex = Regexp.new('([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$')
-    regex.match?(file)
+    sysusrlogger = SystemUserLogger.new([@name, @last_name, '', '', file])
+    return sysusrlogger.log_certificate_upload if regex.match?(file)
+
+    false
   end
 
   def resend_password_link
     # should later work based on Rails gem 'EmailVeracity'
     if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
+      sysusrlog = SystemUserLogger.new([@name, @last_name, @user_id, @email])
+      sysusrlog.log_password_request
       true
     else
       false
