@@ -9,6 +9,8 @@ require_relative 'darbo_grupe'
 require_relative 'system_project_logger'
 require_relative 'system_user_logger'
 require_relative 'system_group_logger'
+require_relative 'user_data_checker'
+require_relative 'project_data_checker'
 require 'rspec'
 require 'securerandom' # random hash kuriantis metodas yra
 require 'etc'
@@ -87,18 +89,21 @@ describe Sistema do
 
   context 'when performing action with project files' do
     it 'returns false on non existant file deletion' do
-      proj = Projektas.new
-      expect(proj.modify_file('filename.txt', false)).to be false
+      Projektas.new
+      pdc = ProjectDataChecker.new('metadata.txt')
+      expect(pdc.delete_file('filename.txt')).to be false
     end
 
     it 'returns true on existing file deletion' do
-      proj = Projektas.new
-      expect(proj.modify_file('file_to_delete.txt', false)).to be true
+      Projektas.new
+      pdc = ProjectDataChecker.new('metadata.txt')
+      expect(pdc.delete_file('file_to_delete.txt')).to be true
     end
 
     it 'returns true on file creation' do
-      proj = Projektas.new
-      expect(proj.modify_file('created_file.txt', true)).to be true
+      Projektas.new
+      pdc = ProjectDataChecker.new('metadata.txt')
+      expect(pdc.create_file('created_file.txt')).to be true
     end
   end
 end
@@ -197,7 +202,7 @@ describe Vartotojas do
       e = 't@a.com'
       # not existing user
       v1 = described_class.new(name: 'no', last_name: 'user', email: e)
-      v1.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
+      v1.unique_id_setter('40c0dcc000d00e57f000bd000daa0ae0')
       expect(sys.login(v1)).to be false
     end
   end
@@ -223,7 +228,7 @@ describe Vartotojas do
 
       sys = Sistema.new
       expect(sys.login(v1)).to be true
-      # expect(sys.logout(v1)).to equal v1
+      expect(sys.logout(v1)).to equal v1
     end
 
     it 'returns nil on error' do
@@ -262,25 +267,25 @@ end
 
 describe Vartotojas do
   context 'when vartotojas deletes a project' do
-    it 'returns false when nil is being passed to delete_project' do
-      e = 'jhonpeterson@mail.com'
-      vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(vart.delete_project(nil)).to be false
-    end
+    # it 'returns false when nil is being passed to delete_project' do
+    #  e = 'jhonpeterson@mail.com'
+    #  vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
+    #  expect(vart.delete_project(nil)).to be false
+    # end
 
     it 'returns true when project is deleted' do
       proj = Projektas.new
       e = 'jhonpeterson@mail.com'
       vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(vart.delete_project(proj)).to be true
+      expect(proj.set_deleted_status).to be true
     end
 
     it 'returns false when project is already deleted' do
       proj = Projektas.new
       e = 'jhonpeterson@mail.com'
       vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      vart.delete_project(proj)
-      expect(vart.delete_project(proj)).to be false
+      proj.set_deleted_status
+      expect(proj.set_deleted_status).to be false
     end
   end
 end
@@ -315,25 +320,25 @@ describe Vartotojas do
   end
 
   context 'when a user deletes a work group' do
-    it 'returns false when nil is being passed to delete_work_group' do
-      e = 'jhonpeterson@mail.com'
-      vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(vart.delete_work_group(nil)).to be false
-    end
+    # it 'returns false when nil is being passed to delete_work_group' do
+    #  e = 'jhonpeterson@mail.com'
+    #  vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
+    #  expect(vart.delete_work_group(nil)).to be false
+    # end
 
     it 'returns true when work group is deleted' do
       group = DarboGrupe.new
       e = 'jhonpeterson@mail.com'
       vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(vart.delete_work_group(group)).to be true
+      expect(group.set_deleted_status(vart.unique_id_getter)).to be true
     end
 
     it 'returns false when work group is already deleted' do
       group = DarboGrupe.new
       e = 'jhonpeterson@mail.com'
       vart = described_class.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      vart.delete_work_group(group)
-      expect(vart.delete_work_group(group)).to be false
+      group.set_deleted_status(vart.unique_id_getter)
+      expect(group.set_deleted_status(vart.unique_id_getter)).to be false
     end
   end
 end
@@ -341,35 +346,36 @@ end
 describe Sistema do
   context 'when a user tries to register' do
     it 'returns false if user with that email already exists' do
-      sys = described_class.new
+      udc = UserDataChecker.new
       usr1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
       usr2 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@a.com')
-      expect(sys.register(usr1)).to be false
-      expect(sys.register(usr2)).to be false
+      expect(udc.register(usr1)).to be false
+      expect(udc.register(usr2)).to be false
     end
 
     it 'returns false if users email wont match email template' do
-      sys = described_class.new
+      # sys = described_class.new
       usr1 = Vartotojas.new(name: 'qwert', last_name: 'setas', email: 'ga23am')
       usr2 = Vartotojas.new(name: 'genut', last_name: 'tomas', email: 'g@am')
-      expect(sys.user_input_validation(usr1)).to be false
-      expect(sys.user_input_validation(usr2)).to be false
+      expect(usr1.user_input_validation).to be false
+      expect(usr2.user_input_validation).to be false
     end
 
     it 'returns true if user successfully registered' do
-      sys = described_class.new
+      udc = UserDataChecker.new
+      # sys = Sistema.new
       usr1 = Vartotojas.new(name: 'jonas', last_name: 'jon', email: 'j@j.com')
-      expect(sys.user_input_validation(usr1)).to be true
-      expect(sys.register(usr1)).to be true
+      expect(usr1.user_input_validation).to be true
+      expect(udc.register(usr1)).to be true
     end
   end
 end
 
 describe Sistema do
   it 'returns true if all user input passes validation' do
-    sys = described_class.new
+    # sys = described_class.new
     usr1 = Vartotojas.new(name: 'jonas', last_name: 'jon', email: 'j@j.com')
-    expect(sys.user_input_validation(usr1)).to be true
+    expect(usr1.user_input_validation).to be true
   end
 
   it 'The system should log a work group deletion' do
@@ -380,7 +386,7 @@ describe Sistema do
     # sys.log_work_group_deletion(group.parm_work_group_name, v1)
     s1 = "Work group: #{group.parm_work_group_name} deleted "
     s2 = "by #{v1.unique_id_getter} at"
-    v1.delete_work_group(group)
+    group.set_deleted_status(v1.unique_id_getter)
     expect(sys.latest_entry).to start_with s1 + s2
   end
 end
@@ -389,13 +395,14 @@ describe Sistema do
   it 'The system should log a user login' do
     sys = described_class.new
     usr = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+    usr.unique_id_setter('48c7dcc645d82e57f049bd414daa5ae2')
     sys.login(usr)
-    sys.log_user_login_logout('tomas', 'genut')
-    expect(sys.latest_entry).to start_with 'User: tomas genut '
+    # sys.log_user_login_logout('tomas', 'genut')
+    expect(sys.latest_entry).to start_with 'User: ["tomas", "genut"] '
     expect(sys.latest_entry).to include('logs in at')
     sys.logout(usr)
-    sys.log_user_login_logout('tomas', 'genut', false)
-    expect(sys.latest_entry).to start_with 'User: tomas genut '
+    # sys.log_user_login_logout('tomas', 'genut', false)
+    expect(sys.latest_entry).to start_with 'User: ["tomas", "genut"] '
     expect(sys.latest_entry).to include('logs out at')
   end
 
@@ -430,7 +437,7 @@ describe Sistema do
       v1 = Vartotojas.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
       v1.unique_id_setter
       group = v1.create_work_group('some name')
-      sys.log_work_group_creation(group.parm_work_group_name, v1)
+      # sys.log_work_group_creation(group.parm_work_group_name, v1)
       s1 = "Work group: #{group.parm_work_group_name} created "
       s2 = "by #{v1.unique_id_getter} at"
       expect(sys.latest_entry).to start_with s1 + s2
@@ -494,13 +501,15 @@ describe ProjectMerger do
   end
 
   it 'finds the manager in metafile' do
-    pm = described_class.new
+    # pm = described_class.new
+    pdc = ProjectDataChecker.new('metadata.txt')
     Projektas.new
     # write manager
     fileone = File.open('metadata.txt', 'w')
     fileone.puts('manager: somename')
     fileone.close
-    expect(pm.get_manager_from_meta('metadata.txt')).to eq 'somename'
+    # expect(pm.get_manager_from_meta('metadata.txt')).to eq 'somename'
+    expect(pdc.manager_from_meta_getter).to eq 'somename'
   end
 end
 
@@ -510,11 +519,11 @@ describe ProjectMerger do
     expect(pm.notify_managers('nofile.txt', 'nofile2.txt')).to be false
   end
 
-  it 'returns empty string otherwise' do
-    pm = described_class.new
-    Projektas.new
-    expect(pm.get_manager_from_meta('metadata.txt')).to eq ''
-  end
+  # it 'returns empty string otherwise' do
+  #  pm = described_class.new
+  #  Projektas.new
+  #  expect(pm.get_manager_from_meta('metadata.txt')).to eq ''
+  # end
 
   it 'notifies managers of both projects' do
     pm = described_class.new

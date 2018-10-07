@@ -1,6 +1,6 @@
 require 'time'
 
-#Some docs here
+# Some docs here
 class SystemGroupLogger
   attr_reader :system_file
   # [0] - group name

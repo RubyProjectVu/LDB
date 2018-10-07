@@ -6,7 +6,7 @@ class Projektas
   attr_reader :name_and_meta
   attr_reader :project_manager
   attr_reader :project_status
-  attr_reader :project_deleted
+  # attr_reader :project_deleted
   attr_reader :members
   attr_reader :subscriber_members
 
@@ -19,7 +19,7 @@ class Projektas
     File.new(@name_and_meta[1], 'w').close # File.new(meta_filename, 'w')
     @members = []
     @subscriber_members = {}
-    @project_deleted = false
+    @project_status = 'Proposed'
   end
 
   def check_metadata
@@ -34,31 +34,31 @@ class Projektas
     end
   end
 
-  def modify_file(file_name, to_create_file)
-    if to_create_file
-      create_file(file_name)
-    else
-      delete_file(file_name)
-    end
-  end
+  # def modify_file(file_name, to_create_file)
+  #  if to_create_file
+  #    create_file(file_name)
+  #  else
+  #    delete_file(file_name)
+  #  end
+  # end
 
-  def create_file(file_name)
-    File.new(file_name, 'w')
-    true
-  end
+  # def create_file(file_name)
+  #  File.new(file_name, 'w')
+  #  true
+  # end
 
-  def delete_file(file_name)
-    # begin
-    # var = File.delete(file_name) # delete gali mest exception
-    if File.delete(file_name) == 1 # var == 1
-      file = File.new(file_name, 'w') # TEST PURPOSES
-      file.puts('a') # TEST PURPOSES
-      true
-    end
-  rescue StandardError
-    false
-    # end
-  end
+  # def delete_file(file_name)
+  # begin
+  # var = File.delete(file_name) # delete gali mest exception
+  #  if File.delete(file_name) == 1 # var == 1
+  #    file = File.new(file_name, 'w') # TEST PURPOSES
+  #    file.puts('a') # TEST PURPOSES
+  #    true
+  #  end
+  # rescue StandardError
+  #  false
+  # end
+  # end
 
   def parm_manager(name = '')
     @project_manager = name unless name.to_s.empty?
@@ -69,12 +69,11 @@ class Projektas
 
   def parm_project_status(status = '')
     if !status.to_s.empty?
-      option_array = project_status_array
-      if option_array.include? status
-        @project_status = status
-      else
-        project_status__message
-      end
+      @project_status = status if ['Proposed', 'Suspended', 'Postponed',
+                                   'Cancelled',
+                                   'In progress', 'Deleted'].include? status
+      'Please set status as one of: Proposed, Suspended, Postponed, '\
+       'Cancelled, In progress'
     else
       @project_status
     end
@@ -103,20 +102,6 @@ class Projektas
     names_sent
   end
 
-  def project_status_array
-    ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress']
-    # var.push('Proposed').push('Suspended').push('Postponed')
-    # var.push('Cancelled').push('In progress')
-    # var
-  end
-
-  def project_status__message
-    var = 'Proposed, Suspended, Postponed, Cancelled, In progress'
-    # postfix = var.join(', ')
-    prefix = 'Please set status as one of: '
-    prefix + var # postfix
-  end
-
   def parm_project_name(name = '')
     # @project_name = name if !name.to_s.empty?
     @name_and_meta[0] = name unless name.to_s.empty?
@@ -127,24 +112,31 @@ class Projektas
 
   def add_member(vart)
     # return false if vart.nil? || @members.include?(vart.user_id)
-    return false if @members.include?(vart.user_id)
+    id = vart.user_id
+    return false if @members.include?(id)
 
     # return false if @members.include?(vart.user_id)
-    @members.push(vart.user_id)
+    @members.push(id)
     true
   end
 
   def remove_member(vart)
+    id = vart.user_id
     # return false if vart.nil?
-    return false unless @members.include?(vart.user_id)
+    return false unless @members.include?(id)
 
-    @members.delete(vart.user_id)
+    @members.delete(id)
     true
   end
 
   def set_deleted_status
     # return false if @project_deleted == true
     # @project_deleted = true
-    @project_deleted == true ? false : @project_deleted = true
+    if @project_status == 'Deleted'
+      false
+    else
+      @project_status = 'Deleted'
+      true
+    end
   end
 end

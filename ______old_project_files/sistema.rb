@@ -4,6 +4,7 @@ require 'time'
 # this is sistema class description
 class Sistema
   attr_reader :logged_in_users
+  attr_reader :usr_constr_list
   attr_reader :state
 
   def initialize
@@ -11,30 +12,28 @@ class Sistema
     @state = true
   end
 
-  def user_input_validation(user)
-    validate = true
-    if !user.name.match(/[a-zA-Z][a-z]+/)
-      # validate = false
-    elsif !user.last_name.match(/[a-zA-Z][a-z]+/)
-      # validate = false
-    elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
-      validate = false
-    end
-    validate
-  end
+  # def user_input_validation(user)
+  #  validate = true
+  #  if !user.name.match(/[a-zA-Z][a-z]+/) ||
+  #     !user.last_name.match(/[a-zA-Z][a-z]+/) ||
+  #     !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
+  #    validate = false
+  #  end
+  #  validate
+  # end
 
-  def register(user_to_register)
-    if File.file?('users.txt')
-      user_file = File.read('users.txt')
-      users = user_file.split(';')
-      users.each do |user|
-        user_data = user.split(',')
-        return false if user_data[2].match(user_to_register.email)
-      end
-    end
-    # save_registered_user(user_to_register)
-    true
-  end
+  # def register(user_to_register)
+  #  if File.file?('users.txt')
+  #    user_file = File.read('users.txt')
+  #    users = user_file.split(';')
+  #    users.each do |user|
+  #      user_data = user.split(',')
+  #      return false if user_data[2].match(user_to_register.email)
+  #    end
+  #  end
+  # save_registered_user(user_to_register)
+  #  true
+  # end
 
   # def save_registered_user(user_to_register)
   #  user_to_register.unique_id_setter
@@ -50,31 +49,55 @@ class Sistema
 
   def login(user_to_login)
     if File.file?('users.txt')
-      user_file = File.read('users.txt')
-      return true if construct_user(user_file.split(';'), user_to_login)
+       user_file = File.read('users.txt')
+       return true if construct_user(user_file.split(';'), user_to_login)
+      # File.foreach('users.txt') { |line|
+        # line.split(',')
+        # return true if construct_user(line.split(','), user_to_login)
+      # }
     end
     false
   end
 
   def construct_user(line, user_to_login)
     line.each do |user|
-      user_data = user.split(',')
-      new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1],
-                                email: user_data[2])
-      new_user.unique_id_setter(user_data[3])
-      return try_logging_in(new_user, user_to_login)
+      # user_data = user.split(',')
+      new_user = set_usr_args_in_place(user.split(','))
+      # @usr_constr_list = user.split(',')
+      # new_user = Vartotojas.new(name: usr_constr_list[0], 
+      #                          last_name: usr_constr_list[1],
+      #                          email: usr_constr_list[2])
+      # new_user.unique_id_setter(usr_constr_list[3])
+      return true if try_logging_in(new_user, user_to_login)
     end
+    false
+  end
+
+  def set_usr_args_in_place(arr)
+    @usr_constr_list = arr
+    new_user = Vartotojas.new(name: usr_constr_list[0], 
+                                last_name: usr_constr_list[1],
+                                email: usr_constr_list[2])
+    new_user.unique_id_setter(usr_constr_list[3])
+    new_user
   end
 
   def try_logging_in(new_user, user_to_login)
     if new_user.equals(user_to_login)
-      unless @logged_in_users.include? user_to_login
+      unless already_logged_in?(user_to_login)
         sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
         sysusrlog.log_user_login
         @logged_in_users.push(user_to_login)
         true
       end
     end
+  end
+
+  def already_logged_in?(user)
+    @logged_in_users.each do |list|
+      return true if list.unique_id_getter == user.unique_id_getter
+    end
+    false
   end
 
   def logout(user_to_logout)
@@ -92,17 +115,17 @@ class Sistema
   #  end
   # end
 
-  def log_user_login_logout(name, last_name, logs_in = true)
-    false if @state == false
-    time = Time.now.getutc
-    File.open('syslog.txt', 'a') do |log|
-      if logs_in
-        log.puts "User: #{name} #{last_name} logs in at #{time}."
-      else
-        log.puts "User: #{name} #{last_name} logs out at #{time}."
-      end
-    end
-  end
+  # def log_user_login_logout(name, last_name, logs_in = true)
+  #  false if @state == false
+  #  time = Time.now.getutc
+  #  File.open('syslog.txt', 'a') do |log|
+  #    if logs_in
+  #      log.puts "User: #{name} #{last_name} logs in at #{time}."
+  #    else
+  #      log.puts "User: #{name} #{last_name} logs out at #{time}."
+  #    end
+  #  end
+  # end
 
   # def log_password_request(name, last_name, email)
   #  false if @state == false
@@ -151,6 +174,7 @@ class Sistema
   end
 
   def latest_entry
+    false if @state == false
     File.readlines('syslog.txt').last
     # lines.last
   end

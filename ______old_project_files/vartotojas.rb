@@ -5,26 +5,45 @@ require 'uri'
 
 # Documentation about class vartotojas
 class Vartotojas
-  attr_reader :name
-  attr_reader :last_name
-  attr_reader :email
-  attr_reader :gender
+  attr_reader :info
+  # attr_reader :name
+  # attr_reader :last_name
+  # attr_reader :email
+  # attr_reader :gender -> To address book
   attr_reader :user_id
-  attr_reader :phone_number
+  # attr_reader :phone_number -> To address book
   attr_reader :projects
 
-  def initialize(name: '', last_name: '', email: '', phone_number: '')
-    @name = name
-    @last_name = last_name
-    @email = email
-    @phone_number = phone_number
+  def initialize(name: '', last_name: '', email: '')
+    @info = []
+    @info[0] = name
+    @info[1] = last_name
+    @info[2] = email
+    # @name = name
+    # @last_name = last_name
+    # @email = email
+    # @phone_number = phone_number
     @projects = {}
-    @qualification_certificates = [] # Array.new
+    # @qualification_certificates = [] Nebuvo naudotas? Galesim det i DB 'file'
     @user_id = ''
   end
 
+  def user_input_validation
+    if !info[0].match(/[a-zA-Z][a-z]+/) ||
+       !info[1].match(/[a-zA-Z][a-z]+/) ||
+       !info[2].match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
+      return false
+    end
+
+    true
+  end
+
   def name_lastname_getter
-    [@name, @last_name]
+    [@info[0], @info[1]]
+  end
+
+  def email_getter
+    @info[2]
   end
 
   def unique_id_setter(id = SecureRandom.hex)
@@ -36,10 +55,11 @@ class Vartotojas
   end
 
   def equals(other_user)
-    if @name == other_user.name &&
-       @last_name == other_user.last_name &&
-       @email == other_user.email &&
-       @user_id == other_user.user_id
+    info = other_user.name_lastname_getter
+    if @info[0] == info[0] &&
+       @info[1] == info[1] &&
+       @info[2] == other_user.email_getter &&
+       @user_id == other_user.unique_id_getter
       return true
     end
 
@@ -85,14 +105,14 @@ class Vartotojas
     # return object
   end
 
-  def delete_project(proj)
-    if proj.nil?
-      # puts 'Invalid object reference'
-      return false
-    end
-
-    proj.set_deleted_status
-  end
+  # def delete_project(proj)
+  #  if proj.nil?
+  # puts 'Invalid object reference'
+  #    return false
+  #  end
+  #
+  #  proj.set_deleted_status
+  # end
 
   def create_work_group(work_group_name)
     sysgrlog = SystemGroupLogger.new([work_group_name, @user_id])
@@ -100,18 +120,18 @@ class Vartotojas
     DarboGrupe.new(work_group_name: work_group_name)
   end
 
-  def delete_work_group(group)
-    if group.nil?
-      # puts 'Invalid object reference'
-      return false
-    end
-
-    group.set_deleted_status(@user_id)
-  end
+  # def delete_work_group(group)
+  #  if group.nil?
+  # puts 'Invalid object reference'
+  #    return false
+  #  end
+  #
+  #  group.set_deleted_status(@user_id)
+  # end
 
   def upload_certificate(file)
     regex = Regexp.new('([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$')
-    sysusrlogger = SystemUserLogger.new([@name, @last_name, '', '', file])
+    sysusrlogger = SystemUserLogger.new([@info[0], @info[1], '', '', file])
     return sysusrlogger.log_certificate_upload if regex.match?(file)
 
     false
@@ -119,8 +139,8 @@ class Vartotojas
 
   def resend_password_link
     # should later work based on Rails gem 'EmailVeracity'
-    if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
-      sysusrlog = SystemUserLogger.new([@name, @last_name, @user_id, @email])
+    if info[2] =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
+      sysusrlog = SystemUserLogger.new([@info[0], @info[1], @user_id, @info[2]])
       sysusrlog.log_password_request
       true
     else
