@@ -127,18 +127,18 @@ class Projektas
 
   def add_member(vart)
     # return false if vart.nil? || @members.include?(vart.user_id)
-    return false if @members.include?(vart.user_id)
+    return false if @members.include?(vart.user_info[4])
 
     # return false if @members.include?(vart.user_id)
-    @members.push(vart.user_id)
+    @members.push(vart.user_info[4])
     true
   end
 
   def remove_member(vart)
     # return false if vart.nil?
-    return false unless @members.include?(vart.user_id)
+    return false unless @members.include?(vart.user_info[4])
 
-    @members.delete(vart.user_id)
+    @members.delete(vart.user_info[4])
     true
   end
 

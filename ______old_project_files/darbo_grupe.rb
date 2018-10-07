@@ -29,7 +29,7 @@ class DarboGrupe
   def add_member(vart)
     # id = ''
     # return false if vart.nil? || @members.include?(id = vart.user_id)
-    return false if @members.include?(id = vart.user_id)
+    return false if @members.include?(id = vart.user_info[4])
 
     # return false if @members.include?(vart.user_id)
     @members.push(id)
@@ -38,7 +38,7 @@ class DarboGrupe
 
   def remove_member(vart)
     # return false if vart.nil?
-    return false unless @members.include?(id = vart.user_id)
+    return false unless @members.include?(id = vart.user_info[4])
 
     @members.delete(id)
     true

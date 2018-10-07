@@ -13,15 +13,16 @@ class Sistema
 
   def user_input_validation(user)
     validate = true
-    if !user.name.match(/[a-zA-Z][a-z]+/)
+    if !user_info[0].match(/[a-zA-Z][a-z]+/)
       # validate = false
-    elsif !user.last_name.match(/[a-zA-Z][a-z]+/)
+   elsif !user_info[1].match(/[a-zA-Z][a-z]+/)
       # validate = false
-    elsif !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
+   elsif !user_info[2].match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
       validate = false
     end
     validate
   end
+
 
   def register(user_to_register)
     if File.file?('users.txt')
@@ -29,7 +30,7 @@ class Sistema
       users = user_file.split(';')
       users.each do |user|
         user_data = user.split(',')
-        return false if user_data[2].match(user_to_register.email)
+        return false if user_data[2].match(user_to_register.user_info[2])
       end
     end
     # save_registered_user(user_to_register)
@@ -60,7 +61,7 @@ class Sistema
     line.each do |user|
       user_data = user.split(',')
       new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1],
-                                email: user_data[2])
+                              email: user_data[2])
       new_user.unique_id_setter(user_data[3])
       return try_logging_in(new_user, user_to_login)
     end
@@ -92,15 +93,19 @@ class Sistema
   #  end
   # end
 
-  def log_user_login_logout(name, last_name, logs_in = true)
+  def log_user_login(name, last_name)
     false if @state == false
     time = Time.now.getutc
     File.open('syslog.txt', 'a') do |log|
-      if logs_in
         log.puts "User: #{name} #{last_name} logs in at #{time}."
-      else
+    end
+  end
+
+  def log_user_logout(name, last_name)
+    false if @state == false
+    time = Time.now.getutc
+    File.open('syslog.txt', 'a') do |log|
         log.puts "User: #{name} #{last_name} logs out at #{time}."
-      end
     end
   end
 
