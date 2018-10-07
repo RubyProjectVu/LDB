@@ -13,16 +13,15 @@ class Sistema
 
   def user_input_validation(user)
     validate = true
-    if !user_info[0].match(/[a-zA-Z][a-z]+/)
-      # validate = false
-   elsif !user_info[1].match(/[a-zA-Z][a-z]+/)
-      # validate = false
-   elsif !user_info[2].match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
+    if !user.user_info[0].match(/[a-zA-Z][a-z]+/)
+    # validate = false
+    elsif !user.user_info[1].match(/[a-zA-Z][a-z]+/)
+    # validate = false
+    elsif !user.user_info[2].match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
       validate = false
     end
     validate
   end
-
 
   def register(user_to_register)
     if File.file?('users.txt')
@@ -61,21 +60,19 @@ class Sistema
     line.each do |user|
       user_data = user.split(',')
       new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1],
-                              email: user_data[2])
+                                email: user_data[2])
       new_user.unique_id_setter(user_data[3])
       return try_logging_in(new_user, user_to_login)
     end
   end
 
-  def try_logging_in(new_user, user_to_login)
-    if new_user.equals(user_to_login)
-      unless @logged_in_users.include? user_to_login
-        sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
-        sysusrlog.log_user_login
-        @logged_in_users.push(user_to_login)
-        true
-      end
-    end
+  def try_logging_in(user_to_login)
+    return false if @logged_in_users.include? user_to_login
+
+    sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
+    sysusrlog.log_user_login
+    @logged_in_users.push(user_to_login)
+    true
   end
 
   def logout(user_to_logout)
@@ -97,7 +94,7 @@ class Sistema
     false if @state == false
     time = Time.now.getutc
     File.open('syslog.txt', 'a') do |log|
-        log.puts "User: #{name} #{last_name} logs in at #{time}."
+      log.puts "User: #{name} #{last_name} logs in at #{time}."
     end
   end
 
@@ -105,7 +102,7 @@ class Sistema
     false if @state == false
     time = Time.now.getutc
     File.open('syslog.txt', 'a') do |log|
-        log.puts "User: #{name} #{last_name} logs out at #{time}."
+      log.puts "User: #{name} #{last_name} logs out at #{time}."
     end
   end
 

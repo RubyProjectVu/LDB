@@ -44,14 +44,14 @@ class DarboGrupe
     true
   end
 
-  def set_deleted_status(user_id)
-    if @work_group_deleted == true
-      # puts "Work_group is already deleted"
-      false
-    else
-      sysgrlog = SystemGroupLogger.new([@work_group_name, user_id])
-      sysgrlog.log_work_group_deletion
-      @work_group_deleted = true
-    end
+  def make_deleted_status(user_id)
+  if @work_group_deleted == true
+    # puts "Work_group is already deleted"
+    false
+  else
+    sysgrlog = SystemGroupLogger.new([@work_group_name, user_id])
+    sysgrlog.log_work_group_deletion
+    @work_group_deleted = true
+  end
   end
 end

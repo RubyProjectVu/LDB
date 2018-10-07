@@ -586,7 +586,7 @@ describe DarboGrupe do
     #  group = DarboGrupe.new
     #  expect(group.add_member(nil)).to be false
     # end
-    
+
     it '' do
       item = SystemProjectLogger.new(["projname", "1410154"])
       item.log_project_creation

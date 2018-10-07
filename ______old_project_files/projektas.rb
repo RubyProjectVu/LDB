@@ -25,12 +25,11 @@ class Projektas
   def check_metadata
     # outcome = File.file?(@name_and_meta[1]) # File.file?(@meta_filename)
     var = @name_and_meta[1]
-    if File.file?(var) # outcome
-      # File.foreach(@meta_filename, 'r') do |line|
-      File.foreach(var, 'r') do |line|
-        # print "Check if #{line} exists"
-      end
-      true
+    return false unless File.file?(var)
+
+    # File.foreach(@meta_filename, 'r') do |line|
+    File.foreach(var, 'r') do |line|
+      # print "Check if #{line} exists"
     end
   end
 

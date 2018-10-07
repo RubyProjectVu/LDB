@@ -33,9 +33,7 @@ class Vartotojas
   end
 
   def equals(other_user)
-    if @user_info == other_user.user_info
-      return true
-    end
+    return true if @user_info == other_user.user_info
 
     false
   end
@@ -73,14 +71,16 @@ class Vartotojas
 
   def create_project(project_name, file_name)
     # object =
-    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4], file_name])
+    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4],
+                                          file_name])
     sysprojlog.log_project_creation
     Projektas.new(project_name: project_name, meta_filename: file_name)
     # return object
   end
 
   def delete_project(proj)
-    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4], file_name])
+    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4],
+                                          file_name])
     sysprojlog.log_project_delete
     proj.set_deleted_status
   end
@@ -97,7 +97,8 @@ class Vartotojas
 
   def upload_certificate(file)
     regex = Regexp.new('([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$')
-    sysusrlogger = SystemUserLogger.new([@user_info[0], @user_info[1], '', '', file])
+    sysusrlogger = SystemUserLogger.new([@user_info[0], @user_info[1], '', '',
+                                         file])
     return sysusrlogger.log_certificate_upload if regex.match?(file)
 
     false
@@ -106,7 +107,8 @@ class Vartotojas
   def resend_password_link
     # should later work based on Rails gem 'EmailVeracity'
     if @user_info[2] =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
-      sysusrlog = SystemUserLogger.new([@user_info[0], @user_info[1], @user_info[4], 0])
+      sysusrlog = SystemUserLogger.new([@user_info[0], @user_info[1],
+                                        @user_info[4], 0])
       sysusrlog.log_password_request
       true
     else
