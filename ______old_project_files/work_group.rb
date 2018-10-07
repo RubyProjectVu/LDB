@@ -2,7 +2,7 @@ require 'date'
 require 'etc'
 
 # Documentation for darbo grupe
-class DarboGrupe
+class WorkGroup
   attr_reader :work_group_name
   attr_reader :work_group_manager
   attr_reader :work_group_deleted
@@ -44,6 +44,7 @@ class DarboGrupe
     true
   end
 
+<<<<<<< HEAD:______old_project_files/darbo_grupe.rb
   def make_deleted_status(user_id)
   if @work_group_deleted == true
     # puts "Work_group is already deleted"
@@ -53,5 +54,16 @@ class DarboGrupe
     sysgrlog.log_work_group_deletion
     @work_group_deleted = true
   end
+=======
+  def deleted_status_setter(user_id)
+    if @work_group_deleted == true
+      # puts "Work_group is already deleted"
+      false
+    else
+      sysgrlog = SystemGroupLogger.new([@work_group_name, user_id])
+      sysgrlog.log_work_group_deletion
+      @work_group_deleted = true
+    end
+>>>>>>> paulius:______old_project_files/work_group.rb
   end
 end

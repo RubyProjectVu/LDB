@@ -20,6 +20,7 @@ class SystemProjectLogger
                "created by #{@latest_project_info[1]} at #{time_now}."
     end
   end
+<<<<<<< HEAD
 
   def log_project_delete
     File.open(@system_file, 'a') do |log|
@@ -32,4 +33,6 @@ class SystemProjectLogger
   def latest_entry
     File.readlines(@system_file).last
   end
+=======
+>>>>>>> paulius
 end

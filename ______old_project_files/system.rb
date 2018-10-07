@@ -1,9 +1,10 @@
-require_relative 'vartotojas'
+require_relative 'User'
 require 'time'
 
-# this is sistema class description
-class Sistema
+# this is System class description
+class System
   attr_reader :logged_in_users
+  attr_reader :usr_constr_list
   attr_reader :state
 
   def initialize
@@ -11,6 +12,7 @@ class Sistema
     @state = true
   end
 
+<<<<<<< HEAD:______old_project_files/sistema.rb
   def user_input_validation(user)
     validate = true
     if !user.user_info[0].match(/[a-zA-Z][a-z]+/)
@@ -35,6 +37,30 @@ class Sistema
     # save_registered_user(user_to_register)
     true
   end
+=======
+  # def user_input_validation(user)
+  #  validate = true
+  #  if !user.name.match(/[a-zA-Z][a-z]+/) ||
+  #     !user.last_name.match(/[a-zA-Z][a-z]+/) ||
+  #     !user.email.match(/[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+/)
+  #    validate = false
+  #  end
+  #  validate
+  # end
+
+  # def register(user_to_register)
+  #  if File.file?('users.txt')
+  #    user_file = File.read('users.txt')
+  #    users = user_file.split(';')
+  #    users.each do |user|
+  #      user_data = user.split(',')
+  #      return false if user_data[2].match(user_to_register.email)
+  #    end
+  #  end
+  # save_registered_user(user_to_register)
+  #  true
+  # end
+>>>>>>> paulius:______old_project_files/system.rb
 
   # def save_registered_user(user_to_register)
   #  user_to_register.unique_id_setter
@@ -58,21 +84,49 @@ class Sistema
 
   def construct_user(line, user_to_login)
     line.each do |user|
-      user_data = user.split(',')
-      new_user = Vartotojas.new(name: user_data[0], last_name: user_data[1],
-                                email: user_data[2])
-      new_user.unique_id_setter(user_data[3])
-      return try_logging_in(new_user, user_to_login)
+      # user_data = user.split(',')
+      new_user = usr_args_in_place(user.split(','))
+      # @usr_constr_list = user.split(',')
+      # new_user = User.new(name: usr_constr_list[0],
+      #                          last_name: usr_constr_list[1],
+      #                          email: usr_constr_list[2])
+      # new_user.unique_id_setter(usr_constr_list[3])
+      return true if try_logging_in(user_to_login) &&
+                     new_user.equals(user_to_login)
     end
+    false
+  end
+
+  def usr_args_in_place(arr)
+    @usr_constr_list = arr
+    new_user = User.new(name: usr_constr_list[0],
+                        last_name: usr_constr_list[1],
+                        email: usr_constr_list[2])
+    new_user.unique_id_setter(usr_constr_list[3])
+    new_user
   end
 
   def try_logging_in(user_to_login)
+<<<<<<< HEAD:______old_project_files/sistema.rb
     return false if @logged_in_users.include? user_to_login
+=======
+    return if already_logged_in?(user_to_login)
+>>>>>>> paulius:______old_project_files/system.rb
 
     sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
     sysusrlog.log_user_login
     @logged_in_users.push(user_to_login)
     true
+<<<<<<< HEAD:______old_project_files/sistema.rb
+=======
+  end
+
+  def already_logged_in?(user)
+    @logged_in_users.each do |list|
+      return true if list.unique_id_getter == user.unique_id_getter
+    end
+    false
+>>>>>>> paulius:______old_project_files/system.rb
   end
 
   def logout(user_to_logout)
@@ -90,6 +144,7 @@ class Sistema
   #  end
   # end
 
+<<<<<<< HEAD:______old_project_files/sistema.rb
   def log_user_login(name, last_name)
     false if @state == false
     time = Time.now.getutc
@@ -105,6 +160,19 @@ class Sistema
       log.puts "User: #{name} #{last_name} logs out at #{time}."
     end
   end
+=======
+  # def log_user_login_logout(name, last_name, logs_in = true)
+  #  false if @state == false
+  #  time = Time.now.getutc
+  #  File.open('syslog.txt', 'a') do |log|
+  #    if logs_in
+  #      log.puts "User: #{name} #{last_name} logs in at #{time}."
+  #    else
+  #      log.puts "User: #{name} #{last_name} logs out at #{time}."
+  #    end
+  #  end
+  # end
+>>>>>>> paulius:______old_project_files/system.rb
 
   # def log_password_request(name, last_name, email)
   #  false if @state == false
@@ -153,6 +221,7 @@ class Sistema
   end
 
   def latest_entry
+    false if @state == false
     File.readlines('syslog.txt').last
     # lines.last
   end
