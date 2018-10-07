@@ -113,3 +113,24 @@ Work group: some name created by 2f2899fad6bfb8e5e0f3ca4aa3a5cc8f at 2018-10-06 
 User: ["tomas", "genut"]  logs out at 2018-10-06 22:34:22 UTC.
 Password request for user: to emailname@gmail.com at 2018-10-06 22:34:22 UTC
 Project: projname created by 1410154 at 2018-10-06 22:34:22 UTC.
+Password request for user: 0at 2018-10-07 13:57:08 UTC
+User: tomas genut uploaded a certification file.docx at 2018-10-07 13:57:08 UTC
+Project: Project created by 0 at 2018-10-07 13:57:08 UTC.
+Work group: Marketing created by 0 at 2018-10-07 13:57:08 UTC.
+User: ["tomas", "genut"]  logs out at 2018-10-07 13:57:08 UTC.
+Project: some name created by 087c7018caa33fe9a32bc34143cb114e at 2018-10-07 13:57:08 UTC.
+Password request for user: 0at 2018-10-07 13:57:08 UTC
+User: tomas genut uploaded a certification file.pdf at 2018-10-07 13:57:08 UTC
+Work group: some name created by a42d2423e3df0c053a5b9c4d74c8da60 at 2018-10-07 13:57:08 UTC.
+Work group: some name created by a42d2423e3df0c053a5b9c4d74c8da60 at 2018-10-07 13:57:08 UTC.
+Project: projname created by 1410154 at 2018-10-07 13:57:08 UTC.
+User: tomas genut uploaded a certification file.docx at 2018-10-07 14:02:57 UTC
+Project: Project created by 0 at 2018-10-07 14:02:57 UTC.
+Work group: Marketing created by 0 at 2018-10-07 14:02:57 UTC.
+User: ["tomas", "genut"]  logs out at 2018-10-07 14:02:57 UTC.
+Project: some name created by e9d2d9ef3fa8f9ecdea2015823d20ef2 at 2018-10-07 14:02:57 UTC.
+Password request for user: 0at 2018-10-07 14:02:57 UTC
+User: tomas genut uploaded a certification file.pdf at 2018-10-07 14:02:57 UTC
+Work group: some name created by 13c0c7b6624ff180c44a516e60f87faa at 2018-10-07 14:02:57 UTC.
+Work group: some name created by 13c0c7b6624ff180c44a516e60f87faa at 2018-10-07 14:02:57 UTC.
+Project: projname created by 1410154 at 2018-10-07 14:02:57 UTC.
