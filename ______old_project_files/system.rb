@@ -1,8 +1,8 @@
-require_relative 'vartotojas'
+require_relative 'User'
 require 'time'
 
-# this is sistema class description
-class Sistema
+# this is System class description
+class System
   attr_reader :logged_in_users
   attr_reader :usr_constr_list
   attr_reader :state
@@ -49,12 +49,8 @@ class Sistema
 
   def login(user_to_login)
     if File.file?('users.txt')
-       user_file = File.read('users.txt')
-       return true if construct_user(user_file.split(';'), user_to_login)
-      # File.foreach('users.txt') { |line|
-        # line.split(',')
-        # return true if construct_user(line.split(','), user_to_login)
-      # }
+      user_file = File.read('users.txt')
+      return true if construct_user(user_file.split(';'), user_to_login)
     end
     false
   end
@@ -62,35 +58,34 @@ class Sistema
   def construct_user(line, user_to_login)
     line.each do |user|
       # user_data = user.split(',')
-      new_user = set_usr_args_in_place(user.split(','))
+      new_user = usr_args_in_place(user.split(','))
       # @usr_constr_list = user.split(',')
-      # new_user = Vartotojas.new(name: usr_constr_list[0], 
+      # new_user = User.new(name: usr_constr_list[0],
       #                          last_name: usr_constr_list[1],
       #                          email: usr_constr_list[2])
       # new_user.unique_id_setter(usr_constr_list[3])
-      return true if try_logging_in(new_user, user_to_login)
+      return true if try_logging_in(user_to_login) &&
+                     new_user.equals(user_to_login)
     end
     false
   end
 
-  def set_usr_args_in_place(arr)
+  def usr_args_in_place(arr)
     @usr_constr_list = arr
-    new_user = Vartotojas.new(name: usr_constr_list[0], 
-                                last_name: usr_constr_list[1],
-                                email: usr_constr_list[2])
+    new_user = User.new(name: usr_constr_list[0],
+                        last_name: usr_constr_list[1],
+                        email: usr_constr_list[2])
     new_user.unique_id_setter(usr_constr_list[3])
     new_user
   end
 
-  def try_logging_in(new_user, user_to_login)
-    if new_user.equals(user_to_login)
-      unless already_logged_in?(user_to_login)
-        sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
-        sysusrlog.log_user_login
-        @logged_in_users.push(user_to_login)
-        true
-      end
-    end
+  def try_logging_in(user_to_login)
+    return if already_logged_in?(user_to_login)
+
+    sysusrlog = SystemUserLogger.new([user_to_login.name_lastname_getter])
+    sysusrlog.log_user_login
+    @logged_in_users.push(user_to_login)
+    true
   end
 
   def already_logged_in?(user)

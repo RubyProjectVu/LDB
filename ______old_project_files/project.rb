@@ -2,9 +2,9 @@ require 'date'
 require 'etc'
 
 # rubocop comment?
-class Projektas
-  attr_reader :name_and_meta
-  attr_reader :project_manager
+class Project
+  attr_reader :name_meta_man
+  # attr_reader :project_manager
   attr_reader :project_status
   # attr_reader :project_deleted
   attr_reader :members
@@ -14,24 +14,24 @@ class Projektas
     project_name: 'Default_project_' + Date.today.to_s,
     meta_filename: 'metadata.txt'
   )
-    @name_and_meta = [project_name, meta_filename]
-    @project_manager = Etc.getlogin
-    File.new(@name_and_meta[1], 'w').close # File.new(meta_filename, 'w')
+    @name_meta_man = [project_name, meta_filename, Etc.getlogin]
+    # @project_manager = Etc.getlogin
+    File.new(@name_meta_man[1], 'w').close # File.new(meta_filename, 'w')
     @members = []
     @subscriber_members = {}
     @project_status = 'Proposed'
   end
 
   def check_metadata
-    # outcome = File.file?(@name_and_meta[1]) # File.file?(@meta_filename)
-    var = @name_and_meta[1]
-    if File.file?(var) # outcome
-      # File.foreach(@meta_filename, 'r') do |line|
-      File.foreach(var, 'r') do |line|
-        # print "Check if #{line} exists"
-      end
-      true
+    # outcome = File.file?(@name_meta_man[1]) # File.file?(@meta_filename)
+    var = @name_meta_man[1]
+    false unless File.file?(var)
+    # File.foreach(@meta_filename, 'r') do |line|
+    File.foreach(var, 'r') do
+      # print "Check if #{line} exists"
     end
+    true
+    # end
   end
 
   # def modify_file(file_name, to_create_file)
@@ -61,9 +61,9 @@ class Projektas
   # end
 
   def parm_manager(name = '')
-    @project_manager = name unless name.to_s.empty?
+    @name_meta_man[2] = name unless name.to_s.empty?
     # else
-    @project_manager
+    @name_meta_man[2]
     # end
   end
 
@@ -104,9 +104,9 @@ class Projektas
 
   def parm_project_name(name = '')
     # @project_name = name if !name.to_s.empty?
-    @name_and_meta[0] = name unless name.to_s.empty?
+    @name_meta_man[0] = name unless name.to_s.empty?
     # else
-    @name_and_meta[0] # @project_name
+    @name_meta_man[0] # @project_name
     # end
   end
 

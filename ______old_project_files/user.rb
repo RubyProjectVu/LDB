@@ -1,10 +1,10 @@
 require 'securerandom' # random hash kuriantis metodas yra
-require_relative 'projektas'
-require_relative 'darbo_grupe'
+require_relative 'project'
+require_relative 'work_group'
 require 'uri'
 
-# Documentation about class vartotojas
-class Vartotojas
+# Documentation about class User
+class User
   attr_reader :info
   # attr_reader :name
   # attr_reader :last_name
@@ -101,7 +101,7 @@ class Vartotojas
     # object =
     sysprojlog = SystemProjectLogger.new([project_name, @user_id, file_name])
     sysprojlog.log_project_creation
-    Projektas.new(project_name: project_name, meta_filename: file_name)
+    Project.new(project_name: project_name, meta_filename: file_name)
     # return object
   end
 
@@ -117,7 +117,7 @@ class Vartotojas
   def create_work_group(work_group_name)
     sysgrlog = SystemGroupLogger.new([work_group_name, @user_id])
     sysgrlog.log_work_group_creation
-    DarboGrupe.new(work_group_name: work_group_name)
+    WorkGroup.new(work_group_name: work_group_name)
   end
 
   # def delete_work_group(group)

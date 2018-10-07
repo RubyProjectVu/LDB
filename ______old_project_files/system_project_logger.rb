@@ -20,8 +20,4 @@ class SystemProjectLogger
                "created by #{@latest_project_info[1]} at #{time_now}."
     end
   end
-
-  def latest_entry
-    File.readlines(@system_file).last
-  end
 end

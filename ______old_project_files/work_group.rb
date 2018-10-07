@@ -2,7 +2,7 @@ require 'date'
 require 'etc'
 
 # Documentation for darbo grupe
-class DarboGrupe
+class WorkGroup
   attr_reader :work_group_name
   attr_reader :work_group_manager
   attr_reader :work_group_deleted
@@ -44,7 +44,7 @@ class DarboGrupe
     true
   end
 
-  def set_deleted_status(user_id)
+  def deleted_status_setter(user_id)
     if @work_group_deleted == true
       # puts "Work_group is already deleted"
       false
