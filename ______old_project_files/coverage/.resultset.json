@@ -364,15 +364,15 @@
         1,
         null,
         1,
-        43,
-        43,
-        43,
-        43,
-        43,
-        43,
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
         null,
-        43,
-        43,
+        42,
+        42,
         null,
         null,
         1,
@@ -434,7 +434,7 @@
         null,
         null,
         1,
-        3,
+        2,
         null,
         0,
         0,
@@ -700,12 +700,6 @@
       "C:/Users/Tadas/Documents/GitHub/LDB/______old_project_files/tests/vartotojas_delete_project_spec.rb": [
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
         1,
         1,
         1,
@@ -1175,6 +1169,6 @@
         null
       ]
     },
-    "timestamp": 1538920978
+    "timestamp": 1538921572
   }
 }
