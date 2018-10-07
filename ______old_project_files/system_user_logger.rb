@@ -6,7 +6,7 @@ class SystemUserLogger
   # [0] - user name
   # [1] - user last name
   # [2] - user id
-  # [3] - email
+  # [3] - 0
   # [4] - certification
   attr_reader :latest_user_info
 
@@ -41,7 +41,7 @@ class SystemUserLogger
     time = Time.now.getutc
     File.open(@system_file, 'a') do |log|
       log.puts "Password request for user: #{latest_user_info[2]}" \
-               "to #{latest_user_info[3]} at #{time}"
+               "at #{time}"
     end
   end
 

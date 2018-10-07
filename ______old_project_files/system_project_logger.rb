@@ -21,6 +21,14 @@ class SystemProjectLogger
     end
   end
 
+  def log_project_delete
+    File.open(@system_file, 'a') do |log|
+      time_now = Time.now.getutc
+      log.puts "Project: #{@latest_project_info[0]} " \
+               "deleted by #{@latest_project_info[1]} at #{time_now}."
+    end
+  end
+
   def latest_entry
     File.readlines(@system_file).last
   end

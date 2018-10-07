@@ -5,41 +5,35 @@ require 'uri'
 
 # Documentation about class vartotojas
 class Vartotojas
-  attr_reader :name
-  attr_reader :last_name
-  attr_reader :email
-  attr_reader :gender
-  attr_reader :user_id
-  attr_reader :phone_number
+  attr_reader :user_info
   attr_reader :projects
 
   def initialize(name: '', last_name: '', email: '', phone_number: '')
-    @name = name
-    @last_name = last_name
-    @email = email
-    @phone_number = phone_number
+    @user_info = []
+    @user_info.push(name)
+    @user_info.push(last_name)
+    @user_info.push(email)
+    @user_info.push(phone_number)
+    @user_info.push(0) # user_id
+
     @projects = {}
     @qualification_certificates = [] # Array.new
-    @user_id = ''
   end
 
   def name_lastname_getter
-    [@name, @last_name]
+    [@user_info[0], @user_info[1]]
   end
 
   def unique_id_setter(id = SecureRandom.hex)
-    @user_id = id
+    @user_info[4] = id
   end
 
   def unique_id_getter
-    @user_id
+    @user_info[4]
   end
 
   def equals(other_user)
-    if @name == other_user.name &&
-       @last_name == other_user.last_name &&
-       @email == other_user.email &&
-       @user_id == other_user.user_id
+    if @user_info == other_user.user_info
       return true
     end
 
@@ -79,39 +73,31 @@ class Vartotojas
 
   def create_project(project_name, file_name)
     # object =
-    sysprojlog = SystemProjectLogger.new([project_name, @user_id, file_name])
+    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4], file_name])
     sysprojlog.log_project_creation
     Projektas.new(project_name: project_name, meta_filename: file_name)
     # return object
   end
 
   def delete_project(proj)
-    if proj.nil?
-      # puts 'Invalid object reference'
-      return false
-    end
-
+    sysprojlog = SystemProjectLogger.new([project_name, @user_info[4], file_name])
+    sysprojlog.log_project_delete
     proj.set_deleted_status
   end
 
   def create_work_group(work_group_name)
-    sysgrlog = SystemGroupLogger.new([work_group_name, @user_id])
+    sysgrlog = SystemGroupLogger.new([work_group_name, @user_info[4]])
     sysgrlog.log_work_group_creation
     DarboGrupe.new(work_group_name: work_group_name)
   end
 
   def delete_work_group(group)
-    if group.nil?
-      # puts 'Invalid object reference'
-      return false
-    end
-
-    group.set_deleted_status(@user_id)
+    group.set_deleted_status(@user_info[4])
   end
 
   def upload_certificate(file)
     regex = Regexp.new('([a-zA-Z0-9_.\-])+(.doc|.docx|.pdf)$')
-    sysusrlogger = SystemUserLogger.new([@name, @last_name, '', '', file])
+    sysusrlogger = SystemUserLogger.new([@user_info[0], @user_info[1], '', '', file])
     return sysusrlogger.log_certificate_upload if regex.match?(file)
 
     false
@@ -119,8 +105,8 @@ class Vartotojas
 
   def resend_password_link
     # should later work based on Rails gem 'EmailVeracity'
-    if @email =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
-      sysusrlog = SystemUserLogger.new([@name, @last_name, @user_id, @email])
+    if @user_info[2] =~ /\A[^@\s]{5,}+@([^@.\s]{4,}+\.)+[^@.\s]{2,}+\z/
+      sysusrlog = SystemUserLogger.new([@user_info[0], @user_info[1], @user_info[4], 0])
       sysusrlog.log_password_request
       true
     else
