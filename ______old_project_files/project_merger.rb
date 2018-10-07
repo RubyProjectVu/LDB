@@ -20,13 +20,7 @@ class ProjectMerger
   end
 
   def get_two_metas(file_one, file_two)
-    file_one = File.open(file_one, 'r')
-    strone = file_one.gets
-    file_one.close
-    file_two = File.open(file_two, 'r')
-    strtwo = file_two.gets
-    file_two.close
-    [strone, strtwo]
+    [File.readlines(file_one), File.readlines(file_two)]
   end
 
   def notify_managers(meta_one, meta_two)

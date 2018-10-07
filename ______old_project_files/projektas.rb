@@ -34,14 +34,6 @@ class Projektas
     end
   end
 
-  def modify_file(file_name, to_create_file)
-    if to_create_file
-      create_file(file_name)
-    else
-      delete_file(file_name)
-    end
-  end
-
   def create_file(file_name)
     File.new(file_name, 'w')
     true
@@ -127,18 +119,18 @@ class Projektas
 
   def add_member(vart)
     # return false if vart.nil? || @members.include?(vart.user_id)
-    return false if @members.include?(vart.user_info[4])
+    return false if @members.include?(id = vart.user_info[4])
 
     # return false if @members.include?(vart.user_id)
-    @members.push(vart.user_info[4])
+    @members.push(id)
     true
   end
 
   def remove_member(vart)
     # return false if vart.nil?
-    return false unless @members.include?(vart.user_info[4])
+    return false unless @members.include?(id = vart.user_info[4])
 
-    @members.delete(vart.user_info[4])
+    @members.delete(id)
     true
   end
 
