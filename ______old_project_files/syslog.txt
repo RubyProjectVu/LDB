@@ -148,6 +148,7 @@ User: ["tomas", "genut"]  logs in at 2018-10-07 20:25:58 UTC.
 User: ["tomas", "genut"]  logs out at 2018-10-07 20:25:58 UTC.
 User: ["tomas", "genut"]  logs out at 2018-10-07 20:25:58 UTC.
 Project: projname created by 1410154 at 2018-10-07 20:25:58 UTC.
+<<<<<<< HEAD
 Work group: Default_work_group_2018-10-07 deleted by someid at 2018-10-07 20:28:11 UTC.
 User: ["tomas", "genut"]  logs in at 2018-10-07 20:28:11 UTC.
 User: ["tomas", "genut"]  logs in at 2018-10-07 20:28:11 UTC.
@@ -198,3 +199,5 @@ User: ["tomas", "genut"]  logs in at 2018-10-07 20:29:05 UTC.
 User: ["tomas", "genut"]  logs out at 2018-10-07 20:29:05 UTC.
 User: ["tomas", "genut"]  logs out at 2018-10-07 20:29:05 UTC.
 Project: projname created by 1410154 at 2018-10-07 20:29:05 UTC.
+=======
+>>>>>>> paulius
