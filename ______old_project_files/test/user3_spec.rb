@@ -1,7 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
-require_relative '../User'
+require_relative '../user'
 require_relative '../system'
 require_relative '../system_user_logger'
 require_relative '../system_group_logger'

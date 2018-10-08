@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../project'
-require_relative '../User'
+require_relative '../user'
 
 describe Project do
   context 'when a new member is being added to the project' do

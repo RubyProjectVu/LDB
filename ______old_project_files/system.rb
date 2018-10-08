@@ -1,4 +1,4 @@
-require_relative 'User'
+require_relative 'user'
 require 'time'
 
 # this is System class description

@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../project'
-require_relative '../User'
+require_relative '../user'
 
 describe Project do
   context 'when project subscriber list manipulation' do

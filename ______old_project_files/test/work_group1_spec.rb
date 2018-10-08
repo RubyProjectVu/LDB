@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../work_group'
-require_relative '../User'
+require_relative '../user'
 require_relative '../system_project_logger'
 
 describe WorkGroup do

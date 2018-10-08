@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../project'
-require_relative '../User'
+require_relative '../user'
 
 describe Project do
   it 'do not set an undefined status' do
