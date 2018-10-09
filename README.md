@@ -7,10 +7,15 @@ Projektu dokumentų, brėžinių valdymas. Darbo grupių, laiko sekimo, rolių a
 Galimybė keistis tekstine, vaizdine informacija tarp vartotojų.
 
 Komanda: Diamond
+
 Elgė Klipčiūtė
+
 Tadas Glumbakas
+
 Paulius Staišiūnas
+
 Aivaras Atkočaitis
+
 Ernestas Kodis
 
 # Tests
@@ -32,8 +37,8 @@ Mutation coverage:
 98 - user; 
 69 - project; 
 98 - system; 
-97 - pdc; 
-98 - sgl; 
-98 - spl; 
-98 - sul; 
-97 - udc; 
+97 - pdc (project data checker); 
+98 - sgl (system group logger); 
+98 - spl (system project logger); 
+98 - sul (system user logger); 
+97 - udc (user data checker); 
