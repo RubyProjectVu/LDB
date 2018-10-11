@@ -26,19 +26,16 @@ rspec tests/rspec.rb
 ```
 
 Inside Old directory (through VM, using Old archive):
-rspec standalone/*spec.rb
+rspec spec/*spec.rb
 reek and rubocop is launched regularly inside Old directory.
 
-Mutant is executed through ./run1.sh. The *spec.rb files have to be uploaded to Old/spec file before running mutations.
+Mutant is executed through ./run1.sh.
 
 Mutation coverage:
-85 - project merger; 
-97 - work group; 
-98 - user; 
-69 - project; 
-98 - system; 
-97 - pdc (project data checker); 
-98 - sgl (system group logger); 
-98 - spl (system project logger); 
-98 - sul (system user logger); 
-97 - udc (user data checker); 
+100 - project merger; 
+100 - work group; 
+100 - user; 
+in progress - project; 
+100 - system; 
+in progress - pdc (project data checker); 
+in progress - udc (user data checker); 
