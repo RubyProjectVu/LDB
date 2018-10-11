@@ -26,10 +26,10 @@ rspec tests/rspec.rb
 ```
 
 Inside Old directory (through VM, using Old archive):
-rspec spec/*spec.rb
+```rspec spec/*spec.rb```
 reek and rubocop is launched regularly inside Old directory.
 
-Mutant is executed through ./run1.sh.
+Mutant is executed through ```./run1.sh```
 
 Mutation coverage:
 100 - project merger; 
