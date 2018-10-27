@@ -2,7 +2,7 @@ require_relative 'work_group_task'
 
 class WorkGroup
   def initialize(id, group_name, members, tasks)
-    @data = {id: id, name: group_name, members: members, tasks: tasks}
+    @data = {id: id, group_name: group_name, members: members, tasks: tasks}
   end
 
   def data_getter(key)
@@ -31,6 +31,12 @@ class WorkGroup
   end
 
   def remove_group_member(user)
+    @members = data_getter('members')
+    return false unless @members.include?(user.data_getter('id'))
+
+    @members.remove(user.data_getter('id'))
+    data_setter('members', @members)
+    true
   end
 
   def add_group_task(task)
