@@ -5,7 +5,7 @@ require 'uri'
 
 # Documentation about class User
 class User
-  def initialize(name: '', last_name: '', email: '', userID: '')
+  def initialize(name: '', last_name: '', email: '')
     @info = { name: name, lname: last_name, email: email,
               pass: '123' }
   end
@@ -13,11 +13,11 @@ class User
   def data_getter(key)
     @info.fetch(key.to_sym)
   end
-  
+
   def user_info
     @info
   end
-  
+
   def password_set(new)
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
     @info[:pass] = new
