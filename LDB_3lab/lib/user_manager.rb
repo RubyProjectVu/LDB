@@ -1,4 +1,3 @@
-require_relative 'system'
 require 'yaml'
 
 # class defining user management
