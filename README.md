@@ -20,10 +20,13 @@ Ernestas Kodis
 
 # Tests
 Inside LDB_2lab directory:
+
 Run tests with ```rspec spec/*spec.rb```
+
 Run mutations with ```./run.sh```
 
 LDB_2lab coverage: 100%
+
 LDB_3lab coverage: -/-
 
 # Ruby styling check
