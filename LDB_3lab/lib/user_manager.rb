@@ -5,6 +5,7 @@ require 'yaml'
 class UserManager
   def initialize
     @users = YAML.load_file('users.yml')
+    @current_user = Hash.new
   end
   
   def register(user)
@@ -13,7 +14,7 @@ class UserManager
     mailing = @current_user.fetch('email')
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
                           'lname' => @current_user.fetch('lname'.to_sym),
-                          'pwd' => @current_user.fetch('pass'.to_sym)
+                          'pwd' => @current_user.fetch('pass'.to_sym),
                           'userID' => @current_user.fetch('userID'.to_sym) } }
     return true if users_push(mailing, hash)
 
