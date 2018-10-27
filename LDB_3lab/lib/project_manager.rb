@@ -11,8 +11,8 @@ class ProjectManager
     @projects = YAML.load_file('projects.yml')
   end
 
-  def delete_project(id)
-    @projects.delete(id)
+  def delete_project(project)
+    @projects.delete(project.data_getter('id'))
     File.open('projects.yml', 'w') { |fl| fl.write @projects.to_yaml.sub('---', '') }
   end
 
