@@ -9,6 +9,10 @@ class WorkGroup
     @data.fetch(key.to_sym)
   end
 
+  def data_setter(key, val)
+    @data[key.to_sym] = val
+  end
+
   def add_group_member(user)
   end
 
