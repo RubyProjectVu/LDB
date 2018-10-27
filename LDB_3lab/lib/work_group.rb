@@ -2,7 +2,11 @@ require_relative 'work_group_task'
 
 class WorkGroup
   def initialize(group_name, members, tasks)
-    @data = [group_name, members, tasks]
+    @data = {name: group_name, members: members, tasks: tasks}
+  end
+
+  def data_getter(key)
+    @data.fetch(key.to_sym)
   end
 
   def add_group_member(user)
