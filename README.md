@@ -19,23 +19,12 @@ Aivaras Atkočaitis
 Ernestas Kodis
 
 # Tests
+Inside LDB_2lab directory:
+Run tests with ```rspec spec/*spec.rb```
+Run mutations with ```./run.sh```
 
-Run rspec from the root directory:
-```ruby
-rspec tests/rspec.rb
-```
+LDB_2lab coverage: 100%
+LDB_3lab coverage: -/-
 
-Inside Old directory (through VM, using Old archive):
-```rspec spec/*spec.rb```
-reek and rubocop is launched regularly inside Old directory.
-
-Mutant is executed through ```./run1.sh```
-
-Mutation coverage:
-100 - project merger; 
-100 - work group; 
-100 - user; 
-in progress - project; 
-100 - system; 
-in progress - pdc (project data checker); 
-in progress - udc (user data checker); 
+# Ruby styling check
+reek and rubocop is launched regularly inside directory.
