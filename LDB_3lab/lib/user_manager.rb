@@ -5,22 +5,21 @@ require 'yaml'
 class UserManager
   def initialize
     @users = YAML.load_file('users.yml')
-    @current_user = Hash.new
+    @current_user = {}
   end
-  
+
   def register(user)
     @current_user = user.user_info
-	
+
     mailing = @current_user.fetch('email')
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
                           'lname' => @current_user.fetch('lname'.to_sym),
-                          'pwd' => @current_user.fetch('pass'.to_sym),
-                          'userID' => @current_user.fetch('userID'.to_sym) } }
+                          'pwd' => @current_user.fetch('pass'.to_sym) } }
     return true if users_push(mailing, hash)
 
     false
   end
-  
+
   def login(user_to_login)
     return true unless [nil].include?(@users[user_to_login])
 
@@ -36,7 +35,7 @@ class UserManager
 
     false
   end
-  
+
   def users_push(email, hash)
     return false if @users.key?(email)
 
