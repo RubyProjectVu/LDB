@@ -7,13 +7,15 @@ require_relative 'lib/user_manager'
 
 #works on LINUX best
 class UI
+  attr_accessor :currentuser
+
   def mainloop
     while true do
       case handle_initial_screen
       when false
         return
       when 'scflogin'
-        # logged in here - take to userpage
+        handle_user_screen
         return
       end
     end
@@ -53,9 +55,34 @@ class UI
     pass = prompt.mask('Password:')
     usr = User.new(email: email)
     usr.password_set(pass)
+    @currentuser = email
     return 'scflogin' if UserManager.new.login(usr.data_getter('email'))
     # needs password fetching as well
     false
+  end
+
+  def handle_user_screen
+    cursor = TTY::Cursor
+    prompt = TTY::Prompt.new
+    puts cursor.clear_screen
+
+    puts cursor.move_to(0,0)
+    puts Rainbow("LDB ").bright + Rainbow("--[#{@currentuser}]--\t").cyan + Rainbow('[' + Date.today.to_s + ']').green
+
+    #list notes?
+    #list projects
+    #list chat?
+    choice = prompt.select("Modules:", %w(Notes))
+    case choice
+    when 'Notes'
+      subchoice = prompt.select("Note actions:", %w(Add\ note))
+      case subchoice
+      when 'Add note'
+        puts cursor.clear_lines(2, :up)
+        prompt.multiline("Edit:")
+      end
+    end
+    return
   end
 end
 
