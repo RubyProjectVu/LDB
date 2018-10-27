@@ -7,10 +7,7 @@ require 'uri'
 class User
   def initialize(name: '', last_name: '', email: '', userID: '')
     @info = { name: name, lname: last_name, email: email,
-              pass: '123', userID: userID}
-    if userID == ''
-      @info[:userID] = SecureRandom.hex
-    end
+              pass: '123' }
   end
 
   def data_getter(key)
