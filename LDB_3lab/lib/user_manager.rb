@@ -1,4 +1,4 @@
-require_relative 'project_manager'
+require_relative 'system'
 require 'yaml'
 
 # class defining user management
@@ -8,6 +8,9 @@ class UserManager
     @current_user = {}
   end
 
+  def current_user
+    @current_user
+  end
   def register(user)
     @current_user = user.user_info
 
