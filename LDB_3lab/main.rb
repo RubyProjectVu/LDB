@@ -6,44 +6,56 @@ require 'tty/prompt'
 require 'time'
 require_relative 'lib/user'
 require_relative 'lib/user_manager'
-
-#works on LINUX best
+# works on LINUX best
 
 cursor = TTY::Cursor
 prompt = TTY::Prompt.new
 currentuser = nil
+@usr_module = %w(Notes User\ management
+                 Project\ management
+                 Work\ group\ management Quit)
+
 
 def notes_submenu
-  subchoice = prompt.select("Note actions:", %w(Add\ note Back))
+  subchoice = TTY::Prompt.new.select("Note actions:", %w(Add\ note Back))
   case subchoice
   when 'Add note'
-    puts cursor.clear_lines(2, :up)
-    prompt.multiline("Edit:")
-    prompt.yes?('Save this note?')
+    puts TTY::Cursor.clear_lines(2, :up)
+    TTY::Prompt.new.multiline("Edit:")
+    TTY::Prompt.new.yes?('Save this note?')
 
   when 'Back'
     return
   end
 end
 
-def choose
-  choice = prompt.select("Modules:", %w(Notes User\ management Project\ management Work\ group\ management Quit))
-  case choice
-  when 'Notes'
-    notes_submenu
-    return
-  when 'User management'
-  when 'Quit'
-    return false
-  end
+def userm_submenu
+  
 end
 
-def user_menu
+@usr_hash = { 'Notes' => method(:notes_submenu),
+              'User management' => method(:userm_submenu) }
+
+# Calls method on choice
+def user_choose
+  prompt = TTY::Prompt.new
+  choice = prompt.select("Modules:", @usr_module)
+  return false if choice.eql?('Quit')
+  @usr_hash[choice].call
+end
+
+# Handles user module menu loop
+def user_menu(currentuser)
+  cursor = TTY::Cursor
+  prompt = TTY::Prompt.new
   while true do
-    
+    puts cursor.clear_screen + cursor.move_to(0, 0)
+    prompt.ok("LDB --[#{currentuser}]--\t [ #{Date.today} ]")
+    break if user_choose == false
   end
 end
 
+# Main flow
 while true do
   puts cursor.clear_screen
   puts cursor.move_to(0,0)
@@ -73,9 +85,6 @@ while true do
   end
 
   if outcome.chomp.eql?('scflogin')
-    puts cursor.clear_screen
-    puts cursor.move_to(0, 0)
-    puts Rainbow("LDB ").bright + Rainbow("--[#{currentuser}]--\t").cyan + Rainbow('[' + Date.today.to_s + ']').green
-    break if choose == false
+    user_menu(currentuser)
   end
 end
