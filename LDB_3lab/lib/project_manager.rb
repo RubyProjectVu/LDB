@@ -1,34 +1,51 @@
-# frozen_string_literal: true
-
-require 'date'
-require 'etc'
-require_relative 'project'
+require_relative 'system'
 require 'yaml'
 
-# rubocop comment?
-class ProjectManager
+# class defining user management
+class UserManager
   def initialize
-    @projects = YAML.load_file('projects.yml')
+    @users = YAML.load_file('users.yml')
+    @current_user = Hash.new
+  end
+  
+  def register(user)
+    @current_user = user.user_info
+	
+    mailing = @current_user.fetch('email')
+    hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
+                          'lname' => @current_user.fetch('lname'.to_sym),
+                          'pwd' => @current_user.fetch('pass'.to_sym) } }
+    return true if users_push(mailing, hash)
+
+    false
+  end
+  
+  def login(user_to_login)
+    return true unless [nil].include?(@users[user_to_login])
+
+    false
   end
 
-  def delete_project(project)
-    @projects.delete(project.data_getter('id'))
-    File.open('projects.yml', 'w') { |fl| fl.write @projects.to_yaml.sub('---', '') }
+  def delete_user(user)
+    users_pop(user.data_getter('email'))
   end
 
-  def create_project(project)
-    return false if @projects.key?(project.parm_id)
+  def prepare_deletion
+    return true unless ProjectManager.active_projects_present?
 
-    hash = project.to_hash
-    File.open('projects.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    false
+  end
+  
+  def users_push(email, hash)
+    return false if @users.key?(email)
+
+    File.open('users.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    true
   end
 
-  def load_project(id)
-    return false unless @projects.key?(id)
-    proj = @projects.fetch(id)
-    obj = Project.new(project_name: proj.fetch('name'), manager: proj.fetch('manager'), num: id, members: proj.fetch('members'))
-    obj.parm_project_status(proj.fetch('status'))
-    
-    return obj
+  def users_pop(email)
+    @users.delete(email)
+    File.open('users.yml', 'w') { |fl| fl.write @users.to_yaml.sub('---', '') }
+    true
   end
 end
