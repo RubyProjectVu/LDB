@@ -5,6 +5,15 @@ require 'time'
 
 #works on LINUX best
 class UI
+  def mainloop
+    while true do
+      case handle_login
+      when false
+        return
+      end
+    end
+  end
+
   def handle_login
     cursor = TTY::Cursor
     prompt = TTY::Prompt.new
@@ -22,17 +31,16 @@ class UI
       prompt.ask('Email:')
       prompt.mask('Password:')
       prompt.mask('Repeat password:')
-      puts 'Signing up here'
+      #return sing_up
     when 'Login'
-      puts 'Logging in here'
+      #return login
     else
-      # ...
+      puts cursor.clear_screen
+      return false
+    end
     end
 end
 
-UI.new.handle_login
-
-puts cursor.clear_screen
-#email = gets.chomp
-#pwd = gets.chomp
+ui = UI.new
+ui.mainloop
 
