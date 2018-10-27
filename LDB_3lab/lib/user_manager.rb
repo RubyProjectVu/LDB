@@ -10,7 +10,7 @@ class UserManager
   def register(user)
     @current_user = user.user_info
 	
-    mailing = data_getter('email')
+    mailing = @current_user.data_getter('email')
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
                           'lname' => @current_user.fetch('lname'.to_sym),
                           'pwd' => @current_user.fetch('pass'.to_sym)
