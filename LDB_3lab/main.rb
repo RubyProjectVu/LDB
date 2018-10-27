@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rainbow'
 require 'tty/cursor'
 require 'tty/prompt'
@@ -5,95 +7,75 @@ require 'time'
 require_relative 'lib/user'
 require_relative 'lib/user_manager'
 
-class UIInitial
-  attr_reader :currentuser
+#works on LINUX best
 
-  def mainloop
-    while true do
-      puts cursor.clear_screen
-      case handle_initial_screen
-      when false
-        return
-      when 'scflogin'
-        # puts cursor.clear_screen
-        handle_user_screen
-      end
-    end
-  end
+cursor = TTY::Cursor
+prompt = TTY::Prompt.new
+currentuser = nil
 
-  def handle_initial_screen
-    cursor = TTY::Cursor
-    prompt = TTY::Prompt.new
-    # puts cursor.clear_screen
-
-    puts cursor.move_to(0,0)
-    puts Rainbow("LDB\t").bright + Rainbow('[' + Date.today.to_s + ']').green
-
-    choice = prompt.select("", %w(Sign\ up Login Exit))
+def notes_submenu
+  subchoice = prompt.select("Note actions:", %w(Add\ note Back))
+  case subchoice
+  when 'Add note'
     puts cursor.clear_lines(2, :up)
-    puts cursor.clear_screen
-    case choice
-    when 'Sign up'
-      
-      prompt.ask('Email:')
-      prompt.mask('Password:')
-      prompt.mask('Repeat password:')
-      handle_sign_up
-    when 'Login'
-      return handle_login
-    else
-      # puts cursor.clear_screen
-      return false
-    end
-  end
+    prompt.multiline("Edit:")
+    prompt.yes?('Save this note?')
 
-  def handle_login
-    cursor = TTY::Cursor
-    prompt = TTY::Prompt.new
-    puts cursor.clear_screen
-    # email = prompt.ask('Email:')
-    # pass = prompt.mask('Password:')
-    usr = User.new(email: @currentuser = prompt.ask('Email:'))
-    usr.password_set(prompt.mask('Password:'))
-    # @currentuser = email
-    return 'scflogin' if UserManager.new.login(usr.data_getter('email'))
-    # needs password fetching as well
-    false
-  end
-
-  def handle_user_screen
-    cursor = TTY::Cursor
-    prompt = TTY::Prompt.new
-
-    while true do
-      # puts cursor.clear_screen
-      puts cursor.move_to(0,0)
-      puts Rainbow("LDB ").bright + Rainbow("--[#{@currentuser}]--\t").cyan + Rainbow('[' + Date.today.to_s + ']').green
-
-      #list notes?
-      #list projects
-      #list chat?
-      choice = prompt.select("Modules:", %w(Notes User\ management Project\ management Work\ group\ management Quit))
-      case choice
-      when 'Notes'
-        subchoice = prompt.select("Note actions:", %w(Add\ note Back))
-        case subchoice
-        when 'Add note'
-          puts cursor.clear_lines(2, :up)
-          prompt.multiline("Edit:")
-          prompt.yes?('Save this note?')
-
-        when 'Back'
-          next
-        end
-
-      when 'User management'
-      when 'Quit'
-        return
-      end
-    end
+  when 'Back'
+    return
   end
 end
 
-ui = UIInitial.new
-ui.mainloop
+def choose
+  choice = prompt.select("Modules:", %w(Notes User\ management Project\ management Work\ group\ management Quit))
+  case choice
+  when 'Notes'
+    notes_submenu
+    return
+  when 'User management'
+  when 'Quit'
+    return false
+  end
+end
+
+def user_menu
+  while true do
+    
+  end
+end
+
+while true do
+  puts cursor.clear_screen
+  puts cursor.move_to(0,0)
+  puts Rainbow("LDB\t").bright + Rainbow('[' + Date.today.to_s + ']').green
+
+  choice = prompt.select('', %w(Sign\ up Login Exit))
+  puts cursor.clear_lines(2, :up)
+  outcome = nil
+
+  case choice
+  when 'Sign up'
+    puts cursor.clear_screen
+    prompt.ask('Email:')
+    prompt.mask('Password:')
+    prompt.mask('Repeat password:')
+    # handle_sign_up
+  when 'Login'
+    puts cursor.clear_screen
+    usr = User.new(email: currentuser = prompt.ask('Email:'))
+    usr.password_set(prompt.mask('Password:'))
+    outcome = false
+    outcome = 'scflogin' if UserManager.new.login(usr.data_getter('email'))
+    # needs password fetching as well
+  when 'Exit'
+    puts cursor.clear_screen
+    break
+  end
+
+  if outcome.chomp.eql?('scflogin')
+    puts cursor.clear_screen
+    puts cursor.move_to(0, 0)
+    puts Rainbow("LDB ").bright + Rainbow("--[#{currentuser}]--\t").cyan + Rainbow('[' + Date.today.to_s + ']').green
+    break if choose == false
+  end
+end
