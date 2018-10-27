@@ -4,6 +4,9 @@ class WorkGroupManager
   def initialize
   end
 
+  def get_user_groups(user)
+  end
+
   def create_group(name)
   end
 
