@@ -1,7 +1,9 @@
 class WorkGroupTask
-  attr_accessor :text
-
   def initialize(text)
-    @text = text
+    @data = {text: text}
+  end
+
+  def data_getter(key)
+    @data.fetch(key.to_sym)
   end
 end
