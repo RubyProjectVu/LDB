@@ -1,6 +1,6 @@
 class WorkGroupTask
-  def initialize(text)
-    @data = {text: text}
+  def initialize(id, text)
+    @data = {id: id, text: text}
   end
 
   def data_getter(key)
