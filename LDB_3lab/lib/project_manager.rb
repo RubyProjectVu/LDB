@@ -17,7 +17,7 @@ class ProjectManager
   end
 
   def save_project(project)
-    return false if @projects.key?(project.parm_id)
+    return false if @projects.key?(project.data_getter('id'))
 
     hash = project.to_hash
     File.open('projects.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
