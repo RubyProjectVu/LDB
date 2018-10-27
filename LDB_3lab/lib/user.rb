@@ -5,10 +5,12 @@ require 'uri'
 
 # Documentation about class User
 class User
-  def initialize(name: '', last_name: '', email: '')
+  def initialize(name: '', last_name: '', email: '', userID: '')
     @info = { name: name, lname: last_name, email: email,
-              pass: '123', lobject: '' }
-    @projects = {}
+              pass: '123', userID: userID}
+	if userID == ''
+		@info[:userID] = SecureRandom.hex
+	end
   end
 
   def data_getter(key)
