@@ -1,22 +1,19 @@
+require_relative 'work_group_task'
 
 class WorkGroup
-  def initialize(id, group_name, members, tasks)
-    @data = [id, group_name, members, tasks]
+  def initialize(group_name, members, tasks)
+    @data = [group_name, members, tasks]
   end
 
-  def id
-    @data[0]
+  def add_group_member(user)
   end
 
-  def name
-    @data[1]
+  def remove_group_member(user)
   end
 
-  def members
-    @data[2]
+  def add_group_task(task)
   end
 
-  def tasks
-    @data[3]
+  def delete_group_task(task)
   end
 end
