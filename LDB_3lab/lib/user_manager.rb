@@ -8,7 +8,7 @@ class UserManager
   end
   
   def register(user)
-	@current_user = user.user_info
+    @current_user = user.user_info
 	
     mailing = data_getter('email')
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
