@@ -1,10 +1,9 @@
 
-'4654':
-  group_name: TestGroup
-  members: 
-  tasks: 
-
-'657355':
-  group_name: TestGroup2
-  members: 
-  tasks: 
+553:
+  project_id: 3324
+  group_name: Test
+  members:
+  - jhon@gmail.com
+  tasks:
+  - fix that
+  - and that

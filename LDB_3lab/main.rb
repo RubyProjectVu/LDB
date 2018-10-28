@@ -70,7 +70,7 @@ while true do
     puts cursor.clear_screen
     prompt.ask('Email:')
     prompt.mask('Password:')
-    prompt.mask('Repeat password:')
+    prompt.mask('Repeat password:') 
     # handle_sign_up
   when 'Login'
     puts cursor.clear_screen

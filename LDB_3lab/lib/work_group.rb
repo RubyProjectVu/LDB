@@ -1,8 +1,7 @@
-require_relative 'work_group_task'
 
 class WorkGroup
-  def initialize(id, group_name, members, tasks)
-    @data = {id: id, group_name: group_name, members: members, tasks: tasks}
+  def initialize(id, project_id, group_name, members, tasks)
+    @data = {id: id, project_id: project_id, group_name: group_name, members: members, tasks: tasks}
   end
 
   def data_getter(key)
@@ -16,6 +15,7 @@ class WorkGroup
   def to_hash
     hash = {
       data_getter('id') => {
+        'project_id' => data_getter('project_id'),
         'group_name' => data_getter('group_name'),
         'members' => data_getter('members'),
         'tasks' => data_getter('tasks')
