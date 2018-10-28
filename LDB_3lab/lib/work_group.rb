@@ -26,7 +26,9 @@ class WorkGroup
 
   def add_group_member(user)
     adress = user.data_getter('email');
-    data_setter('members', data_getter('members').push(adress));
+    members = data_getter('members')
+    members.push(adress)
+    data_setter('members', members);
     true
   end
 
@@ -35,12 +37,15 @@ class WorkGroup
     members = data_getter('members')
     return false unless members.include?(adress)
 
-    data_setter('members', members.remove(adress))
+    members.remove(adress)
+    data_setter('members', members)
     true
   end
 
   def add_group_task(text)
-    data_setter('tasks', data_getter('tasks').push(text.to_s));
+    tasks = data_getter('tasks')
+    tasks.push(text.to_s)
+    data_setter('tasks', tasks);
     true
   end
 
@@ -48,7 +53,8 @@ class WorkGroup
     tasks = data_getter('tasks')
     return false if (index < 0 || index >= tasks.length)
 
-    data_setter('tasks', tasks.delete_at(index))
+    tasks.delete_at(index)
+    data_setter('tasks', tasks)
     true
   end
 end

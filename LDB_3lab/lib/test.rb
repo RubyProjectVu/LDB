@@ -5,6 +5,9 @@ wg = WorkGroup.new(453, 3324, 'Test', ['jhon@gmail.com'], [])
 wg2 = WorkGroup.new(453, 531354, 'Test', ['jhon@gmail.com', 'blablabla'], [])
 wgm = WorkGroupManager.new
 
+wg.add_group_task('eat')
+wg.add_group_task('sleep')
+wg.add_group_task('repeat')
+wg.delete_group_task(1)
+
 wgm.save_group(wg)
-wgm.save_group(wg2)
-wgm.delete_group(wg2)
