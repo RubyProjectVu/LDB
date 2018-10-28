@@ -23,10 +23,10 @@ def notes_submenu
     puts TTY::Cursor.clear_lines(2, :up)
     TTY::Prompt.new.multiline("Edit:")
     TTY::Prompt.new.yes?('Save this note?')
-
   when 'Back'
-    return
+
   end
+  return
 end
 
 def userm_submenu
