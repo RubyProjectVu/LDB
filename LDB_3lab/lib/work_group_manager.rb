@@ -13,7 +13,9 @@ class WorkGroupManager
   def save_group(group)
     delete_group(group)
     hash = group.to_hash
-    File.open('workgroups.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    File.open('workgroups.yml', 'a') {
+      |fl| fl.write hash.to_yaml.sub('---', '')
+    }
     load_yaml
     true
   end
