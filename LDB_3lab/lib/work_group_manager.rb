@@ -10,8 +10,9 @@ class WorkGroupManager
   end
 
   def save_group(group)
-    hash = group.to_hash
-    File.open('workgroups.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    @groups.delete(group.data_getter('id'))
+    # ADD TO @groups hash = group.to_hash
+    File.open('workgroups.yml', 'w') { |fl| fl.write @groups.to_yaml.sub('---', '') }
     true
   end
 

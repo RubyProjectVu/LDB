@@ -25,23 +25,30 @@ class WorkGroup
   end
 
   def add_group_member(user)
-    @members = data_getter('members')
-    @members.push(user)
-    data_setter('members', @members);
-  end
-
-  def remove_group_member(user)
-    @members = data_getter('members')
-    return false unless @members.include?(user.data_getter('id'))
-
-    @members.remove(user.data_getter('id'))
-    data_setter('members', @members)
+    adress = user.data_getter('email');
+    data_setter('members', data_getter('members').push(adress));
     true
   end
 
-  def add_group_task(task)
+  def remove_group_member(user)
+    adress = user.data_getter('email');
+    members = data_getter('members')
+    return false unless members.include?(adress)
+
+    data_setter('members', members.remove(adress))
+    true
   end
 
-  def delete_group_task(task)
+  def add_group_task(text)
+    data_setter('tasks', data_getter('tasks').push(text.to_s));
+    true
+  end
+
+  def delete_group_task(index)
+    tasks = data_getter('tasks')
+    return false if (index < 0 || index >= tasks.length)
+
+    data_setter('tasks', tasks.delete_at(index))
+    true
   end
 end
