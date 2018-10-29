@@ -13,10 +13,10 @@ class UserManager
   def register(user)
     @current_user = user.user_info
 
-    mailing = @current_user.fetch('email')
+    mailing = @current_user.fetch('email'.to_sym)
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
                           'lname' => @current_user.fetch('lname'.to_sym),
-                          'pwd' => @current_user.fetch('pass'.to_sym) } }
+                          'pwd' => @current_user.fetch('pass'.to_sym),} }
     return true if users_push(mailing, hash)
 
     false
