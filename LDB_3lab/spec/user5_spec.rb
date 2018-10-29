@@ -18,14 +18,14 @@ describe User do
     expect(usr.data_getter('pass')).to eq 'password'
   end
 
-  it 'project status is set correctly' do
-    expect(usr.add_project('name', 'In progress')).to eq 'In progress'
-  end
+  # it 'project status is set correctly' do
+  #  expect(usr.add_project('name', 'In progress')).to eq 'In progress'
+  # end
 
-  it '' do
-    usr.add_project('name', 'In progress')
-    expect(usr.active_projects_present?).to be true
-  end
+  # it '' do
+  #   usr.add_project('name', 'In progress')
+  #   expect(usr.active_projects_present?).to be true
+  # end
 
   it do
     expect(usr2.data_getter('email')).to eq ''

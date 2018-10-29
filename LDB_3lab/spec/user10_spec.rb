@@ -22,10 +22,6 @@ describe User do
     expect(usr.active_projects_present?).to be false
   end
 
-  it 'last used object is empty' do
-    expect(usr.data_getter('lobject')).to eq ''
-  end
-
   it 'no active projects actually there' do
     proj = Project.new
     proj.parm_project_status('Cancelled')
