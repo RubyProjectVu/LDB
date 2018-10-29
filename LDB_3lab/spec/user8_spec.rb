@@ -4,8 +4,9 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../lib/user'
+require_relative '../lib/user_manager'
 
-describe User do
+describe UserManager do
   after do
     # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
     hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
@@ -15,13 +16,14 @@ describe User do
 
   it do
     e = 'ee@a.com'
-    described_class.new(name: 'tomas', last_name: 'genut', email: e).register
+	user = User.new(name: 'tomas', last_name: 'genut', email: e)
+    described_class.new.register(user)
     expect(File.read('users.yml').match?(/---/)).to be false
   end
 
   it do
-    described_class.new(name: 'tomas', last_name: 'genut',
-                        email: 't@a.com').delete_user
+    user = User.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
+    described_class.new.delete_user(user)
     expect(File.read('users.yml').match?(/---/)).to be false
   end
 
