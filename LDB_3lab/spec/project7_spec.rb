@@ -31,9 +31,9 @@ describe Project do
 
   it do
     usr2 = User.new(email: 'othermail')
-    pr.add_member(usr2)
-    pr.add_member(User.new(email: 'somemail'))
-    pr.remove_member(usr2)
+    pr.add_member('othermail')
+    pr.add_member('somemail')
+    pr.remove_member('othermail')
     expect(pr.members_getter).to eq ['somemail']
   end
 end

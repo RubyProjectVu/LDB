@@ -4,30 +4,27 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../lib/user'
+require_relative '../lib/user_manager'
 
-describe User do
-  context 'when a user uploads qualification certificates' do
-    it 'returns true if file is accepted' do
-      v1 = described_class.new(name: 'tomas', last_name: 'genut',
-                               email: 't@a.com')
-      expect(v1.upload_certificate('file.docx') &&
-             v1.upload_certificate('file.doc') &&
-             v1.upload_certificate('file.pdf')).to be true
-    end
+describe UserManager do
+  after do
+    # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
+    hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
+                            'pwd' => '123' } }
+    File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+  end
 
-    it 'returns false if file is of wrong format' do
-      v1 = described_class.new(name: 'tomas', last_name: 'genut',
-                               email: 't@a.com')
-      expect(v1.upload_certificate('file.ff') ||
-             v1.upload_certificate('file.exe') ||
-             v1.upload_certificate('file.png')).to be false
-    end
+  it 'unregistered user should not be able to login' do
+    e = 't@t.com'
+    expect(described_class.new.login(e)).to be false
+  end
 
-    it 'returns false if file is of without formatting' do
-      v1 = described_class.new(name: 'tomas', last_name: 'genut',
-                               email: 't@a.com')
-      expect(v1.upload_certificate('.doc') ||
-             v1.upload_certificate('.pdf')).to be false
-    end
+  it do
+    expect(described_class.new.current_user).to eq Hash.new
+  end
+
+  it do
+    # TODO active project checking will be implemented later
+    expect(described_class.new.prepare_deletion).to be true
   end
 end

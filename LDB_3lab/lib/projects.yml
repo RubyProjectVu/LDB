@@ -1,7 +1,7 @@
 someid:
  name: projektas
  manager: john
- members: 
+ members:
   - john
   - steve
   - harry

@@ -14,6 +14,7 @@ class ProjectManager
   def delete_project(project)
     @projects.delete(project.data_getter('id'))
     File.open('projects.yml', 'w') { |fl| fl.write @projects.to_yaml.sub('---', '') }
+    true
   end
 
   def save_project(project)
@@ -21,6 +22,7 @@ class ProjectManager
 
     hash = project.to_hash
     File.open('projects.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    true
   end
 
   def load_project(id)
@@ -30,5 +32,10 @@ class ProjectManager
     obj.parm_project_status(proj.fetch('status'))
     
     return obj
+  end
+
+  # TODO placeholder - will be implemented later
+  def active_projects_present?
+    false
   end
 end

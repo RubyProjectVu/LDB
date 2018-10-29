@@ -19,7 +19,7 @@ describe Project do
   end
 
   it do
-    expect(pr.add_member(usr)).to be true
+    expect(pr.add_member('somemail')).to be true
   end
 
   #it do
@@ -33,7 +33,7 @@ describe Project do
 
   it do
     usr = User.new(email: 'somemail')
-    pr.add_member(usr)
-    expect(pr.remove_member(usr)).to be true
+    pr.add_member('somemail')
+    expect(pr.remove_member('somemail')).to be true
   end
 end

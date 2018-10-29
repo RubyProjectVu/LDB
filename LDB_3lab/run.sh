@@ -9,7 +9,7 @@ bundle install
 # bundle exec mutant --include project --use rspec Project*
 # bundle exec mutant --include project_data_checker --use rspec ProjectDataChecker*
 
-bundle exec mutant --include lib --use rspec User UserManager WorkGroup WorkGroupManager Project ProjectManager WorkGroupTask
+bundle exec mutant --include lib --use rspec Project ProjectManager
 # bundle exec rspec
 # bundle exec rubocop
 # bundle exec reek

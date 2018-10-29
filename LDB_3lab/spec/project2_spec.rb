@@ -15,15 +15,15 @@ describe Project do
       proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      proj.add_member(vart)
-      expect(proj.remove_member(vart)).to be true
+      proj.add_member(e)
+      expect(proj.remove_member(e)).to be true
     end
 
     it 'returns false when nonmember is being removed from the project' do
       proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(proj.remove_member(vart)).to be false
+      expect(proj.remove_member(e)).to be false
     end
   end
 

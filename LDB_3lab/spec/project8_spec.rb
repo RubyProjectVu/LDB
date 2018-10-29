@@ -11,8 +11,8 @@ describe Project do
   let(:usr) { User.new }
 
   it do
-    usr = User.new(email: 'somemail')
-    expect(pr.remove_member(usr)).to be false
+    # usr = User.new(email: 'somemail')
+    expect(pr.remove_member('somemail')).to be false
   end
 
   it do

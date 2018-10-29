@@ -15,15 +15,15 @@ describe Project do
       proj = described_class.new
       e = 'jhonpeterson@mail.com'
       usr = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(proj.add_member(usr)).to be true
+      expect(proj.add_member(e)).to be true
     end
 
     it 'Return false when existing member is being added to the project' do
       proj = described_class.new
       e = 'jhonpeterson@mail.com'
       vart = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      proj.add_member(vart)
-      expect(proj.add_member(vart)).to be false
+      proj.add_member(e)
+      expect(proj.add_member(e)).to be false
     end
   end
 

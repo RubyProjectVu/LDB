@@ -27,11 +27,8 @@ describe UserManager do
     expect(File.read('users.yml').match?(/---/)).to be false
   end
 
-  #it 'registered user should be able to login' do
-   # sys = System.new
-    #e = 't@a.com'
-    # existing user
-    #described_class.new(name: 'tomas', last_name: 'genut', email: e)
-    #expect(sys.login(e)).to be true
-  #end
+  it 'registered user should be able to login' do
+    e = 't@a.com'
+    expect(described_class.new.login(e)).to be true
+  end
 end

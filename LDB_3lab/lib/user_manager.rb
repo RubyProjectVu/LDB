@@ -1,4 +1,5 @@
 require 'yaml'
+require_relative 'project_manager'
 
 # class defining user management
 class UserManager
@@ -33,9 +34,8 @@ class UserManager
   end
 
   def prepare_deletion
-    return true unless ProjectManager.active_projects_present?
-
-    false
+    # TODO active project checking will be implemented later
+    return true unless ProjectManager.new.active_projects_present?
   end
 
   def users_push(email, hash)
