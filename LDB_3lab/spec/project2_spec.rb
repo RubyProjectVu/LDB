@@ -27,11 +27,11 @@ describe Project do
     end
   end
 
-  it 'is be able to remove itself if there are no active projects' do
-    proj = described_class.new(project_name: 'Name')
-    proj.parm_project_status('Postponed')
-    usr = User.new
-    usr.add_project(proj.parm_project_name, proj.parm_project_status)
-    expect(usr.prepare_deletion).to be true
-  end
+  #it 'is be able to remove itself if there are no active projects' do
+   # proj = described_class.new(project_name: 'Name')
+    #proj.parm_project_status('Postponed')
+    #usr = User.new
+    #usr.add_project(proj.parm_project_name, proj.parm_project_status)
+    #expect(usr.prepare_deletion).to be true
+  #end
 end

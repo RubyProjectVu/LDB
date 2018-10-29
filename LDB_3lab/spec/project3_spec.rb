@@ -27,9 +27,9 @@ describe Project do
     end
   end
 
-  it do
-    pr1 = described_class.new(meta_filename: 'this.txt')
-    expect(pr1.meta_getter).to eq 'this.txt'
-    File.delete('this.txt') # test purposes
-  end
+  #it do
+   # pr1 = described_class.new(meta_filename: 'this.txt')
+    #expect(pr1.meta_getter).to eq 'this.txt'
+    #File.delete('this.txt') # test purposes
+  #end
 end
