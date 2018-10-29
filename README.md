@@ -35,7 +35,11 @@ LDB_2lab reek errors: 0. rubocop errors: 0
 
 LDB_3lab coverage: -/-
 
-LDB_3lab reek errors: -/-. rubocop errors: -/-
+20 F /85 ex.
+
+2 custom matchers
+
+LDB_3lab reek errors: 11. rubocop errors: 196
 
 # Ruby styling check
 reek and rubocop is launched regularly inside directory.
