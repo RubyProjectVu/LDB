@@ -8,35 +8,18 @@ require_relative '../lib/user'
 require 'date'
 
 describe WorkGroup do
-  let(:group) { described_class.new }
-
   it 'removing non-member is not allowed' do
-    usr = User.new
-    group.add_member(usr)
-    group.remove_member(usr)
-    expect(group.remove_member(usr)).to be false
-  end
-
-  it 'function always returns non-nil' do
-    expect(group.deleted_status_setter).not_to be nil
-  end
-
-  it 'is enough to mark once as deleted' do
-    group.deleted_status_setter
-    expect(group.deleted_status_setter).to be false
-  end
-
-  it 'successfully marks as deleted' do
-    expect(group.deleted_status_setter).to be true
+    group = described_class.new('453', '3324', 'Test', 'sleep')
+    e = 'jhonpeterson@mail.com'
+    usr = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
+    # group.add_group_member(usr)
+    group.remove_group_member(usr)
+    expect(group.remove_group_member(usr)).to be false
   end
 
   it 'correctly gets the name' do
-    group1 = described_class.new(work_group_name: 'name')
-    expect(group1.parm_work_group_name).to eq 'name'
-  end
-
-  it 'correctly gets the manager' do
-    group.parm_manager('newname')
-    expect(group.parm_manager).to eq 'newname'
+    group = described_class.new('453', '3324', 'Test', 'sleep')
+    group.data_setter('group_name', 'name')
+    expect(group.data_getter('group_name')).to eq 'name'
   end
 end
