@@ -20,10 +20,13 @@ describe User do
 
   it do
     usr = described_class.new(name: 'n', last_name: 'l', email: 'mail')
-    expect(usr.to_hash).to eq 'mail' => {'name' => 'n', 'lname' => 'l', 'pwd' => '123'}
+    expect(usr.to_hash).to eq 'mail' => { 'name' => 'n', 'lname' => 'l',
+                                          'pwd' => '123' }
   end
 
   it do
-    expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123' }
+    expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => {
+      'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123'
+    }
   end
 end

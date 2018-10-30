@@ -7,7 +7,7 @@ require_relative '../lib/work_group'
 require_relative '../lib/user'
 
 describe WorkGroup do
-  let (:wg) do 
+  let :wg do
     described_class.new('453', '3324', 'Test', ['tst'])
   end
 
@@ -17,7 +17,7 @@ describe WorkGroup do
 
   it do
     wg.add_group_task('mytask')
-    expect(wg.data_getter('tasks')).to eq ['tst', 'mytask']
+    expect(wg.data_getter('tasks')).to eq %w[tst mytask]
   end
 
   it do

@@ -11,7 +11,7 @@ class Project
     manager: Etc.getlogin, num: SecureRandom.hex, members: []
   )
     @name_man_id = { name: project_name,
-                       manager: manager, id: num }
+                     manager: manager, id: num }
     @members = members
     @project_status = 'Proposed'
   end
@@ -26,10 +26,10 @@ class Project
 
   def to_hash
     hash = { data_getter('id') => { 'name' => data_getter('name'),
-                          'manager' => data_getter('manager'),
-                          'members' => members_getter,
-                          'status' => parm_project_status} }
-    return hash
+                                    'manager' => data_getter('manager'),
+                                    'members' => members_getter,
+                                    'status' => parm_project_status } }
+    hash
   end
 
   def parm_project_status(status = '')

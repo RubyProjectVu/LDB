@@ -14,7 +14,7 @@ describe UserManager do
     File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
   end
 
-  it 'user1 should be equal to user1' do
+  it 'user1 should be equal to user' do
     e = 't@a.com'
     v1 = described_class.new
     expect(v1.register(User.new(email: e))).to be false
@@ -22,7 +22,7 @@ describe UserManager do
 
   it 'user1 should be equal to user1' do
     e = 'ee@a.com'
-	user = User.new(name: 'tomas', last_name: 'genut', email: e)
+    user = User.new(name: 'tomas', last_name: 'genut', email: e)
     v1 = described_class.new
     expect(v1.register(user)).to be true
   end

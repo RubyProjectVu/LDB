@@ -14,22 +14,22 @@ class WorkGroupManager
   def save_group(group)
     delete_group(group)
     hash = group.to_hash
-    File.open('workgroups.yml', 'a') {
-      |fl| fl.write hash.to_yaml.sub('---', '')
-    }
+    File.open('workgroups.yml', 'a') do |fl|
+      fl.write hash.to_yaml.sub('---', '')
+    end
     load_yaml
     true
   end
 
   def delete_group(group)
     id = group.data_getter('id')
-    return false unless (@groups != false &&
-                         @groups.key?(id))
+    return false unless @groups != false &&
+                        @groups.key?(id)
 
     @groups.delete(id)
-    File.open('workgroups.yml', 'w') {
-      |fl| fl.write @groups.to_yaml.sub('---', '').sub('{}', '')
-    }
+    File.open('workgroups.yml', 'w') do |fl|
+      fl.write @groups.to_yaml.sub('---', '').sub('{}', '')
+    end
     true
   end
 end

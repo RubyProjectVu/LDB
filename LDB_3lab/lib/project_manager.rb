@@ -13,7 +13,9 @@ class ProjectManager
 
   def delete_project(project)
     @projects.delete(project.data_getter('id'))
-    File.open('projects.yml', 'w') { |fl| fl.write @projects.to_yaml.sub('---', '') }
+    File.open('projects.yml', 'w') do |fl|
+      fl.write @projects.to_yaml.sub('---', '')
+    end
     true
   end
 
@@ -28,13 +30,15 @@ class ProjectManager
   def load_project(id)
     return false unless @projects.key?(id)
     proj = @projects.fetch(id)
-    obj = Project.new(project_name: proj.fetch('name'), manager: proj.fetch('manager'), num: id, members: proj.fetch('members'))
+    obj = Project.new(project_name: proj.fetch('name'),
+                      manager: proj.fetch('manager'), num: id,
+                      members: proj.fetch('members'))
     obj.parm_project_status(proj.fetch('status'))
-    
-    return obj
+
+    obj
   end
 
-  # TODO placeholder - will be implemented later
+  # TODO: placeholder - will be implemented later
   def active_projects_present?
     false
   end

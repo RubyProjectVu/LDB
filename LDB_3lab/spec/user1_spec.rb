@@ -21,10 +21,11 @@ describe UserManager do
 
   it do
     expect(described_class.new.current_user).to eq Hash.new
+    # rubocop supposes to switch to {} - which fails
   end
 
   it do
-    # TODO active project checking will be implemented later
+    # TODO: active project checking will be implemented later
     expect(described_class.new.prepare_deletion).to be true
   end
 end

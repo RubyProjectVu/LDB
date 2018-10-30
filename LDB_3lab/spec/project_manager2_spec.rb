@@ -12,13 +12,15 @@ describe ProjectManager do
   after do
     # Butina - kitaip mutant sumauna projects.yml faila ir klasiu kintamuosius.
     hash = { 'someid' => { 'name' => 'projektas', 'manager' => 'john',
-                           'members' => ['john', 'steve', 'harry'],
+                           'members' => %w[johh steve harry],
                            'status' => 'Proposed' } }
-    File.open('projects.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+    File.open('projects.yml', 'w') do |fl|
+      fl.write hash.to_yaml.gsub('---', '')
+    end
   end
 
   it do
-    # TODO active project checking will be implemented later
+    # TODO: active project checking will be implemented later
     expect(pm.active_projects_present?).to be false
   end
 

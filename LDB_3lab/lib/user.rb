@@ -19,8 +19,9 @@ class User
   end
 
   def to_hash
-    {data_getter('email') => {'name' => data_getter('name'),
-                'lname' => data_getter('lname'), 'pwd' => data_getter('pass')}}
+    { data_getter('email') => { 'name' => data_getter('name'),
+                                'lname' => data_getter('lname'),
+                                'pwd' => data_getter('pass') } }
   end
 
   def password_set(new)

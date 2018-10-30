@@ -14,12 +14,6 @@ describe Project do
     expect(pr.parm_project_status).to be_truthy
   end
 
-  #it do
-   # pr.add_subscriber('name', 'mail')
-    #pr.remove_subscriber('name')
-    #expect(pr.remove_subscriber('name')).to be false
-  #end
-
   it do
     expect(pr.parm_project_status('n')).to be false
   end

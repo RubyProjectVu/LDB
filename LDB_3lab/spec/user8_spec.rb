@@ -16,7 +16,7 @@ describe UserManager do
 
   it do
     e = 'ee@a.com'
-	user = User.new(name: 'tomas', last_name: 'genut', email: e)
+    user = User.new(name: 'tomas', last_name: 'genut', email: e)
     described_class.new.register(user)
     expect(File.read('users.yml').match?(/---/)).to be false
   end

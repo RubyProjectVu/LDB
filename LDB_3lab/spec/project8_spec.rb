@@ -11,7 +11,6 @@ describe Project do
   let(:usr) { User.new }
 
   it do
-    # usr = User.new(email: 'somemail')
     expect(pr.remove_member('somemail')).to be false
   end
 
@@ -27,9 +26,4 @@ describe Project do
     pr.data_setter('name', 'newname')
     expect(pr.data_getter('name')).to eq 'newname'
   end
-
-  #it do
-   # pr.add_subscriber('name', 'email')
-    #expect(pr.notify_subscribers).to eq ['name']
-  #end
 end

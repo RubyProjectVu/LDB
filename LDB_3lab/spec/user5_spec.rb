@@ -18,11 +18,6 @@ describe User do
     expect(usr.data_getter('pass')).to eq 'password'
   end
 
-  # it '' do
-  #   usr.add_project('name', 'In progress')
-  #   expect(usr.active_projects_present?).to be true
-  # end
-
   it do
     expect(usr2.data_getter('email')).to eq ''
   end

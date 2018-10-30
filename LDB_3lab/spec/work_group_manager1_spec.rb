@@ -8,7 +8,7 @@ require_relative '../lib/work_group'
 require 'date'
 
 describe WorkGroupManager do
-  let(:wgm) do 
+  let(:wgm) do
     described_class.new
   end
 
@@ -16,7 +16,9 @@ describe WorkGroupManager do
     # Butina - kitaip mutant sumauna workgroups.yml faila
     hash = { '453' => { 'project_id' => '3324', 'group_name' => 'Test',
                         'members' => ['jhon@gmail.com'], 'tasks' => 'sleep' } }
-    File.open('workgroups.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+    File.open('workgroups.yml', 'w') do |fl|
+      fl.write hash.to_yaml.gsub('---', '')
+    end
   end
 
   it do
@@ -25,7 +27,8 @@ describe WorkGroupManager do
   end
 
   it do
-    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name', 'terminate'))).to be true
+    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name',
+                                        'terminate'))).to be true
   end
 
   it do
@@ -35,7 +38,8 @@ describe WorkGroupManager do
   end
 
   it do
-    expect(wgm.delete_group(WorkGroup.new('453', 'someid', 'name', 'terminate'))).to be true
+    expect(wgm.delete_group(WorkGroup.new('453', 'someid', 'name',
+                                          'terminate'))).to be true
   end
 
   it do
@@ -45,6 +49,7 @@ describe WorkGroupManager do
   end
 
   it do
-    expect(wgm.delete_group(WorkGroup.new('100', 'someid', 'name', 'terminate'))).to be false
+    expect(wgm.delete_group(WorkGroup.new('100', 'someid', 'name',
+                                          'terminate'))).to be false
   end
 end

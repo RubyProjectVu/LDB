@@ -10,12 +10,6 @@ describe Project do
   let(:pr) { described_class.new }
   let(:usr) { User.new }
 
-  #it do
-   # pr1 = described_class.new(meta_filename: 'temp.txt')
-    #File.delete('temp.txt')
-    #expect(pr1.check_metadata).to be false
-  #end
-
   it do
     pr.set_deleted_status
     expect(pr.set_deleted_status).to be false
@@ -25,12 +19,8 @@ describe Project do
     expect(pr.data_getter('manager')).to be_truthy
   end
 
-  #it do
-   # expect(pr.remove_subscriber('name')).to be false
-  #end
-
   it do
-    usr2 = User.new(email: 'othermail')
+    User.new(email: 'othermail')
     pr.add_member('othermail')
     pr.add_member('somemail')
     pr.remove_member('othermail')

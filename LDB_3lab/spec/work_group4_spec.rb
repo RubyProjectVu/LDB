@@ -12,7 +12,6 @@ describe WorkGroup do
     group = described_class.new('453', '3324', 'Test', 'sleep')
     e = 'jhonpeterson@mail.com'
     usr = User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-    # group.add_group_member(usr)
     group.remove_group_member(usr)
     expect(group.remove_group_member(usr)).to be false
   end
