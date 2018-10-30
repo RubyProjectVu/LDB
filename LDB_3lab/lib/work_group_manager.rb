@@ -1,6 +1,7 @@
 require_relative 'work_group'
 require 'yaml'
 
+# Saves and writes work group related data
 class WorkGroupManager
   def initialize
     load_yaml
@@ -21,10 +22,11 @@ class WorkGroupManager
   end
 
   def delete_group(group)
+    id = group.data_getter('id')
     return false unless (@groups != false &&
-                         @groups.key?(group.data_getter('id')))
+                         @groups.key?(id))
 
-    @groups.delete(group.data_getter('id'))
+    @groups.delete(id)
     File.open('workgroups.yml', 'w') {
       |fl| fl.write @groups.to_yaml.sub('---', '').sub('{}', '')
     }

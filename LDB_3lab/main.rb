@@ -10,7 +10,7 @@ require_relative 'lib/user_manager'
 
 cursor = TTY::Cursor
 prompt = TTY::Prompt.new
-currentuser = nil
+@currentuser = nil
 @usr_module = %w[Notes User\ management
                  Project\ management
                  Work\ group\ management Quit]
@@ -26,7 +26,16 @@ def notes_submenu
 end
 
 def userm_submenu
-  puts ''
+  subchoice = TTY::Prompt.new.select('User actions:', %w[Change\ password Back])
+  case subchoice
+  when 'Change password'
+    puts TTY::Cursor.clear_lines(2, :up)
+    hash = UserManager.new.to_hash(@currentuser)
+    usr = User.new(name: hash[@currentuser].fetch('name'), last_name: hash[@currentuser].fetch('lname'), email: @currentuser)
+    usr.password_set(TTY::Prompt.new.mask("New password:"))
+    UserManager.new.users_pop(@currentuser)
+    UserManager.new.users_push(usr, usr.to_hash)
+  end
 end
 
 def list_projects
@@ -72,6 +81,12 @@ def user_menu(currentuser)
   end
 end
 
+def user_setup(mail, pass)
+  usr = User.new(name: '', last_name: '', email: mail)
+  usr.password_set(pass)
+  return UserManager.new.register(usr)
+end
+
 # Main flow
 loop do
   puts cursor.clear_screen
@@ -85,13 +100,11 @@ loop do
   case choice
   when 'Sign up'
     puts cursor.clear_screen
-    prompt.ask('Email:')
-    prompt.mask('Password:')
-    prompt.mask('Repeat password:')
-    # handle_sign_up
+    # needs password repeat matching
+    prompt.ask(Rainbow('Confirm').green, default: '[Enter]') if user_setup(prompt.ask('Email:'), prompt.mask('Password:'))
   when 'Login'
     puts cursor.clear_screen
-    usr = User.new(email: currentuser = prompt.ask('Email:'))
+    usr = User.new(email: @currentuser = prompt.ask('Email:'))
     usr.password_set(prompt.mask('Password:'))
     outcome = false
     outcome = 'scflogin' if UserManager.new.login(usr.data_getter('email'))
@@ -101,5 +114,5 @@ loop do
     break
   end
 
-  user_menu(currentuser) if outcome.chomp.eql?('scflogin')
+  user_menu(@currentuser) if outcome != false && choice.eql?('Login')
 end

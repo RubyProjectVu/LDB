@@ -17,7 +17,7 @@ describe UserManager do
   it 'user is actually deleted in file' do
     described_class.new.delete_user(User.new(email: 't@a.com'))
     hash = YAML.load_file('users.yml')
-    expect(hash.key?('t@a.com')).to be false
+    expect(hash).to be false # empty file
   end
 
   it 'pass is actually written when registering' do

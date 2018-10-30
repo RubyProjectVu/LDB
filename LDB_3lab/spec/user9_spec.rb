@@ -4,7 +4,7 @@ require 'simplecov'
 SimpleCov.start
 
 require_relative '../lib/user'
-require_relative '../lib/project'
+require_relative '../lib/user_manager'
 require_relative '../lib/work_group'
 
 describe User do
@@ -18,28 +18,12 @@ describe User do
     expect(usr.data_getter('email')).not_to be nil
   end
 
-  # TODO
-  # it do
-  #   expect(usr.prepare_deletion).to be true
-  # end
+  it do
+    usr = described_class.new(name: 'n', last_name: 'l', email: 'mail')
+    expect(usr.to_hash).to eq 'mail' => {'name' => 'n', 'lname' => 'l', 'pwd' => '123'}
+  end
 
-  # TODO
-  # it do
-  #   usr.add_project('name', 'In progress')
-  #   expect(usr.prepare_deletion).to be false
-  # end
-
-  # TODO
-  # it do
-  #   proj = usr.create_project('name', 'specific.txt')
-  #   expect(proj.meta_getter).to eq 'specific.txt'
-  # end
-
-  # TODO
-  # it do
-  #   proj = usr.create_project('name', 'metadata.txt')
-  #   usr.add_project(proj.parm_project_name, proj.parm_project_status)
-  #   hash = usr.projects_getter
-  #   expect(hash['name']).to eq 'Proposed'
-  # end
+  it do
+    expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123' }
+  end
 end

@@ -11,13 +11,18 @@ class UserManager
   def current_user
     @current_user
   end
+
+  def to_hash(email)
+    {email => @users.fetch(email)}
+  end
+
   def register(user)
     @current_user = user.user_info
 
     mailing = @current_user.fetch('email'.to_sym)
     hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
                           'lname' => @current_user.fetch('lname'.to_sym),
-                          'pwd' => @current_user.fetch('pass'.to_sym),} }
+                          'pwd' => @current_user.fetch('pass'.to_sym)} }
     return true if users_push(mailing, hash)
 
     false
@@ -39,15 +44,15 @@ class UserManager
   end
 
   def users_push(email, hash)
-    return false if @users.key?(email)
+    return false if @users != false && @users.key?(email)
 
-    File.open('users.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    File.open('users.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '').sub('{}', '') }
     true
   end
 
   def users_pop(email)
     @users.delete(email)
-    File.open('users.yml', 'w') { |fl| fl.write @users.to_yaml.sub('---', '') }
+    File.open('users.yml', 'w') { |fl| fl.write @users.to_yaml.sub('---', '').sub('{}', '') }
     true
   end
 end
