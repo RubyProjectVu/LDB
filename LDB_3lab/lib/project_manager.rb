@@ -42,4 +42,14 @@ class ProjectManager
   def active_projects_present?
     false
   end
+
+  def list_projects
+    arr = []
+    IO.foreach('projects.yml') do |line|
+      if line.start_with?('  name:')
+        arr.push(line[8..-1])
+      end
+    end
+  arr
+  end
 end

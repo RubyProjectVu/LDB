@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require_relative '../lib/project'
 SimpleCov.start
 
 require 'yaml'
 
-describe do
+describe Project do
   RSpec::Matchers.define :no_yml_nils do ||
     match do |actual|
       File.open actual do |file|

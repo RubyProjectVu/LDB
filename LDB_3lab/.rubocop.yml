@@ -1,1 +1,8 @@
 require: 'rubocop-rspec'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+AllCops:
+  Exclude:
+    - 'main/main.rb'

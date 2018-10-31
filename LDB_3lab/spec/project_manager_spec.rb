@@ -63,4 +63,21 @@ describe ProjectManager do
   it do
     expect(pm.save_project(Project.new(num: 'prid'))).to be true
   end
+
+  it do
+    # TODO: active project checking will be implemented later
+    expect(pm.active_projects_present?).to be false
+  end
+
+  it do
+    pm.save_project(Project.new(project_name: 'name', num: 'id'))
+    hash = YAML.load_file('projects.yml')
+    expect(hash['id']['name']).to eq 'name'
+  end
+
+  it do
+    pm.delete_project(Project.new(num: 'someid'))
+    hash = YAML.load_file('projects.yml')
+    expect(hash['someid']).to be nil
+  end
 end

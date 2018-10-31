@@ -2,13 +2,13 @@
 
 require 'date'
 require 'etc'
-require 'securerandom'
+srand 0
 
 # rubocop comment?
 class Project
   def initialize(
     project_name: 'Default_project_' + Date.today.to_s,
-    manager: Etc.getlogin, num: SecureRandom.hex, members: []
+    manager: Etc.getlogin, num: Random.rand, members: []
   )
     @name_man_id = { name: project_name,
                      manager: manager, id: num }
@@ -25,11 +25,10 @@ class Project
   end
 
   def to_hash
-    hash = { data_getter('id') => { 'name' => data_getter('name'),
-                                    'manager' => data_getter('manager'),
-                                    'members' => members_getter,
-                                    'status' => parm_project_status } }
-    hash
+    { data_getter('id') => { 'name' => data_getter('name'),
+                             'manager' => data_getter('manager'),
+                             'members' => members_getter,
+                             'status' => parm_project_status } }
   end
 
   def parm_project_status(status = '')

@@ -19,27 +19,16 @@ Aivaras Atkočaitis
 Ernestas Kodis
 
 # Tests
-Inside LDB_2lab directory:
 
-Run tests with ```rspec spec/*spec.rb```
+LDB_3lab coverage: 84.53%
 
-Run mutations with ```./run.sh```
-
---
-
-LDB_2lab coverage: 100%
-
-LDB_2lab reek errors: 0. rubocop errors: 0
-
---
-
-LDB_3lab coverage: -/-
-
-89 ex.
+92 ex.
 
 2 custom matchers
 
-LDB_3lab reek errors: 12. rubocop errors: 27
+LDB_3lab reek errors: 8. rubocop errors: 23
 
 # Ruby styling check
+Run reek as root user with ```sudo reek```. Otherwise the UI file does not get excluded as per
+reek.yml configuration.
 reek and rubocop is launched regularly inside directory.

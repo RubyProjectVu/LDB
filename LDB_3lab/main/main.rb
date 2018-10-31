@@ -4,9 +4,8 @@ require 'rainbow'
 require 'tty/cursor'
 require 'tty/prompt'
 require 'time'
-require_relative 'lib/user'
-require_relative 'lib/user_manager'
-# works on LINUX best
+require_relative '../lib/user'
+require_relative '../lib/user_manager'
 
 cursor = TTY::Cursor
 prompt = TTY::Prompt.new
@@ -39,13 +38,7 @@ def userm_submenu
 end
 
 def list_projects
-  arr = []
-  IO.foreach('projects.yml') do |line|
-    if line.start_with?('  name:')
-      arr.push(line[8..-1])
-    end
-  end
-  arr
+  puts ProjectManager.new.list_projects
 end
 
 def projm_submenu
@@ -81,13 +74,14 @@ def user_menu(currentuser)
   end
 end
 
+# New user creation
 def user_setup(mail, pass)
   usr = User.new(name: '', last_name: '', email: mail)
   usr.password_set(pass)
   return UserManager.new.register(usr)
 end
 
-# Main flow
+# Initial screen
 loop do
   puts cursor.clear_screen
   puts cursor.move_to(0, 0)
@@ -95,24 +89,29 @@ loop do
 
   choice = prompt.select('', %w[Sign\ up Login Exit])
   puts cursor.clear_lines(2, :up)
-  outcome = nil
 
   case choice
   when 'Sign up'
     puts cursor.clear_screen
-    # needs password repeat matching
-    prompt.ask(Rainbow('Confirm').green, default: '[Enter]') if user_setup(prompt.ask('Email:'), prompt.mask('Password:'))
+    if user_setup(prompt.ask('Email:'), prompt.mask('Password:'))
+      prompt.ask(Rainbow('User created successfully. You may now login').green, default: '[Enter]') 
+    else
+      prompt.warn('Could not create a new account')
+      prompt.ask('', default: 'Return to previous menu')
+    end
+
   when 'Login'
     puts cursor.clear_screen
     usr = User.new(email: @currentuser = prompt.ask('Email:'))
     usr.password_set(prompt.mask('Password:'))
-    outcome = false
-    outcome = 'scflogin' if UserManager.new.login(usr.data_getter('email'))
-    # needs password fetching as well
+    if UserManager.new.login(usr.data_getter('email'))
+      user_menu
+    else
+      prompt.warn('Could not login with specified credentials')
+      prompt.ask('', default: 'Return to previous menu')
+    end
   when 'Exit'
     puts cursor.clear_screen
     break
   end
-
-  user_menu(@currentuser) if outcome != false && choice.eql?('Login')
 end
