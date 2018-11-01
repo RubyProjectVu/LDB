@@ -22,11 +22,27 @@ Ernestas Kodis
 
 LDB_3lab padengimas: 84.53% (pridėjus BudgetManager ir NotesManager bus mažiau, jie išvis nedengti)
 
+project: 100
+
+projectmanager: 68.79
+
+user: 96.15
+
+usermanager: 89
+
+workgroup: 75.65
+
+workgroupmanager: 88.32
+
+budgetmanager: -/-
+
+notesmanager: -/-
+
 92 ex.
 
 2 custom matchers
 
-LDB_3lab reek klaidos: 8. rubocop klaidos: 23
+LDB_3lab reek klaidos: 13. rubocop klaidos: 21
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
