@@ -20,7 +20,7 @@ Ernestas Kodis
 
 # Testai
 
-LDB_3lab padengimas: 84.53%
+LDB_3lab padengimas: 84.53% (pridėjus BudgetManager ir NotesManager bus mažiau, jie išvis nedengti)
 
 92 ex.
 
