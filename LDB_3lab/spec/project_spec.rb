@@ -63,61 +63,61 @@ describe Project do
     expect(proj.data_getter('manager')).to eq Etc.getlogin
   end
 
-  it do
+  it 'deleted status change' do
     pr.set_deleted_status
     expect(pr.parm_project_status).to eq 'Deleted'
   end
 
-  it do
+  it 'setting for deletion works' do
     expect(pr.set_deleted_status).to be true
   end
 
-  it do
+  it 'can add a new member' do
     expect(pr.add_member('somemail')).to be true
   end
 
-  it do
+  it 'non-existing member removal' do
     # id is blank
     expect(pr.remove_member(usr)).to be false
   end
 
-  it do
+  it 'can remove a member' do
     User.new(email: 'somemail')
     pr.add_member('somemail')
     expect(pr.remove_member('somemail')).to be true
   end
 
-  it do
+  it 'always return truthy status' do
     expect(pr.parm_project_status).to be_truthy
   end
 
-  it do
+  it 'cannot change to nondeterministic status' do
     expect(pr.parm_project_status('n')).to be false
   end
 
-  it do
+  it 'cancelled status is set correctly' do
     pr.parm_project_status('Cancelled')
     expect(pr.parm_project_status).to eq 'Cancelled'
   end
 
-  it do
+  it 'status is return in addition to being set' do
     expect(pr.parm_project_status('Cancelled')).to eq 'Cancelled'
   end
 
-  it do
+  it 'in progress is set correctly' do
     expect(pr.parm_project_status('In progress')).to eq 'In progress'
   end
 
-  it do
+  it 'cannot set deleted twice' do
     pr.set_deleted_status
     expect(pr.set_deleted_status).to be false
   end
 
-  it do
+  it 'manager is always a truthy object' do
     expect(pr.data_getter('manager')).to be_truthy
   end
 
-  it do
+  it 'member lists are not mixed up' do
     User.new(email: 'othermail')
     pr.add_member('othermail')
     pr.add_member('somemail')
@@ -125,36 +125,36 @@ describe Project do
     expect(pr.members_getter).to eq ['somemail']
   end
 
-  it do
+  it 'cannot remove non-existing member' do
     expect(pr.remove_member('somemail')).to be false
   end
 
-  it do
+  it 'initial status is proposed' do
     expect(pr.parm_project_status).to eq 'Proposed'
   end
 
-  it do
+  it 'default name is .. well, default project' do
     expect(pr.data_getter('name')).to eq 'Default_project_' + Date.today.to_s
   end
 
-  it do
+  it 'name is set correctly' do
     pr.data_setter('name', 'newname')
     expect(pr.data_getter('name')).to eq 'newname'
   end
 
-  it do
+  it 'postponed is set correctly' do
     expect(pr.parm_project_status('Postponed')).to eq 'Postponed'
   end
 
-  it do
+  it 'suspended is set correctly' do
     expect(pr.parm_project_status('Suspended')).to eq 'Suspended'
   end
 
-  it do
+  it 'proposed is set correctly' do
     expect(pr.parm_project_status('Proposed')).to eq 'Proposed'
   end
 
-  it do
+  it 'project is converted to hash correctly' do
     pr = described_class.new(project_name: '1', manager: '2', num: '3',
                              members: '4')
     pr.parm_project_status('Cancelled')
@@ -163,11 +163,11 @@ describe Project do
                                       'status' => 'Cancelled' }
   end
 
-  it do
+  it 'id is never nil' do
     expect(described_class.new.data_getter('id')).not_to be nil
   end
 
-  it do
+  it 'id is always a number' do
     id = described_class.new.data_getter('id')
     expect(id).to be_kind_of(Numeric)
   end

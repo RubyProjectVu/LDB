@@ -27,11 +27,11 @@ describe User do
     expect(usr.data_getter('pass')).to eq 'password'
   end
 
-  it do
+  it 'unset email is empty' do
     expect(usr2.data_getter('email')).to eq ''
   end
 
-  it do
+  it 'default pass is very secure' do
     expect(usr2.data_getter('pass')).to eq '123'
   end
 
@@ -71,21 +71,21 @@ describe User do
     expect(usr2.data_getter('lname')).to eq ''
   end
 
-  it do
+  it 'name is never nil' do
     expect(usr.data_getter('name')).not_to be nil
   end
 
-  it do
+  it 'email is never nil' do
     expect(usr.data_getter('email')).not_to be nil
   end
 
-  it do
+  it 'user gets converted to hash correctly' do
     usr = described_class.new(name: 'n', last_name: 'l', email: 'mail')
     expect(usr.to_hash).to eq 'mail' => { 'name' => 'n', 'lname' => 'l',
                                           'pwd' => '123' }
   end
 
-  it do
+  it 'conversion by id/email is correct' do
     expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => {
       'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123'
     }

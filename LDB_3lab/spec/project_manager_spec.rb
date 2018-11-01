@@ -45,37 +45,37 @@ describe ProjectManager do
   # expect(proj).to project_object_returned(proj)
   # end
 
-  it do
+  it '' do
     proj = Project.new(project_name: 'projektas', manager: 'john',
                        num: 'someid', members: [])
     proj.parm_project_status('Proposed')
     expect(proj).not_to project_object_returned(proj)
   end
 
-  it do
+  it 'deleting an existing project' do
     expect(pm.delete_project(Project.new(num: 'someid'))).to be true
   end
 
-  it do
+  it 'creating an existing project id is a fail' do
     expect(pm.save_project(Project.new(num: 'someid'))).to be false
   end
 
-  it do
+  it 'can save new project' do
     expect(pm.save_project(Project.new(num: 'prid'))).to be true
   end
 
-  it do
+  it 'currently - no active projects' do
     # TODO: active project checking will be implemented later
     expect(pm.active_projects_present?).to be false
   end
 
-  it do
+  it 'project is actually written' do
     pm.save_project(Project.new(project_name: 'name', num: 'id'))
     hash = YAML.load_file('projects.yml')
     expect(hash['id']['name']).to eq 'name'
   end
 
-  it do
+  it 'project is actually removed' do
     pm.delete_project(Project.new(num: 'someid'))
     hash = YAML.load_file('projects.yml')
     expect(hash['someid']).to be nil

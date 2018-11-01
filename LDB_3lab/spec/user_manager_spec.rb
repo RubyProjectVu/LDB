@@ -51,7 +51,7 @@ describe UserManager do
     expect(hash['de@mo.com']['lname']).to eq 'lastname'
   end
 
-  it do
+  it 'file is cleared of three dashes' do
     user = User.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
     described_class.new.delete_user(user)
     expect(File.read('users.yml').match?(/---/)).to be false
@@ -62,7 +62,7 @@ describe UserManager do
     expect(described_class.new.login(e)).to be true
   end
 
-  it do
+  it 'initial current user is a nil hash' do
     expect(described_class.new.current_user).to eq Hash.new
     # rubocop supposes to switch to {} - which fails
   end
@@ -80,18 +80,18 @@ describe UserManager do
     expect(v1.register(user)).to be true
   end
 
-  it do
+  it 'deleting existing user' do
     e = 't@a.com'
     v1 = described_class.new
     expect(v1.delete_user(User.new(email: e))).to be true
   end
 
-  it do
+  it 'preparing for deletion is a go - always' do
     # TODO: active project checking will be implemented later
     expect(described_class.new.prepare_deletion).to be true
   end
 
-  it do
+  it 'three dashes are cleared' do
     e = 'ee@a.com'
     user = User.new(name: 'tomas', last_name: 'genut', email: e)
     described_class.new.register(user)

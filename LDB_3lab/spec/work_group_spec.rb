@@ -34,29 +34,29 @@ describe WorkGroup do
     expect(group.data_getter('group_name')).to eq 'newname'
   end
 
-  it do
+  it 'is possible to add a new task' do
     expect(wg.add_group_task('mytask')).to be true
   end
 
-  it do
+  it 'the task is retrieved' do
     wg.add_group_task('mytask')
     expect(wg.data_getter('tasks')).to eq %w[tst mytask]
   end
 
-  it do
+  it 'deleting existing index works' do
     expect(wg.delete_group_task(0)).to be true
   end
 
-  it do
+  it 'deleted tasks are actually removed' do
     wg.delete_group_task(0)
     expect(wg.data_getter('tasks')).to eq []
   end
 
-  it do
+  it 'does not work with negative indexes' do
     expect(wg.delete_group_task(-1)).to be false
   end
 
-  it do
+  it 'does not work with indexes that are too large' do
     expect(wg.delete_group_task(999)).to be false
   end
 
