@@ -30,4 +30,5 @@ LDB_3lab reek errors: 8. rubocop errors: 23
 
 # Ruby styling check
 Run reek as root user with ```sudo reek```. Otherwise the UI file does not get excluded as per
-reek.yml configuration. rubocop is launched regularly inside directory.
+reek.yml configuration.
+reek and rubocop is launched regularly inside directory.

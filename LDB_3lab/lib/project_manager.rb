@@ -50,6 +50,6 @@ class ProjectManager
         arr.push(line[8..-1])
       end
     end
-  arr
+    arr
   end
 end
