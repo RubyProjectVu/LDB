@@ -18,17 +18,16 @@ Aivaras Atkočaitis
 
 Ernestas Kodis
 
-# Tests
+# Testai
 
-LDB_3lab coverage: 84.53%
+LDB_3lab padengimas: 84.53%
 
 92 ex.
 
 2 custom matchers
 
-LDB_3lab reek errors: 8. rubocop errors: 23
+LDB_3lab reek klaidos: 8. rubocop klaidos: 23
 
-# Ruby styling check
-Run reek as root user with ```sudo reek```. Otherwise the UI file does not get excluded as per
-reek.yml configuration.
-reek and rubocop is launched regularly inside directory.
+# Ruby stilius
+Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
+rubocop leidžiamas įprastai.
