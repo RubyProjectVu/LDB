@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'work_group'
 require_relative 'work_group_manager'
 

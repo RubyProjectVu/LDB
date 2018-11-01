@@ -38,14 +38,14 @@ describe UserManager do
   end
 
   it 'name is actually written when registering' do
-    UserManager.new.register(User.new(name: 'neim',
+    described_class.new.register(User.new(name: 'neim',
                                                  email: 'de@mo.com'))
     hash = YAML.load_file('users.yml')
     expect(hash['de@mo.com']['name']).to eq 'neim'
   end
 
   it 'l name is actually written when registering' do
-    UserManager.new.register(User.new(last_name: 'lastname',
+    described_class.new.register(User.new(last_name: 'lastname',
                                                  email: 'de@mo.com'))
     hash = YAML.load_file('users.yml')
     expect(hash['de@mo.com']['lname']).to eq 'lastname'
@@ -63,7 +63,8 @@ describe UserManager do
   end
 
   it 'initial current user is a nil hash' do
-    expect(described_class.new.current_user).to eq Hash.new
+    hsh = {}
+    expect(described_class.new.current_user_getter).to eq hsh
     # rubocop supposes to switch to {} - which fails
   end
 

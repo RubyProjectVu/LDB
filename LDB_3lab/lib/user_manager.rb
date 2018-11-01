@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'yaml'
 require_relative 'project_manager'
 
@@ -8,7 +9,7 @@ class UserManager
     @current_user = {}
   end
 
-  def current_user
+  def current_user_getter
     @current_user
   end
 

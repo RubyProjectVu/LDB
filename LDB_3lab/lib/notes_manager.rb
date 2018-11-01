@@ -12,8 +12,8 @@ class NotesManager
   end
 
   def save_note(author, name, text)
-    return false if name.eql?('Back')
-    return false if @notes && @notes.key?(name)
+    return false if name.eql?('Back') || @notes == false
+    return false if @notes.key?(name)
 
     hash = { name => { 'author' => author, 'text' => text } }
     File.open('notes.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
