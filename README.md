@@ -38,7 +38,7 @@ budgetmanager: -/-
 
 notesmanager: -/-
 
-92 ex.
+89 ex.
 
 2 custom matchers
 
