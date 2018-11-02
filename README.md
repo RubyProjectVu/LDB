@@ -24,21 +24,21 @@ Leisti rspec is ```LDB_3lab/spec```; ```rspec *spec.rb```
 
 LDB_3lab padengimas: 82.70%
 
-project: 100
+Project: 100
 
-projectmanager: 70.67
+ProjectManager: 70.67
 
-user: 96.15
+User: 96.15
 
-usermanager: 89
+UserManager: 89
 
-workgroup: 76.39
+WorkGroup: 76.39
 
-workgroupmanager: 87.01
+WorkGroupManager: 87.01
 
-budgetmanager: 43.5
+BudgetManager: 43.5
 
-notesmanager: 93.81
+NotesManager: 93.81
 
 98 ex.
 
