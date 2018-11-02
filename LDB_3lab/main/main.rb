@@ -14,22 +14,32 @@ prompt = TTY::Prompt.new
 @currentuser = nil
 
 def notes_submenu
+  cursor = TTY::Cursor
   loop do
     subchoice = TTY::Prompt.new.select('Note actions:', %w[Add\ note Read\ note Edit\ note Back])
     case subchoice
     when 'Add note'
-      puts TTY::Cursor.clear_lines(2, :up)
+      puts cursor.clear_lines(2, :up)
       text = TTY::Prompt.new.multiline('Edit:')
       if TTY::Prompt.new.yes?('Save this note?')
         name = TTY::Prompt.new.ask('Note title: ')
         NotesManager.new.save_note(@currentuser, name, text)
+        TTY::Prompt.new.ask(Rainbow('Note created successfully.').green, default: '[Enter]')
       end
+      print cursor.move_to(0, 3) + cursor.clear_screen_down
+      STDOUT.flush
     when 'Read note'
-      puts TTY::Cursor.clear_lines(2, :up)
       subchoice = TTY::Prompt.new.select('Notes:', NotesManager.new.list_notes.push('Back'))
+      puts cursor.move_to(0, 5) + cursor.clear_screen_down
       if !subchoice.eql?('Back')
         puts NotesManager.new.note_getter(subchoice)
+        TTY::Prompt.new.select('', %w[Back])
+        print cursor.move_to(0, 3) + cursor.clear_screen_down
+        STDOUT.flush
       end
+    when 'Edit note'
+      print cursor.move_to(0, 3) + cursor.clear_screen_down
+      STDOUT.flush
     when 'Back'
       break
     end
@@ -114,7 +124,7 @@ loop do
       prompt.ask(Rainbow('User created successfully. You may now login').green, default: '[Enter]') 
     else
       prompt.warn('Could not create a new account')
-      prompt.ask('', default: 'Return to previous menu')
+      prompt.ask(Rainbow('Return to previous menu').yellow, default: '[Enter]')
     end
 
   when 'Login'
