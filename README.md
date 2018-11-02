@@ -20,7 +20,9 @@ Ernestas Kodis
 
 # Testai
 
-LDB_3lab padengimas: 84.53% (pridėjus BudgetManager ir NotesManager bus mažiau, jie išvis nedengti)
+Leisti rspec is ```LDB_3lab/spec```; ```rspec *spec.rb```
+
+LDB_3lab padengimas: 82.70%
 
 project: 100
 
@@ -38,11 +40,11 @@ budgetmanager: -/-
 
 notesmanager: -/-
 
-89 ex.
+98 ex.
 
 2 custom matchers
 
-LDB_3lab reek klaidos: 13. rubocop klaidos: 21
+LDB_3lab reek klaidos: 2. rubocop klaidos: 12
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
