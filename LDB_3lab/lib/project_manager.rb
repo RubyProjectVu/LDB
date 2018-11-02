@@ -45,10 +45,8 @@ class ProjectManager
 
   def list_projects
     arr = []
-    IO.foreach('projects.yml') do |line|
-      if line.start_with?('  name:')
-        arr.push(line[8..-1])
-      end
+    @projects.each_key do |key|
+      arr.push(key + ':' + @projects[key].fetch('name'))
     end
     arr
   end

@@ -8,6 +8,7 @@ require_relative '../lib/user'
 require_relative '../lib/user_manager'
 require_relative '../lib/notes_manager'
 require_relative '../lib/project_manager'
+require_relative '../lib/budget_manager'
 
 cursor = TTY::Cursor
 prompt = TTY::Prompt.new
@@ -66,10 +67,18 @@ end
 def projm_submenu
   loop do
     subchoice = TTY::Prompt.new.select('Project actions:',
-                                     %w[List\ projects Back])
+                                     %w[Set\ budget Negative\ budgets Back])
     case subchoice
-    when 'List projects'
-      puts ProjectManager.new.list_projects
+    when 'Set budget'
+      proj = TTY::Prompt.new.select('', ProjectManager.new.list_projects)
+      print Rainbow('Current budget: ').red
+      puts BudgetManager.new.budgets_getter(proj.split(':').first)
+      choice = TTY::Prompt.new.select('', %w[Edit Back])
+      if choice.eql?('Edit')
+        TTY::Prompt.new.ask('New value: ')
+      end
+    when 'Negative budgets'
+      puts BudgetManager.new.check_negative
       TTY::Prompt.new.select('', %w[Back])
     when 'Back'
       break
