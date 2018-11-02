@@ -12,20 +12,17 @@ class NotesManager
   end
 
   def save_note(author, name, text)
-    return false if name.eql?('Back') || @notes == false
-    return false if @notes.key?(name)
+    return false if name.eql?('Back')
 
     hash = { name => { 'author' => author, 'text' => text } }
     File.open('notes.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
-    true
+    return @notes
   end
 
   def list_notes
     arr = []
-    IO.foreach('notes.yml') do |line|
-      if !line.split(/:/).first.start_with?(' ', '\'', "\n")
-        arr.push(line.split(/:/).first)
-      end
+    @notes.each_key do |key|
+      arr.push(key)
     end
     arr
   end
@@ -35,6 +32,10 @@ class NotesManager
   end
 
   def delete_note(name)
-    
+    @notes.delete(name)
+    File.open('notes.yml', 'w') do |fl|
+      fl.write @notes.to_yaml.sub('---', '').sub('{}', '')
+    end
+    true
   end
 end

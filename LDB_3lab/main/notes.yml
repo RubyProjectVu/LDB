@@ -11,7 +11,6 @@ default:
   - 'ow
 
 '
-
 note1:
   author: 
   text:
@@ -23,4 +22,6 @@ note1:
 wow:
   author: 
   text:
-  - 1) do sth
+  - '1) do sth
+
+'

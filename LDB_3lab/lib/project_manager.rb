@@ -29,11 +29,11 @@ class ProjectManager
 
   def load_project(id)
     return false unless @projects.key?(id)
-    proj = @projects.fetch(id)
+    proj = projo = @projects.fetch(id)
     obj = Project.new(project_name: proj.fetch('name'),
                       manager: proj.fetch('manager'), num: id,
-                      members: proj.fetch('members'))
-    obj.parm_project_status(proj.fetch('status'))
+                      members: projo.fetch('members'))
+    obj.parm_project_status(projo.fetch('status'))
 
     obj
   end

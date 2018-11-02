@@ -1,14 +1,11 @@
 # frozen_string_literal: true
+
 require_relative 'work_group'
 require 'yaml'
 
 # Saves and writes work group related data
 class WorkGroupManager
   def initialize
-    load_yaml
-  end
-
-  def load_yaml
     @groups = YAML.load_file('workgroups.yml')
   end
 
@@ -18,12 +15,10 @@ class WorkGroupManager
     File.open('workgroups.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
-    load_yaml
     true
   end
 
-  def delete_group(group)
-    id = group.data_getter('id')
+  def delete_group(id)
     return false unless @groups != false &&
                         @groups.key?(id)
 

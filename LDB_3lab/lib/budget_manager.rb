@@ -14,9 +14,7 @@ class BudgetManager
   def check_negative
     arr = []
     @budgets.each_key do |key|
-      if @budgets[key].fetch('budget') < 0
-        arr.push(key)
-      end
+      arr.push(key) if @budgets[key].fetch('budget').negative?
     end
     arr
   end
@@ -26,6 +24,7 @@ class BudgetManager
   end
 
   def budgets_setter(projid, value)
+    return false if @budgets == false
     hash = { projid => { 'budget' => value } }
     File.open('budgets.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
   end

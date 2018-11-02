@@ -39,14 +39,14 @@ describe UserManager do
 
   it 'name is actually written when registering' do
     described_class.new.register(User.new(name: 'neim',
-                                                 email: 'de@mo.com'))
+                                          email: 'de@mo.com'))
     hash = YAML.load_file('users.yml')
     expect(hash['de@mo.com']['name']).to eq 'neim'
   end
 
   it 'l name is actually written when registering' do
     described_class.new.register(User.new(last_name: 'lastname',
-                                                 email: 'de@mo.com'))
+                                          email: 'de@mo.com'))
     hash = YAML.load_file('users.yml')
     expect(hash['de@mo.com']['lname']).to eq 'lastname'
   end

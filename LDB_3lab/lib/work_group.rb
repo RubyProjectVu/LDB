@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'user'
 
 # Defines a workgroup
@@ -44,7 +45,6 @@ class WorkGroup
     return false unless @members.include?(address)
 
     @members.delete(address)
-    @members.include?(user.data_getter('email'))
     true
   end
 
@@ -61,7 +61,7 @@ class WorkGroup
 
   def delete_group_task(index)
     tasks = data_getter('tasks')
-    return false if index < 0 || index >= tasks.length
+    return false if index.negative? || index >= tasks.length
 
     tasks.delete_at(index)
     data_setter('tasks', tasks)

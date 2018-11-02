@@ -12,7 +12,7 @@ describe ProjectManager do
   after do
     # Butina - kitaip mutant sumauna projects.yml faila ir klasiu kintamuosius.
     hash = { 'someid' => { 'name' => 'projektas', 'manager' => 'john',
-                           'members' => ['john', 'steve', 'harry'],
+                           'members' => %w[john stevevharry],
                            'status' => 'Proposed' } }
     File.open('projects.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')

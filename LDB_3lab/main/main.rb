@@ -14,11 +14,14 @@ cursor = TTY::Cursor
 prompt = TTY::Prompt.new
 @currentuser = nil
 
+# Notes management screen
 def notes_submenu
   cursor = TTY::Cursor
   loop do
-    subchoice = TTY::Prompt.new.select('Note actions:', %w[Add\ note Read\ note Edit\ note Back])
+    subchoice = TTY::Prompt.new.select('Note actions:', %w[Add\ note Read\ note 
+                                                           Delete\ note Back], cycle: true)
     case subchoice
+    # Create a new note
     when 'Add note'
       puts cursor.clear_lines(2, :up)
       text = TTY::Prompt.new.multiline('Edit:')
@@ -29,8 +32,10 @@ def notes_submenu
       end
       print cursor.move_to(0, 3) + cursor.clear_screen_down
       STDOUT.flush
+
+    # Review existing notes
     when 'Read note'
-      subchoice = TTY::Prompt.new.select('Notes:', NotesManager.new.list_notes.push('Back'))
+      subchoice = TTY::Prompt.new.select('Notes:', NotesManager.new.list_notes.push('Back'), cycle: true)
       puts cursor.move_to(0, 5) + cursor.clear_screen_down
       if !subchoice.eql?('Back')
         puts NotesManager.new.note_getter(subchoice)
@@ -38,19 +43,31 @@ def notes_submenu
         print cursor.move_to(0, 3) + cursor.clear_screen_down
         STDOUT.flush
       end
-    when 'Edit note'
-      print cursor.move_to(0, 3) + cursor.clear_screen_down
-      STDOUT.flush
+
+    # Remove a note
+    when 'Delete note'
+      subchoice = TTY::Prompt.new.select('Notes:', NotesManager.new.list_notes.push('Back'), cycle: true)
+      puts cursor.move_to(0, 5) + cursor.clear_screen_down
+      if !subchoice.eql?('Back')
+        if TTY::Prompt.new.yes?("Are you sure you want to delete #{subchoice}?")
+          NotesManager.new.delete_note(subchoice)
+          TTY::Prompt.new.ask(Rainbow('Note deleted.').green, default: '[Enter]')
+        end
+      end
+
+    # Return from notes management
     when 'Back'
       break
     end
   end
 end
 
+# User management screen
 def userm_submenu
   loop do
-    subchoice = TTY::Prompt.new.select('User actions:', %w[Change\ password Back])
+    subchoice = TTY::Prompt.new.select('User actions:', %w[Change\ password Back], cycle: true)
     case subchoice
+    # Change user password
     when 'Change password'
       puts TTY::Cursor.clear_lines(2, :up)
       hash = UserManager.new.to_hash(@currentuser)
@@ -58,34 +75,46 @@ def userm_submenu
       usr.password_set(TTY::Prompt.new.mask("New password:"))
       UserManager.new.users_pop(@currentuser)
       UserManager.new.users_push(usr, usr.to_hash)
+
+    # Return from user management
     when 'Back'
       break
     end
   end
 end
 
+# Project management screen
 def projm_submenu
   loop do
     subchoice = TTY::Prompt.new.select('Project actions:',
-                                     %w[Set\ budget Negative\ budgets Back])
+                                     %w[Set\ budget Negative\ budgets Back], cycle: true)
     case subchoice
+    # Refine project's budget
     when 'Set budget'
-      proj = TTY::Prompt.new.select('', ProjectManager.new.list_projects)
+      proj = TTY::Prompt.new.select('', ProjectManager.new.list_projects.push('Back'), cycle: true)
+      if proj.eql?('Back')
+        next
+      end
       print Rainbow('Current budget: ').red
       puts BudgetManager.new.budgets_getter(proj.split(':').first)
-      choice = TTY::Prompt.new.select('', %w[Edit Back])
+      choice = TTY::Prompt.new.select('', %w[Edit Back], cycle: true)
       if choice.eql?('Edit')
         TTY::Prompt.new.ask('New value: ')
       end
+
+    # Review projects with negative budget
     when 'Negative budgets'
       puts BudgetManager.new.check_negative
       TTY::Prompt.new.select('', %w[Back])
+
+    # Return from project management
     when 'Back'
       break
     end
   end
 end
 
+# Work group management screen
 def wgm_submenu
   puts ''
 end
@@ -95,7 +124,7 @@ end
               'Project management' => method(:projm_submenu),
               'Work group management' => method(:wgm_submenu) }
 
-# User screen
+# Modules menu screen
 def user_menu(currentuser)
   cursor = TTY::Cursor
   prompt = TTY::Prompt.new
@@ -104,7 +133,7 @@ def user_menu(currentuser)
     puts Rainbow("LDB\t").green + Rainbow("--[#{currentuser}]--\t").cyan + Rainbow("[ #{Date.today} ]").green
 
     choice = prompt.select('Modules:', %w[Notes User\ management Project\ management
-    Work\ group\ management Quit])
+    Work\ group\ management Quit], cycle: true)
     break if choice.eql?('Quit')
     @usr_hash[choice].call
   end
@@ -123,10 +152,11 @@ loop do
   puts cursor.move_to(0, 0)
   puts Rainbow("LDB\t").bright + Rainbow('[' + Date.today.to_s + ']').green
 
-  choice = prompt.select('', %w[Sign\ up Login Exit])
+  choice = prompt.select('', %w[Sign\ up Login Exit], cycle: true)
   puts cursor.clear_lines(2, :up)
 
   case choice
+  # Create a new user
   when 'Sign up'
     puts cursor.clear_screen
     if user_setup(prompt.ask('Email:'), prompt.mask('Password:'))
@@ -136,6 +166,7 @@ loop do
       prompt.ask(Rainbow('Return to previous menu').yellow, default: '[Enter]')
     end
 
+  # Login with existing credentials
   when 'Login'
     puts cursor.clear_screen
     usr = User.new(email: @currentuser = prompt.ask('Email:'))
@@ -146,6 +177,8 @@ loop do
       prompt.warn('Could not login with specified credentials')
       prompt.ask('', default: 'Return to previous menu')
     end
+
+  # Terminate LDB
   when 'Exit'
     puts cursor.clear_screen
     break

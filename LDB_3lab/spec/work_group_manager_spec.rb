@@ -21,11 +21,6 @@ describe WorkGroupManager do
     end
   end
 
-  it 'reloads hash file correctly' do
-    groups = YAML.load_file('workgroups.yml')
-    expect(wgm.load_yaml).to eq groups
-  end
-
   it 'saves a new group' do
     expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name',
                                         'terminate'))).to be true
@@ -38,12 +33,11 @@ describe WorkGroupManager do
   end
 
   it 'deleting an existing group' do
-    expect(wgm.delete_group(WorkGroup.new('453', 'someid', 'name',
-                                          'terminate'))).to be true
+    expect(wgm.delete_group('453')).to be true
   end
 
   it 'deleted group is actually removed' do
-    wgm.delete_group(WorkGroup.new('453', 'someid', 'name', 'terminate'))
+    wgm.delete_group('453')
     hash = YAML.load_file('workgroups.yml')
     expect(hash).to be false # empty file
   end

@@ -1,8 +1,0 @@
-someid:
- name: projektas
- manager: john
- members:
-  - john
-  - steve
-  - harry
- status: Proposed
