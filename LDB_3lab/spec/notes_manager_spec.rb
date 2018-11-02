@@ -7,7 +7,9 @@ require_relative '../lib/notes_manager'
 require_relative '../lib/project'
 
 describe NotesManager do
-  let (:nm) { described_class.new }
+  let :nm do
+    described_class.new
+  end
 
   after do
     # Butina - kitaip mutant sumauna notes.yml faila ir klasiu kintamuosius.
@@ -18,7 +20,9 @@ describe NotesManager do
   end
 
   it do
-    expect(nm.save_note('auth', 'name', 'text')).to eq 'wow' => { 'author' => 'user', 'text' => 'example' }
+    expect(nm.save_note('auth', 'name', 'text')).to eq 'wow' => {
+      'author' => 'user', 'text' => 'example'
+    }
   end
 
   it do

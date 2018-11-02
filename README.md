@@ -26,26 +26,30 @@ LDB_3lab padengimas: 82.70%
 
 project: 100
 
-projectmanager: 68.79
+projectmanager: 70.67
 
 user: 96.15
 
 usermanager: 89
 
-workgroup: 75.65
+workgroup: 76.39
 
-workgroupmanager: 88.32
+workgroupmanager: 87.01
 
-budgetmanager: -/-
+budgetmanager: 43.5
 
-notesmanager: -/-
+notesmanager: 93.81
 
 98 ex.
 
 2 custom matchers
 
-LDB_3lab reek klaidos: 2. rubocop klaidos: 12
+LDB_3lab reek klaidos: 2. rubocop klaidos: 1
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
 rubocop leidžiamas įprastai.
+
+# Esantis funkcionalumas
+
+...bus papildyta...

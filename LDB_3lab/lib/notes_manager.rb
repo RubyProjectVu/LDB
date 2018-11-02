@@ -16,7 +16,7 @@ class NotesManager
 
     hash = { name => { 'author' => author, 'text' => text } }
     File.open('notes.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
-    return @notes
+    @notes
   end
 
   def list_notes

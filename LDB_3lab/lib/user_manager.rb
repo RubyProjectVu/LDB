@@ -1,6 +1,8 @@
 # frozen_string_literal: true
-require 'yaml'
+
 require_relative 'project_manager'
+require 'yaml'
+
 # class defining user management
 class UserManager
   def initialize
