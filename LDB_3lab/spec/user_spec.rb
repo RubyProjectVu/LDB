@@ -101,4 +101,11 @@ describe User do
     pass = '1simple'
     expect(pass).not_to has_advanced_password
   end
+
+  it 'userinfo is correct' do
+    expect(usr.user_info).to eq 'name'.to_sym => 'name',
+                                'lname'.to_sym => 'lname',
+                                'email'.to_sym => 'email',
+                                'pass'.to_sym => '123'
+  end
 end

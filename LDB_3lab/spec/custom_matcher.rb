@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 # yaml files have no triple dashes, empty hashes
+# user_manager_spec::56
 RSpec::Matchers.define :has_yml_nils do
-  match do |actual|
-    File.open actual do |file|
+  match do |check|
+    File.open check do |file|
       file.find do |line|
         return true if line.match?(/\{\}/) || line.match?(/---/)
       end

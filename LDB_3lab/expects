@@ -1,2 +1,6 @@
-.be_kind_of(Numeric) ::172 project_spec
-.contain_exactly() ::25 notes_manager_spec
+.be_kind_of(Numeric) 	::172 project_spec
+.contain_exactly() 	::25 notes_manager_spec
+.match() 		::57 project_manager_spec
+.match_array() 		::67 project_manager_spec
+.satisfy {} 		::72 project_manager_spec
+

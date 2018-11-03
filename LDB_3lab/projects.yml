@@ -4,5 +4,6 @@ someid:
   manager: john
   members:
   - john
-  - stevevharry
-  status: Proposed
+  - steve
+  - harry
+  status: Suspended

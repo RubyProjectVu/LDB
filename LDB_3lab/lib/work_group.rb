@@ -4,10 +4,11 @@ require_relative 'user'
 
 # Defines a workgroup
 class WorkGroup
-  def initialize(id, project_id, group_name, tasks)
+  def initialize(id, project_id, group_name)
     @data = { id: id, project_id: project_id,
-              group_name: group_name, tasks: tasks }
+              group_name: group_name }
     @members = []
+    @tasks = []
   end
 
   def data_getter(key)
@@ -19,15 +20,14 @@ class WorkGroup
   end
 
   def to_hash
-    hash = {
+    {
       data_getter('id') => {
         'project_id' => data_getter('project_id'),
         'group_name' => data_getter('group_name'),
-        @members => members_getter,
-        'tasks' => data_getter('tasks')
+        'members' => members_getter,
+        'tasks' => tasks_getter
       }
     }
-    hash
   end
 
   def add_group_member(user)
@@ -48,23 +48,21 @@ class WorkGroup
     true
   end
 
+  def add_group_task(task)
+    @tasks.push(task)
+    true
+  end
+
+  def remove_group_task(task)
+    @tasks.delete(task)
+    true
+  end
+
   def members_getter
     @members
   end
 
-  def add_group_task(text)
-    tasks = data_getter('tasks')
-    tasks.push(text.to_s)
-    data_setter('tasks', tasks)
-    true
-  end
-
-  def delete_group_task(index)
-    tasks = data_getter('tasks')
-    return false if index.negative? || index >= tasks.length
-
-    tasks.delete_at(index)
-    data_setter('tasks', tasks)
-    true
+  def tasks_getter
+    @tasks
   end
 end

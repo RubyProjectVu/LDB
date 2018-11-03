@@ -22,12 +22,11 @@ describe WorkGroupManager do
   end
 
   it 'saves a new group' do
-    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name',
-                                        'terminate'))).to be true
+    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name'))).to be true
   end
 
   it 'new group is actually written to file' do
-    wgm.save_group(WorkGroup.new('100', 'someid', 'name', 'terminate'))
+    wgm.save_group(WorkGroup.new('100', 'someid', 'name'))
     hash = YAML.load_file('workgroups.yml')
     expect(hash['100']['project_id']).to eq 'someid'
   end
@@ -43,7 +42,6 @@ describe WorkGroupManager do
   end
 
   it 'stopping removal of non-existing group' do
-    expect(wgm.delete_group(WorkGroup.new('100', 'someid', 'name',
-                                          'terminate'))).to be false
+    expect(wgm.delete_group(WorkGroup.new('1', 'someid', 'name'))).to be false
   end
 end

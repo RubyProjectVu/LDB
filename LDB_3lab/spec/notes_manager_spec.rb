@@ -33,10 +33,16 @@ describe NotesManager do
     expect(nm.save_note('auth', 'Back', 'text')).to be false
   end
 
-  it do
+  it 'author is saved' do
     nm.save_note('auth', 'name', 'text')
     hash = YAML.load_file('notes.yml')
     expect(hash['name']['author']).to eq 'auth'
+  end
+
+  it 'text is saved' do
+    nm.save_note('auth', 'name', 'text')
+    hash = YAML.load_file('notes.yml')
+    expect(hash['name']['text']).to eq 'text'
   end
 
   it do
@@ -49,6 +55,13 @@ describe NotesManager do
 
   it do
     expect(nm.delete_note('wow')).to be true
+  end
+
+  it do
+    nm.delete_note('wow')
+    nm.delete_note('badtext')
+    file = 'notes.yml'
+    expect(file).not_to has_yml_nils
   end
 
   it do

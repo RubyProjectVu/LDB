@@ -7,6 +7,7 @@ require 'yaml'
 class UserManager
   def initialize
     @users = YAML.load_file('users.yml')
+    @users = {} if @users.equal?(false)
     @current_user = {}
   end
 
@@ -40,16 +41,13 @@ class UserManager
     users_pop(user.data_getter('email'))
   end
 
-  def prepare_deletion
-    # TODO: active project checking will be implemented later
-    return true unless ProjectManager.new.active_projects_present?
-  end
+  # TODO: active project checking will be implemented later
 
   def users_push(email, hash)
-    return false if @users != false && @users.key?(email)
+    return false unless [nil].include?(@users[email])
 
     File.open('users.yml', 'a') do |fl|
-      fl.write hash.to_yaml.sub('---', '').sub('{}', '')
+      fl.write hash.to_yaml.sub('---', '')
     end
     true
   end

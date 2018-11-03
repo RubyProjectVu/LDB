@@ -46,7 +46,7 @@ class ProjectManager
   def list_projects
     arr = []
     @projects.each_key do |key|
-      arr.push(key + ':' + @projects[key].fetch('name'))
+      arr.push(key + ':' + @projects.fetch(key).fetch('name'))
     end
     arr
   end

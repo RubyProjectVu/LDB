@@ -22,29 +22,29 @@ Ernestas Kodis
 
 Leisti rspec is ```LDB_3lab/spec```; ```rspec *spec.rb```
 
-LDB_3lab padengimas: 82.70%
+LDB_3lab padengimas: 93.97%
 
 Project: 100
 
-ProjectManager: 70.67
+ProjectManager: 100
 
-User: 96.15
+User: 100
 
-UserManager: 89
+UserManager: 100
 
-WorkGroup: 76.39
+WorkGroup: 100
 
 WorkGroupManager: 87.01
 
 BudgetManager: 43.5
 
-NotesManager: 93.81
+NotesManager: 100
 
-101 ex.
+115 ex.
 
 4 custom matchers
 
-LDB_3lab reek klaidos: 2. rubocop klaidos: 1
+reek klaidos: 1. rubocop klaidos: 1
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
@@ -52,4 +52,4 @@ rubocop leidžiamas įprastai.
 
 # Esantis funkcionalumas
 
-...bus papildyta...
+...bus papildyta 18-11-05...
