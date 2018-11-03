@@ -5,6 +5,7 @@ SimpleCov.start
 
 require_relative '../lib/user'
 require_relative '../lib/user_manager'
+require_relative 'custom_matcher'
 
 describe User do
   after do
@@ -89,5 +90,15 @@ describe User do
     expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => {
       'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123'
     }
+  end
+
+  it 'password is indeed advanced' do
+    pass = '*as-w0rd'
+    expect(pass).to has_advanced_password
+  end
+
+  it 'fails because no special characters included' do
+    pass = '1simple'
+    expect(pass).not_to has_advanced_password
   end
 end

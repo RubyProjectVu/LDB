@@ -40,9 +40,9 @@ BudgetManager: 43.5
 
 NotesManager: 93.81
 
-98 ex.
+101 ex.
 
-2 custom matchers
+4 custom matchers
 
 LDB_3lab reek klaidos: 2. rubocop klaidos: 1
 

@@ -2,3 +2,7 @@
 wow:
   author: user
   text: example
+
+badtext:
+  author: somename
+  text: bad word

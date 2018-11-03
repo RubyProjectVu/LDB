@@ -1,1 +1,2 @@
 .be_kind_of(Numeric) ::172 project_spec
+.contain_exactly() ::25 notes_manager_spec
