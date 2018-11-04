@@ -15,7 +15,7 @@ describe WorkGroup do
   after do
     # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
     hash = { '453' => { 'project_id' => 'someid', 'group_name' => 'Test',
-                        'members' => 'jhno@mail.com', 'tasks' => 'sleep',
+                        'members' => ['jhon@mail.com'], 'tasks' => 'sleep',
                         'budget' => 0 } }
     File.open('workgroups.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')

@@ -20,9 +20,11 @@ Ernestas Kodis
 
 # Testai
 
-Leisti rspec is ```LDB_3lab/spec```; ```rspec *spec.rb```
+Leisti rspec kaip ```LDB_3lab/spec```; ```rspec *spec.rb```
 
-LDB_3lab padengimas: 93.97%
+Leisti mutant kaip ```LDB_3lab```; ```./run.sh```. Atsiklonavus saka is github isitikinti, kad run.sh turi leidima buti paleistam kaip executable file.
+
+LDB_3lab padengimas: 100%
 
 Project: 100
 
@@ -34,17 +36,19 @@ UserManager: 100
 
 WorkGroup: 100
 
-WorkGroupManager: 87.01
+WorkGroupManager: 100
 
-BudgetManager: 43.5
+BudgetManager: 100
 
 NotesManager: 100
 
-115 ex.
+Search: 100
 
-4 custom matchers
+139 ex.
 
-reek klaidos: 1. rubocop klaidos: 1
+7 custom matchers
+
+reek klaidos: 0. rubocop klaidos: 2 (abi del custom matcherio, kuri dar naudosiu)
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.

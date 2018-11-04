@@ -16,7 +16,7 @@ describe WorkGroupManager do
   after do
     # Butina - kitaip mutant sumauna workgroups.yml faila
     hash = { '453' => { 'project_id' => '3324', 'group_name' => 'Test',
-                        'members' => ['jhon@gmail.com'], 'tasks' => 'sleep' } }
+                        'members' => ['jhon@mail.com'], 'tasks' => 'sleep' } }
     File.open('workgroups.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')
     end
