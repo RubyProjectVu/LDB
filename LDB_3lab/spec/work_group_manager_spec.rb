@@ -5,6 +5,7 @@ SimpleCov.start
 
 require_relative '../lib/work_group_manager'
 require_relative '../lib/work_group'
+require_relative 'custom_matcher'
 require 'date'
 
 describe WorkGroupManager do
@@ -22,7 +23,7 @@ describe WorkGroupManager do
   end
 
   it 'saves a new group' do
-    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name'))).to be true
+    expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name'))).to be_truthy
   end
 
   it 'new group is actually written to file' do
@@ -31,17 +32,26 @@ describe WorkGroupManager do
     expect(hash['100']['project_id']).to eq 'someid'
   end
 
+  it 'rewriting existing group doesn\'t create duplicates' do
+    wgm.save_group(WorkGroup.new('453', 'someid', 'name'))
+    file = 'workgroups.yml'
+    expect('453').to is_key_unique(file)
+  end
+
   it 'deleting an existing group' do
     expect(wgm.delete_group('453')).to be true
   end
 
-  it 'deleted group is actually removed' do
+  it 'last group is removed and file is empty' do
     wgm.delete_group('453')
     hash = YAML.load_file('workgroups.yml')
     expect(hash).to be false # empty file
   end
 
-  it 'stopping removal of non-existing group' do
-    expect(wgm.delete_group(WorkGroup.new('1', 'someid', 'name'))).to be false
+  it 'deleted group is actually removed' do
+    wgm.save_group(WorkGroup.new('100', 'someid', 'name'))
+    described_class.new.delete_group('453')
+    hash = YAML.load_file('workgroups.yml')
+    expect(hash).not_to have_key('453')
   end
 end

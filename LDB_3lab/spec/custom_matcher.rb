@@ -14,6 +14,7 @@ RSpec::Matchers.define :has_yml_nils do
 end
 
 # Checks whether the project (by id) has positive budget
+# budget_manager_spec::69
 RSpec::Matchers.define :project_budget_positive do
   match do |budget|
     file = YAML.load_file('budgets.yml')
@@ -42,5 +43,40 @@ RSpec::Matchers.define :has_bad_words do
     badlist = %w[bad\ word other\ bad\ word really\ bad\ word]
     badlist.any? { |word| return true if text.include?(word) }
     return false
+  end
+end
+
+# A key is unique in .yml file
+# work_group_manager_spec::38
+RSpec::Matchers.define :is_key_unique do |actual|
+  count = []
+  match do |expected|
+    File.open(actual).each do |line|
+      count.push('+') if line
+                         .split(':')
+                         .first.start_with?('\'' + expected.to_s + '\'')
+    end
+    return false if count.length > 1
+    return true
+  end
+end
+
+# Files are identical (for state testing)
+RSpec::Matchers.define :is_identical do |actual|
+  match do |expected|
+    
+  end
+end
+
+# Specific case for unique budget keys
+# budget_manager_spec::65
+RSpec::Matchers.define :no_duplicate_budgets do |actual|
+  count = []
+  match do |expected|
+    File.open(actual).each do |line|
+      count.push('+') if line.split(':').first.start_with?(expected)
+    end
+    return false if count.length > 1
+    return true
   end
 end

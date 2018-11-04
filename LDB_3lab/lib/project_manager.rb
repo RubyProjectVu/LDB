@@ -20,10 +20,11 @@ class ProjectManager
   end
 
   def save_project(project)
+    pro = project
     return false if @projects.key?(project.data_getter('id'))
-
-    hash = project.to_hash
-    File.open('projects.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
+    File.open('projects.yml', 'a') do |fl|
+      fl.write pro.to_hash.to_yaml.sub('---', '')
+    end
     true
   end
 

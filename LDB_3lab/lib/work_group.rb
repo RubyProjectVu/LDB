@@ -6,7 +6,7 @@ require_relative 'user'
 class WorkGroup
   def initialize(id, project_id, group_name)
     @data = { id: id, project_id: project_id,
-              group_name: group_name }
+              group_name: group_name, budget: 0 }
     @members = []
     @tasks = []
   end
@@ -16,7 +16,15 @@ class WorkGroup
   end
 
   def data_setter(key, val)
+    project_budget_setter(val) if key.eql?('budget')
     @data[key.to_sym] = val
+  end
+
+  def project_budget_setter(amount)
+    projid = @data.fetch(:project_id)
+    budget = @data.fetch(:budget)
+    old = BudgetManager.new.budgets_getter(projid)
+    BudgetManager.new.budgets_setter(projid, old + (budget - amount))
   end
 
   def to_hash
@@ -25,7 +33,8 @@ class WorkGroup
         'project_id' => data_getter('project_id'),
         'group_name' => data_getter('group_name'),
         'members' => members_getter,
-        'tasks' => tasks_getter
+        'tasks' => tasks_getter,
+        'budget' => data_getter('budget')
       }
     }
   end

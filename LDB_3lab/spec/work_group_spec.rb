@@ -5,17 +5,24 @@ SimpleCov.start
 
 require_relative '../lib/work_group'
 require_relative '../lib/user'
+require_relative '../lib/project'
 
 describe WorkGroup do
   let :wg do
-    described_class.new('453', '3324', 'Test')
+    described_class.new('453', 'someid', 'Test')
   end
 
   after do
     # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
-    hash = { '453' => { 'project_id' => '3324', 'group_name' => 'Test',
-                        'members' => 'jhno@mail.com', 'tasks' => 'sleep' } }
+    hash = { '453' => { 'project_id' => 'someid', 'group_name' => 'Test',
+                        'members' => 'jhno@mail.com', 'tasks' => 'sleep',
+                        'budget' => 0 } }
     File.open('workgroups.yml', 'w') do |fl|
+      fl.write hash.to_yaml.gsub('---', '')
+    end
+
+    hash = { 'someid' => { 'budget' => 35_000 } }
+    File.open('budgets.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')
     end
   end
@@ -125,10 +132,60 @@ describe WorkGroup do
     end
 
     it 'assembles the hash correctly' do
-      expect(wg.to_hash).to eq '453' => { 'project_id' => '3324',
+      expect(wg.to_hash).to eq '453' => { 'project_id' => 'someid',
                                           'group_name' => 'Test',
                                           'members' => ['some@mail.com'],
-                                          'tasks' => ['mytask'] }
+                                          'tasks' => ['mytask'],
+                                          'budget' => 0 }
     end
+  end
+
+  it 'correctly sets the budget' do
+    wg.data_setter('budget', 300)
+    expect(wg.data_getter('budget')).to equal 300
+  end
+
+  context 'project budget is updated according to workgroup budget' do
+    let(:wgo) do
+      described_class.new('10', 'someid', 'name')
+    end
+
+    it 'project budget is updated according to workgroup budget' do
+      budgets = YAML.load_file('budgets.yml')
+      expect do
+        wgo.data_setter('budget', 150)
+        budgets = YAML.load_file('budgets.yml')
+      end.to(change { budgets })
+    end
+  end
+
+  it 'correctly changes the budget back' do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.data_setter('budget', 150)
+    wg.data_setter('budget', 0)
+    expect(BudgetManager.new
+           .budgets_getter('someid')).to be_within(0).of(35_000)
+  end
+
+  it 'does not lose money inbetween decreasing' do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.data_setter('budget', 50)
+    wg.data_setter('budget', 10)
+    expect(BudgetManager.new.budgets_getter('someid')).to be == 34_990
+  end
+
+  it 'does not lose money inbetween increasing' do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.data_setter('budget', 10)
+    wg.data_setter('budget', 50)
+    expect(BudgetManager.new.budgets_getter('someid')).to be == 34_950
+  end
+
+  it 'can handle budget correctly with multiple groups' do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.data_setter('budget', 10)
+    wg2 = described_class.new('11', 'someid', 'name')
+    wg2.data_setter('budget', 10)
+    expect(BudgetManager.new.budgets_getter('someid')).to be == 34_980
   end
 end

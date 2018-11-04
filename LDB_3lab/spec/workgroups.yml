@@ -1,6 +1,7 @@
 
 '453':
-  project_id: '3324'
+  project_id: someid
   group_name: Test
   members: jhno@mail.com
   tasks: sleep
+  budget: 0

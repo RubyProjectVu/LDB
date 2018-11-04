@@ -1,6 +1,18 @@
-.be_kind_of(Numeric) 	::172 project_spec
+.be_kind_of() 		::172 project_spec
 .contain_exactly() 	::25 notes_manager_spec
 .match() 		::57 project_manager_spec
 .match_array() 		::67 project_manager_spec
 .satisfy {} 		::72 project_manager_spec
+.change {}		::149 work_group_spec
+.equal()		::140 work_group_spec
+.be <=			::33 budget_manager_spec
+.be_within().of()	::168 work_group_spec
+.be ==			::174 work_group_spec
+.have_key()		::55 work_group_manager_spec
+.match_array[]		::29 budget_manager_spec
+.be >=			::37 budget_manager_spec
+.raise_error()		::42 budget_manager_spec
+.be_nil			::60 budget_manager_spec
+.be_truthy 		::26 work_group_manager_spec
+
 

@@ -10,18 +10,15 @@ class WorkGroupManager
   end
 
   def save_group(group)
-    delete_group(group)
-    hash = group.to_hash
+    gr = gro = group
+    delete_group(gro.data_getter('id'))
+    hash = gr.to_hash
     File.open('workgroups.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
-    true
   end
 
   def delete_group(id)
-    return false unless @groups != false &&
-                        @groups.key?(id)
-
     @groups.delete(id)
     File.open('workgroups.yml', 'w') do |fl|
       fl.write @groups.to_yaml.sub('---', '').sub('{}', '')
