@@ -55,7 +55,8 @@ describe BudgetManager do
   end
 
   it 'nil on nonexisting projects' do
-    expect(bm.budgets_setter('noid', 50)).to be_nil
+    expect(bm.budgets_setter('noid', 50)).to eq 'someid' =>
+                                                { 'budget' => 35_000 }
   end
 
   it 'setting new budgets does not duplicate ids' do

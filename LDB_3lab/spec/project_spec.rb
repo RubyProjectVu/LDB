@@ -9,6 +9,10 @@ require_relative '../lib/user'
 describe Project do
   let(:pr) { described_class.new }
   let(:usr) { User.new }
+  let(:pr2) do
+    described_class.new(project_name: '1', manager: '2', num: '3',
+                        members: '4')
+  end
 
   context 'when project is validating its metadata, status, owner' do
     it 'has its owner set correctly' do
@@ -155,12 +159,10 @@ describe Project do
   end
 
   it 'project is converted to hash correctly' do
-    pr = described_class.new(project_name: '1', manager: '2', num: '3',
-                             members: '4')
-    pr.parm_project_status('Cancelled')
-    expect(pr.to_hash).to eq '3' => { 'name' => '1', 'manager' => '2',
-                                      'members' => '4',
-                                      'status' => 'Cancelled' }
+    pr2.parm_project_status('Cancelled')
+    expect(pr2.to_hash).to eq '3' => { 'name' => '1', 'manager' => '2',
+                                       'members' => '4',
+                                       'status' => 'Cancelled' }
   end
 
   it 'id is never nil' do

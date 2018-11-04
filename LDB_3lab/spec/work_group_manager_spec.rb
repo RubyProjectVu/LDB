@@ -35,7 +35,8 @@ describe WorkGroupManager do
   it 'rewriting existing group doesn\'t create duplicates' do
     wgm.save_group(WorkGroup.new('453', 'someid', 'name'))
     file = 'workgroups.yml'
-    expect('453').to is_key_unique(file)
+    key = '453'
+    expect(key).to is_key_unique(file)
   end
 
   it 'deleting an existing group' do

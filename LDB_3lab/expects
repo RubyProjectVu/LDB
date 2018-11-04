@@ -12,7 +12,8 @@
 .match_array[]		::29 budget_manager_spec
 .be >=			::37 budget_manager_spec
 .raise_error()		::42 budget_manager_spec
-.be_nil			::60 budget_manager_spec
+.be_nil			::53 project_manager_spec
 .be_truthy 		::26 work_group_manager_spec
+.be_empty		::49 budget_manager_spec
 
 

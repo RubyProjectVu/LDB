@@ -50,7 +50,7 @@ describe ProjectManager do
   it 'project is actually removed' do
     pm.delete_project(Project.new(num: 'someid'))
     hash = YAML.load_file('projects.yml')
-    expect(hash['someid']).to be nil
+    expect(hash['someid']).to be_nil
   end
 
   it 'false on non-existing id' do

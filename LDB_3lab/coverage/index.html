@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-04T18:12:23+02:00">2018-11-04T18:12:23+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-04T18:41:44+02:00">2018-11-04T18:41:44+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">37.35%</span></span>
+    (<span class="covered_percent"><span class="red">37.28%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>16</b> files in total.
-    <b>731</b> relevant lines. 
-    <span class="green"><b>273</b> lines covered</span> and
-    <span class="red"><b>458</b> lines missed </span>
+    <b>735</b> relevant lines. 
+    <span class="green"><b>274</b> lines covered</span> and
+    <span class="red"><b>461</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,11 +52,11 @@
       
       <tr>
         <td class="strong"><a href="#99fe7582b91da7b56ee06ae695e144146562f92c" class="src_link" title="lib/budget_manager.rb">lib/budget_manager.rb</a></td>
-        <td class="red strong">43.48 %</td>
-        <td>41</td>
-        <td>23</td>
+        <td class="red strong">40.0 %</td>
+        <td>42</td>
+        <td>25</td>
         <td>10</td>
-        <td>13</td>
+        <td>15</td>
         <td>0.4</td>
       </tr>
       
@@ -162,10 +162,10 @@
       
       <tr>
         <td class="strong"><a href="#a6579fa44a5ed3f1dd7aed3ab7f08b9a3b17c547" class="src_link" title="spec/project_spec.rb">spec/project_spec.rb</a></td>
-        <td class="red strong">39.22 %</td>
-        <td>174</td>
-        <td>102</td>
-        <td>40</td>
+        <td class="red strong">39.81 %</td>
+        <td>176</td>
+        <td>103</td>
+        <td>41</td>
         <td>62</td>
         <td>0.4</td>
       </tr>
@@ -192,11 +192,11 @@
       
       <tr>
         <td class="strong"><a href="#a1e6ebbd5d1a150811931d8525457f08f4ee624f" class="src_link" title="spec/work_group_manager_spec.rb">spec/work_group_manager_spec.rb</a></td>
-        <td class="red strong">44.12 %</td>
-        <td>57</td>
-        <td>34</td>
+        <td class="red strong">42.86 %</td>
+        <td>58</td>
+        <td>35</td>
         <td>15</td>
-        <td>19</td>
+        <td>20</td>
         <td>0.4</td>
       </tr>
       
@@ -229,11 +229,11 @@
         <div class="source_table" id="99fe7582b91da7b56ee06ae695e144146562f92c">
   <div class="header">
     <h3>lib/budget_manager.rb</h3>
-    <h4><span class="red">43.48 %</span> covered</h4>
+    <h4><span class="red">40.0 %</span> covered</h4>
     <div>
-      <b>23</b> relevant lines. 
+      <b>25</b> relevant lines. 
       <span class="green"><b>10</b> lines covered</span> and
-      <span class="red"><b>13</b> lines missed.</span>
+      <span class="red"><b>15</b> lines missed.</span>
     </div>
   </div>
   
@@ -399,88 +399,94 @@
         <li class="missed" data-hits="0" data-linenumber="27">
           
           
-          <code class="ruby">    return add_new(projid, value) if [nil].include?(@budgets[projid])</code>
+          <code class="ruby">    projhash = @budgets[projid]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="28">
           
           
-          <code class="ruby">    @budgets[projid][&#39;budget&#39;] = value</code>
+          <code class="ruby">    return add_new(projid, value) if [nil].include?(projhash)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">    File.open(&#39;budgets.yml&#39;, &#39;w&#39;) do |fl|</code>
+          <code class="ruby">    projhash[&#39;budget&#39;] = value</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">      YAML.dump(@budgets, fl)</code>
+          <code class="ruby">    File.open(&#39;budgets.yml&#39;, &#39;w&#39;) do |fl|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="missed" data-hits="0" data-linenumber="31">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      YAML.dump(@budgets, fl)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
+        <li class="covered" data-hits="1" data-linenumber="35">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_new(projid, value)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
+        <li class="missed" data-hits="0" data-linenumber="36">
           
           
           <code class="ruby">    hash = { projid =&gt; { &#39;budget&#39; =&gt; value } }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="36">
+        <li class="missed" data-hits="0" data-linenumber="37">
           
           
           <code class="ruby">    File.open(&#39;budgets.yml&#39;, &#39;a&#39;) do |fl|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="37">
+        <li class="missed" data-hits="0" data-linenumber="38">
           
           
           <code class="ruby">      fl.write hash.to_yaml.sub(&#39;---&#39;, &#39;&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="missed" data-hits="0" data-linenumber="40">
           
           
-          <code class="ruby">    nil</code>
+          <code class="ruby">    @budgets</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">end</code>
@@ -4159,7 +4165,7 @@
         <li class="missed" data-hits="0" data-linenumber="53">
           
           
-          <code class="ruby">    expect(hash[&#39;someid&#39;]).to be nil</code>
+          <code class="ruby">    expect(hash[&#39;someid&#39;]).to be_nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
@@ -4392,10 +4398,10 @@
         <div class="source_table" id="a6579fa44a5ed3f1dd7aed3ab7f08b9a3b17c547">
   <div class="header">
     <h3>spec/project_spec.rb</h3>
-    <h4><span class="red">39.22 %</span> covered</h4>
+    <h4><span class="red">39.81 %</span> covered</h4>
     <div>
-      <b>102</b> relevant lines. 
-      <span class="green"><b>40</b> lines covered</span> and
+      <b>103</b> relevant lines. 
+      <span class="green"><b>41</b> lines covered</span> and
       <span class="red"><b>62</b> lines missed.</span>
     </div>
   </div>
@@ -4469,370 +4475,370 @@
           <code class="ruby">  let(:usr) { User.new }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  let(:pr2) do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    described_class.new(project_name: &#39;1&#39;, manager: &#39;2&#39;, num: &#39;3&#39;,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">                        members: &#39;4&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
           <code class="ruby">  context &#39;when project is validating its metadata, status, owner&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
           <code class="ruby">    it &#39;has its owner set correctly&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="missed" data-hits="0" data-linenumber="19">
           
           
           <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
           <code class="ruby">      proj.data_setter(&#39;manager&#39;, &#39;some name&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
+        <li class="missed" data-hits="0" data-linenumber="21">
           
           
           <code class="ruby">      expect(proj.data_getter(&#39;manager&#39;)).to eq &#39;some name&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
+        <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
           <code class="ruby">    it &#39;sets/returns valid status&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="21">
+        <li class="missed" data-hits="0" data-linenumber="25">
           
           
           <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="missed" data-hits="0" data-linenumber="26">
           
           
           <code class="ruby">      proj.parm_project_status(&#39;Proposed&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
+        <li class="missed" data-hits="0" data-linenumber="27">
           
           
           <code class="ruby">      expect(proj.parm_project_status).to eq &#39;Proposed&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="26">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="27">
+        <li class="covered" data-hits="1" data-linenumber="31">
           <span class="hits">1</span>
           
           <code class="ruby">  context &#39;when a member is being removed from the project&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
           <code class="ruby">    it &#39;True when an existing member gets removed from the project&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="29">
+        <li class="missed" data-hits="0" data-linenumber="33">
           
           
           <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="30">
+        <li class="missed" data-hits="0" data-linenumber="34">
           
           
           <code class="ruby">      e = &#39;jhonpeterson@mail.com&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="31">
+        <li class="missed" data-hits="0" data-linenumber="35">
           
           
           <code class="ruby">      User.new(name: &#39;Jhon&#39;, last_name: &#39;Peterson&#39;, email: e)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="32">
+        <li class="missed" data-hits="0" data-linenumber="36">
           
           
           <code class="ruby">      proj.add_member(e)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="33">
-          
-          
-          <code class="ruby">      expect(proj.remove_member(e)).to be true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="34">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;returns false when nonmember is being removed from the project&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="37">
           
           
+          <code class="ruby">      expect(proj.remove_member(e)).to be true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="40">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &#39;returns false when nonmember is being removed from the project&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="41">
+          
+          
           <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="38">
+        <li class="missed" data-hits="0" data-linenumber="42">
           
           
           <code class="ruby">      e = &#39;jhonpeterson@mail.com&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="missed" data-hits="0" data-linenumber="43">
           
           
           <code class="ruby">      User.new(name: &#39;Jhon&#39;, last_name: &#39;Peterson&#39;, email: e)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="40">
+        <li class="missed" data-hits="0" data-linenumber="44">
           
           
           <code class="ruby">      expect(proj.remove_member(e)).to be false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
+        <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
           <code class="ruby">  context &#39;when a new member is being added to the project&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="49">
           <span class="hits">1</span>
           
           <code class="ruby">    it &#39;returns true when a new member is added to the project&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
+        <li class="missed" data-hits="0" data-linenumber="50">
           
           
           <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
+        <li class="missed" data-hits="0" data-linenumber="51">
           
           
           <code class="ruby">      e = &#39;jhonpeterson@mail.com&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="48">
+        <li class="missed" data-hits="0" data-linenumber="52">
           
           
           <code class="ruby">      User.new(name: &#39;Jhon&#39;, last_name: &#39;Peterson&#39;, email: e)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="49">
-          
-          
-          <code class="ruby">      expect(proj.add_member(e)).to be true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="50">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="51">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="52">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;Return false when existing member is being added to the project&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="53">
           
           
-          <code class="ruby">      proj = described_class.new</code>
+          <code class="ruby">      expect(proj.add_member(e)).to be true</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
-          
-          
-          <code class="ruby">      e = &#39;jhonpeterson@mail.com&#39;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="55">
-          
-          
-          <code class="ruby">      User.new(name: &#39;Jhon&#39;, last_name: &#39;Peterson&#39;, email: e)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="56">
-          
-          
-          <code class="ruby">      proj.add_member(e)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="57">
-          
-          
-          <code class="ruby">      expect(proj.add_member(e)).to be false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="61">
+        <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;has its owner defined as the user after creation by default&#39; do</code>
+          <code class="ruby">    it &#39;Return false when existing member is being added to the project&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="62">
+        <li class="missed" data-hits="0" data-linenumber="57">
           
           
-          <code class="ruby">    proj = described_class.new</code>
+          <code class="ruby">      proj = described_class.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="63">
+        <li class="missed" data-hits="0" data-linenumber="58">
           
           
-          <code class="ruby">    expect(proj.data_getter(&#39;manager&#39;)).to eq Etc.getlogin</code>
+          <code class="ruby">      e = &#39;jhonpeterson@mail.com&#39;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="59">
+          
+          
+          <code class="ruby">      User.new(name: &#39;Jhon&#39;, last_name: &#39;Peterson&#39;, email: e)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="60">
+          
+          
+          <code class="ruby">      proj.add_member(e)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="61">
+          
+          
+          <code class="ruby">      expect(proj.add_member(e)).to be false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="64">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="65">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="66">
+        <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;deleted status change&#39; do</code>
+          <code class="ruby">  it &#39;has its owner defined as the user after creation by default&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
+          
+          <code class="ruby">    proj = described_class.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby">    pr.set_deleted_status</code>
+          <code class="ruby">    expect(proj.data_getter(&#39;manager&#39;)).to eq Etc.getlogin</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="68">
-          
-          
-          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Deleted&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="68">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="71">
+        <li class="covered" data-hits="1" data-linenumber="70">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;setting for deletion works&#39; do</code>
+          <code class="ruby">  it &#39;deleted status change&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="71">
+          
+          
+          <code class="ruby">    pr.set_deleted_status</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="72">
           
           
-          <code class="ruby">    expect(pr.set_deleted_status).to be true</code>
+          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Deleted&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
@@ -4850,13 +4856,13 @@
         <li class="covered" data-hits="1" data-linenumber="75">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;can add a new member&#39; do</code>
+          <code class="ruby">  it &#39;setting for deletion works&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="76">
           
           
-          <code class="ruby">    expect(pr.add_member(&#39;somemail&#39;)).to be true</code>
+          <code class="ruby">    expect(pr.set_deleted_status).to be true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
@@ -4874,79 +4880,79 @@
         <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;non-existing member removal&#39; do</code>
+          <code class="ruby">  it &#39;can add a new member&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="missed" data-hits="0" data-linenumber="80">
           
           
-          <code class="ruby">    # id is blank</code>
+          <code class="ruby">    expect(pr.add_member(&#39;somemail&#39;)).to be true</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
-          <code class="ruby">    expect(pr.remove_member(usr)).to be false</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="82">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;can remove a member&#39; do</code>
+          <code class="ruby">  it &#39;non-existing member removal&#39; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby">    # id is blank</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="85">
           
           
-          <code class="ruby">    User.new(email: &#39;somemail&#39;)</code>
+          <code class="ruby">    expect(pr.remove_member(usr)).to be false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="86">
-          
-          
-          <code class="ruby">    pr.add_member(&#39;somemail&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="87">
-          
-          
-          <code class="ruby">    expect(pr.remove_member(&#39;somemail&#39;)).to be true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="88">
+        <li class="never" data-hits="" data-linenumber="86">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;always return truthy status&#39; do</code>
+          <code class="ruby">  it &#39;can remove a member&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="89">
+          
+          
+          <code class="ruby">    User.new(email: &#39;somemail&#39;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="90">
+          
+          
+          <code class="ruby">    pr.add_member(&#39;somemail&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="91">
           
           
-          <code class="ruby">    expect(pr.parm_project_status).to be_truthy</code>
+          <code class="ruby">    expect(pr.remove_member(&#39;somemail&#39;)).to be true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="92">
@@ -4964,13 +4970,13 @@
         <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;cannot change to nondeterministic status&#39; do</code>
+          <code class="ruby">  it &#39;always return truthy status&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="95">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;n&#39;)).to be false</code>
+          <code class="ruby">    expect(pr.parm_project_status).to be_truthy</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
@@ -4988,43 +4994,43 @@
         <li class="covered" data-hits="1" data-linenumber="98">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;cancelled status is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;cannot change to nondeterministic status&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="99">
           
           
-          <code class="ruby">    pr.parm_project_status(&#39;Cancelled&#39;)</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;n&#39;)).to be false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="100">
-          
-          
-          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Cancelled&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="101">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="never" data-hits="" data-linenumber="101">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="103">
+        <li class="covered" data-hits="1" data-linenumber="102">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;status is return in addition to being set&#39; do</code>
+          <code class="ruby">  it &#39;cancelled status is set correctly&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="103">
+          
+          
+          <code class="ruby">    pr.parm_project_status(&#39;Cancelled&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="104">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;Cancelled&#39;)).to eq &#39;Cancelled&#39;</code>
+          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Cancelled&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="105">
@@ -5042,13 +5048,13 @@
         <li class="covered" data-hits="1" data-linenumber="107">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;in progress is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;status is return in addition to being set&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="108">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;In progress&#39;)).to eq &#39;In progress&#39;</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;Cancelled&#39;)).to eq &#39;Cancelled&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
@@ -5066,43 +5072,43 @@
         <li class="covered" data-hits="1" data-linenumber="111">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;cannot set deleted twice&#39; do</code>
+          <code class="ruby">  it &#39;in progress is set correctly&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="112">
           
           
-          <code class="ruby">    pr.set_deleted_status</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;In progress&#39;)).to eq &#39;In progress&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="113">
-          
-          
-          <code class="ruby">    expect(pr.set_deleted_status).to be false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="114">
+        <li class="never" data-hits="" data-linenumber="113">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="115">
+        <li class="never" data-hits="" data-linenumber="114">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
+        <li class="covered" data-hits="1" data-linenumber="115">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;manager is always a truthy object&#39; do</code>
+          <code class="ruby">  it &#39;cannot set deleted twice&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="116">
+          
+          
+          <code class="ruby">    pr.set_deleted_status</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="117">
           
           
-          <code class="ruby">    expect(pr.data_getter(&#39;manager&#39;)).to be_truthy</code>
+          <code class="ruby">    expect(pr.set_deleted_status).to be false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
@@ -5120,61 +5126,61 @@
         <li class="covered" data-hits="1" data-linenumber="120">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;member lists are not mixed up&#39; do</code>
+          <code class="ruby">  it &#39;manager is always a truthy object&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="121">
           
           
-          <code class="ruby">    User.new(email: &#39;othermail&#39;)</code>
+          <code class="ruby">    expect(pr.data_getter(&#39;manager&#39;)).to be_truthy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
-          
-          
-          <code class="ruby">    pr.add_member(&#39;othermail&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="123">
-          
-          
-          <code class="ruby">    pr.add_member(&#39;somemail&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="124">
-          
-          
-          <code class="ruby">    pr.remove_member(&#39;othermail&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="125">
-          
-          
-          <code class="ruby">    expect(pr.members_getter).to eq [&#39;somemail&#39;]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="never" data-hits="" data-linenumber="122">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="never" data-hits="" data-linenumber="123">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="128">
+        <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;cannot remove non-existing member&#39; do</code>
+          <code class="ruby">  it &#39;member lists are not mixed up&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="125">
+          
+          
+          <code class="ruby">    User.new(email: &#39;othermail&#39;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="126">
+          
+          
+          <code class="ruby">    pr.add_member(&#39;othermail&#39;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="127">
+          
+          
+          <code class="ruby">    pr.add_member(&#39;somemail&#39;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="128">
+          
+          
+          <code class="ruby">    pr.remove_member(&#39;othermail&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="129">
           
           
-          <code class="ruby">    expect(pr.remove_member(&#39;somemail&#39;)).to be false</code>
+          <code class="ruby">    expect(pr.members_getter).to eq [&#39;somemail&#39;]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="130">
@@ -5192,13 +5198,13 @@
         <li class="covered" data-hits="1" data-linenumber="132">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;initial status is proposed&#39; do</code>
+          <code class="ruby">  it &#39;cannot remove non-existing member&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="133">
           
           
-          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Proposed&#39;</code>
+          <code class="ruby">    expect(pr.remove_member(&#39;somemail&#39;)).to be false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="134">
@@ -5216,13 +5222,13 @@
         <li class="covered" data-hits="1" data-linenumber="136">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;default name is .. well, default project&#39; do</code>
+          <code class="ruby">  it &#39;initial status is proposed&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="137">
           
           
-          <code class="ruby">    expect(pr.data_getter(&#39;name&#39;)).to eq &#39;Default_project_&#39; + Date.today.to_s</code>
+          <code class="ruby">    expect(pr.parm_project_status).to eq &#39;Proposed&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="138">
@@ -5240,43 +5246,43 @@
         <li class="covered" data-hits="1" data-linenumber="140">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;name is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;default name is .. well, default project&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="141">
           
           
-          <code class="ruby">    pr.data_setter(&#39;name&#39;, &#39;newname&#39;)</code>
+          <code class="ruby">    expect(pr.data_getter(&#39;name&#39;)).to eq &#39;Default_project_&#39; + Date.today.to_s</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="142">
-          
-          
-          <code class="ruby">    expect(pr.data_getter(&#39;name&#39;)).to eq &#39;newname&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="143">
+        <li class="never" data-hits="" data-linenumber="142">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="144">
+        <li class="never" data-hits="" data-linenumber="143">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="145">
+        <li class="covered" data-hits="1" data-linenumber="144">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;postponed is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;name is set correctly&#39; do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="145">
+          
+          
+          <code class="ruby">    pr.data_setter(&#39;name&#39;, &#39;newname&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="146">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;Postponed&#39;)).to eq &#39;Postponed&#39;</code>
+          <code class="ruby">    expect(pr.data_getter(&#39;name&#39;)).to eq &#39;newname&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="147">
@@ -5294,13 +5300,13 @@
         <li class="covered" data-hits="1" data-linenumber="149">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;suspended is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;postponed is set correctly&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="150">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;Suspended&#39;)).to eq &#39;Suspended&#39;</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;Postponed&#39;)).to eq &#39;Postponed&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="151">
@@ -5318,13 +5324,13 @@
         <li class="covered" data-hits="1" data-linenumber="153">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;proposed is set correctly&#39; do</code>
+          <code class="ruby">  it &#39;suspended is set correctly&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="154">
           
           
-          <code class="ruby">    expect(pr.parm_project_status(&#39;Proposed&#39;)).to eq &#39;Proposed&#39;</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;Suspended&#39;)).to eq &#39;Suspended&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="155">
@@ -5342,106 +5348,118 @@
         <li class="covered" data-hits="1" data-linenumber="157">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &#39;project is converted to hash correctly&#39; do</code>
+          <code class="ruby">  it &#39;proposed is set correctly&#39; do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="158">
           
           
-          <code class="ruby">    pr = described_class.new(project_name: &#39;1&#39;, manager: &#39;2&#39;, num: &#39;3&#39;,</code>
+          <code class="ruby">    expect(pr.parm_project_status(&#39;Proposed&#39;)).to eq &#39;Proposed&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="159">
           
           
-          <code class="ruby">                             members: &#39;4&#39;)</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="160">
+        <li class="never" data-hits="" data-linenumber="160">
           
           
-          <code class="ruby">    pr.parm_project_status(&#39;Cancelled&#39;)</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="161">
+        <li class="covered" data-hits="1" data-linenumber="161">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    expect(pr.to_hash).to eq &#39;3&#39; =&gt; { &#39;name&#39; =&gt; &#39;1&#39;, &#39;manager&#39; =&gt; &#39;2&#39;,</code>
+          <code class="ruby">  it &#39;project is converted to hash correctly&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="162">
+        <li class="missed" data-hits="0" data-linenumber="162">
           
           
-          <code class="ruby">                                      &#39;members&#39; =&gt; &#39;4&#39;,</code>
+          <code class="ruby">    pr2.parm_project_status(&#39;Cancelled&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="163">
+        <li class="missed" data-hits="0" data-linenumber="163">
           
           
-          <code class="ruby">                                      &#39;status&#39; =&gt; &#39;Cancelled&#39; }</code>
+          <code class="ruby">    expect(pr2.to_hash).to eq &#39;3&#39; =&gt; { &#39;name&#39; =&gt; &#39;1&#39;, &#39;manager&#39; =&gt; &#39;2&#39;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="164">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">                                       &#39;members&#39; =&gt; &#39;4&#39;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="165">
           
           
+          <code class="ruby">                                       &#39;status&#39; =&gt; &#39;Cancelled&#39; }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="167">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="166">
+        <li class="covered" data-hits="1" data-linenumber="168">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;id is never nil&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="167">
+        <li class="missed" data-hits="0" data-linenumber="169">
           
           
           <code class="ruby">    expect(described_class.new.data_getter(&#39;id&#39;)).not_to be nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="168">
+        <li class="never" data-hits="" data-linenumber="170">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="169">
+        <li class="never" data-hits="" data-linenumber="171">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="170">
+        <li class="covered" data-hits="1" data-linenumber="172">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;id is always a number&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="171">
+        <li class="missed" data-hits="0" data-linenumber="173">
           
           
           <code class="ruby">    id = described_class.new.data_getter(&#39;id&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="172">
+        <li class="missed" data-hits="0" data-linenumber="174">
           
           
           <code class="ruby">    expect(id).to be_kind_of(Numeric)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="173">
+        <li class="never" data-hits="" data-linenumber="175">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="174">
+        <li class="never" data-hits="" data-linenumber="176">
           
           
           <code class="ruby">end</code>
@@ -6939,11 +6957,11 @@
         <div class="source_table" id="a1e6ebbd5d1a150811931d8525457f08f4ee624f">
   <div class="header">
     <h3>spec/work_group_manager_spec.rb</h3>
-    <h4><span class="red">44.12 %</span> covered</h4>
+    <h4><span class="red">42.86 %</span> covered</h4>
     <div>
-      <b>34</b> relevant lines. 
+      <b>35</b> relevant lines. 
       <span class="green"><b>15</b> lines covered</span> and
-      <span class="red"><b>19</b> lines missed.</span>
+      <span class="red"><b>20</b> lines missed.</span>
     </div>
   </div>
   
@@ -7175,118 +7193,124 @@
         <li class="missed" data-hits="0" data-linenumber="38">
           
           
-          <code class="ruby">    expect(&#39;453&#39;).to is_key_unique(file)</code>
+          <code class="ruby">    key = &#39;453&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="missed" data-hits="0" data-linenumber="39">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    expect(key).to is_key_unique(file)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;deleting an existing group&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="42">
+        <li class="missed" data-hits="0" data-linenumber="43">
           
           
           <code class="ruby">    expect(wgm.delete_group(&#39;453&#39;)).to be true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;last group is removed and file is empty&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
+        <li class="missed" data-hits="0" data-linenumber="47">
           
           
           <code class="ruby">    wgm.delete_group(&#39;453&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
+        <li class="missed" data-hits="0" data-linenumber="48">
           
           
           <code class="ruby">    hash = YAML.load_file(&#39;workgroups.yml&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="48">
+        <li class="missed" data-hits="0" data-linenumber="49">
           
           
           <code class="ruby">    expect(hash).to be false # empty file</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="49">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="never" data-hits="" data-linenumber="51">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="51">
+        <li class="covered" data-hits="1" data-linenumber="52">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;deleted group is actually removed&#39; do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="52">
+        <li class="missed" data-hits="0" data-linenumber="53">
           
           
           <code class="ruby">    wgm.save_group(WorkGroup.new(&#39;100&#39;, &#39;someid&#39;, &#39;name&#39;))</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
+        <li class="missed" data-hits="0" data-linenumber="54">
           
           
           <code class="ruby">    described_class.new.delete_group(&#39;453&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
+        <li class="missed" data-hits="0" data-linenumber="55">
           
           
           <code class="ruby">    hash = YAML.load_file(&#39;workgroups.yml&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="55">
+        <li class="missed" data-hits="0" data-linenumber="56">
           
           
           <code class="ruby">    expect(hash).not_to have_key(&#39;453&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="58">
           
           
           <code class="ruby">end</code>

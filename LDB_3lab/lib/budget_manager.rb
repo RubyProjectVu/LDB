@@ -24,8 +24,9 @@ class BudgetManager
   end
 
   def budgets_setter(projid, value)
-    return add_new(projid, value) if [nil].include?(@budgets[projid])
-    @budgets[projid]['budget'] = value
+    projhash = @budgets[projid]
+    return add_new(projid, value) if [nil].include?(projhash)
+    projhash['budget'] = value
     File.open('budgets.yml', 'w') do |fl|
       YAML.dump(@budgets, fl)
     end
@@ -36,6 +37,6 @@ class BudgetManager
     File.open('budgets.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
-    nil
+    @budgets
   end
 end
