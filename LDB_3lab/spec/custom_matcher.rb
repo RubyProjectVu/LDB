@@ -64,7 +64,7 @@ end
 # Files are identical (for state testing)
 RSpec::Matchers.define :is_identical do |actual|
   match do |expected|
-    
+
   end
 end
 
@@ -77,6 +77,17 @@ RSpec::Matchers.define :no_duplicate_budgets do |actual|
       count.push('+') if line.split(':').first.start_with?(expected)
     end
     return false if count.length > 1
+    return true
+  end
+end
+
+# Hash should exist and be identical to the one saved in a file
+# work_group_manager_spec.rb::32
+RSpec::Matchers.define :be_correctly_saved do |actual|
+  match do |expected|
+    return false unless file = YAML.load_file(actual)
+    return false unless file.key?(expected.keys[0])
+    return false unless expected.values[0] == file[expected.keys[0]]
     return true
   end
 end

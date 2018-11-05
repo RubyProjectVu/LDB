@@ -26,10 +26,10 @@ describe WorkGroupManager do
     expect(wgm.save_group(WorkGroup.new('100', 'someid', 'name'))).to be_truthy
   end
 
-  it 'new group is actually written to file' do
-    wgm.save_group(WorkGroup.new('100', 'someid', 'name'))
-    hash = YAML.load_file('workgroups.yml')
-    expect(hash['100']['project_id']).to eq 'someid'
+  it 'new group is correctly saved to a file' do
+    wg = WorkGroup.new('100', 'someid', 'name')
+    wgm.save_group(wg)
+    expect(wg.to_hash).to be_correctly_saved('workgroups.yml');
   end
 
   it 'rewriting existing group doesn\'t create duplicates' do
