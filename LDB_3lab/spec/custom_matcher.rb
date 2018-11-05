@@ -81,7 +81,7 @@ RSpec::Matchers.define :no_duplicate_budgets do |actual|
   end
 end
 
-# Hash should exist and be identical to the one saved in a file
+# Hash should exist in a file and be identical to object's hash
 # work_group_manager_spec.rb::32
 RSpec::Matchers.define :be_correctly_saved do |actual|
   match do |expected|
