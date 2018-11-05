@@ -49,7 +49,7 @@ describe BudgetManager do
     expect(described_class.new.check_negative).to be_empty
   end
 
-  it '' do
+  it 'project budget is set accordingly' do
     bm.budgets_setter('someid', 200)
     expect(described_class.new.budgets_getter('someid')).to eq 200
   end
@@ -68,5 +68,28 @@ describe BudgetManager do
     bm.budgets_setter('newproj', -500)
     key = 'newproj'
     expect(key).not_to project_budget_positive
+  end
+
+  it 'returns @budgets as YAML hash' do
+    expect(bm.add_new('newproj', '1')).to be_instance_of(Hash)
+  end
+
+  context 'budgets.yml state testing' do
+    before do
+      described_class.new.budgets_setter('someid', 101)
+      described_class.new.budgets_setter('tst', 101)
+    end
+
+    it 'checks saving' do
+      current = 'budgets.yml'
+      state = 'state-budgets.yml'
+      expect(current).to is_yml_identical(state)
+    end
+
+    it 'checks loading' do
+      expect(YAML.load_file('budgets.yml'))
+        .to is_data_identical('someid' => { 'budget' => 101 },
+                              'tst' => { 'budget' => 101 })
+    end
   end
 end

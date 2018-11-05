@@ -44,11 +44,13 @@ NotesManager: 100
 
 Search: 100
 
-139 ex.
+155 ex.
 
-7 custom matchers
+9 custom matchers
 
-reek klaidos: 0. rubocop klaidos: 2 (abi del custom matcherio, kuri dar naudosiu)
+25 standard matchers listed on ```LDB_3lab```, as ```expects```
+
+reek klaidos: 0. rubocop klaidos: 0
 
 # Ruby stilius
 Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.

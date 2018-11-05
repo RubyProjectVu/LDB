@@ -44,6 +44,13 @@ describe Search do
       .to start_with [%w[workgroups\ 453\ contain:\  jhon@mail.com]]
   end
 
+  it 'result is delivered as an array of messages plus actual strings' do
+    expect(described_class.new.search_by_criteria(%w[WorkGroups
+                                                     Budgets Projects
+                                                     Users], 'jhon@mail.com'))
+      .to all be_an(Array).or be_an(String)
+  end
+
   it 'sets correctly on instvar' do
     expect(src.parm_instancevariable(false)).to be false
   end
@@ -51,6 +58,11 @@ describe Search do
   it '' do
     expect(src.grab_subkeys('id' => { 1 => '', 2 => '' }))
       .to eq ['id', { 1 => '', 2 => '' }]
+  end
+
+  it 'search failure adds an ampty string anyway' do
+    expect(described_class.new.search_by_criteria(%w[Users], 'noval'))
+      .to end_with ['']
   end
 
   it 'detects false state and does nothing' do

@@ -87,4 +87,27 @@ describe ProjectManager do
   it 'lists ids and manes of projects' do
     expect(pm.list_projects).to match_array %w[someid:projektas]
   end
+
+  context 'projects.yml state testing' do
+    before do
+      proj = Project.new(project_name: 'tst', manager: 'tst',
+                         num: 'tst', members: %w[tst tst])
+      proj.parm_project_status('Suspended')
+      described_class.new.save_project(proj)
+      described_class.new.delete_project(Project.new(num: 'someid'))
+    end
+
+    it 'checks saving' do
+      current = 'projects.yml'
+      state = 'state-projects.yml'
+      expect(current).to is_yml_identical(state)
+    end
+
+    it 'checks loading' do
+      hash = { 'tst' => { 'name' => 'tst', 'manager' => 'tst',
+                          'members' => %w[tst tst],
+                          'status' => 'Suspended' } }
+      expect(YAML.load_file('projects.yml')).to is_data_identical(hash)
+    end
+  end
 end

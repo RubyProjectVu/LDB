@@ -19,8 +19,11 @@
 19) .start_with()	::32 search_spec
 20) .be false		::33 notes_manager_spec
 21) .be true		::37 project_spec
+22) .all		::51 search_spec
+23) .end_with()		::65 search_spec
+24) .be_instance_of 	::80 budget_manager_spec
+25) .be_between		::73 work_group_manager_spec
 
-Dar bandysiu ideti: be_between, end_with, have_at_least(n).items, not_to be_instance_of
 
 
 

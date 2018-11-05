@@ -78,4 +78,34 @@ describe NotesManager do
   it do
     expect(YAML.load_file('notes.yml')['badtext']['text']).to has_bad_words
   end
+
+  context 'notes.yml state testing' do
+    before do
+      described_class.new.delete_note('badtext')
+      described_class.new.save_note('tst', 'tst', 'tst')
+    end
+
+    it 'checks saving' do
+      current = 'notes.yml'
+      state = 'state-notes.yml'
+      expect(current).to is_yml_identical(state)
+    end
+
+    it 'checks loading' do
+      hash = { 'wow' => { 'author' => 'user', 'text' => 'example' },
+               'tst' => { 'author' => 'tst', 'text' => 'tst' } }
+      expect(YAML.load_file('notes.yml')).to is_data_identical(hash)
+    end
+  end
+
+  it 'covers yml identical false case' do
+    current = 'notes.yml'
+    state = 'users.yml'
+    expect(current).not_to is_yml_identical(state)
+  end
+
+  it 'covers data identical false case' do
+    hash = { 'wow' => 'wow' }
+    expect(YAML.load_file('notes.yml')).not_to is_data_identical(hash)
+  end
 end

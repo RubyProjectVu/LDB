@@ -61,10 +61,25 @@ RSpec::Matchers.define :is_key_unique do |actual|
   end
 end
 
-# Files are identical (for state testing)
-RSpec::Matchers.define :is_identical do |actual|
+# Files are identical (for state testing) when SAVING
+# work_group_manager_spec::88
+RSpec::Matchers.define :is_yml_identical do |actual|
   match do |expected|
+    hash1 = YAML.load_file(actual)
+    hash2 = YAML.load_file(expected)
+    return true if hash1.eql?(hash2)
+    false
+  end
+end
 
+# Data is identical (for state testing) when LOADING
+# work_group_manager_spec::92
+RSpec::Matchers.define :is_data_identical do |actual|
+  match do |expected|
+    expected.each do |key, value|
+      return false unless actual.fetch(key).eql?(value)
+    end
+    true
   end
 end
 
@@ -85,7 +100,7 @@ end
 # work_group_manager_spec.rb::32
 RSpec::Matchers.define :be_correctly_saved do |actual|
   match do |expected|
-    return false unless file = YAML.load_file(actual)
+    return false unless (file = YAML.load_file(actual))
     return false unless file.key?(expected.keys[0])
     return false unless expected.values[0] == file[expected.keys[0]]
     return true
