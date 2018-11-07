@@ -166,7 +166,7 @@ describe Project do
   end
 
   it 'id is never nil' do
-    expect(described_class.new.data_getter('id')).not_to be nil
+    expect(described_class.new.data_getter('id')).not_to be_nil
   end
 
   it 'id is always a number' do

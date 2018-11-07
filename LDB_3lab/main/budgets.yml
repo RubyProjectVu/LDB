@@ -1,2 +1,7 @@
+---
 someid:
- budget: 35000
+  budget: 34990.0
+demo:
+  budget: -11.0
+for:
+  budget: 10.1

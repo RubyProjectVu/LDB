@@ -5,6 +5,7 @@ SimpleCov.start
 
 require_relative '../lib/project_manager'
 require_relative '../lib/project'
+require_relative 'custom_matcher'
 
 describe ProjectManager do
   let(:pm) { described_class.new }
@@ -23,9 +24,11 @@ describe ProjectManager do
     expect(pm.delete_project(Project.new(num: 'someid'))).to be true
   end
 
-  it 'file is clean of dashes after deletion' do
+  it 'file is clean of dashes and brackets after deletion' do
     pm.delete_project(Project.new(num: 'someid'))
-    expect(File.read('projects.yml').match?(/---/)).to be false
+    # expect(File.read('projects.yml').match?(/---/)).to be false
+    file = 'projects.yml'
+    expect(file).not_to has_yml_nils
   end
 
   it 'creating an existing project id is a fail' do
@@ -50,7 +53,7 @@ describe ProjectManager do
   it 'project is actually removed' do
     pm.delete_project(Project.new(num: 'someid'))
     hash = YAML.load_file('projects.yml')
-    expect(hash['someid']).to be_nil
+    expect(hash).to be false
   end
 
   it 'false on non-existing id' do

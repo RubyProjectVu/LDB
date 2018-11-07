@@ -14,14 +14,14 @@ class ProjectManager
   def delete_project(project)
     @projects.delete(project.data_getter('id'))
     File.open('projects.yml', 'w') do |fl|
-      fl.write @projects.to_yaml.sub('---', '')
+      fl.write @projects.to_yaml.sub('---', '').sub('{}', '')
     end
     true
   end
 
   def save_project(project)
     pro = project
-    return false if @projects.key?(project.data_getter('id'))
+    return false unless [nil].include?(@projects[project.data_getter('id')])
     File.open('projects.yml', 'a') do |fl|
       fl.write pro.to_hash.to_yaml.sub('---', '')
     end

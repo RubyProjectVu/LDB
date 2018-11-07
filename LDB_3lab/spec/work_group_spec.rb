@@ -188,4 +188,39 @@ describe WorkGroup do
     wg2.data_setter('budget', 10)
     expect(BudgetManager.new.budgets_getter('someid')).to be == 34_980
   end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.members_getter(%w[1 2])
+    expect(wg.members_getter(%w[1 2])).to eq %w[1 2]
+  end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.members_getter(%w[1 2])
+    expect(wg.members_getter).to eq %w[1 2]
+  end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.tasks_getter(%w[1 2])
+    expect(wg.tasks_getter(%w[1 2])).to eq %w[1 2]
+  end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.tasks_getter(%w[1 2])
+    expect(wg.tasks_getter).to eq %w[1 2]
+  end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    expect(wg.budget_construct_only(21)).to eq 21
+  end
+
+  it do
+    wg = described_class.new('10', 'someid', 'name')
+    wg.budget_construct_only(21)
+    expect(wg.data_getter('budget')).to eq 21
+  end
 end

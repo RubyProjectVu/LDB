@@ -44,7 +44,7 @@ NotesManager: 100
 
 Search: 100
 
-155 ex.
+169 ex.
 
 9 custom matchers
 
@@ -53,7 +53,7 @@ Search: 100
 reek klaidos: 0. rubocop klaidos: 0
 
 # Ruby stilius
-Leisti reek kaip root ```sudo reek```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
+Leisti reek kaip root ```sudo reek``` arba ```reek -c [configuration file]```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
 rubocop leidžiamas įprastai.
 
 # Esantis funkcionalumas

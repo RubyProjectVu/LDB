@@ -16,9 +16,15 @@ describe WorkGroupManager do
 
   after do
     # Butina - kitaip mutant sumauna workgroups.yml faila
-    hash = { '453' => { 'project_id' => '3324', 'group_name' => 'Test',
-                        'members' => ['jhon@mail.com'], 'tasks' => 'sleep' } }
+    hash = { '453' => { 'project_id' => 'someid', 'group_name' => 'Test',
+                        'members' => ['jhon@mail.com'], 'tasks' => 'sleep',
+                        'budget' => 0 } }
     File.open('workgroups.yml', 'w') do |fl|
+      fl.write hash.to_yaml.gsub('---', '')
+    end
+
+    hash = { 'someid' => { 'budget' => 35_000 } }
+    File.open('budgets.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')
     end
   end
@@ -66,7 +72,7 @@ describe WorkGroupManager do
 
     it 'bunches up some workgroups together on same project' do
       expect(BudgetManager.new.budgets_getter('someid'))
-        .to be_between(34_000, 36_000)
+        .to be_between(10_000, 40_000)
     end
   end
 
@@ -91,6 +97,68 @@ describe WorkGroupManager do
                           'members' => ['memb@r.tst'], 'tasks' => ['tst'],
                           'budget' => 101 } }
       expect(YAML.load_file('workgroups.yml')).to is_data_identical(hash)
+    end
+  end
+
+  context 'covering group loading from hash' do
+    let :checkval do
+      gr = described_class.new.load_group('453')
+
+      checkval = gr.data_getter('id').eql?('453') &&
+                 gr.data_getter('project_id').eql?('someid') &&
+                 gr.data_getter('group_name').eql?('Test') &&
+                 gr.members_getter.eql?(['jhon@mail.com']) &&
+                 gr.tasks_getter.eql?('sleep') &&
+                 gr.data_getter('budget').eql?(0)
+      checkval
+    end
+
+    let :samplegroup do
+      described_class.new.l_bdg(WorkGroup.new('a', 'a', 'a'), '453')
+                     .data_getter('budget')
+    end
+
+    it do
+      expect(checkval).to be true
+    end
+
+    it do
+      expect(described_class.new.load_group('nodi')).to be false
+    end
+
+    it do
+      expect(described_class.new.list_groups).to eq ['453:Test']
+    end
+
+    it do
+      expect(described_class.new.l_mem(WorkGroup.new('a', 'a', 'a'),
+                                       '453').data_getter('budget'))
+        .to eq 0
+    end
+
+    it do
+      expect(described_class.new.l_tsk(WorkGroup.new('a', 'a', 'a'),
+                                       '453').tasks_getter)
+        .to eq 'sleep'
+    end
+
+    it do
+      saved = described_class.new.load_group('453')
+      saved.data_setter('budget', 50)
+      described_class.new.save_group(saved)
+      expect(samplegroup).to eq 50
+    end
+
+    it do
+      expect(described_class.new.l_mem(WorkGroup.new('a', 'a', 'a'),
+                                       '453').members_getter)
+        .to eq ['jhon@mail.com']
+    end
+
+    it do
+      expect(described_class.new.l_bdg(WorkGroup.new('a', 'a', 'a'),
+                                       '453').data_getter('budget'))
+        .to eq 0
     end
   end
 end

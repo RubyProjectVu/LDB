@@ -20,6 +20,11 @@ class WorkGroup
     @data[key.to_sym] = val
   end
 
+  # Is used only when a group is loaded from hash
+  def budget_construct_only(val)
+    @data[:budget] = val
+  end
+
   def project_budget_setter(amount)
     projid = @data.fetch(:project_id)
     budget = @data.fetch(:budget)
@@ -67,11 +72,11 @@ class WorkGroup
     true
   end
 
-  def members_getter
-    @members
+  def members_getter(val = @members)
+    @members = val
   end
 
-  def tasks_getter
-    @tasks
+  def tasks_getter(val = @tasks)
+    @tasks = val
   end
 end

@@ -1,7 +1,7 @@
 
 '453':
-  project_id: '3324'
+  project_id: someid
   group_name: Test
-  members:
-  - jhon@gmail.com
-  tasks: sleep
+  members: []
+  tasks: []
+  budget: 10.0

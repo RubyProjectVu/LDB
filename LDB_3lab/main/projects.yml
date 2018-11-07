@@ -1,9 +1,14 @@
 
+demo:
+  name: x
+  manager: x
+  members: x
+  status: Suspended
 someid:
   name: projektas
   manager: john
   members:
-  - johh
+  - john
   - steve
   - harry
-  status: Proposed
+  status: Suspended
