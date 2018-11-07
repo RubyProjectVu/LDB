@@ -1,0 +1,2 @@
+class NotesManager < ApplicationRecord
+end

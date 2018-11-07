@@ -2,20 +2,20 @@
 
 require 'date'
 require 'etc'
-require 'application_record'
+require './application_record'
 srand 0
 
 # rubocop comment?
 class Project < ApplicationRecord
-  def initialize(
-    project_name: 'Default_project_' + Date.today.to_s,
-    manager: Etc.getlogin, num: Random.rand, members: []
-  )
-    @name_man_id = { name: project_name,
-                     manager: manager, id: num }
-    @members = members
-    @project_status = 'Proposed'
-  end
+  #def initialize(
+   # project_name: 'Default_project_' + Date.today.to_s,
+    #manager: Etc.getlogin, num: Random.rand, members: []
+  #)
+   # @name_man_id = { name: project_name,
+    #                 manager: manager, id: num }
+    #@members = members
+    #@project_status = 'Proposed'
+  #end
 
   def data_getter(key)
     @name_man_id.fetch(key.to_sym)

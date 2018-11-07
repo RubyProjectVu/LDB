@@ -1,0 +1,2 @@
+class WorkGroupManager < ApplicationRecord
+end

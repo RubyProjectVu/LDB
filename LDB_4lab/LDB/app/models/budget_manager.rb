@@ -1,0 +1,2 @@
+class BudgetManager < ApplicationRecord
+end
