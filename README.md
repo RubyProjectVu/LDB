@@ -24,7 +24,7 @@ Komanda: Diamond
 - Leisti mutant kaip ```LDB_3lab```; ```./run.sh```. Atsiklonavus saka is github isitikinti, kad run.sh turi leidima buti paleistam kaip executable file.
 - [x] LDB_3lab padengimas: 100%
 - [x] 169 ex.
-- [] 9/10 custom matchers
+- [ ] 9/10 custom matchers
 - [x] 25 standard matchers listed on ```LDB_3lab```, as ```expects```
 - [x] reek klaidos: 0.
 - [x] rubocop klaidos: 0
