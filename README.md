@@ -8,15 +8,15 @@ Galimybė keistis tekstine, vaizdine informacija tarp vartotojų.
 
 Komanda: Diamond
 
-Elgė Klipčiūtė
+-Eglė Klipčiūtė
+-Tadas Glumbakas
+-Paulius Staišiūnas
+-Aivaras Atkočaitis
+-Ernestas Kodis
 
-Tadas Glumbakas
+# (For devs) Kur vyksta 4lab veiksmas?
 
-Paulius Staišiūnas
-
-Aivaras Atkočaitis
-
-Ernestas Kodis
+```LDB_4lab/LDB``` folderis. ```LDB.rb``` sukuria schema su lentelemis - cia yra nurodomi ir atributai, plius reikalingos klases, paveldincios is ApplicationRecord. ```main.rb``` kuria objektus (kurie per schema imetami ir i lenteles, kurios kol kas laikomos RAMe).
 
 # Testai
 
@@ -25,24 +25,6 @@ Leisti rspec kaip ```LDB_3lab/spec```; ```rspec *spec.rb```
 Leisti mutant kaip ```LDB_3lab```; ```./run.sh```. Atsiklonavus saka is github isitikinti, kad run.sh turi leidima buti paleistam kaip executable file.
 
 LDB_3lab padengimas: 100%
-
-Project: 100
-
-ProjectManager: 100
-
-User: 100
-
-UserManager: 100
-
-WorkGroup: 100
-
-WorkGroupManager: 100
-
-BudgetManager: 100
-
-NotesManager: 100
-
-Search: 100
 
 169 ex.
 
@@ -58,4 +40,4 @@ rubocop leidžiamas įprastai.
 
 # Esantis funkcionalumas
 
-...bus papildyta 18-11-05...
+...bus papildyta 18-11-09...
