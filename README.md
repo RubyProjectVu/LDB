@@ -8,11 +8,11 @@ Galimybė keistis tekstine, vaizdine informacija tarp vartotojų.
 
 Komanda: Diamond
 
--Eglė Klipčiūtė
--Tadas Glumbakas
--Paulius Staišiūnas
--Aivaras Atkočaitis
--Ernestas Kodis
+- Eglė Klipčiūtė
+- Tadas Glumbakas
+- Paulius Staišiūnas
+- Aivaras Atkočaitis
+- Ernestas Kodis
 
 # (For devs) Kur vyksta 4lab veiksmas?
 
