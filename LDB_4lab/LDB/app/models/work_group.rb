@@ -1,2 +1,0 @@
-class WorkGroup < ApplicationRecord
-end

@@ -16,7 +16,7 @@ Komanda: Diamond
 
 #### (For devs) Kur vyksta 4lab veiksmas?
 
-```LDB_4lab/LDB``` folderis. ```LDB.rb``` sukuria schema su lentelemis - cia yra nurodomi ir atributai, plius reikalingos klases, paveldincios is ApplicationRecord. ```main.rb``` kuria objektus (kurie per schema imetami ir i lenteles, kurios kol kas laikomos RAMe).
+```LDB_4lab/DEMO``` folderis. ```LDB.rb``` sukuria schema su lentelemis - cia yra nurodomi ir atributai, plius reikalingos klases, paveldincios is ApplicationRecord. ```main.rb``` kuria objektus (kurie per schema imetami ir i lenteles, kurios kol kas laikomos dbfile (tiek ant ```app/models/```, tiek ant ```spec/models```)). ```DEMO``` folderyje yra failas ```application_record.rb``` tik del to, kad iseitu patogiai leisti ```bundle exec rspec``` is ```DEMO``` folderio, nes pacios klases relative requirina si faila dar ir is ```app/model``` - is ten leidziam, nes ten yra dbfile.
 
 ### Testai
 
