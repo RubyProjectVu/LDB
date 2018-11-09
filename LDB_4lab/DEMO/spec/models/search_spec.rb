@@ -3,7 +3,7 @@
 #require 'simplecov'
 #SimpleCov.start
 
-#require_relative '../lib/search'
+require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe Search do

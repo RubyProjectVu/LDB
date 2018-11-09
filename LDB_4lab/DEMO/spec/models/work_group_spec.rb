@@ -5,7 +5,7 @@
 
 #require_relative '../lib/work_group'
 #require_relative '../lib/user'
-#require_relative '../lib/project'
+require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe WorkGroup do

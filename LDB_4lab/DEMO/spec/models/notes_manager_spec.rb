@@ -4,7 +4,7 @@
 #SimpleCov.start
 
 #require_relative '../lib/notes_manager'
-#require_relative 'custom_matcher'
+require_relative 'custom_matcher'
 #require_relative '../lib/project'
 require_relative '../rails_helper'
 

@@ -5,7 +5,7 @@
 
 #require_relative '../lib/user'
 #require_relative '../lib/user_manager'
-#require_relative 'custom_matcher'
+require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe User do

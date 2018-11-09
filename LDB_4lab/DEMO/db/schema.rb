@@ -10,6 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
 
+ActiveRecord::Schema.define(version: 0) do
+  if !['projects', 'users'].all? { |i| ActiveRecord::Base.connection.tables.include? i }
+    create_table :projects do |t|
+      t.string :name
+    end
+    create_table :users do |t|
+      t.string :name
+    end
+  end
 end

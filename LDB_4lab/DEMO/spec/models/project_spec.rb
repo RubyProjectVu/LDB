@@ -4,7 +4,7 @@
 #SimpleCov.start
 
 # require 'app/models/project'
-# require 'app/models/user'
+require_relative 'custom_matcher'
 # require_relative '../application_record'
 require_relative '../rails_helper'
 

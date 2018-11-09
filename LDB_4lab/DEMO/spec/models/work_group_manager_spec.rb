@@ -5,7 +5,7 @@
 
 #require_relative '../lib/work_group_manager'
 #require_relative '../lib/work_group'
-#require_relative 'custom_matcher'
+require_relative 'custom_matcher'
 require_relative '../rails_helper'
 require 'date'
 srand

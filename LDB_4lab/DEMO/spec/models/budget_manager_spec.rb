@@ -5,7 +5,7 @@
 
 #require_relative '../lib/budget_manager'
 #require_relative '../lib/project'
-#require_relative 'custom_matcher'
+require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe BudgetManager do
