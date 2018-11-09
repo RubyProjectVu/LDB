@@ -16,7 +16,7 @@ Komanda: Diamond
 
 #### (For devs) Kur vyksta 4lab veiksmas?
 
-- ```LDB_4lab/DEMO``` folderis. ```LDB.rb``` sukuria schema su lentelemis - cia yra nurodomi ir atributai, plius reikalingos klases, paveldincios is ApplicationRecord. 
+- ```LDB_4lab/DEMO``` folderis. Cia visa rails-like struktura jau padaryta.
 - ```main.rb``` pasibandymui, kaip veikia. main kuria objektus (kurie per schema imetami ir i lenteles, kurios kol kas laikomos dbfile (tiek ant ```app/models/```, tiek ant ```spec/models```)). 
 - ```DEMO``` folderyje yra failas ```application_record.rb``` tik del to, kad iseitu patogiai leisti ```bundle exec rspec``` is ```DEMO``` folderio, nes pacios klases relative requirina si faila dar ir is ```app/model``` - is ten leidziam, nes ten yra dbfile.
 - Visas kodas rasomas ```app/models```. Ten esantis dbfile skirtas tik pasizaidimui ir testuose nedalyvauja.
@@ -37,6 +37,8 @@ Komanda: Diamond
 ### Ruby stilius
 Leisti reek kaip root ```sudo reek``` arba ```reek -c [configuration file]```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
 rubocop leidžiamas įprastai.
+
+##### Dar netikrinta per LDB_4lab
 
 ### Esantis funkcionalumas
 
