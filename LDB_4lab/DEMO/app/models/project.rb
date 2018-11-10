@@ -10,71 +10,62 @@ srand 0
 class Project < ApplicationRecord
   has_many :project_members
 
-  def get_membs
-puts 'Id as:'
-puts self.id
-    puts ProjectMember.find_by projid: self.id
+  def members_getter
+    ProjectMember.find_by projid: self.id
   end
-  #def initialize(
-   # project_name: 'Default_project_' + Date.today.to_s,
-    #manager: Etc.getlogin, num: Random.rand, members: []
-  #)
-   # @name_man_id = { name: project_name,
-    #                 manager: manager, id: num }
-    #@members = members
-    #@project_status = 'Proposed'
-  #end
 
   def data_getter(key)
-    @name_man_id.fetch(key.to_sym)
+    case key
+    when 'name'
+      return Project.find_by(id: self.id).name
+    when 'manager'
+      return Project.find_by(id: self.id).manager
+    end
   end
 
   def data_setter(key, val)
-    @name_man_id[key.to_sym] = val
-  end
-
-  def to_hash
-    { data_getter('id') => { 'name' => data_getter('name'),
-                             'manager' => data_getter('manager'),
-                             'members' => members_getter,
-                             'status' => parm_project_status } }
+    case key
+    when 'name'
+      proj = Project.find_by(id: self.id)
+      proj.name = val
+    when 'manager'
+      proj = Project.find_by(id: self.id)
+      proj.manager = val
+    end
+    proj.save
   end
 
   def parm_project_status(status = '')
     if !status.empty?
-      return @project_status = status if ['Proposed', 'Suspended', 'Postponed',
-                                          'Cancelled',
-                                          'In progress'].include? status
-
-      false
+      if ['Proposed', 'Suspended', 'Postponed',
+          'Cancelled', 'In progress'].include? status
+        proj = Project.find_by(id: self.id)
+        proj.status = status
+        proj.save
+      end
     else
-      @project_status
+      Project.find_by(id: self.id).status
     end
   end
 
   def add_member(mail)
-    return false if @members.include?(mail)
-
-    @members.push(mail)
+    ProjectMember.create(projid: self.id, member: mail)
     true
   end
 
   def remove_member(mail)
-    return false unless @members.include?(mail)
-
-    @members.delete(mail)
+    pm = ProjectMember.find_by(projid: self.id, member: mail)
+    pm.destroy
     true
   end
 
-  def members_getter
-    @members
-  end
-
   def set_deleted_status
-    if @project_status.eql?('Deleted')
+    if Project.find_by(id: self.id).status.eql?('Deleted')
       false
     else
-      @project_status = 'Deleted'
+      proj = Project.find_by(id: self.id)
+      proj.status = 'Deleted'
+      proj.save
       true
     end
   end

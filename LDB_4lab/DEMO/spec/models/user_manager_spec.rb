@@ -129,23 +129,23 @@ describe UserManager do
                                                         'pwd' => '123' }
   end
 
-  context 'users.yml state testing' do
-    before do
-      user = User.new(name: 'tst', last_name: 'tst', email: 'tst')
-      user.password_set('tst')
-      described_class.new.register(user)
-      described_class.new.delete_user(User.new(email: 't@a.com'))
-    end
+  #context 'users.yml state testing' do
+   # before do
+    #  user = User.new(name: 'tst', last_name: 'tst', email: 'tst')
+     # user.password_set('tst')
+      #described_class.new.register(user)
+      #described_class.new.delete_user(User.new(email: 't@a.com'))
+    #end
 
-    it 'checks saving' do
-      current = 'users.yml'
-      state = 'state-users.yml'
-      expect(current).to is_yml_identical(state)
-    end
+    #it 'checks saving' do
+     # current = 'users.yml'
+      #state = 'state-users.yml'
+      #expect(current).to is_yml_identical(state)
+    #end
 
-    it 'checks loading' do
-      hash = { 'tst' => { 'name' => 'tst', 'lname' => 'tst', 'pwd' => 'tst' } }
-      expect(YAML.load_file('users.yml')).to is_data_identical(hash)
-    end
-  end
+    #it 'checks loading' do
+     # hash = { 'tst' => { 'name' => 'tst', 'lname' => 'tst', 'pwd' => 'tst' } }
+      #expect(YAML.load_file('users.yml')).to is_data_identical(hash)
+    #end
+  #end
 end

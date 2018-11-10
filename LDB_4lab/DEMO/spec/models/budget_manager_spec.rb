@@ -75,22 +75,22 @@ describe BudgetManager do
     expect(bm.add_new('newproj', '1')).to be_instance_of(Hash)
   end
 
-  context 'budgets.yml state testing' do
-    before do
-      described_class.new.budgets_setter('someid', 101)
-      described_class.new.budgets_setter('tst', 101)
-    end
+  #context 'budgets.yml state testing' do
+   # before do
+    #  described_class.new.budgets_setter('someid', 101)
+     # described_class.new.budgets_setter('tst', 101)
+    #end
 
-    it 'checks saving' do
-      current = 'budgets.yml'
-      state = 'state-budgets.yml'
-      expect(current).to is_yml_identical(state)
-    end
+    #it 'checks saving' do
+     # current = 'budgets.yml'
+      #state = 'state-budgets.yml'
+      #expect(current).to is_yml_identical(state)
+    #end
 
-    it 'checks loading' do
-      expect(YAML.load_file('budgets.yml'))
-        .to is_data_identical('someid' => { 'budget' => 101 },
-                              'tst' => { 'budget' => 101 })
-    end
-  end
+    #it 'checks loading' do
+     # expect(YAML.load_file('budgets.yml'))
+      #  .to is_data_identical('someid' => { 'budget' => 101 },
+       #                       'tst' => { 'budget' => 101 })
+    #end
+  #end
 end

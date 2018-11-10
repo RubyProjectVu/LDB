@@ -9,11 +9,11 @@ require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe Project, :type => :model do
-  let(:pr) { described_class.new }
+  let(:pr) { double(described_class, :set_deleted_status => true) }
   let(:usr) { User.new }
   let(:pr2) do
-    described_class.new(project_name: '1', manager: '2', num: '3',
-                        members: '4')
+    #described_class.new(project_name: '1', manager: '2', num: '3',
+     #                   members: '4')
   end
 
   context 'when project is validating its metadata, status, owner' do
@@ -34,7 +34,7 @@ describe Project, :type => :model do
     it 'True when an existing member gets removed from the project' do
       proj = described_class.new
       e = 'jhonpeterson@mail.com'
-      User.new(name: 'Jhon', last_name: 'Peterson', email: e)
+      # User.new(name: 'Jhon', last_name: 'Peterson', email: e)
       proj.add_member(e)
       expect(proj.remove_member(e)).to be true
     end

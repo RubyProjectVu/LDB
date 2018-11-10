@@ -15,7 +15,7 @@ puts ProjectMember.all
 
 puts 'Project has members:'
 proj = Project.find_by id: id
-proj.get_membs
+proj.members_getter
 puts (User.all).size
 puts User.first.name
 

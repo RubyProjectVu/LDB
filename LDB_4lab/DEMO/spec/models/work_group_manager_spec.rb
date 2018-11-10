@@ -77,29 +77,29 @@ describe WorkGroupManager do
     end
   end
 
-  context 'workgroups.yml state testing' do
-    before do
-      gr = WorkGroup.new('tst', 'someid', 'tst')
-      gr.data_setter('budget', 101)
-      gr.add_group_member(User.new(email: 'memb@r.tst'))
-      gr.add_group_task('tst')
-      described_class.new.save_group(gr)
-      described_class.new.delete_group('453')
-    end
+  # context 'workgroups.yml state testing' do
+    #before do
+     # gr = WorkGroup.new('tst', 'someid', 'tst')
+      #gr.data_setter('budget', 101)
+      #gr.add_group_member(User.new(email: 'memb@r.tst'))
+      #gr.add_group_task('tst')
+      #described_class.new.save_group(gr)
+      #described_class.new.delete_group('453')
+    #end
 
-    it 'checks saving' do
-      current = 'workgroups.yml'
-      state = 'state-workgroups.yml'
-      expect(current).to is_yml_identical(state)
-    end
+    #it 'checks saving' do
+     # current = 'workgroups.yml'
+      #state = 'state-workgroups.yml'
+      #expect(current).to is_yml_identical(state)
+    #end
 
-    it 'checks loading' do
-      hash = { 'tst' => { 'project_id' => 'someid', 'group_name' => 'tst',
-                          'members' => ['memb@r.tst'], 'tasks' => ['tst'],
-                          'budget' => 101 } }
-      expect(YAML.load_file('workgroups.yml')).to is_data_identical(hash)
-    end
-  end
+    #it 'checks loading' do
+     # hash = { 'tst' => { 'project_id' => 'someid', 'group_name' => 'tst',
+      #                    'members' => ['memb@r.tst'], 'tasks' => ['tst'],
+       #                   'budget' => 101 } }
+      #expect(YAML.load_file('workgroups.yml')).to is_data_identical(hash)
+    #end
+  #end
 
   context 'covering group loading from hash' do
     let :checkval do
