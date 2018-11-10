@@ -3,10 +3,18 @@
 require 'date'
 require 'etc'
 require './application_record'
+require_relative 'project_member'
 srand 0
 
 # rubocop comment?
 class Project < ApplicationRecord
+  has_many :project_members
+
+  def get_membs
+puts 'Id as:'
+puts self.id
+    puts ProjectMember.find_by projid: self.id
+  end
   #def initialize(
    # project_name: 'Default_project_' + Date.today.to_s,
     #manager: Etc.getlogin, num: Random.rand, members: []
