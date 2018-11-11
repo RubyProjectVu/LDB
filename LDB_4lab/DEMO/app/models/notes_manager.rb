@@ -3,39 +3,34 @@
 require 'date'
 require 'etc'
 require_relative 'project'
+require './application_record'
 require 'yaml'
 
 # Manages user notes
-class NotesManager
-  def initialize
-    @notes = YAML.load_file('notes.yml')
-  end
-
+class NotesManager < ApplicationRecord
   def save_note(author, name, text)
     return false if name.eql?('Back')
 
-    hash = { name => { 'author' => author, 'text' => text } }
-    File.open('notes.yml', 'a') { |fl| fl.write hash.to_yaml.sub('---', '') }
-    @notes
+    NotesManager.create(name: name, author: author, text: text)
   end
 
   def list_notes
     arr = []
-    @notes.each_key do |key|
-      arr.push(key)
+    lofids = NotesManager.all.ids
+    lofids.each do |id|
+      arr.push(NotesManager.find_by(id: id).name)
     end
     arr
   end
 
   def note_getter(name)
-    @notes.fetch(name).fetch('text')
+    note = NotesManager.find_by(name: name)
+    note.text
   end
 
   def delete_note(name)
-    @notes.delete(name)
-    File.open('notes.yml', 'w') do |fl|
-      fl.write @notes.to_yaml.sub('---', '').sub('{}', '')
-    end
+    note = NotesManager.find_by(name: name)
+    note.destroy
     true
   end
 end

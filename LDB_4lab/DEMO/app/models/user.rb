@@ -6,27 +6,31 @@ require './application_record'
 
 # Documentation about class User
 class User < ApplicationRecord
-  #def initialize(name: '', last_name: '', email: '')
-   # @info = { name: name, lname: last_name, email: email,
-    #          pass: '123' }
-  #end
-
   def data_getter(key)
-    @info.fetch(key.to_sym)
+    case key
+    when 'name'
+      return User.find_by(id: self.id).name
+    when 'last name'
+      return User.find_by(id: self.id).lname
+    end
   end
 
-  def user_info
-    @info
+  def name_set(new)
+    usr = User.find_by(id: self.id)
+    usr.name = new
+    usr.save
   end
 
-  def to_hash
-    { data_getter('email') => { 'name' => data_getter('name'),
-                                'lname' => data_getter('lname'),
-                                'pwd' => data_getter('pass') } }
+  def lname_set(new)
+    usr = User.find_by(id: self.id)
+    usr.lname = new
+    usr.save
   end
 
   def password_set(new)
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
-    @info[:pass] = new
+    usr = User.find_by(id: self.id)
+    usr.pass = new
+    usr.save
   end
 end

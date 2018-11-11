@@ -5,20 +5,6 @@ require 'yaml'
 
 # class defining user management
 class UserManager
-  def initialize
-    @users = YAML.load_file('users.yml')
-    @users = {} if @users.equal?(false)
-    @current_user = {}
-  end
-
-  def current_user_getter
-    @current_user
-  end
-
-  def to_hash(email)
-    { email => @users.fetch(email) }
-  end
-
   def register(user)
     @current_user = user.user_info
 

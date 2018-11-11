@@ -8,12 +8,8 @@ require 'yaml'
 
 # rubocop comment?
 class ProjectManager
-  #def initialize
-   # @projects = YAML.load_file('projects.yml')
-  #end
-
   def delete_project(project)
-    proj = Project.find_by projid: project
+    proj = Project.find_by(id: project)
     proj.destroy
     true
   end
@@ -24,16 +20,16 @@ class ProjectManager
   end
 
   def load_project(id)
-    proj = Project.find_by id: id
+    proj = Project.find_by(id: id)
     # will return a collection of attributes here
-    return false unless @projects.key?(id)
-    proj = projo = @projects.fetch(id)
-    obj = Project.new(project_name: proj.fetch('name'),
-                      manager: proj.fetch('manager'), num: id,
-                      members: projo.fetch('members'))
-    obj.parm_project_status(projo.fetch('status'))
+    #return false unless @projects.key?(id)
+    #proj = projo = @projects.fetch(id)
+    #obj = Project.new(project_name: proj.fetch('name'),
+     #                 manager: proj.fetch('manager'), num: id,
+      #                members: projo.fetch('members'))
+    #obj.parm_project_status(projo.fetch('status'))
 
-    obj
+    #obj
   end
 
   # TODO: placeholder - will be implemented later
@@ -48,9 +44,6 @@ class ProjectManager
       arr.push(t + ':' + (Project.find_by id: t).name)
     end
 
-    #@projects.each_key do |key|
-     # arr.push(key + ':' + @projects.fetch(key).fetch('name'))
-    #end
     arr
   end
 end

@@ -3,40 +3,31 @@
 require 'date'
 require 'etc'
 require_relative 'project'
+require './application_record'
 require 'yaml'
 
 # Manages financial information about projects
 class BudgetManager
-  def initialize
-    @budgets = YAML.load_file('budgets.yml')
-  end
+  # Initialize with a @state variable?
 
   def check_negative
     arr = []
-    @budgets.each_key do |key|
-      arr.push(key) if @budgets.fetch(key).fetch('budget').negative?
+    lofids = Project.all.ids
+    lofids.each do |t|
+      proj = Project.find_by(id: t)
+      arr.push(proj.name) if proj.budget < 0
     end
+
     arr
   end
 
   def budgets_getter(projid)
-    @budgets[projid].fetch('budget')
+    Project.find_by(id: projid).budget
   end
 
   def budgets_setter(projid, value)
-    projhash = @budgets[projid]
-    return add_new(projid, value) if [nil].include?(projhash)
-    projhash['budget'] = value
-    File.open('budgets.yml', 'w') do |fl|
-      YAML.dump(@budgets, fl)
-    end
-  end
-
-  def add_new(projid, value)
-    hash = { projid => { 'budget' => value } }
-    File.open('budgets.yml', 'a') do |fl|
-      fl.write hash.to_yaml.sub('---', '')
-    end
-    @budgets
+    proj = Project.find_by(id: projid)
+    proj.budget = value
+    proj.save
   end
 end

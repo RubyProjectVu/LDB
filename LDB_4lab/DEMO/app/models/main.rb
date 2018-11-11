@@ -1,6 +1,6 @@
 require './LDB'
 
-user = User.create(name: 'demo')
+user = User.create(name: 'demo', email: 't@a.com')
 proj = Project.create(name: 'projektas')
 
 id = Project.last.id
