@@ -23,13 +23,17 @@ Komanda: Diamond
 - ```db/``` schema.rb apraso lenteliu ir ju atributu sukurima. Cia yra ir pagrindine duombaze dbfile. Duombaze sukonfiguruota per ```config/``` database.yml.
 - ```spec/models``` rasomi testai i _spec.rb failus, kaip ir anksciau. Duombaze bei klases pasigriebiamos per rails_helper automatiskai.
 
+Trūkumai:
+- [ ] Streikuoja sub-įrašų kūrimas rspec aplinkoje. Įprastai (per main.rb) veikimas normalus, tačiau testuose nesusikuria įrašai application record klasės, kurią kviečia testuojamas application record (project_spec.rb pavyzdys).
+
+
 ### Testai
 
 - Leisti rspec kaip ```LDB_3lab/spec```; ```rspec *spec.rb``` (nieko neatsitiks ir nuo ```rspec spec/*spec.rb``` is pagrindines direktorijos, tik kad gausim ```coverage``` aplanka neesminej vietoj (plius coverage nevisai tikslus berods)).
 - Leisti mutant kaip ```LDB_3lab```; ```./run.sh```. Atsiklonavus saka is github isitikinti, kad run.sh turi leidima buti paleistam kaip executable file.
 - [x] LDB_3lab padengimas: 100%
-- [x] 169 ex.
-- [ ] 9/10 custom matchers
+- [x] 171 ex.
+- [x] 10/10 custom matchers
 - [x] 25 standard matchers listed on ```LDB_3lab```, as ```expects```
 - [x] reek klaidos: 0.
 - [x] rubocop klaidos: 0
