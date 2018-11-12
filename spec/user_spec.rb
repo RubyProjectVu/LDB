@@ -23,6 +23,9 @@ describe User do
 
   let(:usr2) { described_class.new }
 
+  let(:arr1) { %w[gmail.com yahoo.uk] }
+  let(:arr2) { %w[gmail.com] }
+
   it 'password is set correctly' do
     usr.password_set('password')
     expect(usr.data_getter('pass')).to eq 'password'
@@ -107,5 +110,20 @@ describe User do
                                 'lname'.to_sym => 'lname',
                                 'email'.to_sym => 'email',
                                 'pass'.to_sym => '123'
+  end
+
+  it 'all users have legit domains' do
+    UserManager.new.delete_user(described_class.new(email: 't@a.com'))
+    UserManager.new.register(described_class.new(email: 'x@gmail.com'))
+    UserManager.new.register(described_class.new(email: 'y@gmail.com'))
+    UserManager.new.register(described_class.new(email: 'z@yahoo.uk'))
+    expect(arr1).to users_domain_legit
+  end
+
+  it 'some do not' do
+    UserManager.new.register(described_class.new(email: 'x@gmail.com'))
+    UserManager.new.register(described_class.new(email: 'y@yahoo.uk'))
+    UserManager.new.register(described_class.new(email: 'z@yahoo.uk'))
+    expect(arr2).not_to users_domain_legit
   end
 end

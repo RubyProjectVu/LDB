@@ -106,3 +106,17 @@ RSpec::Matchers.define :be_correctly_saved do |actual|
     return true
   end
 end
+
+# Check if all users have known (expected) email domains
+# user_spec.rb::116
+RSpec::Matchers.define :users_domain_legit do
+  arr = []
+  match do |expected|
+    file = YAML.load_file('users.yml')
+    file.each_key do |key|
+      arr.push(key) unless expected.include?(key.partition('@').last)
+    end
+    return false if arr.size.positive?
+    true
+  end
+end

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/custom_matcher.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/custom_matcher.rb": [
         null,
         null,
         null,
@@ -109,9 +109,23 @@
         1,
         1,
         null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        7,
+        null,
+        2,
+        1,
+        null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/notes_manager_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/notes_manager_spec.rb": [
         null,
         null,
         1,
@@ -224,7 +238,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/project_manager_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/project_manager_spec.rb": [
         null,
         null,
         1,
@@ -342,7 +356,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/project_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/project_spec.rb": [
         null,
         null,
         1,
@@ -520,7 +534,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/search_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/search_spec.rb": [
         null,
         null,
         1,
@@ -594,7 +608,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/user_manager_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/user_manager_spec.rb": [
         null,
         null,
         1,
@@ -746,7 +760,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/user_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/user_spec.rb": [
         null,
         null,
         1,
@@ -759,9 +773,9 @@
         1,
         1,
         null,
-        18,
+        20,
         null,
-        36,
+        40,
         null,
         null,
         1,
@@ -772,31 +786,10 @@
         null,
         5,
         null,
-        1,
-        1,
-        1,
-        null,
+        2,
+        2,
         null,
         1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
         1,
         1,
         null,
@@ -811,6 +804,14 @@
         null,
         1,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null,
         1,
@@ -831,6 +832,22 @@
         null,
         1,
         1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
         1,
         null,
         null,
@@ -856,10 +873,25 @@
         null,
         null,
         null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/work_group_manager_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/work_group_manager_spec.rb": [
         null,
         null,
         1,
@@ -1025,7 +1057,7 @@
         null,
         null
       ],
-      "/home/ruby/Downloads/LDB-master/LDB_3lab/spec/work_group_spec.rb": [
+      "/home/ruby/Downloads/LDB_3lab/spec/work_group_spec.rb": [
         null,
         null,
         1,
@@ -1254,7 +1286,7 @@
         null
       ]
     },
-    "timestamp": 1541608082
+    "timestamp": 1542051253
   },
   "Unknown Test Framework": {
     "coverage": {
