@@ -43,24 +43,28 @@ class Project < ApplicationRecord
         proj.status = status
         proj.save
       end
+      false
     else
       Project.find_by(id: self.id).status
     end
   end
 
   def add_member(mail)
-    ProjectMember.create(projid: self.id, member: mail)
+    pmember = ProjectMember.create(projid: self.id, member: mail)
+    # puts ProjectMember.all Nothing?
     true
   end
 
   def remove_member(mail)
     pm = ProjectMember.find_by(projid: self.id, member: mail)
+    return false if [nil].include?(pm)
     pm.destroy
     true
   end
 
   def set_deleted_status
     if Project.find_by(id: self.id).status.eql?('Deleted')
+      ProjectManager.new.delete_project(self.id)
       false
     else
       proj = Project.find_by(id: self.id)

@@ -10,18 +10,20 @@ puts 'and last one:'
 puts id
 
 ProjectMember.create(projid: id, member: 'john')
-print 'Project member table:'
-puts ProjectMember.all
+ProjectMember.create(projid: id, member: 'josh')
+ProjectMember.create(projid: id, member: 'steve')
+
+puts 'Project member table:'
+all = ProjectMember.all
+all.each do |t|
+  puts t.member
+end
 
 puts 'Project has members:'
 proj = Project.find_by id: id
 proj.members_getter
 puts (User.all).size
 puts User.first.name
-
-#puts Project.first.id
-#puts (Project.all).size
-#puts (Project.all).ids
 
 User.destroy_all
 Project.destroy_all

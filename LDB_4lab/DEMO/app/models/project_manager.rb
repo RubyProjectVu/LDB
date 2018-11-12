@@ -21,15 +21,9 @@ class ProjectManager
 
   def load_project(id)
     proj = Project.find_by(id: id)
+    return false if [nil].include?(proj)
     # will return a collection of attributes here
-    #return false unless @projects.key?(id)
-    #proj = projo = @projects.fetch(id)
-    #obj = Project.new(project_name: proj.fetch('name'),
-     #                 manager: proj.fetch('manager'), num: id,
-      #                members: projo.fetch('members'))
-    #obj.parm_project_status(projo.fetch('status'))
-
-    #obj
+    [proj.name, proj.manager, proj.status, proj.budget]
   end
 
   # TODO: placeholder - will be implemented later
@@ -41,7 +35,7 @@ class ProjectManager
     arr = []
     lofids = Project.all.ids
     lofids.each do |t|
-      arr.push(t + ':' + (Project.find_by id: t).name)
+      arr.push(t.to_s + ':' + (Project.find_by id: t).name)
     end
 
     arr

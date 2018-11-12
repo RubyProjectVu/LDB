@@ -10,103 +10,60 @@ require_relative '../rails_helper'
 
 describe NotesManager do
   let :nm do
-    described_class.new
-  end
-
-  after do
-    # Butina - kitaip mutant sumauna notes.yml faila ir klasiu kintamuosius.
-    hash = { 'wow' => { 'author' => 'user', 'text' => 'example' } }
-    other = { 'badtext' => { 'author' => 'somename', 'text' => 'bad word' } }
-    File.open('notes.yml', 'w') do |fl|
-      fl.write hash.to_yaml.gsub('---', '')
-      fl.write other.to_yaml.gsub('---', '')
-    end
+    nm = double(:NotesManager)
+    allow(nm).to receive(:save_note)
+    allow(nm).to receive(:bad_words_included?)
+    allow(nm).to receive(:list_notes)
+    allow(nm).to receive(:note_getter)
   end
 
   it do
-    expect(nm.save_note('auth', 'name', 'text')).to contain_exactly(
-      ['badtext', { 'author' => 'somename', 'text' => 'bad word' }],
-      ['wow', { 'author' => 'user', 'text' => 'example' }]
-    )
+    nm = NotesManager.new#.save_note('a', 'a', 'bad')
+    #allow(nm).to receive(:save_note)
+    #allow(nm).to receive(:bad_words_included?)
+    #nm = double(:NotesManager).as_null_object
+    expect(nm).to receive(:bad_words_included?)
+    nm.save_note('auth', 'name', 'text')
+    # expect(nm).to have_received(:bad_words_included?)
   end
 
   it do
-    expect(nm.save_note('auth', 'Back', 'text')).to be false
+    #allow(nm).to receive(:bad_words_included?)
+    nm = NotesManager.new
+    expect(nm).not_to receive(:bad_words_included?)
+    nm.save_note('auth', 'Back', 'text')
   end
 
   it 'author is saved' do
-    nm.save_note('auth', 'name', 'text')
-    hash = YAML.load_file('notes.yml')
-    expect(hash['name']['author']).to eq 'auth'
+    nm = NotesManager.new
+    nm.save_note('auth', 'name1', 'text')
+    note = NotesManager.find_by(name: 'name1')
+    expect(note.author).to eq 'auth'
   end
 
   it 'text is saved' do
+    nm = NotesManager.new
+    nm.save_note('auth', 'name2', 'text')
+    note = NotesManager.find_by(name: 'name2')
+    expect(note.text).to eq 'text'
+  end
+
+  it do
+    nm = NotesManager.new
     nm.save_note('auth', 'name', 'text')
-    hash = YAML.load_file('notes.yml')
-    expect(hash['name']['text']).to eq 'text'
+    expect(nm.list_notes).to eq %w[name]
   end
 
   it do
-    expect(nm.list_notes).to eq %w[wow badtext]
+    nm = NotesManager.new
+    nm.save_note('auth', 'name', 'text')
+    expect(nm.note_getter('name')).to eq 'text'
   end
 
   it do
-    expect(nm.note_getter('wow')).to eq 'example'
-  end
-
-  it do
-    expect(nm.delete_note('wow')).to be true
-  end
-
-  it do
-    nm.delete_note('wow')
-    nm.delete_note('badtext')
-    file = 'notes.yml'
-    expect(file).not_to has_yml_nils
-  end
-
-  it do
-    nm.delete_note('wow')
-    hash = YAML.load_file('notes.yml')
-    expect(hash).to eq 'badtext' => { 'author' => 'somename',
-                                      'text' => 'bad word' }
-  end
-
-  it do
-    expect(YAML.load_file('notes.yml')['wow']['text']).not_to has_bad_words
-  end
-
-  it do
-    expect(YAML.load_file('notes.yml')['badtext']['text']).to has_bad_words
-  end
-
-  #context 'notes.yml state testing' do
-   # before do
-    #  described_class.new.delete_note('badtext')
-     # described_class.new.save_note('tst', 'tst', 'tst')
-    #end
-
-    #it 'checks saving' do
-     # current = 'notes.yml'
-      #state = 'state-notes.yml'
-      #expect(current).to is_yml_identical(state)
-    #end
-
-    #it 'checks loading' do
-     # hash = { 'wow' => { 'author' => 'user', 'text' => 'example' },
-      #         'tst' => { 'author' => 'tst', 'text' => 'tst' } }
-      #expect(YAML.load_file('notes.yml')).to is_data_identical(hash)
-    #end
-  #end
-
-  it 'covers yml identical false case' do
-    current = 'notes.yml'
-    state = 'users.yml'
-    expect(current).not_to is_yml_identical(state)
-  end
-
-  it 'covers data identical false case' do
-    hash = { 'wow' => 'wow' }
-    expect(YAML.load_file('notes.yml')).not_to is_data_identical(hash)
+    nm = NotesManager.new
+    nm.save_note('auth', 'name', 'text')
+    nm.delete_note('name')
+    expect(nm.note_getter('name')).to be false
   end
 end

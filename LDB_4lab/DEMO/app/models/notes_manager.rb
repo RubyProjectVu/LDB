@@ -11,7 +11,16 @@ class NotesManager < ApplicationRecord
   def save_note(author, name, text)
     return false if name.eql?('Back')
 
-    NotesManager.create(name: name, author: author, text: text)
+    NotesManager.create(name: name, author: author, text: text) unless bad_words_included?(text)
+  end
+
+  def bad_words_included?(text)
+    # Could probably be moved to a text file, line by line
+    list = %w[bad bad\ word really\ bad\ word]
+    list.each do |t|
+      return true if text.match?(t)
+    end
+    false 
   end
 
   def list_notes
@@ -25,6 +34,7 @@ class NotesManager < ApplicationRecord
 
   def note_getter(name)
     note = NotesManager.find_by(name: name)
+    return false if [nil].include?(note)
     note.text
   end
 
