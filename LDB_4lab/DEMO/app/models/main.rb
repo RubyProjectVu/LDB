@@ -1,5 +1,9 @@
 require './LDB'
 
+User.destroy_all
+Project.destroy_all
+ProjectMember.destroy_all
+
 user = User.create(name: 'demo', email: 't@a.com')
 proj = Project.create(name: 'projektas')
 
@@ -10,8 +14,6 @@ puts 'and last one:'
 puts id
 
 ProjectMember.create(projid: id, member: 'john')
-ProjectMember.create(projid: id, member: 'josh')
-ProjectMember.create(projid: id, member: 'steve')
 
 puts 'Project member table:'
 all = ProjectMember.all
@@ -21,9 +23,8 @@ end
 
 puts 'Project has members:'
 proj = Project.find_by id: id
-proj.members_getter
-puts (User.all).size
-puts User.first.name
+puts proj.members_getter
+puts proj.members_getter.member
 
 User.destroy_all
 Project.destroy_all

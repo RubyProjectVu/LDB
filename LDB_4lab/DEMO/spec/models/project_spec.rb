@@ -8,7 +8,7 @@ require_relative 'custom_matcher'
 # require_relative '../application_record'
 require_relative '../rails_helper'
 
-describe Project do
+describe 'project model' do
   let(:pr) { 
     pr = double(:Project)
     allow(pr).to receive(:add_member)
@@ -141,16 +141,25 @@ describe Project do
     expect(pr.parm_project_status('In progress')).to eq 'In progress'
   end
 
-  it 'member lists are not mixed up' do
+  it 'members actually get saved' do
     Project.create(name: 'test')
-    # puts Project.all Not empty
+    pr = double(Project)
+    #allow(pr).to receive(:add_member)
+    #puts dud.members_getter
+    puts Project.all #Not empty
     pr = Project.find_by name: 'test'
-    pr.add_member('othermail')
-    pr.add_member('somemail')
-# Empty?
-puts ProjectMember.all
-puts 'multiple members:'
-puts pr.members_getter
+    #puts pr
+    amount = ProjectMember.all.size
+    expect {
+      pr.add_member('othermail')
+      pr.add_member('somemail')
+      amount = ProjectMember.all.size
+    }.to change { amount }
+    # Empty?
+    puts ProjectMember.all
+    puts 'multiple members:'
+    pr = Project.find_by name: 'test'
+    puts pr.members_getter
   end
 
   it 'cannot remove non-existing member' do

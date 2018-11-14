@@ -7,5 +7,5 @@ srand 0
 
 # rubocop comment?
 class ProjectMember < ApplicationRecord
-  belongs_to :projects
+  # belongs_to :projects
 end

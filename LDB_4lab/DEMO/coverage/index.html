@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-12T16:52:37+02:00">2018-11-12T16:52:37+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-14T00:05:09+02:00">2018-11-14T00:05:09+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">65.17%</span></span>
+    (<span class="covered_percent"><span class="red">65.08%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.33
+         2.3
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>21</b> files in total.
-    <b>379</b> relevant lines. 
-    <span class="green"><b>247</b> lines covered</span> and
+    <b>378</b> relevant lines. 
+    <span class="green"><b>246</b> lines covered</span> and
     <span class="red"><b>132</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -143,7 +143,7 @@
       <tr>
         <td class="strong"><a href="#d176ac425179194e412ee05b17351ad6b2bffe96" class="src_link" title="app/models/main.rb">app/models/main.rb</a></td>
         <td class="red strong">0.0 %</td>
-        <td>30</td>
+        <td>31</td>
         <td>24</td>
         <td>0</td>
         <td>24</td>
@@ -163,11 +163,11 @@
       <tr>
         <td class="strong"><a href="#0c10a138e1949927ef9d88f3267351f1f7903acf" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
         <td class="red strong">75.0 %</td>
-        <td>76</td>
+        <td>77</td>
         <td>44</td>
         <td>33</td>
         <td>11</td>
-        <td>1.8</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -184,8 +184,8 @@
         <td class="strong"><a href="#8919ab38c306d60ab0987eeac92674300617ba0a" class="src_link" title="app/models/project_member.rb">app/models/project_member.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>11</td>
-        <td>6</td>
-        <td>6</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -373,19 +373,19 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">67.78%</span></span>
+    (<span class="covered_percent"><span class="red">67.69%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.45
+         2.41
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>14</b> files in total.
-    <b>360</b> relevant lines. 
-    <span class="green"><b>244</b> lines covered</span> and
+    <b>359</b> relevant lines. 
+    <span class="green"><b>243</b> lines covered</span> and
     <span class="red"><b>116</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -435,7 +435,7 @@
       <tr>
         <td class="strong"><a href="#d176ac425179194e412ee05b17351ad6b2bffe96" class="src_link" title="app/models/main.rb">app/models/main.rb</a></td>
         <td class="red strong">0.0 %</td>
-        <td>30</td>
+        <td>31</td>
         <td>24</td>
         <td>0</td>
         <td>24</td>
@@ -455,11 +455,11 @@
       <tr>
         <td class="strong"><a href="#0c10a138e1949927ef9d88f3267351f1f7903acf" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
         <td class="red strong">75.0 %</td>
-        <td>76</td>
+        <td>77</td>
         <td>44</td>
         <td>33</td>
         <td>11</td>
-        <td>1.8</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -476,8 +476,8 @@
         <td class="strong"><a href="#8919ab38c306d60ab0987eeac92674300617ba0a" class="src_link" title="app/models/project_member.rb">app/models/project_member.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>11</td>
-        <td>6</td>
-        <td>6</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -1708,73 +1708,73 @@
         <li class="missed" data-hits="0" data-linenumber="3">
           
           
-          <code class="ruby">user = User.create(name: &#39;demo&#39;, email: &#39;t@a.com&#39;)</code>
+          <code class="ruby">User.destroy_all</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="4">
           
           
-          <code class="ruby">proj = Project.create(name: &#39;projektas&#39;)</code>
+          <code class="ruby">Project.destroy_all</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">ProjectMember.destroy_all</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="6">
-          
-          
-          <code class="ruby">id = Project.last.id</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="7">
           
           
-          <code class="ruby">puts &#39;All project ids:&#39;</code>
+          <code class="ruby">user = User.create(name: &#39;demo&#39;, email: &#39;t@a.com&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="8">
           
           
-          <code class="ruby">puts (Project.all).ids</code>
+          <code class="ruby">proj = Project.create(name: &#39;projektas&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="9">
-          
-          
-          <code class="ruby">puts &#39;and last one:&#39;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="10">
-          
-          
-          <code class="ruby">puts id</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">id = Project.last.id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">puts &#39;All project ids:&#39;</code>
+        </li>
+      
         <li class="missed" data-hits="0" data-linenumber="12">
           
           
-          <code class="ruby">ProjectMember.create(projid: id, member: &#39;john&#39;)</code>
+          <code class="ruby">puts (Project.all).ids</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="13">
           
           
-          <code class="ruby">ProjectMember.create(projid: id, member: &#39;josh&#39;)</code>
+          <code class="ruby">puts &#39;and last one:&#39;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="14">
           
           
-          <code class="ruby">ProjectMember.create(projid: id, member: &#39;steve&#39;)</code>
+          <code class="ruby">puts id</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -1786,88 +1786,94 @@
         <li class="missed" data-hits="0" data-linenumber="16">
           
           
-          <code class="ruby">puts &#39;Project member table:&#39;</code>
+          <code class="ruby">ProjectMember.create(projid: id, member: &#39;john&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">all = ProjectMember.all</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="18">
           
           
-          <code class="ruby">all.each do |t|</code>
+          <code class="ruby">puts &#39;Project member table:&#39;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="19">
           
           
-          <code class="ruby">  puts t.member</code>
+          <code class="ruby">all = ProjectMember.all</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="20">
           
           
-          <code class="ruby">end</code>
+          <code class="ruby">all.each do |t|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="missed" data-hits="0" data-linenumber="21">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  puts t.member</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="22">
           
           
-          <code class="ruby">puts &#39;Project has members:&#39;</code>
+          <code class="ruby">end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
-          
-          
-          <code class="ruby">proj = Project.find_by id: id</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="24">
-          
-          
-          <code class="ruby">proj.members_getter</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="25">
-          
-          
-          <code class="ruby">puts (User.all).size</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="26">
-          
-          
-          <code class="ruby">puts User.first.name</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="28">
+        <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">User.destroy_all</code>
+          <code class="ruby">puts &#39;Project has members:&#39;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">proj = Project.find_by id: id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">puts proj.members_getter</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">puts proj.members_getter.member</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">Project.destroy_all</code>
+          <code class="ruby">User.destroy_all</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="30">
+          
+          
+          <code class="ruby">Project.destroy_all</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="31">
           
           
           <code class="ruby">ProjectMember.destroy_all</code>
@@ -2247,10 +2253,10 @@
           <code class="ruby">class Project &lt; ApplicationRecord</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="11">
           
-          <code class="ruby">  has_many :project_members</code>
+          
+          <code class="ruby">  # has_many :project_members</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
@@ -2289,8 +2295,8 @@
           <code class="ruby">  def data_getter(key)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="18">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
           
           <code class="ruby">    case key</code>
         </li>
@@ -2313,8 +2319,8 @@
           <code class="ruby">    when &#39;manager&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
           
           <code class="ruby">      return Project.find_by(id: self.id).manager</code>
         </li>
@@ -2415,8 +2421,8 @@
           <code class="ruby">  def parm_project_status(status = &#39;&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="39">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="39">
+          <span class="hits">6</span>
           
           <code class="ruby">    if !status.empty?</code>
         </li>
@@ -2469,8 +2475,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="48">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="48">
+          <span class="hits">2</span>
           
           <code class="ruby">      Project.find_by(id: self.id).status</code>
         </li>
@@ -2499,145 +2505,151 @@
           <code class="ruby">  def add_member(mail)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="53">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="4" data-linenumber="53">
+          <span class="hits">4</span>
+          
+          <code class="ruby">puts &#39;ADDING MEMB&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="54">
+          <span class="hits">4</span>
           
           <code class="ruby">    pmember = ProjectMember.create(projid: self.id, member: mail)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
-          <code class="ruby">    # puts ProjectMember.all Nothing?</code>
+          <code class="ruby">    # puts ProjectMember.all #Nothing?</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="55">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="4" data-linenumber="56">
+          <span class="hits">4</span>
           
           <code class="ruby">    true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="58">
+        <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
           <code class="ruby">  def remove_member(mail)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="59">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="60">
+          <span class="hits">2</span>
           
           <code class="ruby">    pm = ProjectMember.find_by(projid: self.id, member: mail)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="60">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="61">
+          <span class="hits">2</span>
           
           <code class="ruby">    return false if [nil].include?(pm)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="61">
-          
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
           
           <code class="ruby">    pm.destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="62">
-          
+        <li class="covered" data-hits="1" data-linenumber="63">
+          <span class="hits">1</span>
           
           <code class="ruby">    true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="63">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="64">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="65">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="65">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
           <code class="ruby">  def set_deleted_status</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="66">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="67">
+          <span class="hits">3</span>
           
           <code class="ruby">    if Project.find_by(id: self.id).status.eql?(&#39;Deleted&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="67">
-          
-          
-          <code class="ruby">      ProjectManager.new.delete_project(self.id)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
+          <code class="ruby">      ProjectManager.new.delete_project(self.id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="69">
+          
+          
           <code class="ruby">      false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="70">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="70">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="71">
+          <span class="hits">1</span>
           
           <code class="ruby">      proj = Project.find_by(id: self.id)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="71">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="72">
+          <span class="hits">1</span>
           
           <code class="ruby">      proj.status = &#39;Deleted&#39;</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="72">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="73">
+          <span class="hits">1</span>
           
           <code class="ruby">      proj.save</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="73">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
           
           <code class="ruby">      true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="77">
           
           
           <code class="ruby">end</code>
@@ -2930,8 +2942,8 @@
     <h3>app/models/project_member.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>6</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2993,10 +3005,10 @@
           <code class="ruby">class ProjectMember &lt; ApplicationRecord</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="10">
           
-          <code class="ruby">  belongs_to :projects</code>
+          
+          <code class="ruby">  # belongs_to :projects</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">

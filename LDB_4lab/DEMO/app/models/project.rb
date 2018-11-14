@@ -8,7 +8,7 @@ srand 0
 
 # rubocop comment?
 class Project < ApplicationRecord
-  has_many :project_members
+  # has_many :project_members
 
   def members_getter
     ProjectMember.find_by(projid: self.id)
@@ -50,8 +50,9 @@ class Project < ApplicationRecord
   end
 
   def add_member(mail)
+puts 'ADDING MEMB'
     pmember = ProjectMember.create(projid: self.id, member: mail)
-    # puts ProjectMember.all Nothing?
+    # puts ProjectMember.all #Nothing?
     true
   end
 
