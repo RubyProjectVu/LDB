@@ -1,0 +1,11 @@
+require: 'rubocop-rspec'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+  
+Layout/EndOfLine:
+  EnforcedStyle: crlf
+
+AllCops:
+  Exclude:
+    - 'main/main.rb'
