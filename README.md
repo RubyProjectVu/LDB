@@ -29,21 +29,11 @@ Trūkumai:
 
 ### Testai
 
-- Leisti rspec kaip ```LDB_3lab/spec```; ```rspec *spec.rb``` (nieko neatsitiks ir nuo ```rspec spec/*spec.rb``` is pagrindines direktorijos, tik kad gausim ```coverage``` aplanka neesminej vietoj (plius coverage nevisai tikslus berods)).
-- Leisti mutant kaip ```LDB_3lab```; ```./run.sh```. Atsiklonavus saka is github isitikinti, kad run.sh turi leidima buti paleistam kaip executable file.
+- Leisti testus su ```./run_tests.sh```
+
 - [x] LDB_3lab padengimas: 100%
 - [x] 171 ex.
 - [x] 10/10 custom matchers
 - [x] 25 standard matchers listed on ```LDB_3lab```, as ```expects```
 - [x] reek klaidos: 0.
 - [x] rubocop klaidos: 0
-
-### Ruby stilius
-Leisti reek kaip root ```sudo reek``` arba ```reek -c [configuration file]```. Kitu atveju reek.yml failo konfigūracijos nepasigriebia.
-rubocop leidžiamas įprastai.
-
-##### Dar netikrinta per LDB_4lab
-
-### Esantis funkcionalumas
-
-...bus papildyta 18-11-13...
