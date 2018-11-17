@@ -11,9 +11,9 @@ require_relative '../rails_helper'
 describe UserManager do
   after do
     # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
-    hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
-                            'pwd' => '123' } }
-    File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+    #hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
+     #                       'pwd' => '123' } }
+    #File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
   end
 
   it 'unregistered user should not be able to login' do
