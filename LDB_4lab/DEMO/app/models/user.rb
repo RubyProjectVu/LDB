@@ -6,15 +6,6 @@ require './application_record'
 
 # Documentation about class User
 class User < ApplicationRecord
-  def data_getter(key)
-    case key
-    when 'name'
-      return User.find_by(id: self.id).name
-    when 'last name'
-      return User.find_by(id: self.id).lname
-    end
-  end
-
   def name_set(new)
     usr = User.find_by(id: self.id)
     usr.name = new

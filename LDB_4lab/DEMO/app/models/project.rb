@@ -11,7 +11,7 @@ class Project < ApplicationRecord
   # has_many :project_members
 
   def members_getter
-    ProjectMember.find_by(projid: self.id)
+    ProjectMember.where(projid: self.id)
   end
 
   def data_getter(key)

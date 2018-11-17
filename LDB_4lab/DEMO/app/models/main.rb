@@ -14,6 +14,7 @@ puts 'and last one:'
 puts id
 
 ProjectMember.create(projid: id, member: 'john')
+ProjectMember.create(projid: id, member: 'steve')
 
 puts 'Project member table:'
 all = ProjectMember.all
@@ -24,7 +25,7 @@ end
 puts 'Project has members:'
 proj = Project.find_by id: id
 puts proj.members_getter
-puts proj.members_getter.member
+# puts proj.members_getter.member
 
 User.destroy_all
 Project.destroy_all
