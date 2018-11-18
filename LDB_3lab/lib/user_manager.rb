@@ -6,9 +6,13 @@ require 'yaml'
 # class defining user management
 class UserManager
   def initialize
-    @users = YAML.load_file('users.yml')
+    load_file
     @users = {} if @users.equal?(false)
     @current_user = {}
+  end
+
+  def load_file
+    @users = YAML.load_file('users.yml')
   end
 
   def current_user_getter
@@ -32,7 +36,8 @@ class UserManager
   end
 
   def login(user_to_login)
-    return true unless [nil].include?(@users[user_to_login])
+    email = user_to_login.data_getter('email')
+    return true unless [nil].include?(@users[email])
 
     false
   end
@@ -41,14 +46,14 @@ class UserManager
     users_pop(user.data_getter('email'))
   end
 
-  # TODO: active project checking will be implemented later
-
   def users_push(email, hash)
     return false unless [nil].include?(@users[email])
 
     File.open('users.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
+
+    load_file
     true
   end
 

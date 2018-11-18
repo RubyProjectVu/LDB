@@ -21,7 +21,6 @@ $cursor = TTY::Cursor
 $prompt = TTY::Prompt.new
 $user_manager = UserManager.new
 
-@currentuser = nil
 @usr_hash = { 'Search' => method(:src_submenu),
               'Notes' => method(:notes_submenu),
               'User management' => method(:userm_submenu),
@@ -41,13 +40,6 @@ def user_menu(currentuser)
   end
 end
 
-# New user creation
-def user_setup(mail, pass)
-  usr = User.new(name: '', last_name: '', email: mail)
-  usr.password_set(pass)
-  return $user_manager.register(usr)
-end
-
 # Initial screen
 loop do
   puts $cursor.clear_screen
@@ -61,7 +53,8 @@ loop do
   # Create a new user
   when 'Sign up'
     puts $cursor.clear_screen
-    if user_setup($prompt.ask('Email:'), $prompt.mask('Password:'))
+    if ($user_manager.register(
+        User.new(email: $prompt.ask('Email:'), pass: $prompt.mask('Password:'))))
       $prompt.ask(Rainbow('User created successfully. You may now login').green, default: '[Enter]')
     else
       $prompt.warn('Could not create a new account')
@@ -72,11 +65,11 @@ loop do
   when 'Login'
     puts $cursor.clear_screen
 
-    usr = User.new(email: @currentuser = $prompt.ask('Email:'))
-    usr.password_set($prompt.mask('Password:'))
+    currentuser = nil
 
-    if $user_manager.login(usr.data_getter('email'))
-      user_menu(@currentuser)
+    if ($user_manager.login(currentuser =
+        User.new(email: $prompt.ask('Email:'), pass: $prompt.mask('Password:'))))
+      user_menu(currentuser)
     else
       $prompt.warn('Could not login with specified credentials')
       $prompt.ask(Rainbow('Return to previous menu').yellow, default: '[Enter]')
