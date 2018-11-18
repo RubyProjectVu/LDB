@@ -114,16 +114,98 @@ describe ProjectManager do
     end
   end
 
-  it 'adds member to the project' do
-    expect(pm.add_member_to_project('t@a.com', 'someid')).to be true
+  context 'adds member to the project' do
+    it 'adds member to the project' do
+      expect(pm.add_member_to_project('t@a.com', 'someid')).to be true
+    end
+
+    it 'returns false if member already exists' do
+      pm.add_member_to_project('t@a.com', 'someid')
+      expect(pm.add_member_to_project('t@a.com', 'someid')).to be false
+    end
+
+    it 'returns false if user is nil' do
+      expect(pm.add_member_to_project(nil, 'someid')).to be false
+    end
+
+    it 'returns false if project id is nil' do
+      expect(pm.add_member_to_project('someid', nil)).to be false
+    end
+
+    it 'returns false if add_member_to_project params are nil' do
+      expect(pm.add_member_to_project(nil, nil)).to be false
+    end
+
+    it 'returns false if add_member_to_project\'s project id is invalid' do
+      expect(pm.add_member_to_project('t@a', 'kukukuku')).to be false
+    end
   end
 
-  it 'removes member from the project' do
-    pm.add_member_to_project('t@a.com', 'someid')
-    expect(pm.remove_member_from_project('t@a.com', 'someid')).to be true
+  context 'removes member from the project' do
+    it 'removes member from the project' do
+      pm.add_member_to_project('t@a.com', 'someid')
+      expect(pm.remove_member_from_project('t@a.com', 'someid')).to be true
+    end
+
+    it 'returns false if member does not exist' do
+      expect(pm.remove_member_from_project('t@a.com', 'someid')).to be false
+    end
+
+    it 'returns false if member is nil' do
+      expect(pm.remove_member_from_project(nil, 'someid')).to be false
+    end
+
+    it 'returns false if project id is nil' do
+      expect(pm.remove_member_from_project('someid', nil)).to be false
+    end
+
+    it 'returns false if remove_member_from_project params are nil' do
+      expect(pm.remove_member_from_project(nil, nil)).to be false
+    end
+
+    it 'returns false if remove_member_from_project project id is invalid' do
+      expect(pm.remove_member_from_project('t@a', 'kukukuku')).to be false
+    end
   end
 
-  it 'sets project status' do
-    expect(pm.set_project_status('someid', 'Cancelled')).to be true
+  it 'correctly adds and removes member' do
+    before_file = YAML.load_file('projects.yml')
+    pm.add_member_to_project('jhonyxx@aaa.com', 'someid')
+    pm.remove_member_from_project('jhonyxx@aaa.com', 'someid')
+    expect(YAML.load_file('projects.yml').eql?(before_file)).to be true
+  end
+
+  context 'changes project status' do
+    it 'sets project status correctly' do
+      expect(pm.set_project_status('someid', 'Cancelled')).to be true
+    end
+
+    it 'returns false if project id is nil' do
+      expect(pm.set_project_status(nil, 'Cancelled')).to be false
+    end
+
+    it 'returns false if set_project_status params are nil' do
+      expect(pm.set_project_status(nil, nil)).to be false
+    end
+
+    it 'returns false if status is nil' do
+      expect(pm.set_project_status('someid', nil)).to be false
+    end
+
+    it 'returns false if invalid status is set' do
+      expect(pm.set_project_status('someid', 'bbububu')).to be false
+    end
+
+    it 'returns false if set_project_status project id is invalid' do
+      expect(pm.set_project_status('kukukukuku', 'Cancelled')).to be false
+    end
+
+    it 'correctly saves status' do
+      original = { 'someid' => { 'name' => 'projektas', 'manager' => 'john',
+                                 'members' => %w[john steve harry],
+                                 'status' => 'Cancelled' } }
+      pm.set_project_status('someid', 'Cancelled')
+      expect(YAML.load_file('projects.yml').eql?(original)).to be true
+    end
   end
 end

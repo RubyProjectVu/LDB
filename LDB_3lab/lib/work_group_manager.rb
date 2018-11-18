@@ -6,8 +6,7 @@ require 'yaml'
 # Saves and writes work group related data
 class WorkGroupManager
   def initialize
-    @groups = {}
-    load_file
+    @groups = YAML.load_file('workgroups.yml')
   end
 
   def load_file
