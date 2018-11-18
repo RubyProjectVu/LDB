@@ -6,6 +6,10 @@ require 'yaml'
 # Saves and writes work group related data
 class WorkGroupManager
   def initialize
+    load_file
+  end
+
+  def load_file
     @groups = YAML.load_file('workgroups.yml')
   end
 
@@ -16,6 +20,7 @@ class WorkGroupManager
     File.open('workgroups.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
+    load_file
   end
 
   def delete_group(id)
@@ -66,26 +71,38 @@ class WorkGroupManager
   end
 
   def add_member_to_group(member_mail, group_id)
+    return false if [member_mail, group_id].include?(nil)
+
     group = load_group(group_id)
     group.add_group_member(User.new(email: member_mail))
     save_group(group)
+    true
   end
 
   def remove_member_from_group(member_mail, group_id)
+    return false if [member_mail, group_id].include?(nil)
+
     group = load_group(group_id)
     group.remove_group_member(User.new(email: member_mail))
     save_group(group)
+    true
   end
 
   def add_task_to_group(task, group_id)
+    return false if [task, group_id].include?(nil)
+
     group = load_group(group_id)
     group.add_group_task(task)
     save_group(group)
+    true
   end
 
   def remove_task_from_group(task, group_id)
+    return false if [task, group_id].include?(nil)
+
     group = load_group(group_id)
     group.remove_group_task(task)
     save_group(group)
+    true
   end
 end

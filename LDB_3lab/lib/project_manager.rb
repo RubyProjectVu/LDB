@@ -8,6 +8,10 @@ require 'yaml'
 # rubocop comment?
 class ProjectManager
   def initialize
+    load_file
+  end
+
+  def load_file
     @projects = YAML.load_file('projects.yml')
   end
 
@@ -25,6 +29,7 @@ class ProjectManager
     File.open('projects.yml', 'a') do |fl|
       fl.write pro.to_hash.to_yaml.sub('---', '')
     end
+    load_file
     true
   end
 
@@ -40,26 +45,32 @@ class ProjectManager
   end
 
   def add_member_to_project(member, project_id)
-    project = load_project(project_id)
-    project.add_member(member)
-    delete_project(Project.new(num: project_id))
-    save_project(project)
+    return false if [member, project_id].include?(nil)
+    return false if [false].include?(project = load_project(project_id))
+    return true if (project.add_member(member) &&
+                    delete_project(Project.new(num: project_id)) &&
+                    save_project(project))
+
+    false
   end
 
   def remove_member_from_project(member, project_id)
-    project = load_project(project_id)
-    project.remove_member(member)
-    delete_project(Project.new(num: project_id))
-    save_project(project)
+    return false if [member, project_id].include?(nil)
+    return false if [false].include?(project = load_project(project_id))
+    return true if (project.remove_member(member) &&
+                    delete_project(Project.new(num: project_id)) &&
+                    save_project(project))
+    false
   end
 
   def set_project_status(project_id, status)
-    project = load_project(project_id)
+    return false if [status, project_id].include?(nil)
+    return false if [false].include?(project = load_project(project_id))
     return false unless project.parm_project_status(status)
-
-    delete_project(Project.new(num: project_id))
-    save_project(project)
-    true
+    return true if (delete_project(Project.new(num: project_id)) &&
+                    save_project(project))
+                    
+    false
   end
 
   # TODO: placeholder - will be implemented later

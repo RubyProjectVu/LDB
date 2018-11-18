@@ -113,4 +113,17 @@ describe ProjectManager do
       expect(YAML.load_file('projects.yml')).to is_data_identical(hash)
     end
   end
+
+  it 'adds member to the project' do
+    expect(pm.add_member_to_project('t@a.com', 'someid')).to be true
+  end
+
+  it 'removes member from the project' do
+    pm.add_member_to_project('t@a.com', 'someid')
+    expect(pm.remove_member_from_project('t@a.com', 'someid')).to be true
+  end
+
+  it 'sets project status' do
+    expect(pm.set_project_status('someid', 'Cancelled')).to be true
+  end
 end

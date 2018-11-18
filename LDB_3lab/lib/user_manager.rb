@@ -37,7 +37,7 @@ class UserManager
 
   def login(email, password)
     hsh = @users[email]
-    return false if [nil].include?(hsh)
+    return false if [email, password, hsh].include?(nil)
     return false unless hsh.fetch('pwd').eql?(password)
 
     true
