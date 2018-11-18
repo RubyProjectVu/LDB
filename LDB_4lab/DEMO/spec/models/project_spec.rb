@@ -8,7 +8,7 @@ require_relative 'custom_matcher'
 # require_relative '../application_record'
 require_relative '../rails_helper'
 
-describe 'project model' do
+describe Project do
   let(:pr) { 
     pr = double(:Project)
     allow(pr).to receive(:add_member)
@@ -25,50 +25,16 @@ describe 'project model' do
       proj = described_class.new
       proj.name = 'test'
       proj.save
-      expect(ProjectManager.new).not_to receive(:delete_project)
+      expect_any_instance_of(ProjectManager).not_to receive(:delete_project)
       proj.set_deleted_status
     end
 
     it 'second time marking as deleted' do
       described_class.create(name: 'test')
-      proj = (Project.find_by name: 'test').id
+      proj = Project.find_by name: 'test'
       proj.set_deleted_status
-      expect(ProjectManager.new).to receive(:delete_project)
+      expect_any_instance_of(ProjectManager).to receive(:delete_project)
       proj.set_deleted_status
-    end
-  end
-
-  context 'when a member is being removed from the project' do
-    it 'True when an existing member gets removed from the project' do
-      proj = described_class.new
-      e = 'jhonpeterson@mail.com'
-      # User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      proj.add_member(e)
-      expect(proj.remove_member(e)).to be true
-    end
-
-    it 'returns false when nonmember is being removed from the project' do
-      proj = described_class.new
-      e = 'jhonpeterson@mail.com'
-      User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(proj.remove_member(e)).to be false
-    end
-  end
-
-  context 'when a new member is being added to the project' do
-    it 'returns true when a new member is added to the project' do
-      proj = described_class.new
-      e = 'jhonpeterson@mail.com'
-      User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      expect(proj.add_member(e)).to be true
-    end
-
-    it 'Return false when existing member is being added to the project' do
-      proj = described_class.new
-      e = 'jhonpeterson@mail.com'
-      User.new(name: 'Jhon', last_name: 'Peterson', email: e)
-      proj.add_member(e)
-      expect(proj.add_member(e)).to be false
     end
   end
 
@@ -80,14 +46,14 @@ describe 'project model' do
 
   it 'deleted status change' do
     described_class.create(name: 'test', manager: 'guy')
-    proj = Project.find_by name: 'test'
+    proj = Project.find_by(name: 'test')
     proj.set_deleted_status
     expect(proj.parm_project_status).to eq 'Deleted'
   end
 
   it 'setting for deletion works' do
     Project.create(name: 'test')
-    pr = Project.find_by name: 'test'
+    pr = Project.find_by(name: 'test')
     expect(pr.set_deleted_status).to be true
   end
 
@@ -95,12 +61,6 @@ describe 'project model' do
     Project.create(name: 'test')
     pr = Project.find_by name: 'test'
     expect(pr.add_member('somemail')).to be true
-  end
-
-  it 'non-existing member removal' do
-    Project.create(name: 'test')
-    pr = Project.find_by name: 'test'
-    expect(pr.remove_member('noid')).to be false
   end
 
   it 'can remove a member' do
@@ -126,84 +86,49 @@ describe 'project model' do
     Project.create(name: 'test')
     pr = Project.find_by name: 'test'
     pr.parm_project_status('Cancelled')
-    expect(pr.parm_project_status).to eq 'Cancelled'
-  end
-
-  it 'status is return in addition to being set' do
-    Project.create(name: 'test')
-    pr = Project.find_by name: 'test'
-    expect(pr.parm_project_status('Cancelled')).to eq 'Cancelled'
+    expect(Project.find_by(name: 'test').status).to eq 'Cancelled'
   end
 
   it 'in progress is set correctly' do
     Project.create(name: 'test')
     pr = Project.find_by name: 'test'
-    expect(pr.parm_project_status('In progress')).to eq 'In progress'
+    pr.parm_project_status('In progress')
+    expect(Project.find_by(name: 'test').status).to eq 'In progress'
   end
 
   it 'members actually get saved' do
     Project.create(name: 'test')
-    pr = double(Project)
-    #allow(pr).to receive(:add_member)
-    #puts dud.members_getter
-    puts Project.all #Not empty
     pr = Project.find_by name: 'test'
-    #puts pr
-    amount = ProjectMember.all.size
-    expect {
-      pr.add_member('othermail')
-      pr.add_member('somemail')
-      amount = ProjectMember.all.size
-    }.to change { amount }
-    # Empty?
-    puts ProjectMember.all
-    puts 'multiple members:'
+    pr.add_member('othermail')
+    pr.add_member('somemail')
     pr = Project.find_by name: 'test'
-    puts pr.members_getter
+    expect(pr.members_getter).to eq ['othermail', 'somemail']
   end
 
   it 'cannot remove non-existing member' do
-    expect(pr.remove_member('somemail')).to be false
-  end
-
-  it 'initial status is proposed' do
-    expect(pr.parm_project_status).to eq 'Proposed'
-  end
-
-  it 'default name is .. well, default project' do
-    expect(pr.data_getter('name')).to eq 'Default_project_' + Date.today.to_s
-  end
-
-  it 'name is set correctly' do
-    pr.data_setter('name', 'newname')
-    expect(pr.data_getter('name')).to eq 'newname'
+    Project.create(name: 'test')
+    Project.find_by(name: 'test').add_member('somemail')
+    expect(Project.find_by(name: 'test').remove_member('nomail')).to be false
   end
 
   it 'postponed is set correctly' do
-    expect(pr.parm_project_status('Postponed')).to eq 'Postponed'
+    Project.create(name: 'test')
+    pr = Project.find_by name: 'test'
+    pr.parm_project_status('Postponed')
+    expect(Project.find_by(name: 'test').status).to eq 'Postponed'
   end
 
   it 'suspended is set correctly' do
-    expect(pr.parm_project_status('Suspended')).to eq 'Suspended'
+    Project.create(name: 'test')
+    pr = Project.find_by name: 'test'
+    pr.parm_project_status('Suspended')
+    expect(Project.find_by(name: 'test').status).to eq 'Suspended'
   end
 
   it 'proposed is set correctly' do
-    expect(pr.parm_project_status('Proposed')).to eq 'Proposed'
-  end
-
-  it 'project is converted to hash correctly' do
-    pr2.parm_project_status('Cancelled')
-    expect(pr2.to_hash).to eq '3' => { 'name' => '1', 'manager' => '2',
-                                       'members' => '4',
-                                       'status' => 'Cancelled' }
-  end
-
-  it 'id is never nil' do
-    expect(described_class.new.data_getter('id')).not_to be_nil
-  end
-
-  it 'id is always a number' do
-    id = described_class.new.data_getter('id')
-    expect(id).to be_kind_of(Numeric)
+    Project.create(name: 'test')
+    pr = Project.find_by name: 'test'
+    pr.parm_project_status('Proposed')
+    expect(Project.find_by(name: 'test').status).to eq 'Proposed'
   end
 end

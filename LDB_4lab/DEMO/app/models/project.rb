@@ -11,7 +11,12 @@ class Project < ApplicationRecord
   # has_many :project_members
 
   def members_getter
-    ProjectMember.find_by(projid: self.id)
+    arr = []
+    list = ProjectMember.where(projid: self.id)
+    list.each do |t|
+      arr.push(t.member)
+    end
+    arr
   end
 
   def data_getter(key)
@@ -50,9 +55,7 @@ class Project < ApplicationRecord
   end
 
   def add_member(mail)
-puts 'ADDING MEMB'
     pmember = ProjectMember.create(projid: self.id, member: mail)
-    # puts ProjectMember.all #Nothing?
     true
   end
 

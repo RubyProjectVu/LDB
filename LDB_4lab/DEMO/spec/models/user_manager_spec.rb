@@ -11,21 +11,14 @@ require_relative '../rails_helper'
 describe UserManager do
   after do
     # Butina - kitaip mutant sumauna users.yml faila ir klasiu kintamuosius.
-    hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
-                            'pwd' => '123' } }
-    File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+    #hash = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
+     #                       'pwd' => '123' } }
+    #File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
   end
 
   it 'unregistered user should not be able to login' do
     e = 't@t.com'
-    expect(described_class.new.login(e)).to be false
-  end
-
-  it 'user is actually deleted in file' do
-    described_class.new.register(User.new(email: 'aa.com'))
-    described_class.new.delete_user(User.new(email: 't@a.com'))
-    hash = YAML.load_file('users.yml')
-    expect(hash['t@a.com']).to be nil
+    expect(described_class.new.login(e, 'pass')).to be false
   end
 
   it 'pass is actually written when registering' do
@@ -73,25 +66,9 @@ describe UserManager do
     expect(File.read('users.yml').match?(/---/)).to be false
   end
 
-  it 'file is cleared of three dashes on creation' do
-    user = User.new(name: 'tomas', last_name: 'genut', email: 't@a.com')
-    described_class.new.register(user)
-    expect(File.read('users.yml').match?(/---/)).to be false
-  end
-
-  it 'new user is blocked with existing email' do
-    expect(described_class.new.users_push('t@a.com', {})).to be false
-  end
-
   it 'registered user should be able to login' do
     e = 't@a.com'
     expect(described_class.new.login(e)).to be true
-  end
-
-  it 'initial current user is a nil hash' do
-    hsh = {}
-    expect(described_class.new.current_user_getter).to eq hsh
-    # rubocop supposes to switch to {} - which fails
   end
 
   it 'existing user cannot register again' do
@@ -121,31 +98,4 @@ describe UserManager do
     described_class.new.register(user)
     expect(File.read('users.yml').match?(/---/)).to be false
   end
-
-  it 'to hash works right' do
-    e = 't@a.com'
-    expect(described_class.new.to_hash(e)).to eq e => { 'name' => 'tomas',
-                                                        'lname' => 'genut',
-                                                        'pwd' => '123' }
-  end
-
-  #context 'users.yml state testing' do
-   # before do
-    #  user = User.new(name: 'tst', last_name: 'tst', email: 'tst')
-     # user.password_set('tst')
-      #described_class.new.register(user)
-      #described_class.new.delete_user(User.new(email: 't@a.com'))
-    #end
-
-    #it 'checks saving' do
-     # current = 'users.yml'
-      #state = 'state-users.yml'
-      #expect(current).to is_yml_identical(state)
-    #end
-
-    #it 'checks loading' do
-     # hash = { 'tst' => { 'name' => 'tst', 'lname' => 'tst', 'pwd' => 'tst' } }
-      #expect(YAML.load_file('users.yml')).to is_data_identical(hash)
-    #end
-  #end
 end

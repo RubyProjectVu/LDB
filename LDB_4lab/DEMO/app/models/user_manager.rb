@@ -1,48 +1,30 @@
 # frozen_string_literal: true
 
-require_relative 'project_manager'
+require_relative 'user'
+require './application_record'
 require 'yaml'
 
 # class defining user management
 class UserManager
-  def register(user)
-    @current_user = user.user_info
+  def register(name, lname, email, pass)
+    user = User.find_by(email: email)
+    return false if user
+    User.create(name: name, lname: lname, email: email, pass: pass)
 
-    mailing = @current_user.fetch('email'.to_sym)
-    hash = { mailing => { 'name' => @current_user.fetch('name'.to_sym),
-                          'lname' => @current_user.fetch('lname'.to_sym),
-                          'pwd' => @current_user.fetch('pass'.to_sym) } }
-    return true if users_push(mailing, hash)
-
-    false
+    true
   end
 
-  def login(user_to_login)
-    return true unless [nil].include?(@users[user_to_login])
+  def login(email, pass)
+    return false if [nil].include?(User.find_by(email: email))
+    return false unless User.find_by(email: email).pass.match?(pass)
 
-    false
+    true
   end
 
-  def delete_user(user)
-    users_pop(user.data_getter('email'))
+  def delete_user(email)
+    user = User.find_by(email: email)
+    user.destroy
   end
 
   # TODO: active project checking will be implemented later
-
-  def users_push(email, hash)
-    return false unless [nil].include?(@users[email])
-
-    File.open('users.yml', 'a') do |fl|
-      fl.write hash.to_yaml.sub('---', '')
-    end
-    true
-  end
-
-  def users_pop(email)
-    @users.delete(email)
-    File.open('users.yml', 'w') do |fl|
-      fl.write @users.to_yaml.sub('---', '').sub('{}', '')
-    end
-    true
-  end
 end
