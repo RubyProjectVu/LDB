@@ -19,7 +19,7 @@ describe BudgetManager do
 
   it 'negative budgets when there are some' do
     Project.create(name: 'test', manager: 'guy', status: 'Proposed', budget: 3.5)
-    id = (Project.find_by name: 'test').id
+    id = (Project.find_by name: 'test')
     bm.budgets_setter(id, -500)
     expect(bm.check_negative).to match_array ['test']
   end

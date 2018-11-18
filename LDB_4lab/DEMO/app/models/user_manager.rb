@@ -23,7 +23,9 @@ class UserManager
 
   def delete_user(email)
     user = User.find_by(email: email)
+    return false unless user
     user.destroy
+    true
   end
 
   # TODO: active project checking will be implemented later

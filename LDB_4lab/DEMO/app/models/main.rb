@@ -4,8 +4,8 @@ User.destroy_all
 Project.destroy_all
 ProjectMember.destroy_all
 
-user = User.create(name: 'demo', email: 't@a.com')
-proj = Project.create(name: 'projektas')
+user = User.create(name: 'demo', email: 't@a.com', pass: '123')
+proj = Project.create(name: 'projektas', budget: 30)
 
 id = Project.last.id
 puts 'All project ids:'
@@ -27,6 +27,3 @@ proj = Project.find_by id: id
 puts proj.members_getter
 # puts proj.members_getter.member
 
-User.destroy_all
-Project.destroy_all
-ProjectMember.destroy_all
