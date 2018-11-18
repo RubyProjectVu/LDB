@@ -17,7 +17,7 @@ describe UserManager do
 
   it 'unregistered user should not be able to login' do
     e = 't@t.com'
-    expect(described_class.new.login(e)).to be false
+    expect(described_class.new.login(e, '123')).to be false
   end
 
   it 'user is actually deleted in file' do
@@ -84,7 +84,7 @@ describe UserManager do
 
   it 'registered user should be able to login' do
     e = 't@a.com'
-    expect(described_class.new.login(e)).to be true
+    expect(described_class.new.login(e, '123')).to be true
   end
 
   it 'initial current user is a nil hash' do

@@ -35,11 +35,12 @@ class UserManager
     false
   end
 
-  def login(user_to_login)
-    email = user_to_login.data_getter('email')
-    return true unless [nil].include?(@users[email])
+  def login(email, password)
+    hsh = @users[email]
+    return false if [nil].include?(hsh)
+    return false unless hsh.fetch('pwd').eql?(password)
 
-    false
+    true
   end
 
   def delete_user(user)
@@ -66,10 +67,9 @@ class UserManager
   end
 
   def save_user_password(user_email, password)
-    puts "user_mail = #{user_email}"
-    hash = to_hash(user_email)
-    usr = User.new(name: hash[user_email].fetch('name'),
-                   last_name: hash[user_email].fetch('lname'),
+    hash = to_hash(user_email)[user_email]
+    usr = User.new(name: hash.fetch('name'),
+                   last_name: hash.fetch('lname'),
                    email: user_email,
                    pass: password)
     users_pop(user_email)

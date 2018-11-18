@@ -1,3 +1,9 @@
 # Ignore Coverege Files
 coverage
 spec/coverage
+/budgets.yml
+/hasnil.yml
+/notes.yml
+/projects.yml
+/users.yml
+/workgroups.yml

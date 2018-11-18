@@ -64,11 +64,11 @@ loop do
   when 'Login'
     puts $cursor.clear_screen
 
-    currentuser = nil
+    email = $prompt.ask('Email:')
+    pass = $prompt.mask('Password:')
 
-    if ($user_manager.login(currentuser =
-        User.new(email: $prompt.ask('Email:'), pass: $prompt.mask('Password:'))))
-      user_menu(currentuser.data_getter('email'))
+    if $user_manager.login(email, pass)
+      user_menu(email)
     else
       $prompt.warn('Could not login with specified credentials')
       $prompt.ask(Rainbow('Return to previous menu').yellow, default: '[Enter]')
