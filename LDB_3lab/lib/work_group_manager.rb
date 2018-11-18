@@ -6,6 +6,7 @@ require 'yaml'
 # Saves and writes work group related data
 class WorkGroupManager
   def initialize
+    @groups = {}
     load_file
   end
 
@@ -14,13 +15,14 @@ class WorkGroupManager
   end
 
   def save_group(group)
-    gr = gro = group
-    delete_group(gro.data_getter('id'))
-    hash = gr.to_hash
+    return false unless delete_group(group.data_getter('id')) &&
+                        (hash = group.to_hash)
+
     File.open('workgroups.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
     end
     load_file
+    true
   end
 
   def delete_group(id)

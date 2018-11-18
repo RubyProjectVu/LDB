@@ -8,6 +8,7 @@ require 'yaml'
 # rubocop comment?
 class ProjectManager
   def initialize
+    @projects = {}
     load_file
   end
 
@@ -24,10 +25,9 @@ class ProjectManager
   end
 
   def save_project(project)
-    pro = project
     return false unless [nil].include?(@projects[project.data_getter('id')])
     File.open('projects.yml', 'a') do |fl|
-      fl.write pro.to_hash.to_yaml.sub('---', '')
+      fl.write project.to_hash.to_yaml.sub('---', '')
     end
     load_file
     true
@@ -47,19 +47,19 @@ class ProjectManager
   def add_member_to_project(member, project_id)
     return false if [member, project_id].include?(nil)
     return false if [false].include?(project = load_project(project_id))
-    return true if (project.add_member(member) &&
-                    delete_project(Project.new(num: project_id)) &&
-                    save_project(project))
+    return true if project.add_member(member) &&
+                   delete_project(Project.new(num: project_id)) &&
+                   save_project(project)
 
     false
   end
 
   def remove_member_from_project(member, project_id)
     return false if [member, project_id].include?(nil)
-    return false if [false].include?(project = load_project(project_id))
-    return true if (project.remove_member(member) &&
-                    delete_project(Project.new(num: project_id)) &&
-                    save_project(project))
+    return false if (project = load_project(project_id)).eql?(false)
+    return true if project.remove_member(member) &&
+                   delete_project(Project.new(num: project_id)) &&
+                   save_project(project)
     false
   end
 
@@ -67,9 +67,9 @@ class ProjectManager
     return false if [status, project_id].include?(nil)
     return false if [false].include?(project = load_project(project_id))
     return false unless project.parm_project_status(status)
-    return true if (delete_project(Project.new(num: project_id)) &&
-                    save_project(project))
-                    
+    return true if delete_project(Project.new(num: project_id)) &&
+                   save_project(project)
+
     false
   end
 
