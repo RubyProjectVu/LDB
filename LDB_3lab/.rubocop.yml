@@ -9,3 +9,4 @@ Layout/EndOfLine:
 AllCops:
   Exclude:
     - 'main/main.rb'
+    - 'main/submenus/*.rb'

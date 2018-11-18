@@ -20,8 +20,7 @@ require_relative 'submenus/wgm_submenu'
 $cursor = TTY::Cursor
 $prompt = TTY::Prompt.new
 $user_manager = UserManager.new
-
-@usr_hash = { 'Search' => method(:src_submenu),
+$usr_hash = { 'Search' => method(:src_submenu),
               'Notes' => method(:notes_submenu),
               'User management' => method(:userm_submenu),
               'Project management' => method(:projm_submenu),
@@ -36,7 +35,7 @@ def user_menu(currentuser)
     choice = $prompt.select('Modules:', %w[Search Notes User\ management Project\ management
                                           Work\ group\ management Quit], cycle: true)
     break if choice.eql?('Quit')
-    @usr_hash[choice].call
+    $usr_hash[choice].call(currentuser)
   end
 end
 
@@ -69,7 +68,7 @@ loop do
 
     if ($user_manager.login(currentuser =
         User.new(email: $prompt.ask('Email:'), pass: $prompt.mask('Password:'))))
-      user_menu(currentuser)
+      user_menu(currentuser.data_getter('email'))
     else
       $prompt.warn('Could not login with specified credentials')
       $prompt.ask(Rainbow('Return to previous menu').yellow, default: '[Enter]')

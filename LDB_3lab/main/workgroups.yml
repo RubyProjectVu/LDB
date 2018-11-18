@@ -1,7 +1,10 @@
+ 
 
 '453':
   project_id: someid
   group_name: Test
   members: []
-  tasks: []
+  tasks:
+  - Do that
+  - And That
   budget: 10.0

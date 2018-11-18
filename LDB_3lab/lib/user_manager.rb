@@ -64,4 +64,15 @@ class UserManager
     end
     true
   end
+
+  def save_user_password(user_email, password)
+    puts "user_mail = #{user_email}"
+    hash = to_hash(user_email)
+    usr = User.new(name: hash[user_email].fetch('name'),
+                   last_name: hash[user_email].fetch('lname'),
+                   email: user_email,
+                   pass: password)
+    users_pop(user_email)
+    users_push(usr, usr.to_hash)
+  end
 end

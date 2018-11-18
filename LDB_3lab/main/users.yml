@@ -3,18 +3,12 @@ t@a.com:
   name: tomas
   lname: genut
   pwd: '123'
-
-! '':
-  name: ''
-  lname: ''
-  pwd: 
-
-jhon@peterson.com:
-  name: ''
-  lname: ''
-  pwd: jhon
-
 tadas@glumb.com:
   name: ''
   lname: ''
   pwd: tadas
+
+j@j.com:
+  name: ''
+  lname: ''
+  pwd: jj
