@@ -22,3 +22,4 @@ echo 'Mutant...'
 sleep 2
 # Project ProjectManager User UserManager WorkGroup WorkGroupManager BudgetManager NotesManager Search
 bundle exec mutant --include lib --use rspec Project ProjectManager User UserManager WorkGroup WorkGroupManager BudgetManager NotesManager Search -j 1
+
