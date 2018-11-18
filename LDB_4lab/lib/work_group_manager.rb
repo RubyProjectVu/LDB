@@ -64,4 +64,28 @@ class WorkGroupManager
     end
     arr
   end
+
+  def add_member_to_group(member_mail, group_id)
+    group = load_group(group_id)
+    group.add_group_member(User.new(email: member_mail))
+    save_group(group)
+  end
+
+  def remove_member_from_group(member_mail, group_id)
+    group = load_group(group_id)
+    group.remove_group_member(User.new(email: member_mail))
+    save_group(group)
+  end
+
+  def add_task_to_group(task, group_id)
+    group = load_group(group_id)
+    group.add_group_task(task)
+    save_group(group)
+  end
+
+  def remove_task_from_group(task, group_id)
+    group = load_group(group_id)
+    group.remove_group_task(task)
+    save_group(group)
+  end
 end

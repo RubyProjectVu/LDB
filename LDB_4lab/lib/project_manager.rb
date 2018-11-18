@@ -39,6 +39,29 @@ class ProjectManager
     obj
   end
 
+  def add_member_to_project(member, project_id)
+    project = load_project(project_id)
+    project.add_member(member)
+    delete_project(Project.new(num: project_id))
+    save_project(project)
+  end
+
+  def remove_member_from_project(member, project_id)
+    project = load_project(project_id)
+    project.remove_member(member)
+    delete_project(Project.new(num: project_id))
+    save_project(project)
+  end
+
+  def set_project_status(project_id, status)
+    project = load_project(project_id)
+    return false unless project.parm_project_status(status)
+
+    delete_project(Project.new(num: project_id))
+    save_project(project)
+    true
+  end
+
   # TODO: placeholder - will be implemented later
   def active_projects_present?
     false

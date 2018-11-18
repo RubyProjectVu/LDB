@@ -5,9 +5,9 @@ require 'uri'
 
 # Documentation about class User
 class User
-  def initialize(name: '', last_name: '', email: '')
+  def initialize(name: '', last_name: '', email: '', pass: '123')
     @info = { name: name, lname: last_name, email: email,
-              pass: '123' }
+              pass: pass }
   end
 
   def data_getter(key)
