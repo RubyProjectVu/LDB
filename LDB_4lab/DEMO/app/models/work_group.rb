@@ -1,82 +1,67 @@
 # frozen_string_literal: true
 
-require_relative 'user'
+require './application_record'
+require_relative 'work_group_member'
+require_relative 'work_group_task'
 
 # Defines a workgroup
-class WorkGroup
-  def initialize(id, project_id, group_name)
-    @data = { id: id, project_id: project_id,
-              group_name: group_name, budget: 0 }
-    @members = []
-    @tasks = []
-  end
-
-  def data_getter(key)
-    @data.fetch(key.to_sym)
+class WorkGroup < ApplicationRecord
+  def members_getter
+    arr = []
+    list = WorkGroupMember.where(wgid: self.id)
+    list.each do |t|
+      arr.push(t.member)
+    end
+    arr
   end
 
   def data_setter(key, val)
-    project_budget_setter(val) if key.eql?('budget')
-    @data[key.to_sym] = val
-  end
-
-  # Is used only when a group is loaded from hash
-  def budget_construct_only(val)
-    @data[:budget] = val
+    case key
+    when 'name'
+      wg = WorkGroup.find_by(id: self.id)
+      wg.name = val
+    end
+    wg.save
   end
 
   def project_budget_setter(amount)
-    projid = @data.fetch(:project_id)
-    budget = @data.fetch(:budget)
+    projid = self.projid
+    budget = self.budget
     old = BudgetManager.new.budgets_getter(projid)
     BudgetManager.new.budgets_setter(projid, old + (budget - amount))
   end
 
-  def to_hash
-    {
-      data_getter('id') => {
-        'project_id' => data_getter('project_id'),
-        'group_name' => data_getter('group_name'),
-        'members' => members_getter,
-        'tasks' => tasks_getter,
-        'budget' => data_getter('budget')
-      }
-    }
-  end
-
-  def add_group_member(user)
-    address = user.data_getter('email')
-    # members = members_getter
-    return false if @members.include?(address)
-
-    @members.push(address)
+  def add_group_member(mail)
+    return false if WorkGroupMember.find_by(wgid: self.id, member: mail)
+    wgmember = WorkGroupMember.create(wgid: self.id, member: mail)
     true
   end
 
-  def remove_group_member(user)
-    address = user.data_getter('email')
-    # members = members_getter
-    return false unless @members.include?(address)
-
-    @members.delete(address)
+  def remove_group_member(mail)
+    wgm = WorkGroupMember.find_by(wgid: self.id, member: mail)
+    return false if [nil].include?(wgm)
+    wgm.destroy
     true
   end
 
   def add_group_task(task)
-    @tasks.push(task)
+    wgtsk = WorkGroupTask.create(wgid: self.id, task: task)
     true
   end
 
   def remove_group_task(task)
-    @tasks.delete(task)
+    wgt = WorkGroupTask.find_by(wgid: self.id, task: task)
+    return false if [nil].include?(wgt)
+    wgt.destroy
     true
   end
 
-  def members_getter(val = @members)
-    @members = val
-  end
-
-  def tasks_getter(val = @tasks)
-    @tasks = val
+  def tasks_getter
+    arr = []
+    list = WorkGroupTask.where(wgid: self.id)
+    list.each do |t|
+      arr.push(t.task)
+    end
+    arr
   end
 end
