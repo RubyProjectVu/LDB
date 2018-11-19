@@ -63,7 +63,7 @@ describe WorkGroupManager do
     expect(hash).not_to have_key('453')
   end
 
-  context 'bunches up some workgroups together on same project' do
+  context 'when some workgroups together on same project' do
     before do
       grp = WorkGroup.new('newid', 'someid', 'name')
       grp.data_setter('budget', rand(100))
@@ -76,7 +76,7 @@ describe WorkGroupManager do
     end
   end
 
-  context 'workgroups.yml state testing' do
+  context 'when workgroups.yml state is tested' do
     before do
       gr = WorkGroup.new('tst', 'someid', 'tst')
       gr.data_setter('budget', 101)
@@ -100,7 +100,7 @@ describe WorkGroupManager do
     end
   end
 
-  context 'covering group loading from hash' do
+  context 'when covering group loading from hash' do
     let :checkval do
       gr = described_class.new.load_group('453')
 
@@ -118,44 +118,44 @@ describe WorkGroupManager do
                      .data_getter('budget')
     end
 
-    it do
+    it 'returns true if group loading was covered' do
       expect(checkval).to be true
     end
 
-    it do
+    it 'returns false if such group does not exist' do
       expect(described_class.new.load_group('nodi')).to be false
     end
 
-    it do
+    it 'passes if list of work groups match with given values' do
       expect(described_class.new.list_groups).to eq ['453:Test']
     end
 
-    it do
+    it 'passes if work groups members budget equal to particular value' do
       expect(described_class.new.l_mem(WorkGroup.new('a', 'a', 'a'),
                                        '453').data_getter('budget'))
         .to eq 0
     end
 
-    it do
+    it 'passes if work group has a task to sleep' do
       expect(described_class.new.l_tsk(WorkGroup.new('a', 'a', 'a'),
                                        '453').tasks_getter)
         .to eq 'sleep'
     end
 
-    it do
+    it 'passes if loaded group budget is successfully changed' do
       saved = described_class.new.load_group('453')
       saved.data_setter('budget', 50)
       described_class.new.save_group(saved)
       expect(samplegroup).to eq 50
     end
 
-    it do
+    it 'passes if to this work group belongs this member' do
       expect(described_class.new.l_mem(WorkGroup.new('a', 'a', 'a'),
                                        '453').members_getter)
         .to eq ['jhon@mail.com']
     end
 
-    it do
+    it 'passes if work groups budget equal to particular value' do
       expect(described_class.new.l_bdg(WorkGroup.new('a', 'a', 'a'),
                                        '453').data_getter('budget'))
         .to eq 0

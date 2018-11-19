@@ -128,7 +128,7 @@ describe UserManager do
                                                         'pwd' => '123' }
   end
 
-  context 'users.yml state testing' do
+  context 'when users.yml state is tested' do
     before do
       user = User.new(name: 'tst', last_name: 'tst', email: 'tst')
       user.password_set('tst')

@@ -28,7 +28,7 @@ describe Search do
     expect(src.yml_key_check(arg)).to be false
   end
 
-  it do
+  it 'returns value(s) according to the search criteria' do
     expect(src.search_by_criteria(['Projects'], 'noval')).to start_with([''])
   end
 
@@ -55,7 +55,7 @@ describe Search do
     expect(src.parm_instancevariable(false)).to be false
   end
 
-  it '' do
+  it 'passes if these are the subkeys' do
     expect(src.grab_subkeys('id' => { 1 => '', 2 => '' }))
       .to eq ['id', { 1 => '', 2 => '' }]
   end

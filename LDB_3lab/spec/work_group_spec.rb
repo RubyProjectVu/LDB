@@ -125,7 +125,7 @@ describe WorkGroup do
     expect(group.data_getter('group_name')).to eq 'name'
   end
 
-  context 'assembles the hash correctly' do
+  context 'when assembling the hash' do
     before do
       wg.add_group_member(User.new(email: 'some@mail.com'))
       wg.add_group_task('mytask')
@@ -145,7 +145,7 @@ describe WorkGroup do
     expect(wg.data_getter('budget')).to equal 300
   end
 
-  context 'project budget is updated according to workgroup budget' do
+  context 'when project budget is updated according to workgroup budget' do
     let(:wgo) do
       described_class.new('10', 'someid', 'name')
     end
@@ -189,36 +189,36 @@ describe WorkGroup do
     expect(BudgetManager.new.budgets_getter('someid')).to be == 34_980
   end
 
-  it do
+  it 'passes if member with particular values exists' do
     wg = described_class.new('10', 'someid', 'name')
     wg.members_getter(%w[1 2])
     expect(wg.members_getter(%w[1 2])).to eq %w[1 2]
   end
 
-  it do
+  it 'passes if in work group exist only particular members' do
     wg = described_class.new('10', 'someid', 'name')
     wg.members_getter(%w[1 2])
     expect(wg.members_getter).to eq %w[1 2]
   end
 
-  it do
+  it 'passes if tasks with setted values exists' do
     wg = described_class.new('10', 'someid', 'name')
     wg.tasks_getter(%w[1 2])
     expect(wg.tasks_getter(%w[1 2])).to eq %w[1 2]
   end
 
-  it do
+  it 'passes if work group has these tasks' do
     wg = described_class.new('10', 'someid', 'name')
     wg.tasks_getter(%w[1 2])
     expect(wg.tasks_getter).to eq %w[1 2]
   end
 
-  it do
+  it 'passes if groups budget is setted' do
     wg = described_class.new('10', 'someid', 'name')
     expect(wg.budget_construct_only(21)).to eq 21
   end
 
-  it do
+  it 'passes if budget with setted value exist' do
     wg = described_class.new('10', 'someid', 'name')
     wg.budget_construct_only(21)
     expect(wg.data_getter('budget')).to eq 21

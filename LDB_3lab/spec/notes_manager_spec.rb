@@ -22,14 +22,14 @@ describe NotesManager do
     end
   end
 
-  it do
+  it 'note is saved to hash correctly' do
     expect(nm.save_note('auth', 'name', 'text')).to contain_exactly(
       ['badtext', { 'author' => 'somename', 'text' => 'bad word' }],
       ['wow', { 'author' => 'user', 'text' => 'example' }]
     )
   end
 
-  it do
+  it 'return false if name is not valid' do
     expect(nm.save_note('auth', 'Back', 'text')).to be false
   end
 
@@ -45,41 +45,41 @@ describe NotesManager do
     expect(hash['name']['text']).to eq 'text'
   end
 
-  it do
+  it 'passes if list of notes equal to values' do
     expect(nm.list_notes).to eq %w[wow badtext]
   end
 
-  it do
+  it 'passes if notes text matches with string' do
     expect(nm.note_getter('wow')).to eq 'example'
   end
 
-  it do
+  it 'returns true if note was deleted' do
     expect(nm.delete_note('wow')).to be true
   end
 
-  it do
+  it 'passes if cleared file does not contain nils' do
     nm.delete_note('wow')
     nm.delete_note('badtext')
     file = 'notes.yml'
     expect(file).not_to has_yml_nils
   end
 
-  it do
+  it 'passes if deleted notes are not loaded' do
     nm.delete_note('wow')
     hash = YAML.load_file('notes.yml')
     expect(hash).to eq 'badtext' => { 'author' => 'somename',
                                       'text' => 'bad word' }
   end
 
-  it do
+  it 'passes if particular note does not contain bad word(s)' do
     expect(YAML.load_file('notes.yml')['wow']['text']).not_to has_bad_words
   end
 
-  it do
+  it 'passes if particular note contain bad word(s)' do
     expect(YAML.load_file('notes.yml')['badtext']['text']).to has_bad_words
   end
 
-  context 'notes.yml state testing' do
+  context 'when notes.yml state is tested' do
     before do
       described_class.new.delete_note('badtext')
       described_class.new.save_note('tst', 'tst', 'tst')

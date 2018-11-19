@@ -29,15 +29,15 @@ describe BudgetManager do
     expect(described_class.new.check_negative).to match_array ['newproj']
   end
 
-  it do
+  it 'passes if a budget is less or equal to the value' do
     expect(bm.budgets_getter('someid')).to be <= 35_000
   end
 
-  it do
+  it 'passes if a budget is greater or equal to the value' do
     expect(bm.budgets_getter('someid')).to be >= 35_000
   end
 
-  it do
+  it 'raises error if such budget does not exist' do
     expect { bm.budgets_getter('noid') }.to raise_error(NoMethodError)
   end
 
@@ -74,7 +74,7 @@ describe BudgetManager do
     expect(bm.add_new('newproj', '1')).to be_instance_of(Hash)
   end
 
-  context 'budgets.yml state testing' do
+  context 'when budgets.yml state is tested' do
     before do
       described_class.new.budgets_setter('someid', 101)
       described_class.new.budgets_setter('tst', 101)

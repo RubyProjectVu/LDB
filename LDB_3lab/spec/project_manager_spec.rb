@@ -91,7 +91,7 @@ describe ProjectManager do
     expect(pm.list_projects).to match_array %w[someid:projektas]
   end
 
-  context 'projects.yml state testing' do
+  context 'when projects.yml state is tested' do
     before do
       proj = Project.new(project_name: 'tst', manager: 'tst',
                          num: 'tst', members: %w[tst tst])
@@ -114,7 +114,7 @@ describe ProjectManager do
     end
   end
 
-  context 'adds member to the project' do
+  context 'when adding member to the project' do
     it 'adds member to the project' do
       expect(pm.add_member_to_project('t@a.com', 'someid')).to be true
     end
@@ -141,7 +141,7 @@ describe ProjectManager do
     end
   end
 
-  context 'removes member from the project' do
+  context 'when removing member from the project' do
     it 'removes member from the project' do
       pm.add_member_to_project('t@a.com', 'someid')
       expect(pm.remove_member_from_project('t@a.com', 'someid')).to be true
@@ -175,7 +175,7 @@ describe ProjectManager do
     expect(YAML.load_file('projects.yml').eql?(before_file)).to be true
   end
 
-  context 'changes project status' do
+  context 'when changing project status' do
     it 'sets project status correctly' do
       expect(pm.set_project_status('someid', 'Cancelled')).to be true
     end
