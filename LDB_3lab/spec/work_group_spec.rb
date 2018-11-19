@@ -189,25 +189,25 @@ describe WorkGroup do
     expect(BudgetManager.new.budgets_getter('someid')).to be == 34_980
   end
 
-  it 'passes if member with particular values exists' do
+  it 'passes if member with particular values are returned' do
     wg = described_class.new('10', 'someid', 'name')
     wg.members_getter(%w[1 2])
     expect(wg.members_getter(%w[1 2])).to eq %w[1 2]
   end
 
-  it 'passes if in work group exist only particular members' do
+  it 'passes if prevoiusly added members are returned' do
     wg = described_class.new('10', 'someid', 'name')
     wg.members_getter(%w[1 2])
     expect(wg.members_getter).to eq %w[1 2]
   end
 
-  it 'passes if tasks with setted values exists' do
+  it 'passes if tasks are setted and correctly returned' do
     wg = described_class.new('10', 'someid', 'name')
     wg.tasks_getter(%w[1 2])
     expect(wg.tasks_getter(%w[1 2])).to eq %w[1 2]
   end
 
-  it 'passes if work group has these tasks' do
+  it 'passes if tasks with previously setted values are returned' do
     wg = described_class.new('10', 'someid', 'name')
     wg.tasks_getter(%w[1 2])
     expect(wg.tasks_getter).to eq %w[1 2]
@@ -218,7 +218,7 @@ describe WorkGroup do
     expect(wg.budget_construct_only(21)).to eq 21
   end
 
-  it 'passes if budget with setted value exist' do
+  it 'passes if budget was previously correctly setted' do
     wg = described_class.new('10', 'someid', 'name')
     wg.budget_construct_only(21)
     expect(wg.data_getter('budget')).to eq 21
