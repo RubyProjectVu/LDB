@@ -6,6 +6,6 @@ require './application_record'
 srand 0
 
 # rubocop comment?
-class WorkGroupMember < ApplicationRecord
+class WorkGroupTask < ApplicationRecord
   # belongs_to :workgroups
 end

@@ -18,42 +18,36 @@ describe User do
 
   let(:usr) do
     described_class.create(name: 'name',
-                           lname: 'lname',
-                           email: 'email',
-                           pass: 'pass')
+                        lname: 'lname',
+                        email: 'email',
+                        pass: 'pass')
   end
 
   # let(:usr2) { described_class.new }
 
   it 'password is set correctly' do
+    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
     usr = User.find_by(name: 'name')
     usr.password_set('password')
     expect(User.find_by(name: 'name').pass).to eq 'password'
   end
 
-  it 'sets the name correctly' do
-    expect(usr.data_getter('name')).to eq 'name'
-  end
-
   it 'sets the last name correctly' do
+    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
     usr = User.find_by(name: 'name')
     expect(User.find_by(name: 'name').lname).to eq 'lname'
   end
 
   it 'sets the email correctly' do
+    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
     usr = User.find_by(name: 'name')
     expect(User.find_by(name: 'name').email).to eq 'email'
   end
 
   it 'sets the pass correctly' do
+    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
     usr = User.find_by(name: 'name')
     expect(User.find_by(name: 'name').pass).to eq 'pass'
-  end
-
-  it 'conversion by id/email is correct' do
-    expect(UserManager.new.to_hash('t@a.com')).to eq 't@a.com' => {
-      'name' => 'tomas', 'lname' => 'genut', 'pwd' => '123'
-    }
   end
 
   it 'password is indeed advanced' do

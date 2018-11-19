@@ -46,15 +46,22 @@ ActiveRecord::Schema.define do
     end
 
     # Holds all workgroups
-    create_table :workgroups do |t|
+    create_table :work_groups do |t|
+      t.integer :projid
       t.string :name
-      t.integer :task
+      t.float :budget
     end
 
     # Holds a list of members under a workgroup
     create_table :work_group_members do |t|
       t.integer :wgid
       t.string :member
+    end
+
+    # Holds a list of tasks under a workgroup
+    create_table :work_group_tasks do |t|
+      t.integer :wgid
+      t.string :task
     end
 
     # Holds all roles
