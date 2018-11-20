@@ -82,11 +82,6 @@ describe UserManager do
     expect(described_class.new.users_push('t@a.com', {})).to be false
   end
 
-  it 'registered user should be able to login' do
-    e = 't@a.com'
-    expect(described_class.new.login(e, '123')).to be true
-  end
-
   it 'initial current user is a nil hash' do
     hsh = {}
     expect(described_class.new.current_user_getter).to eq hsh
@@ -146,5 +141,94 @@ describe UserManager do
       hash = { 'tst' => { 'name' => 'tst', 'lname' => 'tst', 'pwd' => 'tst' } }
       expect(YAML.load_file('users.yml')).to is_data_identical(hash)
     end
+  end
+
+  context 'user tries to login' do
+    it 'registered user should be able to login' do
+      e = 't@a.com'
+      expect(described_class.new.login(e, '123')).to be true
+    end
+
+    it 'not be able to login when email is invalid' do
+      expect(described_class.new.login('erhearhaerh', '123')).to be false
+    end
+
+    it 'not be able to login when password is invalid' do
+      expect(described_class.new.login('t@a.com', '45')).to be false
+    end
+
+    it 'when email is nil should fail' do
+      expect(described_class.new.login(nil, '123')).to be false
+    end
+
+    it 'when password is nil should fail' do
+      expect(described_class.new.login('t@a.com', nil)).to be false
+    end
+
+    it 'if no params, shoul fail' do
+      expect(described_class.new.login(nil, nil)).to be false
+    end
+  end
+
+  context 'user password is being changed' do
+    it 'complete if everything is right' do
+      dc = described_class.new
+      e = 'bubu@gmail.com'
+      dc.register(User.new(email: e, pass:'4535'))
+      expect(described_class.new.save_user_password(e, '445')).to be true
+    end
+
+    it 'fail if invalid password' do
+      e = 't@a.com'
+      expect(described_class.new.save_user_password(e, '120')).to be true
+    end
+
+    it 'if email is nil should fail' do
+      expect(described_class.new.save_user_password(nil, '124')).to be false
+    end
+
+    it 'if password is nil should fail' do
+      expect(described_class.new.save_user_password('t@a.com', nil)).to be false
+    end
+
+    it 'fails if user does not exist' do
+      expect(described_class.new.save_user_password('wegwah', '12')).to be false
+    end
+
+    it 'no params fail' do
+      expect(described_class.new.save_user_password(nil, nil)).to be false
+    end
+
+    it 'saves user password correctly' do
+      e_f = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
+                             'pwd' => '120' } }
+      described_class.new.save_user_password('t@a.com', '120')
+      r_f = YAML.load_file('users.yml')
+      expect(e_f.eql?(r_f)).to be true
+    end
+
+    it 'corrently edits user var' do
+      e_f = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
+                             'pwd' => '100' } }
+      dc = described_class.new
+      dc.save_user_password('t@a.com', '100')
+      expect(e_f.eql?(dc.users_getter)).to be true
+    end
+  end
+
+  it "not pops when email doesn't exist" do
+    expect(described_class.new.users_pop('aaaaa')).to be false
+  end
+
+  it "pops when email exists" do
+    expect(described_class.new.users_pop('t@a.com')).to be true
+  end
+
+  it "doesn't hash if email doesn't exist" do
+    expect(described_class.new.to_hash('agaegwaeg')).to be false
+  end
+
+  it "does hash if email exists" do
+    expect(described_class.new.to_hash('t@a.com').class.eql?(Hash)).to be true
   end
 end

@@ -19,7 +19,13 @@ class UserManager
     @current_user
   end
 
+  def users_getter
+    @users
+  end
+
   def to_hash(email)
+    return false unless @users.key?(email)
+
     { email => @users.fetch(email) }
   end
 
@@ -37,7 +43,7 @@ class UserManager
 
   def login(email, password)
     hsh = @users[email]
-    return false if [email, password, hsh].include?(nil)
+    return false if [nil].include?(hsh)
     return false unless hsh.fetch('pwd').eql?(password)
 
     true
@@ -59,6 +65,8 @@ class UserManager
   end
 
   def users_pop(email)
+    return false if [nil].include?(@users[email])
+
     @users.delete(email)
     File.open('users.yml', 'w') do |fl|
       fl.write @users.to_yaml.sub('---', '').sub('{}', '')
@@ -67,12 +75,16 @@ class UserManager
   end
 
   def save_user_password(user_email, password)
-    hash = to_hash(user_email)[user_email]
-    usr = User.new(name: hash.fetch('name'),
-                   last_name: hash.fetch('lname'),
+    return false unless @users.key?(user_email)
+    return false if [nil].include?(password)
+
+    usr = User.new(name: to_hash(user_email)[user_email].fetch('name'),
+                   last_name: to_hash(user_email)[user_email].fetch('lname'),
                    email: user_email,
                    pass: password)
+
     users_pop(user_email)
-    users_push(usr, usr.to_hash)
+    return false unless users_push(usr, usr.to_hash)
+    true
   end
 end
