@@ -4,7 +4,7 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
   
 Layout/EndOfLine:
-  EnforcedStyle: crlf
+  EnforcedStyle: native
 
 AllCops:
   Exclude:

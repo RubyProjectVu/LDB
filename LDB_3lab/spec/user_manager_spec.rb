@@ -174,7 +174,7 @@ describe UserManager do
     it 'complete if everything is right' do
       dc = described_class.new
       e = 'bubu@gmail.com'
-      dc.register(User.new(email: e, pass:'4535'))
+      dc.register(User.new(email: e, pass: '4535'))
       expect(described_class.new.save_user_password(e, '445')).to be true
     end
 
@@ -216,19 +216,19 @@ describe UserManager do
     end
   end
 
-  it "not pops when email doesn't exist" do
+  it 'not pops when email doesn\'t exist' do
     expect(described_class.new.users_pop('aaaaa')).to be false
   end
 
-  it "pops when email exists" do
+  it 'pops when email exists' do
     expect(described_class.new.users_pop('t@a.com')).to be true
   end
 
-  it "doesn't hash if email doesn't exist" do
+  it 'doesn\'t hash if email doesn\'t exist' do
     expect(described_class.new.to_hash('agaegwaeg')).to be false
   end
 
-  it "does hash if email exists" do
+  it 'does hash if email exists' do
     expect(described_class.new.to_hash('t@a.com').class.eql?(Hash)).to be true
   end
 end

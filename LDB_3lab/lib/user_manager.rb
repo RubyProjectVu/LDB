@@ -75,16 +75,15 @@ class UserManager
   end
 
   def save_user_password(user_email, password)
-    return false unless @users.key?(user_email)
-    return false if [nil].include?(password)
+    return false if [nil].include?(password) || !@users.key?(user_email)
+    hsh = to_hash(user_email).fetch(user_email)
 
-    usr = User.new(name: to_hash(user_email)[user_email].fetch('name'),
-                   last_name: to_hash(user_email)[user_email].fetch('lname'),
+    usr = User.new(name: hsh.fetch('name'),
+                   last_name: hsh.fetch('lname'),
                    email: user_email,
                    pass: password)
 
-    users_pop(user_email)
-    return false unless users_push(usr, usr.to_hash)
+    return false unless users_pop(user_email) && users_push(usr, usr.to_hash)
     true
   end
 end
