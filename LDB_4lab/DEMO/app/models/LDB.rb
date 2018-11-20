@@ -38,6 +38,7 @@ ActiveRecord::Schema.define do
       t.string :name
       t.string :author
       t.text :text
+      t.datetime :expire
     end
 
     # Holds all tasks

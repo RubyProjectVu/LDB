@@ -23,7 +23,19 @@ class NotesManager < ApplicationRecord
     false 
   end
 
+  def check_outdated
+    outd = []
+    list = NotesManager.all
+    list.each do |note|
+      if note.expire > DateTime.current
+        outd.push(t.name)
+      end
+    end
+    outd
+  end
+
   def list_notes
+    check_outdated
     arr = []
     lofids = NotesManager.all.ids
     lofids.each do |id|
