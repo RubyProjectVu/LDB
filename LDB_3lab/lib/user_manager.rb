@@ -53,8 +53,8 @@ class UserManager
     users_pop(user.data_getter('email'))
   end
 
-  def users_push(email, hash)
-    return false unless [nil].include?(@users[email])
+  def users_push(ml, hash)
+    return false unless ml.instance_of?(String) && [nil].include?(@users[ml])
 
     File.open('users.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
@@ -83,7 +83,6 @@ class UserManager
                    email: user_email,
                    pass: password)
 
-    return false unless users_pop(user_email) && users_push(usr, usr.to_hash)
-    true
+    true if users_pop(user_email) && users_push(user_email, usr.to_hash)
   end
 end

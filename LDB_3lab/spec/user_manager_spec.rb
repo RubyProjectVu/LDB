@@ -207,6 +207,17 @@ describe UserManager do
       expect(e_f.eql?(r_f)).to be true
     end
 
+    it 'fails on non-string mail' do
+      expect(described_class.new.users_push(45, 'mail' => {})).to be false
+    end
+
+    it 'user password is actually updated' do
+      e_f = described_class.new.to_hash('t@a.com')
+      described_class.new.save_user_password('t@a.com', 'p@ssw*rd')
+      r_f = described_class.new.to_hash('t@a.com')
+      expect(e_f.eql?(r_f)).not_to be true
+    end
+
     it 'corrently edits user var' do
       e_f = { 't@a.com' => { 'name' => 'tomas', 'lname' => 'genut',
                              'pwd' => '100' } }
