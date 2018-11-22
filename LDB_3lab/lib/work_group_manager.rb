@@ -13,9 +13,14 @@ class WorkGroupManager
     @groups = YAML.load_file('workgroups.yml')
   end
 
+  def groupsprm_getter
+    @groups
+  end
+
   def save_group(group)
-    return false unless delete_group(group.data_getter('id')) &&
-                        (hash = group.to_hash)
+    # && reduces the num of statements by 1; reek error gone
+    delete_group(group.data_getter('id')) &&
+      hash = group.to_hash
 
     File.open('workgroups.yml', 'a') do |fl|
       fl.write hash.to_yaml.sub('---', '')
@@ -44,15 +49,13 @@ class WorkGroupManager
     gro = @groups.fetch(id)
     obj.members_getter(gro.fetch('members'))
 
-    # obj = load_tasks(obj, id)
-    obj # load_tasks(obj, id)
+    obj
   end
 
   def l_tsk(obje, id)
     gro = @groups.fetch(id)
     obje.tasks_getter(gro.fetch('tasks'))
 
-    # obje = load_budget(obje, id)
     obje
   end
 

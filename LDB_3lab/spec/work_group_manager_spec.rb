@@ -14,10 +14,38 @@ describe WorkGroupManager do
     described_class.new
   end
 
+  let(:newmemberhsh) do
+    { '453' => { 'project_id' => 'someid',
+                 'group_name' => 'Test',
+                 'members' => %w[jhon@mail.com dude],
+                 'tasks' => %w[sleep], 'budget' => 0 } }
+  end
+
+  let(:rmmemberhsh) do
+    { '453' => { 'project_id' => 'someid',
+                 'group_name' => 'Test',
+                 'members' => %w[jhon@mail.com],
+                 'tasks' => %w[sleep], 'budget' => 0 } }
+  end
+
+  let(:newtskhsh) do
+    { '453' => { 'project_id' => 'someid',
+                 'group_name' => 'Test',
+                 'members' => ['jhon@mail.com'],
+                 'tasks' => %w[sleep work], 'budget' => 0 } }
+  end
+
+  let(:rmtskhsh) do
+    { '453' => { 'project_id' => 'someid',
+                 'group_name' => 'Test',
+                 'members' => ['jhon@mail.com'],
+                 'tasks' => [], 'budget' => 0 } }
+  end
+
   after do
     # Butina - kitaip mutant sumauna workgroups.yml faila
     hash = { '453' => { 'project_id' => 'someid', 'group_name' => 'Test',
-                        'members' => ['jhon@mail.com'], 'tasks' => 'sleep',
+                        'members' => ['jhon@mail.com'], 'tasks' => ['sleep'],
                         'budget' => 0 } }
     File.open('workgroups.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')
@@ -108,7 +136,7 @@ describe WorkGroupManager do
                  gr.data_getter('project_id').eql?('someid') &&
                  gr.data_getter('group_name').eql?('Test') &&
                  gr.members_getter.eql?(['jhon@mail.com']) &&
-                 gr.tasks_getter.eql?('sleep') &&
+                 gr.tasks_getter.eql?(['sleep']) &&
                  gr.data_getter('budget').eql?(0)
       checkval
     end
@@ -139,7 +167,7 @@ describe WorkGroupManager do
     it 'passes if work group has a task to sleep' do
       expect(described_class.new.l_tsk(WorkGroup.new('a', 'a', 'a'),
                                        '453').tasks_getter)
-        .to eq 'sleep'
+        .to eq ['sleep']
     end
 
     it 'passes if loaded group budget is successfully changed' do
@@ -160,5 +188,86 @@ describe WorkGroupManager do
                                        '453').data_getter('budget'))
         .to eq 0
     end
+  end
+
+  it 'adds a member to a group with nil params' do
+    expect(wgm.add_member_to_group(nil, nil)).to be false
+  end
+
+  it 'normally returns true if member is added' do
+    expect(wgm.add_member_to_group('dude', '453')).to be true
+  end
+
+  it 'adds a member to a group with one of params nil' do
+    expect(wgm.add_member_to_group(nil, 200) ||
+           wgm.add_member_to_group('t@a.com', nil)).to be false
+  end
+
+  it 'new group member is actually saved' do
+    wgm.add_member_to_group('dude', '453')
+    hsh1 = YAML.load_file('workgroups.yml')
+    expect(hsh1).to eq newmemberhsh
+  end
+
+  it 'removes a member from a group with nil params' do
+    expect(wgm.remove_member_from_group(nil, nil)).to be false
+  end
+
+  it 'normally returns true if member is removed' do
+    expect(wgm.remove_member_from_group('jhon@mail.com', '453')).to be true
+  end
+
+  it 'removes a member from a group with one of params nil' do
+    expect(wgm.remove_member_from_group(nil, 200) ||
+           wgm.remove_member_from_group('t@a.com', nil)).to be false
+  end
+
+  it 'member is actually removed' do
+    wgm.add_member_to_group('dude', '453')
+    wgm.remove_member_from_group('dude', '453')
+    hsh1 = YAML.load_file('workgroups.yml')
+    expect(hsh1).to eq rmmemberhsh
+  end
+
+  it 'adds a task to a group with nil params' do
+    expect(wgm.add_task_to_group(nil, nil)).to be false
+  end
+
+  it 'normally returns true if task is added' do
+    expect(wgm.add_task_to_group('work', '453')).to be true
+  end
+
+  it 'adds a task to a group with one of params nil' do
+    expect(wgm.add_task_to_group(nil, 200) ||
+           wgm.add_task_to_group('work', nil)).to be false
+  end
+
+  it 'new task is actually saved' do
+    wgm.add_task_to_group('work', '453')
+    hsh1 = YAML.load_file('workgroups.yml')
+    expect(hsh1).to eq newtskhsh
+  end
+
+  it 'removes a task from a group with nil params' do
+    expect(wgm.remove_task_from_group(nil, nil)).to be false
+  end
+
+  it 'normally returns true if task is removed' do
+    expect(wgm.remove_task_from_group('sleep', '453')).to be true
+  end
+
+  it 'removes a task from a group with one of params nil' do
+    expect(wgm.remove_task_from_group(nil, 200) ||
+           wgm.remove_task_from_group('work', nil)).to be false
+  end
+
+  it 'task is actually removed' do
+    wgm.remove_task_from_group('sleep', '453')
+    hsh1 = YAML.load_file('workgroups.yml')
+    expect(hsh1).to eq rmtskhsh
+  end
+
+  it 'returns current yml state' do
+    expect(wgm.groupsprm_getter).to eq YAML.load_file('workgroups.yml')
   end
 end

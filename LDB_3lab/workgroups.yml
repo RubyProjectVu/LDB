@@ -4,5 +4,6 @@
   group_name: Test
   members:
   - jhon@mail.com
-  tasks: sleep
+  tasks:
+  - sleep
   budget: 0
