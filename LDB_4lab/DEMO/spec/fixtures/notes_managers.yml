@@ -1,0 +1,11 @@
+Note1:
+ name: Uzrasas1
+ author: ar@gmail.com
+ text: 'some text'
+ expire: 0
+
+Note2:
+ name: Uzrasas2
+ author: tg.gmail.com
+ text: 'some text'
+ expire: '2020-01-01'

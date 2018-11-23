@@ -1,11 +1,11 @@
-Projektas1
+Projektas1:
  name: Projektas1
  manager: Tomas
  status: Proposed
- budget: 35000
+ budget: 35000.11
 
-Projektas2
+Projektas2:
  name: Projektas2
  manager: Tomas
  status: In progress
- budget: 5000
+ budget: 5000.5

@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 0) do
       t.string :name
       t.string :author
       t.text :text
+      t.datetime :expire
     end
 
     # Holds all tasks
@@ -46,15 +47,22 @@ ActiveRecord::Schema.define(version: 0) do
     end
 
     # Holds all workgroups
-    create_table :workgroups do |t|
+    create_table :work_groups do |t|
+      t.integer :projid
       t.string :name
-      t.integer :task
+      t.float :budget
     end
 
     # Holds a list of members under a workgroup
     create_table :work_group_members do |t|
       t.integer :wgid
       t.string :member
+    end
+
+    # Holds a list of tasks under a workgroup
+    create_table :work_group_tasks do |t|
+      t.integer :wgid
+      t.integer :task
     end
 
     # Holds all roles

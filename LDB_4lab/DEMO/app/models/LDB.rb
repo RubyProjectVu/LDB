@@ -62,7 +62,7 @@ ActiveRecord::Schema.define do
     # Holds a list of tasks under a workgroup
     create_table :work_group_tasks do |t|
       t.integer :wgid
-      t.string :task
+      t.integer :task
     end
 
     # Holds all roles
