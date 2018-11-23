@@ -39,4 +39,13 @@ class BudgetManager
     end
     @budgets
   end
+
+  def all_average
+    sum = 0.0
+    @budgets.each_key do |key|
+      sum += @budgets.fetch(key).fetch('budget')
+    end
+    return false if [0].include?(count = @budgets.count)
+    sum / count
+  end
 end

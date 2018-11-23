@@ -38,12 +38,6 @@ describe Search do
                                                     'tomas']]
   end
 
-  it 'handles multiple criteria' do
-    expect(described_class.new.search_by_criteria(%w[WorkGroups
-                                                     Users], 'jhon@mail.com'))
-      .to start_with [%w[workgroups\ 453\ contain:\  jhon@mail.com]]
-  end
-
   it 'result is delivered as an array of messages plus actual strings' do
     expect(described_class.new.search_by_criteria(%w[WorkGroups
                                                      Budgets Projects

@@ -5,12 +5,16 @@
 5)  .satisfy {} 	::72 project_manager_spec
 6)  .change {}		::149 work_group_spec
 7)  .equal()		::140 work_group_spec
-8)  .be <=		::33 budget_manager_spec
+
+[?]8)  .be <=		::33 budget_manager_spec
+
 9)  .be_within().of()	::168 work_group_spec
 10) .be ==		::174 work_group_spec
 11) .have_key()		::55 work_group_manager_spec
 12) .eq			::36 search_spec
-13) .be >=		::37 budget_manager_spec
+
+[?]13) .be >=		::37 budget_manager_spec
+
 14) .raise_error()	::42 budget_manager_spec
 15) .be_nil		::169 project_spec
 16) .be_truthy 		::26 work_group_manager_spec
@@ -22,7 +26,8 @@
 22) .all		::51 search_spec
 23) .end_with()		::65 search_spec
 24) .be_instance_of 	::80 budget_manager_spec
-25) .be_between		::73 work_group_manager_spec
+25) .be_between		::37 budget_manager_spec
+26) .include		::62 notes_manager_spec
 
 
 

@@ -126,3 +126,23 @@ RSpec::Matchers.define :users_domain_legit do
     true
   end
 end
+
+# Check if a note is going to be deleted on next startup
+# notes_manager_spec::127
+RSpec::Matchers.define :note_to_be_deleted do
+  # Deletes the note if the author doesn't exist anymore or the date has passed
+  match do |expected|
+    file = YAML.load_file('notes.yml')
+    file.each_key do |key|
+      next unless key.eql?(expected)
+      date = file.fetch(key).fetch('exp')
+      return false if date == 0
+      return true if Date.parse(date) <= Date.today
+
+      users = YAML.load_file('users.yml')
+      return false if users[file.fetch(key).fetch('author')]
+
+      true
+    end
+  end
+end

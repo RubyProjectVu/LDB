@@ -3,8 +3,10 @@
 '453':
   project_id: someid
   group_name: Test
-  members: []
+  members:
+  - wow
   tasks:
   - Do that
   - And That
-  budget: 10.0
+  - pop
+  budget: 50.0

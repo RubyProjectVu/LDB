@@ -12,12 +12,36 @@ describe BudgetManager do
     described_class.new
   end
 
+  let(:many_budgs) do
+    { 'file' => { 'proj1' => { 'budget' => 85 },
+                  'proj2' => { 'budget' => 13 },
+                  'proj3' => { 'budget' => 27 },
+                  'proj4' => { 'budget' => 70 },
+                  'proj5' => { 'budget' => 119 },
+                  'proj6' => { 'budget' => 597 } } }
+  end
+
   after do
     # Butina - kitaip mutant sumauna budgets.yml faila ir klasiu kintamuosius.
     hash = { 'someid' => { 'budget' => 35_000 } }
     File.open('budgets.yml', 'w') do |fl|
       fl.write hash.to_yaml.gsub('---', '')
     end
+  end
+
+  it 'calculates the average of all projects' do
+    File.open('budgets.yml', 'a') do |fl|
+      fl.write many_budgs['file'].to_yaml.gsub('---', '')
+    end
+    expect(described_class.new.all_average).to be_between(5130.142857,
+                                                          5130.142858)
+  end
+
+  it 'false when no budgets' do
+    File.open('budgets.yml', 'w') do |fl|
+      fl.write({}).to_yaml.gsub('---', '')
+    end
+    expect(described_class.new.all_average).to be false
   end
 
   it 'no negative budgets when there aren\'t any' do

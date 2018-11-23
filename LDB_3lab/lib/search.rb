@@ -32,7 +32,6 @@ class Search
   def grab_subkeys(hash)
     arr = []
     hash.each do |key, val|
-      arr = val if val.instance_of?(Array)
       arr.push(key, val) if @instancevariable
     end
     arr
