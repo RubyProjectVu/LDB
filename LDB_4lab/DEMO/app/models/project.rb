@@ -68,7 +68,7 @@ class Project < ApplicationRecord
 
   def set_deleted_status
     if Project.find_by(id: self.id).status.eql?('Deleted')
-      ProjectManager.new.delete_project(self.id)
+      exec_deleted_status
       false
     else
       proj = Project.find_by(id: self.id)
@@ -76,5 +76,9 @@ class Project < ApplicationRecord
       proj.save
       true
     end
+  end
+
+  def exec_deleted_status
+    ProjectManager.new.delete_project(self.id)
   end
 end

@@ -1,40 +1,35 @@
 # frozen_string_literal: true
 
-#require 'simplecov'
-#SimpleCov.start
-
-# require 'app/models/project'
 require_relative 'custom_matcher'
-# require_relative '../application_record'
 require_relative '../rails_helper'
 
 describe Project do
-  let(:pr) { 
-    pr = double(:Project)
-    allow(pr).to receive(:add_member)
-    allow(pr).to receive(:remove_member)
+  fixtures :all
+
+  let(:pr) {
+    pr = double
+    allow(pr).to receive(:name=)
+    allow(pr).to receive(:save)
+    allow(pr).to receive(:find_test) { Project.find_by(name: 'test') }
+    allow(pr).to receive(:find_proj).and_return(Project.find_by(name: 'Projektas1'))
+    allow(pr).to receive(:exec_deleted_status)
     allow(pr).to receive(:set_deleted_status)
-    allow(pr).to receive(:parm_project_status)
-    allow(pr).to receive(:data_getter)
     pr
   }
-  let(:usr) { User.new }
 
   context 'when project is validating its metadata, status, owner' do
     it 'first time marking as deleted' do
-      proj = described_class.new
-      proj.name = 'test'
-      proj.save
-      expect_any_instance_of(ProjectManager).not_to receive(:delete_project)
-      proj.set_deleted_status
+      pr.name = 'test'
+      pr.save
+      expect(pr).not_to receive(:exec_deleted_status)
+      pr.find_test
+      pr.set_deleted_status
     end
 
     it 'second time marking as deleted' do
-      described_class.create(name: 'test')
-      proj = Project.find_by name: 'test'
-      proj.set_deleted_status
-      expect_any_instance_of(ProjectManager).to receive(:delete_project)
-      proj.set_deleted_status
+      # Projektas1 is already marked as deleted
+      expect(pr.find_proj).to receive(:exec_deleted_status)
+      pr.find_proj.set_deleted_status
     end
   end
 

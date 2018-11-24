@@ -1,35 +1,33 @@
 # frozen_string_literal: true
 
-#require 'simplecov'
-#SimpleCov.start
-
-#require_relative '../lib/notes_manager'
 require_relative 'custom_matcher'
-#require_relative '../lib/project'
 require_relative '../rails_helper'
 
 describe NotesManager do
-  let :nm do
-    nm = double(:NotesManager)
+  fixtures :all
+
+  let(:nm) {
+    nm = double
+    allow(nm).to receive(:new).and_return(NotesManager.new)
     allow(nm).to receive(:save_note)
     allow(nm).to receive(:bad_words_included?)
-    allow(nm).to receive(:list_notes)
-    allow(nm).to receive(:note_getter)
+    nm
+  }
+
+  let(:nml) {
+    nml = double
+    allow(nml).to receive(:new).and_return(NotesManager.new)
+    allow(nml).to receive(:check_outdated)
+    allow(nml).to receive(:list_notes)
+    nml
+  }
+
+  it 'checks for bad words on creation' do
+    expect(nm.new).to receive(:bad_words_included?)
+    nm.new.save_note('auth', 'name', 'text')
   end
 
-  it do
-    nm = NotesManager.new#.save_note('a', 'a', 'bad')
-    #allow(nm).to receive(:save_note)
-    #allow(nm).to receive(:bad_words_included?)
-    #nm = double(:NotesManager).as_null_object
-    expect(nm).to receive(:bad_words_included?)
-    nm.save_note('auth', 'name', 'text')
-    # expect(nm).to have_received(:bad_words_included?)
-  end
-
-  it do
-    #allow(nm).to receive(:bad_words_included?)
-    nm = NotesManager.new
+  it 'skips checking if name is already bad' do
     expect(nm).not_to receive(:bad_words_included?)
     nm.save_note('auth', 'Back', 'text')
   end
@@ -48,19 +46,22 @@ describe NotesManager do
     expect(note.text).to eq 'text'
   end
 
-  it do
-    nm = NotesManager.new
-    nm.save_note('auth', 'name', 'text')
-    expect(nm.list_notes).to eq %w[name]
+  it 'lists correct notes' do
+    expect(nml.new.list_notes).to eq %w[Uzrasas2 Uzrasas1]
   end
 
-  it do
+  it 'outdated notes are checked before listing' do
+    expect(nml.new).to receive(:check_outdated)
+    nml.new.list_notes
+  end
+
+  it 'retrieves text correctly not through ActiveRecord' do
     nm = NotesManager.new
     nm.save_note('auth', 'name', 'text')
     expect(nm.note_getter('name')).to eq 'text'
   end
 
-  it do
+  it 'similarly, false on non-existing text' do
     nm = NotesManager.new
     nm.save_note('auth', 'name', 'text')
     nm.delete_note('name')

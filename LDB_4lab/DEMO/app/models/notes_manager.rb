@@ -27,8 +27,9 @@ class NotesManager < ApplicationRecord
     outd = []
     list = NotesManager.all
     list.each do |note|
-      if note.expire > DateTime.current
-        outd.push(t.name)
+      next if note.expire == nil
+      if note.expire <= DateTime.current
+        outd.push(note.name)
       end
     end
     outd
