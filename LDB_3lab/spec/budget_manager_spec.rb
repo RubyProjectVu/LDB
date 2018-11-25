@@ -115,5 +115,10 @@ describe BudgetManager do
         .to is_data_identical('someid' => { 'budget' => 101 },
                               'tst' => { 'budget' => 101 })
     end
+    it 'passes if budget has been successfully changed' do
+      get = bm.budgets_getter('someid')
+      expect { bm.budgets_setter('someid', 2) }
+        .to change { bm.budgets_getter('someid') }. from(get).to(2)
+    end
   end
 end
