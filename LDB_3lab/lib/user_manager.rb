@@ -41,12 +41,22 @@ class UserManager
     false
   end
 
+  def mark_login(email)
+    return false unless (@current_user = email).instance_of?(String)
+
+    hash = { @current_user => { 'start' => Time.now, 'end' => 0 } }
+    File.open('online.yml', 'w') do |fl|
+      fl.write hash.to_yaml.sub('---', '')
+    end
+    true
+  end
+
   def login(email, password)
     hsh = @users[email]
     return false if [nil].include?(hsh)
     return false unless hsh.fetch('pwd').eql?(password)
 
-    true
+    mark_login(email)
   end
 
   def delete_user(user)

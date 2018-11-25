@@ -36,6 +36,8 @@ def user_menu(currentuser)
     break if choice.eql?('Quit')
     $usr_hash[choice].call(currentuser)
   end
+  puts Rainbow("Logging off.").yellow + "\nSpent " + User.new(email: currentuser).mark_logout.to_s + " s online."
+  sleep(3)
 end
 
 # Initial screen

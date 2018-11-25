@@ -15,6 +15,36 @@ describe UserManager do
     File.open('users.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
   end
 
+  before do
+    hash = {}
+    File.open('online.yml', 'w') { |fl| fl.write hash.to_yaml.gsub('---', '') }
+  end
+
+  it 'marks start to online correctly' do
+    described_class.new.mark_login('t@a.com')
+    expect(YAML.load_file('online.yml')['t@a.com']['start'])
+      .to be_instance_of(Time)
+  end
+
+  it 'marks end to online correctly' do
+    described_class.new.mark_login('t@a.com')
+    expect(YAML.load_file('online.yml')['t@a.com']['end']).to eq 0
+  end
+
+  it 'online file is clear' do
+    described_class.new.mark_login('t@a.com')
+    file = 'online.yml'
+    expect(file).not_to has_yml_nils
+  end
+
+  it 'mutant sometimes writes class instance to file' do
+    expect(described_class.new.mark_login(described_class.new)).to be false
+  end
+
+  it 'mutant sometimes writes nil to file' do
+    expect(described_class.new.mark_login(nil)).to be false
+  end
+
   it 'unregistered user should not be able to login' do
     e = 't@t.com'
     expect(described_class.new.login(e, '123')).to be false

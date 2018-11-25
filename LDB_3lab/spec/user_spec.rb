@@ -26,6 +26,14 @@ describe User do
   let(:arr1) { %w[gmail.com yahoo.uk] }
   let(:arr2) { %w[gmail.com] }
 
+  it 'finds time spent online' do
+    time_start = Time.now
+    UserManager.new.login('t@a.com', '123')
+    sleep(rand(0.0...0.005)) # accounts to max 20s among 4000 mutations
+    expect(described_class.new(email: 't@a.com').mark_logout)
+      .to be <= (Time.now - time_start)
+  end
+
   it 'password is set correctly' do
     usr.password_set('password')
     expect(usr.data_getter('pass')).to eq 'password'

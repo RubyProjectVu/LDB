@@ -28,4 +28,10 @@ class User
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
     @info[:pass] = new
   end
+
+  def mark_logout
+    hash = YAML.load_file('online.yml').fetch(@info.fetch(:email))
+    start = hash.fetch('start')
+    Time.now - start
+  end
 end
