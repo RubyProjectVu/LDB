@@ -23,10 +23,14 @@ class UserManager
 
   def delete_user(email)
     user = User.find_by(email: email)
-    return false unless user
+    return false unless user && !manages_project?(email)
     user.destroy
     true
   end
 
-  # TODO: active project checking will be implemented later
+  def manages_project?(user_email)
+    proj = Project.find_by(manager: user_email)
+    return true if proj
+    false
+  end
 end

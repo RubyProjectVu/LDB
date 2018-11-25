@@ -1,59 +1,33 @@
 # frozen_string_literal: true
 
-require 'yaml'
+require './application_record'
 require 'etc'
 
 # rubocop comment?
 class Search
   def initialize
-    @ymls = { 'Users' => 'users.yml', 'Projects' => 'projects.yml',
-              'WorkGroups' => 'workgroups.yml', 'Budgets' => 'budgets.yml',
-              'Notes' => 'notes.yml' }
     @instancevariable = true
-  end
-
-  def yml_key_check(arg)
-    return true if @ymls.keys.to_set.eql?(arg.to_set)
-    false
   end
 
   def parm_instancevariable(val = @instancevariable)
     @instancevariable = val
   end
 
-  def ymls_getter
-    arr = []
-    @ymls.each_key do |key|
-      arr.push(@ymls.fetch(key))
-    end
-    arr
-  end
-
-  def grab_subkeys(hash)
-    arr = []
-    hash.each do |key, val|
-      arr = val if val.instance_of?(Array)
-      arr.push(key, val) if @instancevariable
-    end
-    arr
-  end
-
-  def gather_data(file, value)
-    temp = YAML.load_file(file)
-    temp.each do |key, val|
-      arr = grab_subkeys(val)
-      if arr.include?(value)
-        return [file.split('.').first +
-                ' ' + key + ' contain: ', value]
-      end
+  def gather_data(modl, value) # Could be a 2x mock here (called/not)
+    modlclass = modl.classify.constantize
+    cols = modlclass.column_names
+    cols.each do |cl|
+      return [modl + ' has: ',
+              value] if modlclass.where("#{cl} LIKE ?", value).first
     end
     ''
   end
 
   def search_by_criteria(criteria, value)
     result = []
-    criteria.each do |crit|
-      result.push(gather_data(@ymls.fetch(crit), value))
+    return result if [nil].include?(value)
+    criteria.each do |modl|
+      result.push(gather_data(modl, value))
     end
     result
   end

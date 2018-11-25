@@ -57,9 +57,8 @@ describe ProjectManager do
   end
 
   it 'lists ids and manes of projects' do
-    pm.save_project('test', 'guy')
-    id = (Project.find_by name: 'test').id
-    id2 = (Project.find_by name: 'projektas').id
-    expect(pm.list_projects).to match_array ["#{id}:test", "#{id2}:projektas"]
+    id = (Project.find_by name: 'Projektas2').id
+    id2 = (Project.find_by name: 'Projektas1').id
+    expect(pm.list_projects).to match_array ["#{id}:Projektas2", "#{id2}:Projektas1"]
   end
 end

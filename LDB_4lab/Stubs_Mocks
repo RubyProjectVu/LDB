@@ -1,3 +1,6 @@
 2 stubs on NotesManager; 	3 mocks on NotesManager;
 1 stubs on Project; 		2 mocks on Project;
+1 stubs on Search;		2 mocks on Search;
+1 stubs on User;		1 mocks on User;
+1 stubs on UserManager;		1 mocks on UserManager;
 
