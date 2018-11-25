@@ -1,11 +1,11 @@
 
 # User management screen
 def userm_submenu(currentuser)
-  user_manager = UserManager.new
   cursor = TTY::Cursor
   prompt = TTY::Prompt.new
 
   loop do
+    user_manager = UserManager.new
     print cursor.move_to(0, 3) + cursor.clear_screen_down
     STDOUT.flush
     subchoice = prompt.select('User actions:', %w[Change\ password Delete\ current\ user

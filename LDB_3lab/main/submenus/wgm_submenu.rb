@@ -1,11 +1,11 @@
 
 # Work group management screen
 def wgm_submenu(currentuser)
-  workgroup_manager = WorkGroupManager.new
   cursor = TTY::Cursor
   prompt = TTY::Prompt.new
 
   loop do
+    workgroup_manager = WorkGroupManager.new
     print cursor.move_to(0, 3) + cursor.clear_screen_down
     STDOUT.flush
     subchoice = prompt.select('Work group actions:',
@@ -80,7 +80,7 @@ def wgm_submenu(currentuser)
       prompt.ask(Rainbow('Task removed.').green, default: '[Enter]')
 
     when 'Create group'
-      proj = prompt.select('', $project_manager.list_projects.push('Back'), cycle: true)
+      proj = prompt.select('', ProjectManager.new.list_projects.push('Back'), cycle: true)
 
       if proj.eql?('Back')
         next

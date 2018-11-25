@@ -1,12 +1,12 @@
 
 # Project management screen
 def projm_submenu(currentuser)
-  project_manager = ProjectManager.new
-  budget_manager = BudgetManager.new
   cursor = TTY::Cursor
   prompt = TTY::Prompt.new
 
   loop do
+    project_manager = ProjectManager.new
+    budget_manager = BudgetManager.new
     print cursor.move_to(0, 3) + cursor.clear_screen_down
     STDOUT.flush
     subchoice = prompt.select('Project actions:',

@@ -19,7 +19,6 @@ require_relative 'submenus/wgm_submenu'
 
 $cursor = TTY::Cursor
 $prompt = TTY::Prompt.new
-$user_manager = UserManager.new
 $usr_hash = { 'Search' => method(:src_submenu),
               'Notes' => method(:notes_submenu),
               'User management' => method(:userm_submenu),
@@ -41,6 +40,7 @@ end
 
 # Initial screen
 loop do
+  user_manager = UserManager.new
   puts $cursor.clear_screen
   puts $cursor.move_to(0, 0)
   puts Rainbow("LDB\t").bright + Rainbow('[' + Date.today.to_s + ']').green
@@ -52,7 +52,7 @@ loop do
   # Create a new user
   when 'Sign up'
     puts $cursor.clear_screen
-    if ($user_manager.register(
+    if (user_manager.register(
         User.new(email: $prompt.ask('Email:'), pass: $prompt.mask('Password:'))))
       $prompt.ask(Rainbow('User created successfully. You may now login').green, default: '[Enter]')
     else
@@ -67,7 +67,7 @@ loop do
     email = $prompt.ask('Email:')
     pass = $prompt.mask('Password:')
 
-    if $user_manager.login(email, pass)
+    if user_manager.login(email, pass)
       user_menu(email)
     else
       $prompt.warn('Could not login with specified credentials')

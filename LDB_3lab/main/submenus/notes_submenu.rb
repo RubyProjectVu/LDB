@@ -5,7 +5,7 @@ def notes_submenu(currentuser)
   prompt = TTY::Prompt.new
 
   loop do
-    notes_manager = NotesManager.new
+    notes_manager = NotesManager.new(Date.today)
     print cursor.move_to(0, 3) + cursor.clear_screen_down
     STDOUT.flush
     subchoice = prompt.select('Note actions:', %w[Add\ note Read\ note
