@@ -130,7 +130,8 @@ end
 # Check if a note is going to be deleted on next startup
 # notes_manager_spec::127
 RSpec::Matchers.define :note_to_be_deleted do
-  # Deletes the note if the author doesn't exist anymore or the date has passed
+  # Should delete the note if the author doesn't exist anymore or
+  # the date has passed
   match do |expected|
     file = YAML.load_file('notes.yml')
     file.each_key do |key|
@@ -143,6 +144,24 @@ RSpec::Matchers.define :note_to_be_deleted do
       return false if users[file.fetch(key).fetch('author')]
 
       true
+    end
+  end
+end
+
+# Check if the whole system has necessary information to function
+# project_spec::182
+RSpec::Matchers.define :files_ready do
+  match do |expected|
+    if expected == true # Validate if each is not empty as well
+      files = %w[budgets.yml notes.yml projects.yml users.yml workgroups.yml]
+      files.each do |file|
+        return false if YAML.load_file(file) == false
+      end
+      true
+    else
+      File.file?('budgets.yml') && File.file?('notes.yml') &&
+        File.file?('projects.yml') && File.file?('users.yml') &&
+        File.file?('workgroups.yml')
     end
   end
 end

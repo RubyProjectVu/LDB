@@ -173,4 +173,25 @@ describe Project do
     id = described_class.new.data_getter('id')
     expect(id).to be_kind_of(Numeric)
   end
+
+  it 'the system can check whether its files have anything' do
+    condition = true # Checks content
+    File.open('budgets.yml', 'w') do |fl|
+      fl.write nil.to_yaml
+    end
+    expect(condition).not_to be files_ready
+  end
+
+  it 'normally it passes fine' do
+    condition = true # Checks content
+    expect(condition).to files_ready
+  end
+
+  it 'the system has all needed resources available' do
+    condition = false # Checks file presence only
+    expect(condition).to files_ready
+    hash = { 'someid' => { 'budget' => 35_000 } }
+    File.open('budgets.yml', 'w') { |f| f << hash.to_yaml.gsub('---', '') }
+    # Generates the file back for next tests
+  end
 end
