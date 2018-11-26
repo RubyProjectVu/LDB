@@ -22,13 +22,14 @@ Komanda: Diamond
 - Visas kodas rasomas ```app/models```. Ten esantis dbfile skirtas tik pasizaidimui ir testuose nedalyvauja.
 - ```db/``` schema.rb apraso lenteliu ir ju atributu sukurima. Cia yra ir pagrindine duombaze dbfile. Duombaze sukonfiguruota per ```config/``` database.yml.
 - ```spec/models``` rasomi testai i _spec.rb failus, kaip ir anksciau. Duombaze bei klases pasigriebiamos per rails_helper automatiskai.
+- ```spec/fixtures``` laikomi DB uzpildantys fixtures, kurie uzkraunami testu pradzioje.
 
 ### Testai
 
 - Leisti testus su ```./run_tests.sh```
 
 - [x] LDB_3lab padengimas: 100%
-- [x] 171 ex.
+- [x] 259 ex.
 - [x] 10/10 custom matchers
 - [x] 25 standard matchers listed on ```LDB_3lab```, as ```expects```
 - [x] reek klaidos: 0.
