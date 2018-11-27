@@ -26,7 +26,6 @@ describe ProjectManager do
 
   it 'file is clean of dashes and brackets after deletion' do
     pm.delete_project(Project.new(num: 'someid'))
-    # expect(File.read('projects.yml').match?(/---/)).to be false
     file = 'projects.yml'
     expect(file).not_to has_yml_nils
   end

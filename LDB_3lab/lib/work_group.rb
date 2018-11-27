@@ -46,7 +46,6 @@ class WorkGroup
 
   def add_group_member(user)
     address = user.data_getter('email')
-    # members = members_getter
     return false if @members.include?(address)
 
     @members.push(address)
@@ -55,7 +54,6 @@ class WorkGroup
 
   def remove_group_member(user)
     address = user.data_getter('email')
-    # members = members_getter
     return false unless @members.include?(address)
 
     @members.delete(address)

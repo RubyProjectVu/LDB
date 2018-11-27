@@ -8,7 +8,7 @@ require_relative '../lib/search'
 describe Search do
   let(:src) { described_class.new }
 
-  it do
+  it 'ready files included' do
     files = %w[users.yml projects.yml workgroups.yml budgets.yml notes.yml]
     arr2 = src.ymls_getter
     expect([files]).to contain_exactly(arr2)
