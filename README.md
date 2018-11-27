@@ -29,7 +29,7 @@ Komanda: Diamond
 - Leisti testus su ```./run_tests.sh```
 
 - [x] LDB_3lab padengimas: 100%
-- [x] 259 ex.
+- [x] 251 ex.
 - [x] 10/10 custom matchers
 - [x] 25 standard matchers listed on ```LDB_3lab```, as ```expects```
 - [x] reek klaidos: 0.
