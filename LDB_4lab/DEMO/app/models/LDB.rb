@@ -71,5 +71,12 @@ ActiveRecord::Schema.define do
       t.integer :usrid
       t.string :role
     end
+
+    # Holds short messages from user to user
+    create_table :notifications do |t|
+      t.string :sendr
+      t.string :recvr
+      t.string :msg
+    end
   end
 end
