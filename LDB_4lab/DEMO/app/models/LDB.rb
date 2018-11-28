@@ -78,5 +78,30 @@ ActiveRecord::Schema.define do
       t.string :recvr
       t.string :msg
     end
+
+    # Holds orders of materials, other stuff
+    create_table :orders do |t|
+      t.datetime :date
+      t.float :cost
+      t.string :provider
+      t.float :vat # value-added tax
+      t.string :recvaccount
+      t.string :contactname
+      t.float :qty # quantity, in units
+      t.string :unit
+    end
+
+    # Holds available providers/other companies to get stuff from
+    create_table :providers do |t|
+      t.string :name, null: false, index: { unique: true }
+    end
+
+    # What provider provides what material under what conditions. What.
+    create_table :provided_materials do |t|
+      t.string :name
+      t.string :material
+      t.string :unit
+      t.float :ppu # price per unit
+    end
   end
 end

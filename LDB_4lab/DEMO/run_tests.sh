@@ -19,4 +19,4 @@ sleep 5
 echo 'Mutant...'
 sleep 2
 # Project ProjectManager User UserManager WorkGroup WorkGroupManager BudgetManager NotesManager Search
-bundle exec mutant --include app/models --use rspec User -j 1
+bundle exec mutant --include app/models --use rspec BudgetManager NotesManager Notification Order Project ProjectManager ProjectMember ProvidedMaterial Provider Search User UserManager WorkGroup WorkGroupManager WorkGroupMember WorkGroupTask -j 1
