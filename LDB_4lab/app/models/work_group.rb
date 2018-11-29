@@ -6,6 +6,9 @@ require_relative 'work_group_task'
 
 # Defines a workgroup
 class WorkGroup < ApplicationRecord
+  has_many :work_group_members
+  has_many :work_group_tasks
+
   def members_getter
     arr = []
     list = WorkGroupMember.where(wgid: self.id)

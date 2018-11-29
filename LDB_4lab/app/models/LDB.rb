@@ -89,6 +89,7 @@ ActiveRecord::Schema.define do
       t.string :contactname
       t.float :qty # quantity, in units
       t.string :unit
+      t.integer :projid
     end
 
     # Holds available providers/other companies to get stuff from

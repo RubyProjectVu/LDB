@@ -7,6 +7,8 @@ require 'mail'
 
 # Documentation about class User
 class User < ApplicationRecord
+  has_many :notes_managers
+
   def name_set(new)
     usr = User.find_by(id: self.id)
     usr.name = new

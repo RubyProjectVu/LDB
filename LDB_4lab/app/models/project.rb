@@ -8,7 +8,7 @@ srand 0
 
 # rubocop comment?
 class Project < ApplicationRecord
-  # has_many :project_members
+  has_many :project_members
 
   def members_getter
     arr = []
