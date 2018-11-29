@@ -4,8 +4,24 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
   
 Layout/EndOfLine:
-    EnforcedStyle: crlf
+  EnforcedStyle: native
 
 AllCops:
   Exclude:
     - 'main/main.rb'
+    - 'main/submenus/*.rb'
+    - 'app/models/Gemfile'
+    - 'app/models/Rakefile'
+    - 'app/channels/application_cable/*'
+    - 'app/helpers/*'
+    - 'app/mailers/*'
+    - 'app/jobs/*'
+    - 'bin/*'
+    - 'db/*'
+    - 'test/*'
+    - 'config/*'
+    - 'config/initializers/*'
+    - 'config/environments/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
