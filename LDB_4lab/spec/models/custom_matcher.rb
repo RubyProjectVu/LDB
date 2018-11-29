@@ -19,6 +19,7 @@ RSpec::Matchers.define :project_budget_positive do
   match do |budget|
     file = YAML.load_file('budgets.yml')
     return true if file.fetch(budget).fetch('budget').positive?
+
     return false
   end
 end
@@ -57,6 +58,7 @@ RSpec::Matchers.define :is_key_unique do |actual|
                          .first.start_with?('\'' + expected.to_s + '\'')
     end
     return false if count.length > 1
+
     return true
   end
 end
@@ -68,6 +70,7 @@ RSpec::Matchers.define :is_yml_identical do |actual|
     hash1 = YAML.load_file(actual)
     hash2 = YAML.load_file(expected)
     return true if hash1.eql?(hash2)
+
     false
   end
 end
@@ -92,6 +95,7 @@ RSpec::Matchers.define :no_duplicate_budgets do |actual|
       count.push('+') if line.split(':').first.start_with?(expected)
     end
     return false if count.length > 1
+
     return true
   end
 end
@@ -103,6 +107,7 @@ RSpec::Matchers.define :be_correctly_saved do |actual|
     return false unless (file = YAML.load_file(actual))
     return false unless file.key?(expected.keys[0])
     return false unless expected.values[0] == file[expected.keys[0]]
+
     return true
   end
 end

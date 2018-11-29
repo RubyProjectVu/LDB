@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-#require 'simplecov'
-#SimpleCov.start
-
-#require_relative '../lib/project_manager'
-#require_relative '../lib/project'
 require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
@@ -59,6 +54,7 @@ describe ProjectManager do
   it 'lists ids and manes of projects' do
     id = (Project.find_by name: 'Projektas2').id
     id2 = (Project.find_by name: 'Projektas1').id
-    expect(pm.list_projects).to match_array ["#{id}:Projektas2", "#{id2}:Projektas1"]
+    expect(pm.list_projects)
+      .to match_array ["#{id}:Projektas2", "#{id2}:Projektas1"]
   end
 end

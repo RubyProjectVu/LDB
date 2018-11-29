@@ -9,6 +9,7 @@ class UserManager
   def register(name, lname, email, pass)
     user = User.find_by(email: email)
     return false if user
+
     User.create(name: name, lname: lname, email: email, pass: pass)
 
     true
@@ -24,6 +25,7 @@ class UserManager
   def delete_user(email)
     user = User.find_by(email: email)
     return false unless user && !manages_project?(email)
+
     user.destroy
     true
   end
@@ -31,6 +33,7 @@ class UserManager
   def manages_project?(user_email)
     proj = Project.find_by(manager: user_email)
     return true if proj
+
     false
   end
 end

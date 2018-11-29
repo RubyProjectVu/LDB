@@ -8,10 +8,11 @@ require 'yaml'
 
 # Manages user notes
 class NotesManager < ApplicationRecord
-  def save_note(author, name, text) # validator method?
-    return false if name.eql?('Back')
+  def save_note(author, name, text)
+    # validator method?
+    return false if name.eql?('Back') || bad_words_included?(text)
 
-    NotesManager.create(name: name, author: author, text: text) unless bad_words_included?(text)
+    NotesManager.create(name: name, author: author, text: text)
   end
 
   def bad_words_included?(text)
@@ -20,17 +21,16 @@ class NotesManager < ApplicationRecord
     list.each do |t|
       return true if text.match?(t)
     end
-    false 
+    false
   end
 
   def check_outdated
     outd = []
     list = NotesManager.all
     list.each do |note|
-      next if note.expire == nil
-      if note.expire <= DateTime.current
-        outd.push(note.name)
-      end
+      next if [nil].include?(note.expire)
+
+      outd.push(note.name) if note.expire <= DateTime.current
     end
     outd
   end
@@ -48,6 +48,7 @@ class NotesManager < ApplicationRecord
   def note_getter(name)
     note = NotesManager.find_by(name: name)
     return false if [nil].include?(note)
+
     note.text
   end
 

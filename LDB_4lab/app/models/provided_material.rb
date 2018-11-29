@@ -8,14 +8,15 @@ require 'mail'
 # Documentation about class User
 class ProvidedMaterial < ApplicationRecord
   # On order creation
-  def deduct_qty(provider, material, qty)
+  # find_by(provider, material)
+  def deduct_qty(qty)
     self.unit -= qty
-    self.save
+    save
   end
 
   # On order deletion
-  def add_qty(provider, material, qty)
+  def add_qty(qty)
     self.unit += qty
-    self.save
+    save
   end
 end

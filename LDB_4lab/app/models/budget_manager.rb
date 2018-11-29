@@ -10,12 +10,13 @@ require 'yaml'
 class BudgetManager
   # Initialize with a @state variable?
 
-  def check_negative # Is not possible anymore?
+  # Is not possible anymore?
+  def check_negative
     arr = []
     lofids = Project.all.ids
     lofids.each do |ids|
       proj = Project.find_by(id: ids)
-      arr.push(proj.name) if proj.budget < 0
+      arr.push(proj.name) if proj.budget.negative?
     end
 
     arr
@@ -23,6 +24,7 @@ class BudgetManager
 
   def can_deduct_more(value, projid)
     return true if (Project.find_by(id: projid).budget - value) >= 0
+
     false
   end
 

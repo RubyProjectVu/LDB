@@ -11,7 +11,7 @@ class WorkGroup < ApplicationRecord
 
   def members_getter
     arr = []
-    list = WorkGroupMember.where(wgid: self.id)
+    list = WorkGroupMember.where(wgid: id)
     list.each do |t|
       arr.push(t.member)
     end
@@ -21,7 +21,7 @@ class WorkGroup < ApplicationRecord
   def data_setter(key, val)
     case key
     when 'name'
-      wg = WorkGroup.find_by(id: self.id)
+      wg = WorkGroup.find_by(id: id)
       wg.name = val
     end
     wg.save
@@ -35,33 +35,36 @@ class WorkGroup < ApplicationRecord
   end
 
   def add_group_member(mail)
-    return false if WorkGroupMember.find_by(wgid: self.id, member: mail)
-    wgmember = WorkGroupMember.create(wgid: self.id, member: mail)
+    return false if WorkGroupMember.find_by(wgid: id, member: mail)
+
+    WorkGroupMember.create(wgid: id, member: mail)
     true
   end
 
   def remove_group_member(mail)
-    wgm = WorkGroupMember.find_by(wgid: self.id, member: mail)
+    wgm = WorkGroupMember.find_by(wgid: id, member: mail)
     return false if [nil].include?(wgm)
+
     wgm.destroy
     true
   end
 
   def add_group_task(task)
-    wgtsk = WorkGroupTask.create(wgid: self.id, task: task)
+    WorkGroupTask.create(wgid: id, task: task)
     true
   end
 
   def remove_group_task(task)
-    wgt = WorkGroupTask.find_by(wgid: self.id, task: task)
+    wgt = WorkGroupTask.find_by(wgid: id, task: task)
     return false if [nil].include?(wgt)
+
     wgt.destroy
     true
   end
 
   def tasks_getter
     arr = []
-    list = WorkGroupTask.where(wgid: self.id)
+    list = WorkGroupTask.where(wgid: id)
     list.each do |t|
       arr.push(t.task)
     end

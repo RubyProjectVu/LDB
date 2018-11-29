@@ -10,23 +10,21 @@ class User < ApplicationRecord
   has_many :notes_managers
 
   def name_set(new)
-    usr = User.find_by(id: self.id)
-    usr.name = new
-    usr.save
+    self.name = new
+    save
   end
 
   def lname_set(new)
-    usr = User.find_by(id: self.id)
-    usr.lname = new
-    usr.save
+    self.lname = new
+    save
   end
 
   def password_set(new)
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
     return false unless pass_secure(new)
-    usr = User.find_by(id: self.id)
-    usr.pass = new
-    usr.save
+
+    self.pass = new
+    save
   end
 
   def pass_secure(pass)

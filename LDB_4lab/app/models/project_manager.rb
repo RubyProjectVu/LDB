@@ -22,6 +22,7 @@ class ProjectManager
   def load_project(id)
     proj = Project.find_by(id: id)
     return false if [nil].include?(proj)
+
     # will return a collection of attributes here
     [proj.name, proj.manager, proj.status, proj.budget]
   end

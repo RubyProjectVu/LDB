@@ -8,13 +8,13 @@ describe Search do
 
   let(:src) { described_class.new }
 
-  let(:srstub) {
+  let(:srstub) do
     srstub = double
     allow(srstub).to receive(:gather_data)
-    allow(srstub).to receive(:new).and_return(Search.new)
+    allow(srstub).to receive(:new).and_return(described_class.new)
     allow(srstub).to receive(:search_by_criteria)
     srstub
-  }
+  end
 
   it 'does not call data gathering with nil criteria' do
     expect(srstub.new).not_to receive(:gather_data)
@@ -37,7 +37,7 @@ describe Search do
   it 'something is detected - message is returned' do
     expect(src.search_by_criteria(['User'],
                                   'Greblys')).to eq [['User has: ',
-                                                    'Greblys']]
+                                                      'Greblys']]
   end
 
   it 'handles multiple criteria' do

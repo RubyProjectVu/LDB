@@ -1,19 +1,9 @@
 # frozen_string_literal: true
 
-#require 'simplecov'
-#SimpleCov.start
-
-#require_relative '../lib/work_group'
-#require_relative '../lib/user'
 require_relative 'custom_matcher'
 require_relative '../rails_helper'
 
 describe WorkGroup do
-  let(:wg) { double(WorkGroup) }
-  before do
-    
-  end
-
   context 'when a member is being removed from the work_group' do
     it 'true when an existing member gets removed from the work_group' do
       group = described_class.create(projid: 453, budget: 300, name: 'Test')

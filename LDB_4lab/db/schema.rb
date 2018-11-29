@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+require 'sqlite3'
+require 'active_record'
+
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: './dbfile'
+)
+
 ActiveRecord::Schema.define(version: 0) do
-  # Holds all projects
-    create_table :projects do |t|
+  create_table :projects do |t|
       t.string :name
       t.string :manager
       t.string :status
@@ -70,5 +77,38 @@ ActiveRecord::Schema.define(version: 0) do
     create_table :roles do |t|
       t.integer :usrid
       t.string :role
+    end
+
+    # Holds short messages from user to user
+    create_table :notifications do |t|
+      t.string :sendr
+      t.string :recvr
+      t.string :msg
+    end
+
+    # Holds orders of materials, other stuff
+    create_table :orders do |t|
+      t.datetime :date
+      t.float :cost
+      t.string :provider
+      t.float :vat # value-added tax
+      t.string :recvaccount
+      t.string :contactname
+      t.float :qty # quantity, in units
+      t.string :unit
+      t.integer :projid
+    end
+
+    # Holds available providers/other companies to get stuff from
+    create_table :providers do |t|
+      t.string :name, null: false, index: { unique: true }
+    end
+
+    # What provider provides what material under what conditions. What.
+    create_table :provided_materials do |t|
+      t.string :name
+      t.string :material
+      t.string :unit
+      t.float :ppu # price per unit
     end
 end

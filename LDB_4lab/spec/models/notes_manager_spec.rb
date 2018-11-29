@@ -6,21 +6,21 @@ require_relative '../rails_helper'
 describe NotesManager do
   fixtures :all
 
-  let(:nm) {
+  let(:nm) do
     nm = double
-    allow(nm).to receive(:new).and_return(NotesManager.new)
+    allow(nm).to receive(:new).and_return(described_class.new)
     allow(nm).to receive(:save_note)
     allow(nm).to receive(:bad_words_included?)
     nm
-  }
+  end
 
-  let(:nml) {
+  let(:nml) do
     nml = double
-    allow(nml).to receive(:new).and_return(NotesManager.new)
+    allow(nml).to receive(:new).and_return(described_class.new)
     allow(nml).to receive(:check_outdated)
     allow(nml).to receive(:list_notes)
     nml
-  }
+  end
 
   it 'checks for bad words on creation' do
     expect(nm.new).to receive(:bad_words_included?)
@@ -33,16 +33,16 @@ describe NotesManager do
   end
 
   it 'author is saved' do
-    nm = NotesManager.new
+    nm = described_class.new
     nm.save_note('auth', 'name1', 'text')
-    note = NotesManager.find_by(name: 'name1')
+    note = described_class.find_by(name: 'name1')
     expect(note.author).to eq 'auth'
   end
 
   it 'text is saved' do
-    nm = NotesManager.new
+    nm = described_class.new
     nm.save_note('auth', 'name2', 'text')
-    note = NotesManager.find_by(name: 'name2')
+    note = described_class.find_by(name: 'name2')
     expect(note.text).to eq 'text'
   end
 
@@ -56,13 +56,13 @@ describe NotesManager do
   end
 
   it 'retrieves text correctly not through ActiveRecord' do
-    nm = NotesManager.new
+    nm = described_class.new
     nm.save_note('auth', 'name', 'text')
     expect(nm.note_getter('name')).to eq 'text'
   end
 
   it 'similarly, false on non-existing text' do
-    nm = NotesManager.new
+    nm = described_class.new
     nm.save_note('auth', 'name', 'text')
     nm.delete_note('name')
     expect(nm.note_getter('name')).to be false

@@ -13,12 +13,14 @@ class Search
     @instancevariable = val
   end
 
-  def gather_data(modl, value) # Could be a 2x mock here (called/not)
+  def gather_data(modl, value)
+    # Could be a 2x mock here (called/not)
     modlclass = modl.classify.constantize
     cols = modlclass.column_names
     cols.each do |cl|
-      return [modl + ' has: ',
-              value] if modlclass.where("#{cl} LIKE ?", value).first
+      if modlclass.where("#{cl} LIKE ?", value).first
+        return [modl + ' has: ', value]
+      end
     end
     ''
   end
@@ -26,6 +28,7 @@ class Search
   def search_by_criteria(criteria, value)
     result = []
     return result if [nil].include?(value)
+
     criteria.each do |modl|
       result.push(gather_data(modl, value))
     end

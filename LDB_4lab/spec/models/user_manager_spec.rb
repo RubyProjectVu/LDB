@@ -6,13 +6,13 @@ require_relative '../rails_helper'
 describe UserManager do
   fixtures :all
 
-  let(:umstb) {
+  let(:umstb) do
     umstb = double
-    allow(umstb).to receive(:new).and_return(UserManager.new)
+    allow(umstb).to receive(:new).and_return(described_class.new)
     allow(umstb).to receive(:delete_user)
     allow(umstb).to receive(:manages_project?)
     umstb
-  }
+  end
 
   it 'always checks for projects this user manages' do
     expect(umstb.new).to receive(:manages_project?)

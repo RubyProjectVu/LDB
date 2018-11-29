@@ -12,66 +12,56 @@ class Project < ApplicationRecord
 
   def members_getter
     arr = []
-    list = ProjectMember.where(projid: self.id)
+    list = ProjectMember.where(projid: id)
     list.each do |t|
       arr.push(t.member)
     end
     arr
   end
 
-  def data_getter(key)
-    case key
-    when 'name'
-      return Project.find_by(id: self.id).name
-    when 'manager'
-      return Project.find_by(id: self.id).manager
-    end
-  end
-
   def data_setter(key, val)
     case key
     when 'name'
-      proj = Project.find_by(id: self.id)
+      proj = Project.find_by(id: id)
       proj.name = val
     when 'manager'
-      proj = Project.find_by(id: self.id)
+      proj = Project.find_by(id: id)
       proj.manager = val
     end
     proj.save
   end
 
-  def parm_project_status(status = '')
-    if !status.empty?
-      if ['Proposed', 'Suspended', 'Postponed',
-          'Cancelled', 'In progress'].include? status
-        proj = Project.find_by(id: self.id)
-        proj.status = status
-        proj.save
-      end
-      false
+  # Only setter. Getting status is simply Project.find_by().status
+  def project_status_setter(status)
+    if ['Proposed', 'Suspended', 'Postponed',
+        'Cancelled', 'In progress'].include? status
+      proj = Project.find_by(id: id)
+      proj.status = status
+      proj.save
     else
-      Project.find_by(id: self.id).status
+      false
     end
   end
 
   def add_member(mail)
-    pmember = ProjectMember.create(projid: self.id, member: mail)
+    ProjectMember.create(projid: id, member: mail)
     true
   end
 
   def remove_member(mail)
-    pm = ProjectMember.find_by(projid: self.id, member: mail)
+    pm = ProjectMember.find_by(projid: id, member: mail)
     return false if [nil].include?(pm)
+
     pm.destroy
     true
   end
 
   def set_deleted_status
-    if Project.find_by(id: self.id).status.eql?('Deleted')
+    if Project.find_by(id: id).status.eql?('Deleted')
       exec_deleted_status
       false
     else
-      proj = Project.find_by(id: self.id)
+      proj = Project.find_by(id: id)
       proj.status = 'Deleted'
       proj.save
       true
@@ -79,6 +69,6 @@ class Project < ApplicationRecord
   end
 
   def exec_deleted_status
-    ProjectManager.new.delete_project(self.id)
+    ProjectManager.new.delete_project(id)
   end
 end
