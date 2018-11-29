@@ -8,7 +8,7 @@ require 'yaml'
 
 # Manages user notes
 class NotesManager < ApplicationRecord
-  def save_note(author, name, text)
+  def save_note(author, name, text) # validator method?
     return false if name.eql?('Back')
 
     NotesManager.create(name: name, author: author, text: text) unless bad_words_included?(text)

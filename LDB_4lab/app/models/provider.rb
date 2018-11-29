@@ -7,5 +7,5 @@ require 'mail'
 
 # Documentation about class User
 class Provider < ApplicationRecord
-  
+  # does nothing
 end
