@@ -1,0 +1,17 @@
+offer1:
+ name: WoodWorks
+ material: Planks
+ unit: 30000
+ ppu: 10
+
+offer2:
+ name: WoodWorks
+ material: Boards
+ unit: 5000
+ ppu: 15.5
+
+offer3:
+ name: SteelPool
+ material: Beams
+ unit: 6520
+ ppu: 48

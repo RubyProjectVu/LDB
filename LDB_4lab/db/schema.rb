@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 0) do
       t.string :contactname
       t.float :qty # quantity, in units
       t.string :unit
+      t.string :material
       t.integer :projid
     end
 
