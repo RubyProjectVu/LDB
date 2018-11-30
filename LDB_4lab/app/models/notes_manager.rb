@@ -8,14 +8,13 @@ require 'yaml'
 
 # Manages user notes
 class NotesManager < ApplicationRecord
-  def save_note(author, name, text)
-    # validator method?
-    return false if name.eql?('Back') || bad_words_included?(text)
+  validates :name, exclusion: { in: %w[Back] }
 
-    NotesManager.create(name: name, author: author, text: text)
+  before_save do
+    throw :abort if self.class.bad_words_included?(self.text)
   end
 
-  def bad_words_included?(text)
+  def self.bad_words_included?(text)
     # Could probably be moved to a text file, line by line
     list = %w[bad bad\ word really\ bad\ word]
     list.each do |t|
@@ -35,25 +34,26 @@ class NotesManager < ApplicationRecord
     outd
   end
 
-  def list_notes
+  def list_notes(author)
     check_outdated
     arr = []
     lofids = NotesManager.all.ids
     lofids.each do |id|
-      arr.push(NotesManager.find_by(id: id).name)
+      note = NotesManager.find_by(id: id)
+      arr.push(note.name) if note.author.eql?(author)
     end
     arr
   end
 
-  def note_getter(name)
-    note = NotesManager.find_by(name: name)
+  def note_getter(name, author)
+    note = NotesManager.find_by(name: name, author: author)
     return false if [nil].include?(note)
 
     note.text
   end
 
-  def delete_note(name)
-    note = NotesManager.find_by(name: name)
+  def delete_note(name, author)
+    note = NotesManager.find_by(name: name, author: author)
     note.destroy
     true
   end
