@@ -29,8 +29,8 @@ Komanda: Diamond
 - Leisti testus su ```./run_tests.sh```
 
 - [ ] LDB_4lab padengimas: 59.49%
-- [x] 63 ex.
-- [ ] 0/10 stubs
-- [ ] 0/10 mocks
+- [x] 60 ex.
+- [ ] 1/10 stubs
+- [ ] 2/10 mocks
 - [ ] reek klaidos: 48
-- [ ] rubocop klaidos: 14
+- [ ] rubocop klaidos: 8
