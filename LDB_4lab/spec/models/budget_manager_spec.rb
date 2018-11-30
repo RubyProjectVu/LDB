@@ -8,18 +8,6 @@ describe BudgetManager do
     described_class.new
   end
 
-  it 'no negative budgets when there aren\'t any' do
-    expect(bm.check_negative).to eq []
-  end
-
-  it 'negative budgets when there are some' do
-    Project.create(name: 'test', manager: 'guy', status: 'Proposed',
-                   budget: 3.5)
-    id = (Project.find_by name: 'test')
-    bm.budgets_setter(id, -500)
-    expect(bm.check_negative).to match_array ['test']
-  end
-
   it do
     Project.create(name: 'test', manager: 'guy', status: 'Proposed',
                    budget: 3.5)

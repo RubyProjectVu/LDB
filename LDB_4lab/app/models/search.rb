@@ -6,20 +6,16 @@ require 'etc'
 # rubocop comment?
 class Search
   def initialize
-    @instancevariable = true
-  end
-
-  def parm_instancevariable(val = @instancevariable)
-    @instancevariable = val
+    @state = true
   end
 
   def gather_data(modl, value)
     # Could be a 2x mock here (called/not)
-    modlclass = modl.classify.constantize
-    cols = modlclass.column_names
-    cols.each do |cl|
-      if modlclass.where("#{cl} LIKE ?", value).first
-        return [modl + ' has: ', value]
+    modlo = modl
+    modlclass = modlclasso = modl.classify.constantize
+    modlclass.column_names.each do |cl|
+      if modlclasso.where("#{cl} LIKE ?", value).first && @state
+        return [modlo + ' has: ', value]
       end
     end
     ''

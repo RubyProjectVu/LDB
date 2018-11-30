@@ -9,6 +9,8 @@ require 'mail'
 class User < ApplicationRecord
   has_many :notes_managers
 
+  attr_reader :state
+
   def name_set(new)
     self.name = new
     save
@@ -28,8 +30,8 @@ class User < ApplicationRecord
   end
 
   def pass_secure(pass)
-    if pass.match?(/\d/)
-      return true unless [nil].include?(
+    if pass.match?(/\d/) && state
+      return true unless state && [nil].include?(
         pass.index(/[\+\-\!\@\#\$\%\^\&\*\(\)]/)
       )
     end

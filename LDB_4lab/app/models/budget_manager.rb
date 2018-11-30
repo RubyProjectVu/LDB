@@ -8,31 +8,23 @@ require 'yaml'
 
 # Manages financial information about projects
 class BudgetManager
-  # Initialize with a @state variable?
-
-  # Is not possible anymore?
-  def check_negative
-    arr = []
-    lofids = Project.all.ids
-    lofids.each do |ids|
-      proj = Project.find_by(id: ids)
-      arr.push(proj.name) if proj.budget.negative?
-    end
-
-    arr
+  def initialize
+    @state = true
   end
 
   def can_deduct_more(value, projid)
-    return true if (Project.find_by(id: projid).budget - value) >= 0
+    return true if (Project.find_by(id: projid).budget - value) >= 0 && @state
 
     false
   end
 
   def budgets_getter(projid)
+    return false unless @state
     Project.find_by(id: projid).budget
   end
 
   def budgets_setter(projid, value)
+    return false unless @state
     proj = Project.find_by(id: projid)
     proj.budget = value
     proj.save

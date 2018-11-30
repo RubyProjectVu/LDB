@@ -26,10 +26,6 @@ describe Search do
     srstub.new.search_by_criteria(['User'], 'anyval')
   end
 
-  it 'instance is always holding a true value' do
-    expect(src.parm_instancevariable).to be true
-  end
-
   it 'no value returns empty string array' do
     expect(src.search_by_criteria(['Project'], 'noval')).to start_with([''])
   end
@@ -51,10 +47,6 @@ describe Search do
                                                      Project
                                                      User], 'Antanas'))
       .to all be_an(Array).or be_an(String)
-  end
-
-  it 'sets correctly on instvar' do
-    expect(src.parm_instancevariable(false)).to be false
   end
 
   it 'search failure adds an ampty string anyway' do
