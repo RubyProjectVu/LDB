@@ -10,49 +10,65 @@ require 'yaml'
 class NotesManager < ApplicationRecord
   validates :name, exclusion: { in: %w[Back] }
 
+  attr_reader :state
+
+  def state=(new)
+    @state = new
+  end
+
   before_save do
-    throw :abort if self.class.bad_words_included?(self.text)
+    throw :abort if self.class.bad_words_included?(text)
   end
 
   def self.bad_words_included?(text)
     # Could probably be moved to a text file, line by line
     list = %w[bad bad\ word really\ bad\ word]
-    list.each do |t|
-      return true if text.match?(t)
+    list.each do |tx|
+      return true if text.match?(tx)
     end
     false
   end
 
   def check_outdated
     outd = []
-    list = NotesManager.all
-    list.each do |note|
-      next if [nil].include?(note.expire)
+    NotesManager.all.each do |note|
+      next if [nil].include?(expration = note.expire)
 
-      outd.push(note.name) if note.expire <= DateTime.current
+      outd.push(note.name) if expration <= DateTime.current && state
     end
-    outd
+    remv_outdated(outd) unless [[]].include?(outd)
+  end
+
+  def remv_outdated(names)
+    return false unless state
+    names.each do |note|
+      NotesManager.find_by(name: note).destroy
+    end
   end
 
   def list_notes(author)
     check_outdated
+    populate(author)
+  end
+
+  def populate(author)
     arr = []
-    lofids = NotesManager.all.ids
-    lofids.each do |id|
-      note = NotesManager.find_by(id: id)
-      arr.push(note.name) if note.author.eql?(author)
+    NotesManager.all.ids.each do |id|
+      note = notet = NotesManager.find_by(id: id)
+      arr.push(notet.name) if note.author.eql?(author) && state
     end
     arr
   end
 
   def note_getter(name, author)
     note = NotesManager.find_by(name: name, author: author)
-    return false if [nil].include?(note)
+    return false if [nil].include?(note) && state
 
     note.text
   end
 
   def delete_note(name, author)
+    return false unless state
     note = NotesManager.find_by(name: name, author: author)
     note.destroy
     true

@@ -13,14 +13,6 @@ describe NotesManager do
     nm
   end
 
-  let(:nml) do
-    nml = double
-    allow(nml).to receive(:new).and_return(described_class.new)
-    allow(nml).to receive(:check_outdated)
-    allow(nml).to receive(:list_notes)
-    nml
-  end
-
   it 'checks for bad words on creation' do
     nm.create(author: 'auth', name: 'name', text: 'bad')
     expect(nm).to have_received(:bad_words_included?)
@@ -30,20 +22,25 @@ describe NotesManager do
     nm.create(author: 'auth', name: 'Back', text: 'text')
     expect(nm).not_to have_received(:bad_words_included?)
   end
-
-  it 'lists correct notes' do
-    expect(nml.new.list_notes('ar@gmail.com')).to eq %w[Uzrasas1]
+ 
+  it 'does not call removing method if there are no expired notes' do
+    NotesManager.find_by(name: 'Uzrasas3').destroy
+    nm = described_class.new
+    allow(nm).to receive(:remv_outdated)
+    nm.list_notes('ar@gmail.com')
+    expect(nm).not_to have_received(:remv_outdated)
   end
 
-  it 'outdated notes are checked before listing' do
-    expect(nml.new).to receive(:check_outdated)
-    nml.new.list_notes('any')
+  it 'lists correct notes' do
+    nm = described_class.new
+    nm.state = true
+    expect(nm.list_notes('ar@gmail.com')).to eq %w[Uzrasas1]
   end
 
   it 'similarly, false on non-existing text' do
-    described_class.create(author: 'auth', name: 'name', text: 'text')
     nm = described_class.new
-    nm.delete_note('name', 'auth')
-    expect(nm.note_getter('name', 'auth')).to be false
+    nm.state = true
+    nm.delete_note('Uzrasas1', 'ar@gmail.com')
+    expect(nm.note_getter('Uzrasas1', 'ar@gmail.com')).to be false
   end
 end

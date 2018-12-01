@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   attr_reader :state
 
+  def state=(new)
+    @state = new
+  end
+
   def name_set(new)
     self.name = new
     save
