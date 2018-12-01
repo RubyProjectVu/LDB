@@ -8,23 +8,29 @@ require 'yaml'
 
 # rubocop comment?
 class ProjectManager
+  def initialize
+    @state = true
+  end
+
   def delete_project(project)
     proj = Project.find_by(id: project)
     proj.destroy
-    true
+    @state
   end
 
   def save_project(name, manager)
+    return false unless @state
+
     Project.create(name: name, manager: manager)
     true
   end
 
   def load_project(id)
-    proj = Project.find_by(id: id)
-    return false if [nil].include?(proj)
+    proj = projo = projt = projf = Project.find_by(id: id)
+    return false unless proj && @state
 
     # will return a collection of attributes here
-    [proj.name, proj.manager, proj.status, proj.budget]
+    [projf.name, proj.manager, projt.status, projo.budget]
   end
 
   # TODO: placeholder - will be implemented later
@@ -33,10 +39,11 @@ class ProjectManager
   end
 
   def list_projects
+    return false unless @state
+
     arr = []
-    lofids = Project.all.ids
-    lofids.each do |t|
-      arr.push(t.to_s + ':' + (Project.find_by id: t).name)
+    Project.all.ids.each do |pj|
+      arr.push(pj.to_s + ':' + (Project.find_by id: pj).name)
     end
 
     arr

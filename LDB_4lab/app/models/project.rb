@@ -13,8 +13,8 @@ class Project < ApplicationRecord
   def members_getter
     arr = []
     list = ProjectMember.where(projid: id)
-    list.each do |t|
-      arr.push(t.member)
+    list.each do |mem|
+      arr.push(mem.member)
     end
     arr
   end
@@ -23,9 +23,8 @@ class Project < ApplicationRecord
   def project_status_setter(status)
     if ['Proposed', 'Suspended', 'Postponed',
         'Cancelled', 'In progress'].include? status
-      proj = Project.find_by(id: id)
-      proj.status = status
-      proj.save
+      self.status = status
+      self.save
     else
       false
     end
