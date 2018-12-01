@@ -32,5 +32,5 @@ Komanda: Diamond
 - [x] 55 ex.
 - [ ] 4/10 stubs
 - [ ] 5/10 mocks
-- [ ] reek klaidos: 20
-- [ ] rubocop klaidos: 16
+- [ ] reek klaidos: 13
+- [ ] rubocop klaidos: 13
