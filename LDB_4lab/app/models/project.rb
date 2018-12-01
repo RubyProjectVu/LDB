@@ -19,18 +19,6 @@ class Project < ApplicationRecord
     arr
   end
 
-  def data_setter(key, val)
-    case key
-    when 'name'
-      proj = Project.find_by(id: id)
-      proj.name = val
-    when 'manager'
-      proj = Project.find_by(id: id)
-      proj.manager = val
-    end
-    proj.save
-  end
-
   # Only setter. Getting status is simply Project.find_by().status
   def project_status_setter(status)
     if ['Proposed', 'Suspended', 'Postponed',
@@ -57,13 +45,12 @@ class Project < ApplicationRecord
   end
 
   def set_deleted_status
-    if Project.find_by(id: id).status.eql?('Deleted')
+    if self.status.eql?('Deleted')
       exec_deleted_status
       false
     else
-      proj = Project.find_by(id: id)
-      proj.status = 'Deleted'
-      proj.save
+      self.status = 'Deleted'
+      self.save
       true
     end
   end

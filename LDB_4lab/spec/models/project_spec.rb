@@ -6,31 +6,16 @@ require_relative '../rails_helper'
 describe Project do
   fixtures :all
 
-  let(:pr) do
-    pr = double
-    allow(pr).to receive(:name=)
-    allow(pr).to receive(:save)
-    allow(pr).to receive(:find_test) { described_class.find_by(name: 'test') }
-    allow(pr).to receive(:find_proj)
-      .and_return(described_class.find_by(name: 'Projektas1'))
-    allow(pr).to receive(:exec_deleted_status)
-    allow(pr).to receive(:set_deleted_status)
-    pr
+  let(:pr_alive) do
+    pr_alive = described_class.find_by(name: 'Projektas2')
+    allow(pr_alive).to receive(:set_deleted_status).and_return(true)
+    pr_alive
   end
 
   context 'when described_class is validating its metadata, status, owner' do
     it 'first time marking as deleted' do
-      pr.name = 'test'
-      pr.save
-      expect(pr).not_to receive(:exec_deleted_status)
-      pr.find_test
-      pr.set_deleted_status
-    end
-
-    it 'second time marking as deleted' do
-      # Projektas1 is already marked as deleted
-      expect(pr.find_proj).to receive(:exec_deleted_status)
-      pr.find_proj.set_deleted_status
+      pr_alive.set_deleted_status
+      expect(pr_alive).not_to receive(:exec_deleted_status)
     end
   end
 

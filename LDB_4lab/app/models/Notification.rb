@@ -6,17 +6,38 @@ require 'mail'
 
 # Documentation about class User
 class Notification < ApplicationRecord
-  attr_reader :state
+  def senders_getter
+    # gets by self.recvr
+    arr = []
+    list = Notification.where(recvr: recvr)
+    list.each do |el|
+      arr.push(el.sendr)
+    end
+    arr
+  end
 
-  def read_message(user_mail)
-    notif = Notification.find_by(recvr: user_mail)
-    truncate_read(user_mail)
+  def edit_message(send, rec, new)
+    return false if [nil].include?(self.sendr)
+
+    notif = Notification.find_by(sendr: send, recvr: rec)
+    notif.msg = new
+    notif.save
+    self.msg
+  end
+
+  def read_message(sendd, rec)
+    return false if [nil].include?(self.sendr)
+
+    notif = Notification.find_by(sendr: sendd, recvr: rec)
+    truncate_read(sendd, rec)
     notif.msg
   end
 
-  def truncate_read(user_mail)
-    return false unless [nil].include?(state)
+  def truncate_read(send, recc)
+    return false if [nil].include?(self.recvr)
 
-    Notification.find_by(recvr: user_mail).destroy
+    msg = Notification.find_by(sendr: send, recvr: recc)
+    return false unless msg
+    msg.destroy
   end
 end
