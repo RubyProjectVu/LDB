@@ -7,12 +7,11 @@ require 'mail'
 
 # Documentation about class User
 class User < ApplicationRecord
+  validates :email, presence: true
   has_many :notes_managers
 
-  attr_reader :state
-
-  def state=(new)
-    @state = new
+  before_save do
+    throw :abort if self.class.pass_secure(self.pass)
   end
 
   def name_set(new)
@@ -27,13 +26,13 @@ class User < ApplicationRecord
 
   def password_set(new)
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
-    return false unless pass_secure(new)
+    return false unless self.class.pass_secure(new)
 
     self.pass = new
     save
   end
 
-  def pass_secure(pass)
+  def self.pass_secure(pass)
     if pass.match?(/\d/) && state
       return true unless state && [nil].include?(
         pass.index(/[\+\-\!\@\#\$\%\^\&\*\(\)]/)

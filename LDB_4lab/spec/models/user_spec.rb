@@ -7,23 +7,15 @@ describe User do
   fixtures :all
 
   let(:usr) do
-    described_class.create(name: 'name',
-                           lname: 'lname',
-                           email: 'email',
-                           pass: 'pass')
+    usr = described_class
+    # No time to think of a secure pass during testing
+    allow(usr).to receive(:pass_secure).and_return(true)
+    usr
   end
 
-  let(:usrstub) do
-    usrstub = double
-    allow(usrstub).to receive(:find_first).and_return(described_class.first)
-    allow(usrstub).to receive(:password_set)
-    allow(usrstub).to receive(:pass_secure)
-    usrstub
-  end
-
-  it 'always checks whether password is secure' do
-    expect(usrstub.find_first).to receive(:pass_secure)
-    usrstub.find_first.password_set('string')
+  it 'creating a new user also checks whether password is secure' do
+    usr.create(email: 'newone', pass: '123')
+    expect(usr).to have_received(:pass_secure)
   end
 
   it 'password is set correctly' do

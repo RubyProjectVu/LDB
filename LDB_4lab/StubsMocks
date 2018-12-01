@@ -1,1 +1,3 @@
 2 stubs on NotesManager;	3 mocks on NotesManager;
+1 stubs on User;		1 mocks on User;
+
