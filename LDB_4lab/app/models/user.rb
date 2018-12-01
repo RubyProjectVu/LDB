@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :notes_managers
 
   before_save do
-    throw :abort if self.class.pass_secure(self.pass)
+    throw :abort if self.class.pass_secure(pass)
   end
 
   def name_set(new)
@@ -33,8 +33,8 @@ class User < ApplicationRecord
   end
 
   def self.pass_secure(pass)
-    if pass.match?(/\d/) && state
-      return true unless state && [nil].include?(
+    if pass.match?(/\d/)
+      return true unless [nil].include?(
         pass.index(/[\+\-\!\@\#\$\%\^\&\*\(\)]/)
       )
     end

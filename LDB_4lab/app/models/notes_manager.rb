@@ -12,10 +12,6 @@ class NotesManager < ApplicationRecord
 
   attr_reader :state
 
-  def state=(new)
-    @state = new
-  end
-
   before_save do
     throw :abort if self.class.bad_words_included?(text)
   end
@@ -34,13 +30,15 @@ class NotesManager < ApplicationRecord
     NotesManager.all.each do |note|
       next if [nil].include?(expration = note.expire)
 
-      outd.push(note.name) if expration <= DateTime.current && state
+      outd.push(note.name) if expration <= Time.current &&
+                              [nil].include?(state)
     end
     remv_outdated(outd) unless [[]].include?(outd)
   end
 
   def remv_outdated(names)
-    return false unless state
+    return false unless [nil].include?(state)
+
     names.each do |note|
       NotesManager.find_by(name: note).destroy
     end
@@ -55,20 +53,21 @@ class NotesManager < ApplicationRecord
     arr = []
     NotesManager.all.ids.each do |id|
       note = notet = NotesManager.find_by(id: id)
-      arr.push(notet.name) if note.author.eql?(author) && state
+      arr.push(notet.name) if note.author.eql?(author) && [nil].include?(state)
     end
     arr
   end
 
   def note_getter(name, author)
     note = NotesManager.find_by(name: name, author: author)
-    return false if [nil].include?(note) && state
+    return false if [nil].include?(note) && [nil].include?(state)
 
     note.text
   end
 
   def delete_note(name, author)
-    return false unless state
+    return false unless [nil].include?(state)
+
     note = NotesManager.find_by(name: name, author: author)
     note.destroy
     true

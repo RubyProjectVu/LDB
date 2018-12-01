@@ -20,13 +20,16 @@ class BudgetManager
 
   def budgets_getter(projid)
     return false unless @state
+
     Project.find_by(id: projid).budget
   end
 
   def budgets_setter(projid, value)
     return false unless @state
-    proj = projo = Project.find_by(id: projid)
+
+    proj = Project.find_by(id: projid)
     proj.budget = value
-    projo.save
+    proj.save
+    @state
   end
 end
