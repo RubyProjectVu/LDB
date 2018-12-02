@@ -5,4 +5,8 @@ require_relative '../rails_helper'
 
 describe Notification do
   fixtures :all
+
+  it 'empty' do
+    # something
+  end
 end

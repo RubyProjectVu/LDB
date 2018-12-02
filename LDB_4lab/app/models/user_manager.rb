@@ -49,6 +49,7 @@ class UserManager
     ext = File.extname(URI.parse(url).path)
     valid = %w[.doc .pdf]
     return true if valid.include?(ext) && @state
+
     false
   end
 

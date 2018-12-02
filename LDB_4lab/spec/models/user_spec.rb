@@ -19,25 +19,11 @@ describe User do
   end
 
   it 'password is set correctly' do
-    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
+    described_class.create(name: 'name', lname: 'lname', email: 'email',
+                           pass: 'p@ssw0rd')
     usr = described_class.find_by(name: 'name')
-    usr.password_set('password')
-    expect(described_class.find_by(name: 'name').pass).to eq 'pass'
-  end
-
-  it 'sets the last name correctly' do
-    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
-    expect(described_class.find_by(name: 'name').lname).to eq 'lname'
-  end
-
-  it 'sets the email correctly' do
-    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
-    expect(described_class.find_by(name: 'name').email).to eq 'email'
-  end
-
-  it 'sets the pass correctly' do
-    described_class.create(name: 'name', lname: 'lname', email: 'email', pass: 'pass')
-    expect(described_class.find_by(name: 'name').pass).to eq 'pass'
+    usr.password_set('@1')
+    expect(described_class.find_by(name: 'name').pass).to eq '@1'
   end
 
   it 'password is indeed advanced' do

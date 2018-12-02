@@ -9,8 +9,8 @@ class Order < ApplicationRecord
   attr_reader :state
 
   def valid_cost
-    pm = ProvidedMaterial.find_by(name: self.provider, material: self.material)
-    return false unless cost.eql?(pm.ppu * self.qty)
+    pm = ProvidedMaterial.find_by(name: provider, material: material)
+    return false unless cost.eql?(pm.ppu * qty)
 
     true
   end

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :certificates
 
   before_save do
-    throw :abort if self.class.pass_secure(pass)
+    throw :abort unless self.class.pass_secure(pass)
   end
 
   def name_set(new)
