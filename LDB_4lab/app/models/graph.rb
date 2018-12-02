@@ -11,6 +11,6 @@ class Graph
       info[0] = val if info[0] < val
       info[1] += val
     }
-    [info[0], info[1], hsh.size, hsh]
+    [info[0], info[1], hsh]
   end
 end

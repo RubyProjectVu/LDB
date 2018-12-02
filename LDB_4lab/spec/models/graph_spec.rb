@@ -10,6 +10,6 @@ describe Graph do
   }
 
   it "creates projects and members graph" do
-    expect(gr.create_projects_and_members_graph(pjd)).to eq([337, 781, 3, {"prj1" => 324, "prj2" => 337, "prj3" => 120}])
+    expect(gr.create_projects_and_members_graph(pjd)).to eq([337, 781, {"prj1" => 324, "prj2" => 337, "prj3" => 120}])
   end
 end
