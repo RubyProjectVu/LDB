@@ -13,9 +13,23 @@ describe UserManager do
     umstb
   end
 
+  let(:um) do
+    um = described_class.new
+    # Don't care about actual links right now
+    allow(um).to receive(:valid_url).and_return(true)
+    um
+  end
+
   it 'always checks for projects this user manages' do
     umstb.delete_user('tg@gmail.com')
     expect(umstb).to have_received(:manages_project?)
+  end
+
+  it do
+    url = 'http://www.fisica.net/relatividade/stephen_hawking_'\
+          'a_brief_history_of_time.pdf'
+    um.upl_certif(url, 'someguy')
+    expect(um).to have_received(:valid_url)
   end
 
   it 'unregistered user should not be able to login' do
@@ -45,6 +59,4 @@ describe UserManager do
     v1 = described_class.new
     expect(v1.delete_user(e)).to be false
   end
-
-  # TODO: active project checking will be implemented later
 end

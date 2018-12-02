@@ -112,4 +112,10 @@ ActiveRecord::Schema.define(version: 0) do
       t.string :unit
       t.float :ppu # price per unit
     end
+
+    # Holds a list of certificates under users
+    create_table :certificates do |t|
+      t.string :user
+      t.string :link
+    end
 end

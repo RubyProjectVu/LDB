@@ -30,6 +30,19 @@ class UserManager
     true
   end
 
+  def upl_certif(url, user)
+    return false unless valid_url(url)
+
+    Certificate.create(user: user, link: url)
+  end
+
+  def valid_url(url)
+    ext = File.extname(URI.parse(url).path)
+    valid = %w[.doc .pdf]
+    return true if valid.include?(ext)
+    false
+  end
+
   def manages_project?(user_email)
     proj = Project.find_by(manager: user_email)
     return true if proj

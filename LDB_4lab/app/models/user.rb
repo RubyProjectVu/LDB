@@ -9,6 +9,7 @@ require 'mail'
 class User < ApplicationRecord
   validates :email, presence: true
   has_many :notes_managers
+  has_many :certificates
 
   before_save do
     throw :abort if self.class.pass_secure(pass)
@@ -32,10 +33,10 @@ class User < ApplicationRecord
     save
   end
 
-  def self.pass_secure(pass)
-    if pass.match?(/\d/)
+  def self.pass_secure(passw)
+    if passw.match?(/\d/)
       return true unless [nil].include?(
-        pass.index(/[\+\-\!\@\#\$\%\^\&\*\(\)]/)
+        passw.index(/[\+\-\!\@\#\$\%\^\&\*\(\)]/)
       )
     end
     false
