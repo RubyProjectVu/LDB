@@ -5,6 +5,8 @@ require 'etc'
 require_relative 'project'
 require './application_record'
 require 'yaml'
+require 'net/http'
+require 'uri'
 
 # rubocop comment?
 class ProjectManager
@@ -59,5 +61,13 @@ class ProjectManager
       end
     }
     prj_mem
+  end
+
+  def set_project_description(project)
+    uri = URI('https://geek-jokes.sameerkumar.website/api')
+    generatedText = Net::HTTP.get(uri)
+    project.description = generatedText
+    save
+    generatedText
   end
 end
