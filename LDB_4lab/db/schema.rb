@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 0) do
       t.string :manager
       t.string :status
       t.float :budget
+      t.string :description
     end
 
     # Holds a list of members under a project
