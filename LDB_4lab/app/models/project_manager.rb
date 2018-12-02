@@ -48,4 +48,16 @@ class ProjectManager
 
     arr
   end
+
+  def load_projects_and_members
+    prj_mem = {}
+    ProjectMember.all.each { |memb|
+      if prj_mem.has_key?(memb.projid)
+        prj_mem[memb.projid] += 1
+      else
+        prj_mem[memb.projid] = 1
+      end
+    }
+    prj_mem
+  end
 end
