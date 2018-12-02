@@ -16,8 +16,7 @@ class Provider < ApplicationRecord
     return false unless has_offers
 
     arr = []
-    list = ProvidedMaterial.where(name: self.name)
-    list.each do |mat|
+    ProvidedMaterial.where(name: self.name).each do |mat|
       arr.push(mat.material)
     end
     arr

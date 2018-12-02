@@ -45,7 +45,7 @@ describe UserManager do
   it 'existing user cannot register again' do
     e = 'tg@gmail.com'
     v1 = described_class.new
-    expect(v1.register('', '', e, 'p4ss-r')).to be false
+    expect(v1.register(['', ''], e, 'p4ss-r')).to be false
   end
 
   it 'deleting existing user' do

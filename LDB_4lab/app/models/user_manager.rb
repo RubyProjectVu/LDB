@@ -6,18 +6,27 @@ require 'yaml'
 
 # class defining user management
 class UserManager
-  def register(name, lname, email, pass)
+  def initialize
+    @state = true
+  end
+
+  def stater(arg = @state)
+    @state = arg
+  end
+
+  def register(nm_lnm, email, pass)
     user = User.find_by(email: email)
-    return false if user
+    return false if user && @state
 
-    User.create(name: name, lname: lname, email: email, pass: pass)
+    User.create(name: nm_lnm[0], lname: spare[1], email: email, pass: pass)
 
-    true
+    @state
   end
 
   def login(email, pass)
-    return false if [nil].include?(User.find_by(email: email))
-    return false unless User.find_by(email: email).pass.match?(pass)
+    usr = User.find_by(email: email)
+    return false if [nil].include?(usr)
+    return false unless usr.pass.match?(pass) && @state
 
     true
   end
@@ -39,13 +48,13 @@ class UserManager
   def valid_url(url)
     ext = File.extname(URI.parse(url).path)
     valid = %w[.doc .pdf]
-    return true if valid.include?(ext)
+    return true if valid.include?(ext) && @state
     false
   end
 
   def manages_project?(user_email)
     proj = Project.find_by(manager: user_email)
-    return true if proj
+    return true if proj && @state
 
     false
   end
