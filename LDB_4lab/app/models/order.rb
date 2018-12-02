@@ -8,10 +8,9 @@ require 'mail'
 class Order < ApplicationRecord
   attr_reader :state
 
-  # after create - deduct project's budget
-  def deduct_budget(value)
+  def deduct_budget(value, bmanager)
     proj = Project.find_by(id: id = projid)
-    return false unless BudgetManager.new.can_deduct_more(value, id) &&
+    return false unless bmanager.can_deduct_more(value, id) &&
                         [nil].include?(state)
 
     proj.budget -= value

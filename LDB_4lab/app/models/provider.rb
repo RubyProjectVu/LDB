@@ -7,5 +7,19 @@ require 'mail'
 
 # Documentation about class User
 class Provider < ApplicationRecord
-  # does nothing
+  def has_offers
+    return true if ProvidedMaterial.find_by(name: self.name)
+    false
+  end
+
+  def materials_by_provider
+    return false unless has_offers
+
+    arr = []
+    list = ProvidedMaterial.where(name: self.name)
+    list.each do |mat|
+      arr.push(mat.material)
+    end
+    arr
+  end
 end
