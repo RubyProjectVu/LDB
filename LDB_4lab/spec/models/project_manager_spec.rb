@@ -6,6 +6,13 @@ require_relative '../rails_helper'
 describe ProjectManager do
   let(:pm) { described_class.new }
 
+  let(:pm) do
+    pm = described_class
+    testProj = Project.find_by name: 'test'
+    allow(pm).to receive(:set_project_description).with(testProj).and_return("Project description was funny")
+    pm
+  end
+  
   it 'deleting an existing project' do
     Project.create(name: 'test', manager: 'guy', status: 'Proposed', budget: 0)
     id = (Project.find_by name: 'test').id
