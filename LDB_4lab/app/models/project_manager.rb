@@ -49,7 +49,7 @@ class ProjectManager
     arr
   end
 
-  def load_projects_and_members
+  def gen_projects_and_members_hash
     prj_mem = {}
     ProjectMember.all.each { |memb|
       if prj_mem.has_key?(memb.projid)
