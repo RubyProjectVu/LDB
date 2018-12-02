@@ -7,16 +7,15 @@ describe UserManager do
   fixtures :all
 
   let(:umstb) do
-    umstb = double
-    allow(umstb).to receive(:new).and_return(described_class.new)
-    allow(umstb).to receive(:delete_user)
-    allow(umstb).to receive(:manages_project?)
+    umstb = described_class.new
+    # Assume no projects are managed
+    allow(umstb).to receive(:manages_project?).and_return(false)
     umstb
   end
 
   it 'always checks for projects this user manages' do
-    expect(umstb.new).to receive(:manages_project?)
-    umstb.new.delete_user('tg@gmail.com')
+    umstb.delete_user('tg@gmail.com')
+    expect(umstb).to have_received(:manages_project?)
   end
 
   it 'unregistered user should not be able to login' do
