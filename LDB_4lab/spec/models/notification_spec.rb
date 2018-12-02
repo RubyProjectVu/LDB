@@ -7,6 +7,6 @@ describe Notification do
   fixtures :all
 
   it 'empty' do
-    something
+    #something
   end
 end
