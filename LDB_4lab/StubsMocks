@@ -1,7 +1,7 @@
 2 stubs on NotesManager;	3 mocks on NotesManager;
 1 stubs on User;		1 mocks on User;
 1 stubs on Project;		1 mocks on Project;
-1 stubs on Order;		1 mocks on Order;
+2 stubs on Order;		2 mocks on Order;
 1 stubs on Provider;		1 mocks on Provider;
 2 stubs on UserManager;		2 mocks on UserManager;
 

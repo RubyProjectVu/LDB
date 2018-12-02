@@ -8,10 +8,17 @@ require 'mail'
 class Order < ApplicationRecord
   attr_reader :state
 
+  def valid_cost
+    pm = ProvidedMaterial.find_by(name: self.provider, material: self.material)
+    return false unless cost.eql?(pm.ppu * self.qty)
+
+    true
+  end
+
   def deduct_budget(value, bmanager)
     proj = Project.find_by(id: id = projid)
     return false unless bmanager.can_deduct_more(value, id) &&
-                        [nil].include?(state)
+                        [nil].include?(state) && valid_cost
 
     proj.budget -= value
     proj.save
