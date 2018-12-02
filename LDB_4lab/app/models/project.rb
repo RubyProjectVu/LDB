@@ -24,7 +24,7 @@ class Project < ApplicationRecord
     if ['Proposed', 'Suspended', 'Postponed',
         'Cancelled', 'In progress'].include? status
       self.status = status
-      self.save
+      save
     else
       false
     end
@@ -44,12 +44,12 @@ class Project < ApplicationRecord
   end
 
   def set_deleted_status
-    if self.status.eql?('Deleted')
+    if status.eql?('Deleted')
       exec_deleted_status
       false
     else
       self.status = 'Deleted'
-      self.save
+      save
       true
     end
   end

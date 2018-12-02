@@ -8,14 +8,14 @@ describe Project do
 
   let(:pr_alive) do
     pr_alive = described_class.find_by(name: 'Projektas2')
-    allow(pr_alive).to receive(:set_deleted_status).and_return(true)
+    allow(pr_alive).to receive(:exec_deleted_status).and_return(true)
     pr_alive
   end
 
   context 'when described_class is validating its metadata, status, owner' do
     it 'first time marking as deleted' do
       pr_alive.set_deleted_status
-      expect(pr_alive).not_to receive(:exec_deleted_status)
+      expect(pr_alive).not_to have_received(:exec_deleted_status)
     end
   end
 

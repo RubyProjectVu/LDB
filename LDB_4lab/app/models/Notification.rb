@@ -17,16 +17,16 @@ class Notification < ApplicationRecord
   end
 
   def edit_message(send, rec, new)
-    return false if [nil].include?(self.sendr)
+    return false if [nil].include?(sendr)
 
     notif = Notification.find_by(sendr: send, recvr: rec)
     notif.msg = new
     notif.save
-    self.msg
+    msg
   end
 
   def read_message(sendd, rec)
-    return false if [nil].include?(self.sendr)
+    return false if [nil].include?(sendr)
 
     notif = Notification.find_by(sendr: sendd, recvr: rec)
     truncate_read(sendd, rec)
@@ -34,10 +34,11 @@ class Notification < ApplicationRecord
   end
 
   def truncate_read(send, recc)
-    return false if [nil].include?(self.recvr)
+    return false if [nil].include?(recvr)
 
     msg = Notification.find_by(sendr: send, recvr: recc)
     return false unless msg
+
     msg.destroy
   end
 end
