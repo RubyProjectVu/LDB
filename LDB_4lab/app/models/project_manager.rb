@@ -51,13 +51,9 @@ class ProjectManager
 
   def gen_projects_and_members_hash
     prj_mem = {}
-    ProjectMember.all.each { |memb|
-      if prj_mem.has_key?(memb.projid)
-        prj_mem[memb.projid] += 1
-      else
-        prj_mem[memb.projid] = 1
-      end
-    }
+    ProjectMember.all.each do |proj|
+      prj_mem[proj] += 1
+    end
     prj_mem
   end
 end
