@@ -12,19 +12,10 @@ class WorkGroup < ApplicationRecord
   def members_getter
     arr = []
     list = WorkGroupMember.where(wgid: id)
-    list.each do |t|
-      arr.push(t.member)
+    list.each do |mem|
+      arr.push(mem.member)
     end
     arr
-  end
-
-  def data_setter(key, val)
-    case key
-    when 'name'
-      wg = WorkGroup.find_by(id: id)
-      wg.name = val
-    end
-    wg.save
   end
 
   def project_budget_setter(amount)
@@ -65,8 +56,8 @@ class WorkGroup < ApplicationRecord
   def tasks_getter
     arr = []
     list = WorkGroupTask.where(wgid: id)
-    list.each do |t|
-      arr.push(t.task)
+    list.each do |tsk|
+      arr.push(tsk.task)
     end
     arr
   end
