@@ -30,7 +30,7 @@ Komanda: Diamond
 
 - [ ] LDB_4lab padengimas: 59.49%
 - [x] 55 ex.
-- [ ] 4/10 stubs
-- [ ] 5/10 mocks
-- [ ] reek klaidos: 13
-- [ ] rubocop klaidos: 13
+- [ ] 6/10 stubs
+- [ ] 7/10 mocks
+- [ ] reek klaidos: 14
+- [ ] rubocop klaidos: 17
