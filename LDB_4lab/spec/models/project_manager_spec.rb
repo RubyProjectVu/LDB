@@ -6,13 +6,18 @@ require_relative '../rails_helper'
 describe ProjectManager do
   let(:pm) { described_class.new }
 
-  let(:pm) do
-    pm = described_class
-    testProj = Project.find_by name: 'test'
-    allow(pm).to receive(:set_project_description).with(testProj).and_return("Project description was funny")
+  let(:pm_stub) do
+    pm_stub = described_class
+    allow(pm_stub).to receive(:rnd_proj_desc).and_return("Project description was funny")
     pm
   end
-  
+
+  #it 'creating a funny project description' do
+  #  proj = Project.create(name: 'test', manager: 'guy', status: 'Proposed',
+  #                        budget: 0, description: pm_stub.rnd_proj_desc)
+  #  expect((proj.find_by name: 'test').description)
+  #  .to equal("Project description was funny") 
+  #end
   it 'deleting an existing project' do
     Project.create(name: 'test', manager: 'guy', status: 'Proposed', budget: 0)
     id = (Project.find_by name: 'test').id
