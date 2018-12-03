@@ -14,12 +14,9 @@ class ProjectManager
     @state = true
   end
 
-  def set_project_description(project)
+  def rnd_proj_desc
     uri = URI('https://geek-jokes.sameerkumar.website/api')
-    generatedText = Net::HTTP.get(uri)
-    project.description = generatedText
-    save
-    generatedText
+    Net::HTTP.get(uri)
   end
 
   def delete_project(project)
