@@ -10,13 +10,13 @@ class ProvidedMaterial < ApplicationRecord
   # On order creation
   # find_by(provider, material)
   def deduct_qty(qty)
-    self.unit -= qty
+    self.unit = unit.to_f - qty
     save
   end
 
   # On order deletion
   def add_qty(qty)
-    self.unit += qty
+    self.unit = unit.to_f + qty
     save
   end
 end
