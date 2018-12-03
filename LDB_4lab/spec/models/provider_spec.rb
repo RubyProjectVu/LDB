@@ -17,4 +17,22 @@ describe Provider do
     prov.materials_by_provider
     expect(prov).to have_received(:offers?)
   end
+
+  it 'has offers when it has offers' do
+    expect(described_class.new(name: 'WoodWorks').offers?).to be true
+  end
+
+  it 'vice versa' do
+    expect(described_class.new(name: 'noCompany').offers?).to be false
+  end
+
+  it 'false when no offers' do
+    expect(described_class.new(name: 'noCompany').materials_by_provider)
+      .to be false
+  end
+
+  it 'actual materials retrieved' do
+    expect(described_class.new(name: 'WoodWorks').materials_by_provider)
+      .to eq %w[Planks Boards]
+  end
 end
