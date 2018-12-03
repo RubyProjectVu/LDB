@@ -18,5 +18,5 @@ rubocop
 # sleep 5
 echo 'Mutant...'
 # sleep 2
-# BudgetManager NotesManager Notification Order Project -> ProjectManager ProjectMember <- ProvidedMaterial Provider -> Search User UserManager WorkGroup WorkGroupManager <- WorkGroupMember WorkGroupTask
-bundle exec mutant --include app/models --use rspec ProjectMember -j 1
+# BudgetManager NotesManager Notification Order Project ProjectManager ProjectMember ProvidedMaterial Provider -> Search User UserManager WorkGroup <- WorkGroupManager WorkGroupMember WorkGroupTask
+bundle exec mutant --include app/models --use rspec WorkGroup -j 1

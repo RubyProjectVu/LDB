@@ -31,7 +31,7 @@ class WorkGroupManager
     return false unless @state
 
     arr = []
-    WorkGroup.all.ids.each do |el|
+    WorkGroup.ids.each do |el|
       arr.push(el.to_s + ':' + (WorkGroup.find_by id: el).name)
     end
 
