@@ -15,22 +15,13 @@ class User < ApplicationRecord
     throw :abort unless self.class.pass_secure(pass)
   end
 
-  def name_set(new)
-    self.name = new
-    save
-  end
-
-  def lname_set(new)
-    self.lname = new
-    save
-  end
-
   def password_set(new)
     # should later (5 laboras) work based on Rails gem 'EmailVeracity'
     return false unless self.class.pass_secure(new)
 
     self.pass = new
     save
+    true
   end
 
   def self.pass_secure(passw)

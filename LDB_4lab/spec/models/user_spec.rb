@@ -35,4 +35,35 @@ describe User do
     pass = '1simple'
     expect(pass).not_to has_advanced_password
   end
+
+  it 'rejects setting weak passwords' do
+    pass = 'simple'
+    described_class.create(email: 't', pass: '@1')
+    expect(described_class.find_by(email: 't').password_set(pass))
+      .to be false
+  end
+
+  it 'returns true after successfully setting it' do
+    pass = '@#1p'
+    described_class.create(email: 'test', pass: '@1')
+    usr = described_class.find_by(email: 'test')
+    expect(usr.password_set(pass)).to be true
+  end
+
+  it 'accepts this one' do
+    described_class.create(email: 'unique', pass: 't$mp0r')
+    usr = described_class.find_by(email: 'unique')
+    usr.password_set('n@1s')
+    expect(described_class.find_by(email: 'unique').pass).to eq 'n@1s'
+  end
+
+  context 'when mutant has fun with regex' do
+    it 'password has no digit' do
+      expect(described_class.pass_secure('n@d-git')).to be false
+    end
+
+    it 'password has a digit, but no spec char' do
+      expect(described_class.pass_secure('n1oo')).to be false
+    end
+  end
 end
