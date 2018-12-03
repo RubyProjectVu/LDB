@@ -30,7 +30,7 @@ class NotesManager < ApplicationRecord
     NotesManager.all.each do |note|
       next if [nil].include?(expration = note.expire)
 
-      outd.push(note.name) if expration < Time.current &&
+      outd.push(note.name) if expration <= Date.current &&
                               name && author.eql?(note.author)
     end
     remv_outdated(outd) unless [[]].include?(outd)
