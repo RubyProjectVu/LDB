@@ -14,6 +14,14 @@ class ProjectManager
     @state = true
   end
 
+  def set_project_description(project)
+    uri = URI('https://geek-jokes.sameerkumar.website/api')
+    generatedText = Net::HTTP.get(uri)
+    project.description = generatedText
+    save
+    generatedText
+  end
+
   def delete_project(project)
     proj = Project.find_by(id: project)
     proj.destroy
@@ -51,7 +59,7 @@ class ProjectManager
     arr
   end
 
-  def gen_projects_and_members_hash
+  def load_projects_and_members
     prj_mem = {}
     ProjectMember.all.each { |memb|
       if prj_mem.has_key?(memb.projid)
@@ -61,13 +69,5 @@ class ProjectManager
       end
     }
     prj_mem
-  end
-
-  def set_project_description(project)
-    uri = URI('https://geek-jokes.sameerkumar.website/api')
-    generatedText = Net::HTTP.get(uri)
-    project.description = generatedText
-    save
-    generatedText
   end
 end
