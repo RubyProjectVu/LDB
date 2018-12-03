@@ -79,11 +79,35 @@ describe Project do
       .to eq %w[othermail somemail]
   end
 
+  it 'members actually get saved' do
+    described_class.create(name: 'test')
+    described_class.create(name: 'wow')
+    described_class.find_by(name: 'wow').add_member('othermail')
+    expect(described_class.find_by(name: 'wow').members_getter)
+      .to eq %w[othermail]
+  end
+
   it 'cannot remove non-existing member' do
     described_class.create(name: 'test')
     described_class.find_by(name: 'test').add_member('somemail')
     expect(described_class.find_by(name: 'test').remove_member('nomail'))
       .to be false
+  end
+
+  it 'member is actually deleted' do
+    described_class.create(id: 1010)
+    described_class.find_by(id: 1010).add_member('somemail')
+    described_class.find_by(id: 1010).remove_member('somemail')
+    expect(ProjectMember.find_by(member: 'somemail', projid: 1010))
+      .to be nil
+  end
+
+  it 'member is correctly determined under project' do
+    described_class.create(id: 1010).add_member('somemail')
+    described_class.create(id: 2020).add_member('somemail')
+    described_class.find_by(id: 2020).remove_member('somemail')
+    expect(ProjectMember.find_by(member: 'somemail', projid: 1010))
+      .not_to be nil
   end
 
   it 'postponed is set correctly' do
@@ -105,5 +129,37 @@ describe Project do
     pr = described_class.find_by name: 'test'
     pr.project_status_setter('Proposed')
     expect(described_class.find_by(name: 'test').status).to eq 'Proposed'
+  end
+
+  it 'spares other projects - covers \'find_by(self)\'' do
+    described_class.create(id: 158)
+    described_class.create(id: 159)
+    proj = described_class.find_by(id: 159)
+    proj.exec_deleted_status
+    expect(described_class.find_by(id: 158)).not_to be nil
+  end
+
+  it 'executing deletion actually removes project' do
+    described_class.create(id: 158)
+    proj = described_class.find_by(id: 158)
+    proj.exec_deleted_status
+    expect(described_class.find_by(id: 158)).to be nil
+  end
+
+  it 'actually sets status to deleted' do
+    proj = described_class.find_by(name: 'Projektas2')
+    proj.set_deleted_status
+    expect(described_class.find_by(name: 'Projektas2').status).to eq 'Deleted'
+  end
+
+  it 'actually deletes after second call' do
+    proj = described_class.find_by(name: 'Projektas1')
+    proj.set_deleted_status
+    expect(described_class.find_by(name: 'Projektas1')).to be nil
+  end
+
+  it 'returns false after doing so' do
+    proj = described_class.find_by(name: 'Projektas1')
+    expect(proj.set_deleted_status).to be false
   end
 end

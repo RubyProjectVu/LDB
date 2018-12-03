@@ -12,7 +12,7 @@ class Project < ApplicationRecord
 
   def members_getter
     arr = []
-    list = ProjectMember.where(projid: id)
+    list = ProjectMember.where(projid: self)
     list.each do |mem|
       arr.push(mem.member)
     end
@@ -36,7 +36,7 @@ class Project < ApplicationRecord
   end
 
   def remove_member(mail)
-    pm = ProjectMember.find_by(projid: id, member: mail)
+    pm = ProjectMember.find_by(projid: self, member: mail)
     return false if [nil].include?(pm)
 
     pm.destroy
@@ -55,6 +55,6 @@ class Project < ApplicationRecord
   end
 
   def exec_deleted_status
-    ProjectManager.new.delete_project(id)
+    ProjectManager.new.delete_project(self)
   end
 end
