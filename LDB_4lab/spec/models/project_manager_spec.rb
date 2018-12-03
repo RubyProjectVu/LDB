@@ -57,4 +57,43 @@ describe ProjectManager do
     expect(pm.list_projects)
       .to match_array ["#{id}:Projektas2", "#{id2}:Projektas1"]
   end
+
+  it 'project save returns state' do
+    pm.stater(11)
+    expect(pm.save_project('test', 'guy')).to eq 11
+  end
+
+  it 'counts project members' do
+    ProjectMember.create(projid: 1001, member: 'wow@com')
+    ProjectMember.create(projid: 1001, member: 'pop@com')
+    hash = pm.gen_projects_and_members_hash
+    expect(hash).to eq 0 => 3, 1001 => 2
+  end
+
+  it 'state false stops generating' do
+    pm.stater(false)
+    expect(pm.gen_projects_and_members_hash).to be false
+  end
+
+  it 'state false stops listing' do
+    pm.stater(false)
+    expect(pm.list_projects).to be false
+  end
+
+  it 'state false stops loading' do
+    Project.create(id: 1001)
+    pm.stater(false)
+    expect(pm.load_project(1001)).to be false
+  end
+
+  it 'loads project' do
+    Project.create(id: 1001, manager: 'test', status: 'Proposed', budget: 14,
+                   name: 'tes')
+    expect(pm.load_project(1001)).to eq ['tes', 'test', 'Proposed', 14]
+  end
+
+  it 'manipulates the state' do
+    pm.stater(980)
+    expect(pm.stater).to eq 980
+  end
 end

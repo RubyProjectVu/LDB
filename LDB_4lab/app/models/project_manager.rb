@@ -12,6 +12,10 @@ class ProjectManager
     @state = true
   end
 
+  def stater(val = @state)
+    @state = val
+  end
+
   def delete_project(project)
     proj = Project.find_by(id: project)
     proj.destroy
@@ -40,7 +44,7 @@ class ProjectManager
     return false unless @state
 
     arr = []
-    Project.all.ids.each do |pj|
+    Project.ids.each do |pj|
       arr.push(pj.to_s + ':' + (Project.find_by id: pj).name)
     end
 
@@ -50,10 +54,18 @@ class ProjectManager
   def gen_projects_and_members_hash
     return false unless @state
 
-    prj_mem = {}
+    prj_mem = fill_with_projids
     ProjectMember.all.each do |proj|
-      prj_mem[proj] += 1
+      prj_mem[proj.projid] += 1
     end
     prj_mem
+  end
+
+  def fill_with_projids
+    @state = {}
+    ProjectMember.all.each do |mem|
+      @state[mem.projid] = 0
+    end
+    @state
   end
 end
