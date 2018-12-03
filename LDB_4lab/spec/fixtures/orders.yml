@@ -21,3 +21,27 @@ ordr2:
  unit: pcs
  material: Beams
  projid: Projektas2
+
+ordr3:
+ date: 2018-11-16
+ cost: 1500
+ provider: SteelPool
+ vat: 9
+ recvaccount: U7856Y11A13HH1L
+ contactname: Steve
+ qty: 50
+ unit: pcs
+ material: Supports
+ projid: Projektas2
+
+ordr4:
+ date: 2018-08-01
+ cost: 200
+ provider: Choppers
+ vat: 0
+ recvaccount: U8856SPPA131310
+ contactname: Josh
+ qty: 10
+ unit: pcs
+ material: Planks
+ projid: Projektas1

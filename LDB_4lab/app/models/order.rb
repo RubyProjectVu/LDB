@@ -6,11 +6,9 @@ require 'mail'
 
 # Documentation about class User
 class Order < ApplicationRecord
-  attr_reader :state
-
   def valid_cost
     pm = ProvidedMaterial.find_by(name: provider, material: material)
-    return false unless cost.eql?(pm.ppu * qty)
+    return false unless cost.equal?(pm.ppu * qty)
 
     true
   end
@@ -18,7 +16,7 @@ class Order < ApplicationRecord
   def deduct_budget(value, bmanager)
     proj = Project.find_by(id: id = projid)
     return false unless bmanager.can_deduct_more(value, id) &&
-                        [nil].include?(state) && valid_cost
+                        ![nil].include?(vat) && valid_cost
 
     proj.budget -= value
     proj.save
@@ -33,7 +31,7 @@ class Order < ApplicationRecord
   def restore_budget
     bm = BudgetManager.new
     pid = projid
-    oldb = bm.budgets_getter(pid)
+    oldb = Project.find_by(id: pid).budget
     bm.budgets_setter(pid, oldb + cost)
     order_received
   end

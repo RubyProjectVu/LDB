@@ -15,3 +15,15 @@ offer3:
  material: Beams
  unit: 6520
  ppu: 48
+
+offer4:
+ name: SteelPool
+ material: Supports
+ unit: 1000
+ ppu: 30
+
+offer5:
+ name: Choppers
+ material: Planks
+ unit: 350
+ ppu: 20
