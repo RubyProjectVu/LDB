@@ -12,16 +12,14 @@ class BudgetManager
     @state = true
   end
 
+  def stater(val = @state)
+    @state = val
+  end
+
   def can_deduct_more(value, projid)
     return true if (Project.find_by(id: projid).budget - value) >= 0 && @state
 
     false
-  end
-
-  def budgets_getter(projid)
-    return false unless @state
-
-    Project.find_by(id: projid).budget
   end
 
   def budgets_setter(projid, value)

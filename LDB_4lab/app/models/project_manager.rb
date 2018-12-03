@@ -19,10 +19,8 @@ class ProjectManager
   end
 
   def save_project(name, manager)
-    return false unless @state
-
     Project.create(name: name, manager: manager)
-    true
+    @state
   end
 
   def load_project(id)
@@ -50,6 +48,8 @@ class ProjectManager
   end
 
   def gen_projects_and_members_hash
+    return false unless @state
+
     prj_mem = {}
     ProjectMember.all.each do |proj|
       prj_mem[proj] += 1
