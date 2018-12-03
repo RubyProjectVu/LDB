@@ -18,7 +18,7 @@ class NotesManager < ApplicationRecord
 
   def self.bad_words_included?(text)
     # Could probably be moved to a text file, line by line
-    list = %w[bad bad\ word really\ bad\ word]
+    list = %w[bad word reallyawful]
     list.each do |tx|
       return true if text.match?(tx)
     end
@@ -30,43 +30,43 @@ class NotesManager < ApplicationRecord
     NotesManager.all.each do |note|
       next if [nil].include?(expration = note.expire)
 
-      outd.push(note.name) if expration <= Time.current &&
-                              [nil].include?(state)
+      outd.push(note.name) if expration < Time.current &&
+                              name && author.eql?(note.author)
     end
     remv_outdated(outd) unless [[]].include?(outd)
   end
 
   def remv_outdated(names)
-    return false unless [nil].include?(state)
+    return false unless text
 
     names.each do |note|
-      NotesManager.find_by(name: note).destroy
+      NotesManager.find_by(name: note, author: author).destroy
     end
   end
 
-  def list_notes(author)
+  def list_notes
     check_outdated
-    populate(author)
+    populate
   end
 
-  def populate(author)
+  def populate
     arr = []
-    NotesManager.all.ids.each do |id|
+    NotesManager.ids.each do |id|
       note = notet = NotesManager.find_by(id: id)
-      arr.push(notet.name) if note.author.eql?(author) && [nil].include?(state)
+      arr.push(notet.name) if note.author.eql?(author) && text
     end
     arr
   end
 
   def note_getter(name, author)
     note = NotesManager.find_by(name: name, author: author)
-    return false if [nil].include?(note) && [nil].include?(state)
+    return false if [nil].include?(note) || !text
 
     note.text
   end
 
   def delete_note(name, author)
-    return false unless [nil].include?(state)
+    return false unless text
 
     note = NotesManager.find_by(name: name, author: author)
     note.destroy
