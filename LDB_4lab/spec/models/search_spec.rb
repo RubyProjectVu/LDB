@@ -53,4 +53,20 @@ describe Search do
     expect(described_class.new.search_by_criteria(%w[User], 'noval'))
       .to end_with ['']
   end
+
+  it 'search failure if state is false' do
+    src = described_class.new
+    src.stater(false)
+    expect(src.gather_data('WorkGroup', 'Darbo grupe')).to eq ''
+  end
+
+  it 'search failure if criteria is nil' do
+    expect(described_class.new.search_by_criteria(%w[User], nil)).to eq []
+  end
+
+  it 'manipulates state' do
+    src = described_class.new
+    src.stater(20)
+    expect(src.stater).to eq 20
+  end
 end

@@ -9,12 +9,16 @@ class Search
     @state = true
   end
 
+  def stater(val = @state)
+    @state = val
+  end
+
   def gather_data(modl, value)
     # Could be a 2x mock here (called/not)
     modlo = modl
-    modlclass = modlclasso = modl.classify.constantize
+    modlclass = modlclasso = modl.constantize
     modlclass.column_names.each do |cl|
-      if modlclasso.where("#{cl} LIKE ?", value).first && @state
+      if modlclasso.where("#{cl} LIKE ?", value).take && @state
         return [modlo + ' has: ', value]
       end
     end
