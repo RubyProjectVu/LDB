@@ -13,8 +13,16 @@ class Provider < ApplicationRecord
     false
   end
 
+  def qty?
+    list = ProvidedMaterial.where(name: name)
+    list.each do |el|
+      return false unless el.unit.to_f.positive?
+    end
+    true
+  end
+
   def materials_by_provider
-    return false unless offers?
+    return false unless qty? && offers?
 
     arr = []
     ProvidedMaterial.where(name: name).each do |mat|

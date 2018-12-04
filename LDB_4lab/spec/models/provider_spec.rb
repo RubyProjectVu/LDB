@@ -18,6 +18,15 @@ describe Provider do
     expect(prov).to have_received(:offers?)
   end
 
+  # opposite case here
+  it 'does not fetch offers when one of them has 0 available units' do
+    provmat = ProvidedMaterial.find_by(name: 'SteelPool', material: 'Supports')
+    provmat.unit = 0
+    provmat.save
+    prov.materials_by_provider
+    expect(prov).not_to have_received(:offers?)
+  end
+
   it 'has offers when it has offers' do
     expect(described_class.new(name: 'WoodWorks').offers?).to be true
   end

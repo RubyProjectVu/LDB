@@ -25,10 +25,19 @@ describe NotesManager do
 
   it 'does not call removing method if there are no expired notes' do
     described_class.find_by(name: 'Uzrasas3').destroy
-    nm = described_class.new(author: 'ar@gmail.com')
+    nm = described_class.new(author: 'ar@gmail.com', name: 'b')
     allow(nm).to receive(:remv_outdated)
     nm.list_notes
     expect(nm).not_to have_received(:remv_outdated)
+  end
+
+  # opposite case here
+  it 'does call removing method if there are expired notes' do
+    # described_class.find_by(name: 'Uzrasas3').destroy
+    nm = described_class.new(author: 'ar@gmail.com', name: 'b')
+    allow(nm).to receive(:remv_outdated)
+    nm.list_notes
+    expect(nm).to have_received(:remv_outdated)
   end
 
   it 'removes based on author as well' do
