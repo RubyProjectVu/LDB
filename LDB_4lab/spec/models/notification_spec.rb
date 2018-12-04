@@ -38,7 +38,7 @@ describe Notification do
 
   it 'returns self.msg during change' do
     out = described_class.new(sendr: 's', msg: 'test')
-            .edit_message('tg@gmail.com', 'ar@gmail.com', 'new')
+                         .edit_message('tg@gmail.com', 'ar@gmail.com', 'new')
     expect(out).to eq 'test'
   end
 

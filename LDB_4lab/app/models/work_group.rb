@@ -11,7 +11,7 @@ class WorkGroup < ApplicationRecord
 
   def members_getter
     arr = []
-    list = WorkGroupMember.where(wgid: id)
+    list = WorkGroupMember.where(wgid: self)
     list.each do |mem|
       arr.push(mem.member)
     end
@@ -19,21 +19,22 @@ class WorkGroup < ApplicationRecord
   end
 
   def project_budget_setter(amount)
-    projid = self.projid
-    budget = self.budget
-    old = BudgetManager.new.budgets_getter(projid)
-    BudgetManager.new.budgets_setter(projid, old + (budget - amount))
+    oldbudget = budget
+    self.budget = amount
+    # save - strange...
+    old = Project.find_by(id: projid).budget
+    BudgetManager.new.budgets_setter(projid, old + (oldbudget - amount))
   end
 
   def add_group_member(mail)
-    return false if WorkGroupMember.find_by(wgid: id, member: mail)
+    return false if WorkGroupMember.find_by(wgid: self, member: mail)
 
     WorkGroupMember.create(wgid: id, member: mail)
     true
   end
 
   def remove_group_member(mail)
-    wgm = WorkGroupMember.find_by(wgid: id, member: mail)
+    wgm = WorkGroupMember.find_by(wgid: self, member: mail)
     return false if [nil].include?(wgm)
 
     wgm.destroy
@@ -46,7 +47,7 @@ class WorkGroup < ApplicationRecord
   end
 
   def remove_group_task(task)
-    wgt = WorkGroupTask.find_by(wgid: id, task: task)
+    wgt = WorkGroupTask.find_by(wgid: self, task: task)
     return false if [nil].include?(wgt)
 
     wgt.destroy
@@ -55,7 +56,7 @@ class WorkGroup < ApplicationRecord
 
   def tasks_getter
     arr = []
-    list = WorkGroupTask.where(wgid: id)
+    list = WorkGroupTask.where(wgid: self)
     list.each do |tsk|
       arr.push(tsk.task)
     end

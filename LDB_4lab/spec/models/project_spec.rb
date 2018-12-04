@@ -79,7 +79,7 @@ describe Project do
       .to eq %w[othermail somemail]
   end
 
-  it 'members actually get saved' do
+  it 'covers \'find_by(nil)\'' do
     described_class.create(name: 'test')
     described_class.create(name: 'wow')
     described_class.find_by(name: 'wow').add_member('othermail')

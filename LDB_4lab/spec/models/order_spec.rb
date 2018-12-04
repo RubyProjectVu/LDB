@@ -82,9 +82,9 @@ describe Order do
 
   it 'deducts budget' do
     Project.create(id: 'test', budget: 150)
-    ordr = described_class.new(projid: 'test', provider: 'WoodWorks',
-                               material: 'Planks', qty: 10, cost: 100, vat: 5)
-             .deduct_budget(100, BudgetManager.new)
+    described_class.new(projid: 'test', provider: 'WoodWorks',
+                        material: 'Planks', qty: 10, cost: 100, vat: 5)
+                   .deduct_budget(100, BudgetManager.new)
     expect(Project.find_by(id: 'test').budget).to eq 50
   end
 
@@ -92,7 +92,7 @@ describe Order do
     Project.create(id: 'test', budget: 150)
     ordr = described_class.new(projid: 'test', provider: 'WoodWorks',
                                material: 'Planks', qty: 10, cost: 100)
-             .deduct_budget(100, BudgetManager.new)
+                          .deduct_budget(100, BudgetManager.new)
     expect(ordr).to be false
   end
 
@@ -100,7 +100,7 @@ describe Order do
     Project.create(id: 'test', budget: 150)
     ordr = described_class.new(projid: 'test', provider: 'WoodWorks',
                                material: 'Planks', qty: 10, cost: 100, vat: 5)
-             .deduct_budget(100, BudgetManager.new)
+                          .deduct_budget(100, BudgetManager.new)
     expect(ordr).to be true
   end
 end
