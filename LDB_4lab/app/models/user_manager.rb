@@ -15,10 +15,11 @@ class UserManager
   end
 
   def register(nm_lnm, email, pass)
+    spare = nm_lnm
     user = User.find_by(email: email)
-    return false if user && @state
+    return false if user
 
-    User.create(name: nm_lnm[0], lname: spare[1], email: email, pass: pass)
+    User.create(name: nm_lnm.fetch(0), lname: spare.fetch(1), email: email, pass: pass)
 
     @state
   end
