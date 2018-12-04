@@ -27,6 +27,22 @@ describe Provider do
     expect(prov).not_to have_received(:offers?)
   end
 
+  it 'has qty right now' do
+    expect(described_class.new(name: 'WoodWorks').qty?).to be true
+  end
+
+  it 'false if no qty is positive' do
+    provmat = ProvidedMaterial.find_by(name: 'Choppers', material: 'Planks')
+    provmat.unit = provmat.unit.to_f - 350
+    provmat.save
+    expect(described_class.new(name: 'Choppers').qty?).to be false
+  end
+
+  it 'covers \'find_by(nil)\'' do
+    ProvidedMaterial.create(name: 'test', material: 'test', unit: 0)
+    expect(described_class.new(name: 'Choppers').qty?).to be true
+  end
+
   it 'has offers when it has offers' do
     expect(described_class.new(name: 'WoodWorks').offers?).to be true
   end
