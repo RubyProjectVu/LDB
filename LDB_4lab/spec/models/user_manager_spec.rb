@@ -35,7 +35,8 @@ describe UserManager do
 
   it 'invalid url throws' do
     url = 'http:// fails'
-    expect { described_class.new.valid_url(url) }.to raise_error(URI::InvalidURIError)
+    expect { described_class.new.valid_url(url) }
+      .to raise_error(URI::InvalidURIError)
   end
 
   it 'wrong extension falses' do

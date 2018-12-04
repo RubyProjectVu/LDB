@@ -9,21 +9,19 @@ describe Search do
   let(:src) { described_class.new }
 
   let(:srstub) do
-    srstub = double
-    allow(srstub).to receive(:gather_data)
-    allow(srstub).to receive(:new).and_return(described_class.new)
-    allow(srstub).to receive(:search_by_criteria)
+    srstub = described_class.new
+    allow(srstub).to receive(:gather_data).and_return('dont care about value')
     srstub
   end
 
   it 'does not call data gathering with nil criteria' do
-    expect(srstub.new).not_to receive(:gather_data)
-    srstub.new.search_by_criteria(['Anything'], nil)
+    srstub.search_by_criteria(['Anything'], nil)
+    expect(srstub).not_to have_received(:gather_data)
   end
 
   it 'calls search if criteria is not nil' do
-    expect(srstub.new).to receive(:gather_data)
-    srstub.new.search_by_criteria(['User'], 'anyval')
+    srstub.search_by_criteria(['User'], 'anyval')
+    expect(srstub).to have_received(:gather_data)
   end
 
   it 'no value returns empty string array' do
