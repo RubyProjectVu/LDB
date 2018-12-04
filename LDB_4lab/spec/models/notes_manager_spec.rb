@@ -108,14 +108,14 @@ describe NotesManager do
   it 'does not work with name nil' do
     nm = described_class.new(author: 'ar@gmail.com') # name is nil
     nm.check_outdated
-    expect(NotesManager.find_by(name: 'Uzrasas3', author: 'ar@gmail.com'))
+    expect(described_class.find_by(name: 'Uzrasas3', author: 'ar@gmail.com'))
       .not_to be nil
   end
 
   it 'deletes based on author too' do
     nm = described_class.new(name: 's', text: 's', author: 'ar@gmail.com')
     nm.check_outdated
-    expect(NotesManager.find_by(name: 'Uzrasas1', author: 'tg.gmail.com'))
+    expect(described_class.find_by(name: 'Uzrasas1', author: 'tg.gmail.com'))
       .not_to be nil
   end
 

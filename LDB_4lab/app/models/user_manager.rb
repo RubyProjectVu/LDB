@@ -19,7 +19,8 @@ class UserManager
     user = User.find_by(email: email)
     return false if user
 
-    User.create(name: nm_lnm.fetch(0), lname: spare.fetch(1), email: email, pass: pass)
+    User.create(name: nm_lnm.fetch(0), lname: spare.fetch(1),
+                email: email, pass: pass)
 
     @state
   end

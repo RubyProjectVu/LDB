@@ -76,6 +76,18 @@ describe UserManager do
     expect(described_class.new.login(e, 'p4ssw1rd')).to be true
   end
 
+  it 'rejects bad password' do
+    e = 'ar@gmail.com'
+    expect(described_class.new.login(e, 'incorrect')).to be false
+  end
+
+  it 'rejects if state is false' do
+    e = 'ar@gmail.com'
+    um = described_class.new
+    um.stater(false)
+    expect(um.login(e, 'p4ssw1rd')).to be false
+  end
+
   it 'existing user cannot register again' do
     e = 'tg@gmail.com'
     v1 = described_class.new
@@ -136,5 +148,26 @@ describe UserManager do
     url = 'www.mentorum.nl/docs/Traindocs/dotNET_Tutorial_for_Beginners.pdf'
     described_class.new.upl_certif(url, e)
     expect(Certificate.find_by(user: e, link: url)).not_to be nil
+  end
+
+  it 'returns false if url is bad' do
+    e = 'tg@gmail.com'
+    url = 'https://www.tutorialspoint.com/online_css_editor.php'
+    expect(described_class.new.upl_certif(url, e)).to be false
+  end
+
+  it 'doesnt create it in that case' do
+    e = 'tg@gmail.com'
+    url = 'https://www.tutorialspoint.com/online_css_editor.php'
+    described_class.new.upl_certif(url, e)
+    expect(Certificate.find_by(user: e, link: url)).to be nil
+  end
+
+  it 'returns false if state is false' do
+    e = 'tg@gmail.com'
+    Project.create(manager: e)
+    um = described_class.new
+    um.stater(false)
+    expect(um.manages_project?(e)).to be false
   end
 end
