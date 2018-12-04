@@ -26,7 +26,7 @@ describe UserManager do
     expect(umstb).to have_received(:manages_project?)
   end
 
-  it do
+  it 'url is always validated' do
     url = 'http://www.fisica.net/relatividade/stephen_hawking_'\
           'a_brief_history_of_time.pdf'
     um.upl_certif(url, 'someguy')
