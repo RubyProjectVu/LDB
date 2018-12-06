@@ -14,23 +14,22 @@ Komanda: Diamond
 - Aivaras Atkočaitis
 - Ernestas Kodis
 
-#### (For devs) Kur vyksta 4lab veiksmas?
+#### (For devs) Kur vyksta 5lab veiksmas?
 
-- ```LDB_4lab``` folderis. Cia visa rails-like struktura jau padaryta.
+- ```LDB_5lab``` folderis. Cia visa rails-like struktura perkelta is 4 lab.
 - Duombaze generuojama ```db/``` ruby schema.rb
-- ```LDB_4lab``` folderyje yra failas ```application_record.rb``` tik del to, kad iseitu patogiai leisti ```bundle exec rspec``` is ```LDB_4lab``` folderio, nes pacios klases relative requirina si faila dar ir is ```app/model```.
-- Visas kodas rasomas ```app/models```. Ten esantis dbfile skirtas tik pasizaidimui ir testuose nedalyvauja.
-- ```db/``` schema.rb apraso lenteliu ir ju atributu sukurima. Cia yra ir pagrindine duombaze dbfile. Duombaze sukonfiguruota per ```config/``` database.yml.
-- ```spec/models``` rasomi testai i _spec.rb failus, kaip ir anksciau. Duombaze bei klases pasigriebiamos per rails_helper automatiskai.
-- ```spec/fixtures``` laikomi DB uzpildantys fixtures, kurie uzkraunami testu pradzioje.
+- Visas kodas rasomas ```app/models```, ```app/views``` ir ```app/controllers```.
+- ```db/``` schema.rb apraso lenteliu ir ju atributu sukurima. Cia yra ir pagrindine duombaze dbfile. Duombaze sukonfiguruota per ```config/``` database.yml. Viskas lieka po senovei is 4 lab. Teoriskai modeliu struktura jau baigta.
+- ```spec/fixtures``` laikomi DB uzpildantys fixtures, kurie uzkraunami testu pradzioje. Siuo metu app naudoja visur ta pacia ```dbfile```, tai galima aptikti uzkrautus duomenis is fixtures.
 
 ### Testai
 
-- Leisti testus su ```./run_tests.sh```
+- Leisti testus su ```?```
 
-- [x] LDB_4lab padengimas: 100.0%
-- [x] 185 ex.
-- [x] 11/10 stubs
-- [x] 13/10 mocks
-- [x] reek klaidos: 0
-- [x] rubocop klaidos: 0
+- [ ] LDB_5lab padengimas: -/-%
+- [ ] 0/50 GET/POST testu
+- [ ] 0/10 stubs KONTROLERIAMS
+- [ ] 0/10 mocks KONTROLERIAMS
+- [ ] 0/25 views testai
+- [ ] reek klaidos: -/-
+- [ ] rubocop klaidos: -/-
