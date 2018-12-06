@@ -1,0 +1,9 @@
+---
+exclude_paths:
+ - ./main
+ - ./app/channels
+ - ./app/controllers
+ - ./app/mailers
+ - ./app/jobs
+ - ./app/helpers
+ - ./test
