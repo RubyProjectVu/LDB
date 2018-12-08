@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DEMO</title>
+    <title>LDB</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag    'reset'%>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="nav-bar-container">
+        <div class="nav-bar-content-split">
+          <div class="nav-bar-logo">
+          </div>
+        </div>
+
+        <div class="nav-bar-content-split">
+          <ul class="nav">
+            <li class="nav-link"><a class="nav-a-active" href="#">Home</a></li>
+            <li class="nav-link"><a href="#">Projects</a></li>
+            <li class="nav-link"><a href="#">Tasks</a></li>
+            <li class="nav-link"><a href="#">Orders</a></li>
+            <li class="nav-link"><a href="#">Profile</a></li>
+            <li class="nav-link"><a href="#">Search</a></li>
+          <ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="content-line">
+      <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
