@@ -16,8 +16,9 @@
 
  body{
    height: 100% !important;
-   background: #cccccc;
    font-family: 'Roboto', sans-serif;
+   background-image: url('/images/bkgr.png');
+   background-color: #cccccc;
  }
 
  a {
