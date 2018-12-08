@@ -1,7 +1,6 @@
 
 
-<div class="content-container">
-
+<div class="content-container welcome-content-container">
   <div class="middle-sep">
     <div class="scnd-logo">
     </div>
@@ -15,22 +14,13 @@
   </div>
 
   <div class="middle-sep">
-
     <div class="buttons-wrap">
-      <a class="action-btn-a" href="<%url_for(:controller => :users, :action => :create)%>">
-        <div class="action-btn top-btn-margin">
-          Sign Up
-        </div>
-      </a>
+      <%= link_to '<div class="action-btn top-btn-margin">Sign Up</div>'.html_safe, url_for(:action => :create, :controller => :users) %><br>
 
       <div class="middle-sep-line">
       </div>
 
-      <a class="action-btn-a" href="<%url_for(:controller => :users, :action => :login)%>">
-        <div class="action-btn">
-          Login
-        </div>
-      </a>
+      <%= link_to '<div class="action-btn">Login</div>'.html_safe, url_for(:controller => :users, :action => :login) %>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.content-container {
+.welcome-content-container {
   width: 700px;
   height: 400px;
   position: relative;
@@ -41,12 +41,9 @@
   transition: all 0.5s ease-out;
 }
 
-.action-btn-a:hover {
-  color: #000000;
-}
-
-.action-btn:hover {
+.action-btn:hover{
   background-color: rgb(252, 211, 3);
+  color: #222222;
 }
 
 .top-btn-margin {
