@@ -25,11 +25,12 @@ class UsersController < ApplicationController
   end
 
   def parse_signup
+    result = UserManager.new.register([params[:user][:name], params[:user][:lname]], params[:user][:email], params[:user][:pass])
   end
 
   def parse_login
-    result = UserManager.new.login(params[:email], params[:pass])
-    redirect_to :controller=>'menus', :action=> 'main' if result
+    result = UserManager.new.login(params[:user][:email], params[:user][:pass])
+    redirect_to :controller=>'menus', :action=> 'main', :allowed => true and return if result
 
     flash[:error] = "Could not login: Incorrect credentials"
     redirect_to :controller => 'welcome', :action => 'index'

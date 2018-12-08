@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#parse_signup'
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'
+  get 'menus/main', to: 'menus#main'
 
   resources :users, :projects
   root 'welcome#index'

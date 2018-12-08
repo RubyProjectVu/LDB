@@ -28,7 +28,7 @@ class UserManager
   def login(email, pass)
     usr = User.find_by(email: email)
     return false if [nil].include?(usr)
-    return false unless usr.pass.match?(pass) && @state
+    return false unless usr.pass.eql?(pass) && @state
 
     true
   end
