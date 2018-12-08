@@ -2,9 +2,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   get '/signup', to: 'users#create'
+  post '/signup', to: 'users#parse_signup'
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'
 
-  resources :users
+  resources :users, :projects
   root 'welcome#index'
 end
