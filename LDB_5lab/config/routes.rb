@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   match '/projects?id=*&method=edit', to: 'projects#edit', via: [:get, :post]
   get '/projects/update', to: 'projects#edit'
   post '/projects/update', to: 'projects#update'
+  get '/projects/addmem', to: 'projects#addmem'
+  post '/projects/addmem', to: 'projects#addmem'
+
+  get '/projmems/index', to: 'projmems#index'
 
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'

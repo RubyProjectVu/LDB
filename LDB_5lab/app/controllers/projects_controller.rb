@@ -7,6 +7,8 @@ class ProjectsController < ApplicationController
       destroy
     elsif params[:method].eql?('edit')
       edit
+    elsif params[:method].eql?('addmem')
+      addmem
     end
   end
 
@@ -14,6 +16,13 @@ class ProjectsController < ApplicationController
   end
 
   def new
+  end
+
+  def addmem
+    render 'addmem' unless params[:project]
+    if params[:project]
+      Project.find_by(id: params[:id]).add_member(params[:project][:member])
+    end
   end
 
   def create
@@ -38,6 +47,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.find_by(params[:id]).destroy
+    Project.find_by(id: params[:id]).destroy
   end
 end
