@@ -24,8 +24,8 @@
             <li class="nav-link"><a class="nav-a-active" href="#">Home</a></li>
               <% if user_signed_in? %>
                 <li class="nav-link"><a href="#"><%= link_to 'Projects', url_for(:controller => :projects, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#">Tasks</a></li>
-                <li class="nav-link"><a href="#">Orders</a></li>
+                <li class="nav-link"><a href="#"><%= link_to 'Tasks', url_for(:controller => :tasks, :method => :index) %></a></li>
+                <li class="nav-link"><a href="#"><%= link_to 'Orders', url_for(:controller => :orders, :method => :index) %></a></li>
                 <li class="nav-link"><a href="#"><%= link_to 'Profile', url_for(:controller => :users, :method => :index) %></a></li>
                 <li class="nav-link"><a href="#"><%= link_to 'Search', url_for(:controller => :search, :method => :index) %></a></li>
                 <li class="nav-link"><a>Signed in as <%= current_user['email'] %></a></li>

@@ -1,0 +1,7 @@
+<h1>All tasks:</h1>
+<%= link_to 'Add new task', url_for(:controller => :tasks, :method => :create) %><br>
+<% @tasks.each do |tsk| %>
+  <%= tsk.task %>
+  <%= link_to 'Remove', url_for(:controller => :tasks, :method => :destroy, :task => tsk.task) %>
+  <br>
+<% end %>

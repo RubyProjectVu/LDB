@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get '/signup', to: 'users#create'
-  post '/signup', to: 'users#create' # with params wthis time
+  post '/signup', to: 'users#create' # with params this time
   get 'users/update', to: 'users#update'
   post 'users/update', to: 'users#update'
 
@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   post '/projects/addmem', to: 'projects#addmem'
 
   get '/projmems/index', to: 'projmems#index'
+
+  get '/tasks/index', to: 'tasks#index'
+  get '/tasks/create', to: 'tasks#create'
+  post '/tasks/create', to: 'tasks#create' # with params this time
+
+  get '/orders/index', to: 'orders#index'
 
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'
