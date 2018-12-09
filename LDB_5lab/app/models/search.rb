@@ -14,7 +14,6 @@ class Search
   end
 
   def gather_data(modl, value)
-    # Could be a 2x mock here (called/not)
     modlo = modl
     modlclass = modlclasso = modl.constantize
     modlclass.column_names.each do |cl|

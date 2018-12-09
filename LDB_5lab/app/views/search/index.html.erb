@@ -1,0 +1,18 @@
+
+  <%= form_for :search, :url => { :action => 'show' }, :html=>{:class=>"user-form"} do |form| %>
+      Projects: <input type="checkbox" name="proj" value="Project">
+      Work groups: <input type="checkbox" name="wgs" value="WorkGroup">
+      Users: <input type="checkbox" name="usr" value="User">
+      Tasks: <input type="checkbox" name="tsk" value="Task">
+      Notes: <input type="checkbox" name="note" value="NotesManager">
+      Orders: <input type="checkbox" name="ordr" value="Order">
+
+     <p>
+      <%= form.label 'value' %>
+      <%= form.text_field :value %>
+    </p>
+
+    <p>
+      <%= form.submit 'Search' %>
+    </p>
+  <% end %>

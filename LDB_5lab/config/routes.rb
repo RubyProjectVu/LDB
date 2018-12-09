@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'
 
+  get 'search/index', to: 'search#index'
+  post 'search/index', to: 'search#show'
+
   get 'menus/main', to: 'menus#main'
 
   resources :users, :projects
