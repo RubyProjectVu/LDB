@@ -21,6 +21,7 @@ class MenusController < ApplicationController
   end
 
   def main
-    redirect_to :controller => 'welcome', :action => 'index' unless params[:allowed]
+    # raise user_signed_in?.to_s
+    # redirect_to :controller => 'welcome', :action => 'index' unless params[:allowed]
   end
 end

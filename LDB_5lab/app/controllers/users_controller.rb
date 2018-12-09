@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   # helper_method :login -?
+  before_action :auth_user, except: [:login, :parse_login, :create, :parse_signup]
+
+  def auth_user
+    redirect_to :controller => 'welcome', :action => 'index' unless user_signed_in?
+  end
 
   def index
     @users = User.all
@@ -30,7 +35,11 @@ class UsersController < ApplicationController
 
   def parse_login
     result = UserManager.new.login(params[:user][:email], params[:user][:pass])
-    redirect_to :controller=>'menus', :action=> 'main', :allowed => true and return if result
+    if result
+      @user = User.find_by(email: params[:user][:email])
+      sign_in(@user)
+      redirect_to :controller=>'menus', :action=> 'main', :allowed => true and return
+    end
 
     flash[:error] = "Could not login: Incorrect credentials"
     redirect_to :controller => 'welcome', :action => 'index'

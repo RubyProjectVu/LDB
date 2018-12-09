@@ -7,6 +7,7 @@ require 'mail'
 
 # Documentation about class User
 class User < ApplicationRecord
+  devise :database_authenticatable
   validates :email, presence: true
   has_many :notes_managers
   has_many :certificates
