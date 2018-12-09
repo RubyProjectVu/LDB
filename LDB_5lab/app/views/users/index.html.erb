@@ -1,2 +1,8 @@
-<h1>Listing users</h1>
+<h1>Your information:</h1>
 
+Name: <%= current_user['name'] %><br>
+Last name: <%= current_user['lname'] %><br>
+Email: <%= current_user['email'] %><br>
+
+<%= link_to 'Edit', url_for(:controller => :users, :method => :edit) %><br>
+<%= link_to 'Delete', url_for(:controller => :users, :method => :destroy) %>

@@ -1,4 +1,4 @@
-Your projects: <br>
+Projects you manage: <br>
 <% @projects.each do |proj| %>
 <%= proj.name %> <%= proj.status %> <%= proj.budget %> 
 <%= link_to 'Edit', url_for(:controller => :projects, :method => :edit, :id => proj.id) %>

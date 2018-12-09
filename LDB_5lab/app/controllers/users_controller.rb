@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:method].eql?('edit')
+      edit
+    elsif params[:method].eql?('destroy')
+      destroy
+    end
   end
 
   def show
@@ -24,12 +28,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    render 'edit'
   end
 
   def update
+    usr = User.find_by(email: current_user['email'])
+    usr.name = params[:user][:name]
+    usr.lname = params[:user][:lname]
+    usr.password_set(params[:user][:pass])
+    usr.save
   end
 
   def destroy
+    UserManager.new.delete_user(current_user['email'])
   end
 
   def parse_signup
