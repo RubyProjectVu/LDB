@@ -3,7 +3,13 @@ class SearchController < ApplicationController
   end
 
   def show
-    @result = Search.new.search_by_criteria([params[:usr], params[:proj], params[:wgs], params[:tsk], params[:note], params[:ordr]], params[:search][:value])
+    crit = []
+    all = %w[usr proj wgs tsk note ordr]
+    all.each do |val|
+      crit.push(params[val.to_sym]) unless [nil, ''].include?(params[val.to_sym])
+    end
+    # @result = Search.new.search_by_criteria([params[:usr], params[:proj], params[:wgs], params[:tsk], params[:note], params[:ordr]], params[:search][:value])
+    @result = Search.new.search_by_criteria(crit, params[:search][:value])
   end
 
   def new
