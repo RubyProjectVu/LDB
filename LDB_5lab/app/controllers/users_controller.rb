@@ -18,6 +18,9 @@ class UsersController < ApplicationController
   end
 
   def create
+    if params[:user]
+      UserManager.new.register([params[:user][:name], params[:user][:lname]], params[:user][:email], params[:user][:pass])
+    end
   end
 
   def edit
@@ -30,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def parse_signup
-    result = UserManager.new.register([params[:user][:name], params[:user][:lname]], params[:user][:email], params[:user][:pass])
   end
 
   def parse_login
@@ -38,7 +40,7 @@ class UsersController < ApplicationController
     if result
       @user = User.find_by(email: params[:user][:email])
       sign_in(@user)
-      redirect_to :controller=>'menus', :action=> 'main', :allowed => true and return
+      redirect_to :controller=>'menus', :action=> 'main' and return
     end
 
     flash[:error] = "Could not login: Incorrect credentials"

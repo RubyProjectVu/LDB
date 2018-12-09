@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 0) do
       t.string :lname
       t.string :email, null: false, index: { unique: true }
       t.string :pass
+      t.string :encrypted_password
     end
 
     # Holds notes made by users

@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get '/signup', to: 'users#create'
-  post '/signup', to: 'users#parse_signup'
+  post '/signup', to: 'users#create' # with params wthis time
+  match '/projects?method=create', to: 'projects#create', via: [:get, :post]
+  match '/projects?id=*&method=edit', to: 'projects#edit', via: [:get, :post]
+  get '/projects/update', to: 'projects#edit'
+  post '/projects/update', to: 'projects#update'
   get '/login', to: 'users#login'
   post '/login', to: 'users#parse_login'
   get 'menus/main', to: 'menus#main'

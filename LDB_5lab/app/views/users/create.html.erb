@@ -1,6 +1,6 @@
 
 <div class="content-container signup-content-container">
-  <%= form_for :user, :url => { :action => 'parse_signup' }, :html=>{:class=>"user-form"} do |form| %>
+  <%= form_for :user, :url => { :action => 'create' }, :html=>{:class=>"user-form"} do |form| %>
    <p>
      <%= form.label :email %><br>
      <%= form.text_field :email %>

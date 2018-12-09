@@ -23,12 +23,12 @@
           <ul class="nav">
             <li class="nav-link"><a class="nav-a-active" href="#">Home</a></li>
               <% if user_signed_in? %>
-                <li class="nav-link"><a href="#">Projects</a></li>
+                <li class="nav-link"><a href="#"><%= link_to 'Projects', url_for(:controller => :projects, :method => :index) %></a></li>
                 <li class="nav-link"><a href="#">Tasks</a></li>
                 <li class="nav-link"><a href="#">Orders</a></li>
                 <li class="nav-link"><a href="#">Profile</a></li>
                 <li class="nav-link"><a href="#">Search</a></li>
-                <li class="nav-link"><a>Signed in as <%= current_user.fetch('email') %></a></li>
+                <li class="nav-link"><a>Signed in as <%= current_user['email'] %></a></li>
                 <li class="nav-link"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               <% end %>
           <ul>

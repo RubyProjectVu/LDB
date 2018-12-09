@@ -1,0 +1,10 @@
+Your projects: <br>
+<% @projects.each do |proj| %>
+<%= proj.name %> <%= proj.status %> <%= proj.budget %> 
+<%= link_to 'Edit', url_for(:controller => :projects, :method => :edit, :id => proj.id) %>
+<%= link_to 'Delete', url_for(:controller => :projects, :method => :destroy, :id => proj.id) %>
+<br>
+<% end %>
+<br>
+<%= link_to 'Create project', url_for(:controller => :projects, :method => :create) %>
+
