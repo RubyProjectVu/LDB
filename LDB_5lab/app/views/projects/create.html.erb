@@ -5,7 +5,7 @@
  </p>
   <p>
    <%= form.label :status %><br>
-   <%= form.text_field :status %>
+   <%= form.select :status, ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress'] %>
  </p>
   <p>
    <%= form.label :name %><br>

@@ -6,7 +6,7 @@
  </p>
   <p>
    <%= form.label :status %><br>
-   <%= form.text_field :status, :value => Project.find_by(id: params[:id]).status %>
+   <%= form.select :status, ['Proposed', 'Suspended', 'Postponed', 'Cancelled', 'In progress'], :value => Project.find_by(id: params[:id]).status %>
  </p>
   <p>
    <%= form.label :name %><br>
