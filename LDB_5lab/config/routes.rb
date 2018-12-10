@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   post 'materials/addof', to: 'materials#addof' # with params this time
   get 'materials/remof', to: 'materials#remof'
 
+  get 'orders/create', to: 'orders#create'
+  post 'orders/create', to: 'orders#create' # with params this time
+  get 'orders/destroy', to: 'orders#destroy'
+
   get 'menus/main', to: 'menus#main'
 
   resources :users, :projects

@@ -10,6 +10,7 @@ Providers: <br>
 <% @materials.each do |mat| %>
   <%= mat.name %> <%= mat.material %> <%= mat.unit %> <%= mat.ppu %>
   <%= link_to 'Remove', url_for(:controller => :materials, :action => :remof, :id => mat.id) %>
+  <%= link_to 'Create order', url_for(:controller => :orders, :action => :create, :ppu => mat.ppu, :provider => mat.name, :material => mat.material) %>
   <br>
 <% end %>
 <%= link_to 'Add offer', url_for(:controller => :materials, :action => :addof) %><br>
