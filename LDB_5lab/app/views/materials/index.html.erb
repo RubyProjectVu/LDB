@@ -1,3 +1,4 @@
+<div class="content-container default-content-container">
 Providers: <br>
 <% @providers.each do |prov| %>
   <%= prov.name %>
@@ -15,4 +16,4 @@ Providers: <br>
 <% end %>
 <%= link_to 'Add offer', url_for(:controller => :materials, :action => :addof) %><br>
 <br>
-
+</div>

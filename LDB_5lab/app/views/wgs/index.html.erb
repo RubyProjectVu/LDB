@@ -1,9 +1,9 @@
-
+<div class="content-container default-content-container">
 <%= link_to 'Create work group', url_for(:controller => :wgs, :method => :create) %><br><br>
 Workgroups under projects that you manage:<br><br>
 <% @projects.each do |proj| %>
   <% WorkGroup.where(projid: proj.id).each do |work| %>
-    |Project id: <%= work.projid %>| <%= work.name %> <%= work.budget %> 
+    |Project id: <%= work.projid %>| <%= work.name %> <%= work.budget %>
     <%= link_to 'Delete', url_for(:controller => :wgs, :method => :destroy, :id => work.id) %>
     <br>
 
@@ -32,4 +32,4 @@ Workgroups that you're a member of: <br>
     <%= wg.name %> <%= wg.budget %><br>
   <% end %>
 <% end %>
-
+</div>

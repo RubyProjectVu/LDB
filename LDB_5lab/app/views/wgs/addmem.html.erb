@@ -1,3 +1,5 @@
+<div class="content-container default-content-container">
+
 <%= form_for :wg, :url => { :action => 'addmem' }, :html=>{:class=>"user-form"} do |form| %>
  <p>
    <%= form.label :mail %><br>
@@ -9,3 +11,5 @@
    <%= form.submit 'Add' %>
  </p>
 <% end %>
+
+</div>

@@ -17,12 +17,12 @@
   <div class="middle-sep">
 
     <div class="buttons-wrap">
-      <%= link_to '<div class="action-btn top-btn-margin">Sign Up</div>'.html_safe, url_for(:action => :create, :controller => :users) %>
+      <%= link_to '<div class="action-btn top-btn-margin">Sign Up</div>'.html_safe, url_for(:action => :create, :controller => :users), :html=>{:class=>"wlcm-btn-a"} %>
 
       <div class="middle-sep-line">
       </div>
 
-      <%= link_to '<div class="action-btn">Login</div>'.html_safe, url_for(:action => :parse_login, :controller => :users) %>
+      <%= link_to '<div class="action-btn">Login</div>'.html_safe, url_for(:action => :parse_login, :controller => :users), :html=>{:class=>"wlcm-btn-a"} %>
     </div>
   </div>
 </div>

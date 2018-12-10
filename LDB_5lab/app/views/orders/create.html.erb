@@ -1,3 +1,4 @@
+<div class="content-container default-content-container">
 <%= form_for :order, :url => { :action => 'create' }, :html=>{:class=>"user-form"} do |form| %>
  <p>
    <%= form.label :provider %><br>
@@ -36,3 +37,5 @@
    <%= form.submit 'Order' %>
  </p>
 <% end %>
+
+</div>

@@ -1,3 +1,4 @@
+<div class="content-container signup-content-container">
 <%= form_for :project, :url => { :action => 'update' }, :html=>{:class=>"user-form"} do |form| %>
   <%= form.hidden_field :id, :value => params[:id] %>
  <p>
@@ -20,3 +21,4 @@
    <%= form.submit 'Edit' %>
  </p>
 <% end %>
+</div>

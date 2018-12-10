@@ -1,3 +1,4 @@
+<div class="content-container default-content-container">
 Projects you manage: <br><br>
 <% @projects.each do |proj| %>
   |<%= proj.id %>| <%= proj.name %> <%= proj.status %> <%= proj.budget %>
@@ -16,4 +17,4 @@ Projects you manage: <br><br>
 <% end %>
 <br>
 <%= link_to 'Create project', url_for(:controller => :projects, :method => :create) %>
-
+</div>

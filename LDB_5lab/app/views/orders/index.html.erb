@@ -1,8 +1,9 @@
+<div class="content-container default-content-container">
 Orders for your projects: <br>
 <% @my_orders.each do |ordt| %>
 <% ordt.each do |ord| %>
   <% next if [nil, []].include?(ord) %>
-  |Order id: <%= ord.id %>| <%= ord.date %> <%= ord.cost %> <%= ord.provider %> <%= ord.vat %> <%= ord.recvaccount %> 
+  |Order id: <%= ord.id %>| <%= ord.date %> <%= ord.cost %> <%= ord.provider %> <%= ord.vat %> <%= ord.recvaccount %>
   <%= ord.contactname %> <%= ord.qty %> <%= ord.unit %> <%= ord.material %> |Project id: <%= ord.projid %>|
   <%= link_to 'Cancel', url_for(:controller => :orders, :action => :destroy, :id => ord.id) %>
   <%= link_to 'Complete', url_for(:controller => :orders, :action => :destroy, :id => ord.id, :comp => true) %>
@@ -14,11 +15,10 @@ Orders for your projects: <br>
 <% WorkGroupMember.where(member: current_user['email']).each do |wgm| %>
   <% WorkGroup.where(id: wgm.wgid).each do |wg| %>
     <% Order.where(projid: wg.projid).each do |ord| %>
-      |Order id: <%= ord.id %>| <%= ord.date %> <%= ord.cost %> <%= ord.provider %> <%= ord.vat %> <%= ord.recvaccount %> 
+      |Order id: <%= ord.id %>| <%= ord.date %> <%= ord.cost %> <%= ord.provider %> <%= ord.vat %> <%= ord.recvaccount %>
       <%= ord.contactname %> <%= ord.qty %> <%= ord.unit %> <%= ord.material %> |Project id: <%= ord.projid %>|
     <% end %>
   <% end %>
 <% end %>
 <br>
-
-
+</div>
