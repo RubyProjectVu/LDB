@@ -21,16 +21,16 @@
 
         <div class="nav-bar-content-split">
           <ul class="nav">
-            <li class="nav-link"><a class="nav-a-active" href="#">Home</a></li>
+            <li class="nav-link"><a href="http://localhost:3000">Home</a></li>
               <% if user_signed_in? %>
-                <li class="nav-link"><a href="#"><%= link_to 'Projects', url_for(:controller => :projects, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Work groups', url_for(:controller => :wgs, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Tasks', url_for(:controller => :tasks, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Materials', url_for(:controller => :materials, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Orders', url_for(:controller => :orders, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Profile', url_for(:controller => :users, :method => :index) %></a></li>
-                <li class="nav-link"><a href="#"><%= link_to 'Search', url_for(:controller => :search, :method => :index) %></a></li>
-                <li class="nav-link"><a>Signed in as <%= current_user['email'] %></a></li>
+                <li class="nav-link"><%= link_to 'Projects', url_for(:controller => :projects, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Work groups', url_for(:controller => :wgs, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Tasks', url_for(:controller => :tasks, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Materials', url_for(:controller => :materials, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Orders', url_for(:controller => :orders, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Profile', url_for(:controller => :users, :method => :index) %></li>
+                <li class="nav-link"><%= link_to 'Search', url_for(:controller => :search, :method => :index) %></li>
+                <li class="nav-link"><a href="#" class="nav-a-active">Signed in as <%= current_user['email'] %></a></li>
                 <li class="nav-link"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               <% end %>
           <ul>
