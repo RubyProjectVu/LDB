@@ -21,7 +21,7 @@ class WorkGroup < ApplicationRecord
   def project_budget_setter(amount)
     oldbudget = budget
     self.budget = amount
-    # save - strange...
+    save
     old = Project.find_by(id: projid).budget
     BudgetManager.new.budgets_setter(projid, old + (oldbudget - amount))
   end

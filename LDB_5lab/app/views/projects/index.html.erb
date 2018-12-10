@@ -1,6 +1,6 @@
 Projects you manage: <br><br>
 <% @projects.each do |proj| %>
-  <%= proj.name %> <%= proj.status %> <%= proj.budget %>
+  |<%= proj.id %>| <%= proj.name %> <%= proj.status %> <%= proj.budget %>
   <%= link_to 'Edit', url_for(:controller => :projects, :method => :edit, :id => proj.id) %>
   <%= link_to 'Delete', url_for(:controller => :projects, :method => :destroy, :id => proj.id) %>
   <%= link_to 'Add member', url_for(:controller => :projects, :method => :addmem, :id => proj.id) %><br>

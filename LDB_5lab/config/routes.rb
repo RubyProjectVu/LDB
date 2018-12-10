@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   get 'search/index', to: 'search#index'
   post 'search/index', to: 'search#show'
 
+  get '/wgs/index', to: 'wgs#index'
+  get '/wgs/create', to: 'wgs#create'
+  post '/wgs/create', to: 'wgs#create' # with params this time
+  post '/wgs/destroy', to: 'wgs#destroy'
+
   get 'menus/main', to: 'menus#main'
 
   resources :users, :projects
