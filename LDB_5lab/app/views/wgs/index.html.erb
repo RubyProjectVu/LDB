@@ -1,15 +1,31 @@
 
-<%= link_to 'Create work group', url_for(:controller => :wgs, :method => :create) %><br>
-Workgroups under projects that you manage:<br>
+<%= link_to 'Create work group', url_for(:controller => :wgs, :method => :create) %><br><br>
+Workgroups under projects that you manage:<br><br>
 <% @projects.each do |proj| %>
   <% WorkGroup.where(projid: proj.id).each do |work| %>
     |Project id: <%= work.projid %>| <%= work.name %> <%= work.budget %> 
     <%= link_to 'Delete', url_for(:controller => :wgs, :method => :destroy, :id => work.id) %>
     <br>
+
+    Members: <br>
+    <%= link_to 'Add member', url_for(:controller => :wgs, :action => :addmem, :id => work.id) %><br>
+    <% work.members_getter.each do |membr| %>
+      <%= membr unless membr.eql?(nil)%>
+      <%= link_to 'Remove', url_for(:controller => :wgs, :action => :remmem, :id => work.id, :member => membr) %>
+      <br>
+    <% end %>
+
+    <br>Tasks: <br>
+    <%= link_to 'Add task', url_for(:controller => :wgs, :action => :addtsk, :id => work.id) %><br>
+    <% work.tasks_getter.each do |tsk| %>
+      <%= tsk unless tsk.eql?(nil)%>
+      <%= link_to 'Remove', url_for(:controller => :wgs, :action => :remtsk, :id => work.id, :task => tsk) %>
+      <br>
+    <% end %>
   <% end %>
 <% end %>
 
-<br>
+<br><br>
 Workgroups that you're a member of: <br>
 <% WorkGroupMember.where(member: current_user['email']).each do |wgm| %>
   <% WorkGroup.where(id: wgm.wgid).each do |wg| %>

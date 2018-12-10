@@ -33,6 +33,14 @@ Rails.application.routes.draw do
   get '/wgs/create', to: 'wgs#create'
   post '/wgs/create', to: 'wgs#create' # with params this time
   post '/wgs/destroy', to: 'wgs#destroy'
+  get 'wgs/addmem', to: 'wgs#addmem'
+  post 'wgs/addmem', to: 'wgs#addmem' # with params this time
+  get 'wgs/remmem', to: 'wgs#remmem'
+  post 'wgs/remmem', to: 'wgs#remmem'
+  get 'wgs/addtsk', to: 'wgs#addtsk'
+  post 'wgs/addtsk', to: 'wgs#addtsk' # with params this time
+  get 'wgs/remtsk', to: 'wgs#remtsk'
+  post 'wgs/remtsk', to: 'wgs#remtsk'
 
   get 'menus/main', to: 'menus#main'
 

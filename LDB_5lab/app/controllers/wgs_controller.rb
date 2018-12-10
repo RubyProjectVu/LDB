@@ -30,6 +30,28 @@ class WgsController < ApplicationController
   def update
   end
 
+  def addtsk
+    render 'addtsk' unless params[:wg]
+    if params[:wg]
+      WorkGroup.find_by(id: params[:id]).add_group_task(params[:wg][:task])
+    end
+  end
+
+  def remtsk
+    WorkGroup.find_by(id: params[:id]).remove_group_task(params[:task])
+  end
+
+  def addmem
+    render 'addmem' unless params[:wg]
+    if params[:wg]
+      WorkGroup.find_by(id: params[:id]).add_group_member(params[:wg][:member])
+    end
+  end
+
+  def remmem
+    WorkGroup.find_by(id: params[:id]).remove_group_member(params[:member])
+  end
+
   def destroy
     wgr = WorkGroup.find_by(id: params[:id])
     wgr.project_budget_setter(0)

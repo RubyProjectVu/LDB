@@ -1,0 +1,11 @@
+<%= form_for :wg, :url => { :action => 'addtsk' }, :html=>{:class=>"user-form"} do |form| %>
+ <p>
+   <%= form.label :task %><br>
+   <%= form.select :task, Task.all.ids %>
+ </p>
+
+  <p>
+   <%= hidden_field_tag(:id, params[:id]) %>
+   <%= form.submit 'Add' %>
+ </p>
+<% end %>
