@@ -1,6 +1,7 @@
-<div class="content-container default-content-container">
+<div class="content-container default-content-container" style="height: 500px;">
 <%= link_to 'Create work group', url_for(:controller => :wgs, :method => :create) %><br><br>
-Workgroups under projects that you manage:<br><br>
+<span class="txt-highl">Workgroups under projects that you manage:</span><br>
+<hr>
 <% @projects.each do |proj| %>
   <% WorkGroup.where(projid: proj.id).each do |work| %>
     |Project id: <%= work.projid %>| <%= work.name %> <%= work.budget %>
@@ -21,12 +22,13 @@ Workgroups under projects that you manage:<br><br>
       <%= tsk unless tsk.eql?(nil)%>
       <%= link_to 'Remove', url_for(:controller => :wgs, :action => :remtsk, :id => work.id, :task => tsk) %>
       <br>
+    <hr>
     <% end %>
   <% end %>
 <% end %>
 
-<br><br>
-Workgroups that you're a member of: <br>
+<br>
+<span class="txt-highl">Workgroups that you're a member of: </span><br>
 <% WorkGroupMember.where(member: current_user['email']).each do |wgm| %>
   <% WorkGroup.where(id: wgm.wgid).each do |wg| %>
     <%= wg.name %> <%= wg.budget %><br>

@@ -1,12 +1,13 @@
 <div class="content-container default-content-container">
-Projects you manage: <br><br>
+<span class="txt-highl">Projects you manage: </span><br>
+<hr>
 <% @projects.each do |proj| %>
   |<%= proj.id %>| <%= proj.name %> <%= proj.status %> <%= proj.budget %>
   <%= link_to 'Edit', url_for(:controller => :projects, :method => :edit, :id => proj.id) %>
   <%= link_to 'Delete', url_for(:controller => :projects, :method => :destroy, :id => proj.id) %>
   <%= link_to 'Add member', url_for(:controller => :projects, :method => :addmem, :id => proj.id) %><br>
 
-  Members: <br>
+  <span class="txt-highl">Members:</span> <br>
   <% proj.members_getter.each do |membr| %>
     <%= membr unless membr.eql?(nil)%>
     <%= link_to 'Remove', url_for(:controller => :projmems, :id => proj.id, :member => membr) %>
@@ -14,7 +15,7 @@ Projects you manage: <br><br>
   <% end %>
 
   <br>
+  <hr>
 <% end %>
-<br>
 <%= link_to 'Create project', url_for(:controller => :projects, :method => :create) %>
 </div>

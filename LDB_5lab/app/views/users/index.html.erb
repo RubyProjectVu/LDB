@@ -1,11 +1,11 @@
 <div class="content-container default-content-container">
 
-<h1>Your information:</h1>
+<span class="txt-highl">Your information:</span><br><hr>
 
 Name: <%= current_user['name'] %><br>
 Last name: <%= current_user['lname'] %><br>
 Email: <%= current_user['email'] %><br>
-
+<br>
 <%= link_to 'Edit', url_for(:controller => :users, :method => :edit) %><br>
 <%= link_to 'Delete', url_for(:controller => :users, :method => :destroy) %>
 
