@@ -51,7 +51,8 @@ class UsersController < ApplicationController
     if result
       @user = User.find_by(email: params[:user][:email])
       sign_in(@user)
-      redirect_to :controller=>'menus', :action=> 'main' and return
+      #redirect_to :controller=>'menus', :action=> 'main' and return
+      redirect_to :controller => :projects, :method => :index and return
     end
 
     flash[:error] = "Could not login: Incorrect credentials"
