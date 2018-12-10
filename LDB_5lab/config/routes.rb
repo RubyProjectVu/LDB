@@ -42,6 +42,14 @@ Rails.application.routes.draw do
   get 'wgs/remtsk', to: 'wgs#remtsk'
   post 'wgs/remtsk', to: 'wgs#remtsk'
 
+  get 'materials/index', to: 'materials#index'
+  get 'materials/addprov', to: 'materials#addprov'
+  post 'materials/addprov', to: 'materials#addprov' # with params this time
+  get 'materials/remprov', to: 'materials#remprov'
+  get 'materials/addof', to: 'materials#addof'
+  post 'materials/addof', to: 'materials#addof' # with params this time
+  get 'materials/remof', to: 'materials#remof'
+
   get 'menus/main', to: 'menus#main'
 
   resources :users, :projects

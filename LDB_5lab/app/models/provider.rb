@@ -7,6 +7,14 @@ require 'mail'
 
 # Documentation about class User
 class Provider < ApplicationRecord
+  def all_names
+    arr = []
+    Provider.all.each do |prov|
+      arr.push(prov.name)
+    end
+    arr
+  end
+
   def offers?
     return true if ProvidedMaterial.find_by(name: name)
 

@@ -1,0 +1,17 @@
+Providers: <br>
+<% @providers.each do |prov| %>
+  <%= prov.name %>
+  <%= link_to 'Delete', url_for(:controller => :materials, :action => :remprov, :id => prov.id) %>
+  <br>
+<% end %>
+<%= link_to 'Add provider', url_for(:controller => :materials, :action => :addprov) %><br>
+
+<br>Offers: <br>
+<% @materials.each do |mat| %>
+  <%= mat.name %> <%= mat.material %> <%= mat.unit %> <%= mat.ppu %>
+  <%= link_to 'Remove', url_for(:controller => :materials, :action => :remof, :id => mat.id) %>
+  <br>
+<% end %>
+<%= link_to 'Add offer', url_for(:controller => :materials, :action => :addof) %><br>
+<br>
+
