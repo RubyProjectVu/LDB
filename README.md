@@ -27,9 +27,9 @@ Komanda: Diamond
 - Leisti testus su ```?```
 
 - [ ] LDB_5lab padengimas: -/-%
-- [ ] 3/50 GET/POST testu
-- [ ] 0/10 stubs kontroleriams
-- [ ] 2/10 mocks kontroleriams
+- [ ] 3+/50 GET/POST testu
+- [ ] 1/10 stubs kontroleriams
+- [ ] 4/10 mocks kontroleriams
 - [ ] 0/25 views testai
 - [ ] reek klaidos: -/-
 - [ ] rubocop klaidos: -/-
