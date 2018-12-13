@@ -6,4 +6,6 @@
 2 stubs on UserManager;		2 mocks on UserManager;
 1 stubs on Search;		2 mocks on Search;
 1 stubs on Graph;		1 mocks on Graph;
+-----------------------------------------------------------
+1 stubs on UsersController;	4 mocks on UsersController;
 

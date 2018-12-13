@@ -46,12 +46,18 @@ class UsersController < ApplicationController
   def parse_signup
   end
 
+  def find_and_login
+    @user = User.find_by(email: params[:user][:email])
+    return true if sign_in(@user)
+
+    false
+  end
+
   def parse_login
     result = UserManager.new.login(params[:user][:email], params[:user][:pass])
     if result
-      @user = User.find_by(email: params[:user][:email])
-      sign_in(@user)
-      #redirect_to :controller=>'menus', :action=> 'main' and return
+      return unless find_and_login
+      # redirect_to :controller=>'menus', :action=> 'main' and return
       redirect_to :controller => :projects, :method => :index and return
     end
 
