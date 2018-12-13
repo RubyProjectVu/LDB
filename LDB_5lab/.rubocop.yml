@@ -26,6 +26,7 @@ AllCops:
     - 'spec/rails_helper.rb'
     - 'bin/*'
     - 'db/*'
+    - 'test/controllers/*'
     - 'test/*'
     - 'config/*'
     - 'config/initializers/*'

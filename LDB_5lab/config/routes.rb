@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#create'
   post '/signup', to: 'users#create' # with params this time
   get 'users/update', to: 'users#update'
+  get 'users/edit', to: 'users#edit' # test requirement
+  get 'users/show', to: 'users#show' # test requirement
+  match 'users/destroy', to: 'users#destroy', via: [:get, :post] # test requirement
   post 'users/update', to: 'users#update'
 
   match '/projects?method=create', to: 'projects#create', via: [:get, :post]

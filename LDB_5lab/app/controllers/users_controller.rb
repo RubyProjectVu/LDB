@@ -1,67 +1,40 @@
 class UsersController < ApplicationController
-  # helper_method :login -?
-  before_action :auth_user, except: [:login, :parse_login, :create, :parse_signup]
-
-  def auth_user
-    redirect_to :controller => 'welcome', :action => 'index' unless user_signed_in?
-  end
-
-  def index
-    if params[:method].eql?('edit')
-      edit
-    elsif params[:method].eql?('destroy')
-      destroy
+  def create
+    if params.key?(:user)
+      UserManager.new.register([params.fetch(:user).fetch(:name),
+                                params.fetch(:user).fetch(:lname)],
+                               params.fetch(:user).fetch(:email),
+                               params.fetch(:user).fetch(:pass))
     end
   end
 
   def show
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    if params[:user]
-      UserManager.new.register([params[:user][:name], params[:user][:lname]], params[:user][:email], params[:user][:pass])
-    end
-  end
-
-  def edit
-    render 'edit'
+    # renders after deleting user
   end
 
   def update
     usr = User.find_by(email: current_user['email'])
-    usr.name = params[:user][:name]
-    usr.lname = params[:user][:lname]
-    usr.password_set(params[:user][:pass])
-    usr.save
+    usr.name = params.fetch(:user).fetch(:name)
+    usr.lname = params.fetch(:user).fetch(:lname)
+    usr.password_set(params.fetch(:user).fetch(:pass))
   end
 
   def destroy
     UserManager.new.delete_user(current_user['email'])
   end
 
-  def parse_signup
-  end
-
   def find_and_login
-    @user = User.find_by(email: params[:user][:email])
+    @user = User.find_by(email: params.fetch(:user).fetch(:email))
     return true if sign_in(@user)
 
     false
   end
 
   def parse_login
-    result = UserManager.new.login(params[:user][:email], params[:user][:pass])
+    result = UserManager.new.login(params.fetch(:user).fetch(:email),
+                                   params.fetch(:user).fetch(:pass))
     if result
-      return unless find_and_login
-      # redirect_to :controller=>'menus', :action=> 'main' and return
-      redirect_to :controller => :projects, :method => :index and return
+      return false unless find_and_login
     end
-
-    flash[:error] = "Could not login: Incorrect credentials"
-    redirect_to :controller => 'welcome', :action => 'index'
   end
 end
