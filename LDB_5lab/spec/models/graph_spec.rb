@@ -32,6 +32,6 @@ describe Graph do
     gr = described_class.new
     gr.calc_val(false)
     out = gr.create_projects_and_members_graph(ProjectManager.new)
-    expect(out).to eq [3, 0, 0 => 3]
+    expect(out).to eq [3, 0, { 0 => 3, 101050 => 2, 201050 => 1 }]
   end
 end

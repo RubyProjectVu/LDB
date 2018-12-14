@@ -68,7 +68,7 @@ describe ProjectManager do
     ProjectMember.create(projid: 1001, member: 'wow@com')
     ProjectMember.create(projid: 1001, member: 'pop@com')
     hash = pm.gen_projects_and_members_hash
-    expect(hash).to eq 0 => 3, 1001 => 2
+    expect(hash).to eq 0 => 3, 101050 => 2, 201050 => 1, 1001 => 2
   end
 
   it 'state false stops generating' do
