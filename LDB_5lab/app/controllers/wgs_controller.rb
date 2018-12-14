@@ -4,12 +4,10 @@ class WgsController < ApplicationController
   end
 
   def create
-    if params[:wg]
-      WorkGroup.create(projid: params[:wg][:projid], name: params[:wg][:name], budget: 0)
-      wgr = WorkGroup.find_by(projid: params[:wg][:projid], name: params[:wg][:name])
-      wgr.project_budget_setter(params[:wg][:budget].to_f)
-    else
-      render 'create'
+    if params.key?(:wg)
+      WorkGroup.create(projid: params.fetch(:wg).fetch(:projid), name: params.fetch(:wg).fetch(:name), budget: 0)
+      wgr = WorkGroup.find_by(projid: params.fetch(:wg).fetch(:projid))
+      wgr.project_budget_setter(params.fetch(:wg).fetch(:budget).to_f)
     end
   end
 

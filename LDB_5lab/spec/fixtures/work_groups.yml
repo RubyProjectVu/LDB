@@ -15,3 +15,15 @@ WG3:
  projid: 101050
  name: Trecia grupe
  budget: 10
+
+WG4:
+ id: 6000
+ projid: 201050
+ name: Trecia grupe
+ budget: 10
+
+WG5:
+ id: 2019
+ projid: 2018
+ name: nilly
+ budget: 10

@@ -14,18 +14,13 @@ describe WgsController do
   end
 
   let(:new_proj) do
-    id = Project.find_by(name: 'Projektas2').id
-    { :wg => { :projid => id, :name => 'naujas', :budget => '121' } }
+    id = 102050
+    { :wg => { :projid => id, :name => 'Trecia grupe', :budget => '121' } }
   end
 
   it 'VIEWS TEST: addmem renders view' do
     post :addmem
     expect(response).to render_template(:addmem)
-  end
-
-  it 'VIEWS TEST: create witn no params renders view' do
-    expect(subject).to receive(:render).and_call_original
-    get :create, params: { }
   end
 
   it 'member is actually removed' do
@@ -41,6 +36,10 @@ describe WgsController do
     expect(wgt).to be nil
   end
 
+  it 'empty params - no creation. covers mutation \'-if\'' do
+    expect {visit 'wgs/create'}.not_to raise_error(ActionController::ParameterMissing)
+  end
+
   context 'new wg created' do
     before do
       allow_any_instance_of(described_class).to receive(:params).and_return(new_proj)
@@ -48,20 +47,20 @@ describe WgsController do
 
     it 'actually creates the group' do
       subject.send(:create)
-      wg = WorkGroup.find_by(name: 'naujas', projid: new_proj[:wg][:projid])
+      wg = WorkGroup.find_by(name: 'Trecia grupe', projid: new_proj[:wg][:projid])
       expect(wg).not_to be nil
     end
 
     it 'actually sets its budget' do
       subject.send(:create)
-      wg = WorkGroup.find_by(name: 'naujas', projid: new_proj[:wg][:projid])
+      wg = WorkGroup.find_by(name: 'Trecia grupe', projid: new_proj[:wg][:projid])
       expect(wg.budget).to eq 121
     end
 
     it 'actually sets projects budget' do
       subject.send(:create)
       proj = Project.find_by(id: new_proj[:wg][:projid])
-      expect(proj.budget).to eq 4879.5
+      expect(proj.budget).to eq 34879.11
     end
   end
 
@@ -90,10 +89,9 @@ describe WgsController do
   end
 
   it 'actually removes wg' do
-    id = WorkGroup.find_by(name: 'Trecia grupe').id
-    hash = { :id => id }
+    hash = { :id => 5020 }
     post :destroy, params: hash
-    wg = WorkGroup.find_by(name: 'Trecia grupe')
+    wg = WorkGroup.find_by(id: 5020)
     expect(wg).to be nil
   end
 

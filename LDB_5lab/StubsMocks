@@ -8,6 +8,7 @@
 1 stubs on Graph;		1 mocks on Graph;
 -------------------------------------------------------------
 4 stubs on UsersController;	5 mocks on UsersController;
-1 stubs on Views;
+2 stubs on Views;
 				1 mocks on WelcomeController;
+3 stubs on WgsController;
 
