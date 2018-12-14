@@ -26,13 +26,6 @@ describe UsersController do
     { :user => { :email => 'ar@gmail.com', :pass => 'p4ssw1rd' } }
   end
 
-  let(:uc_reg) do
-    uc_reg = described_class
-    allow_any_instance_of(uc_reg).to receive(:params).and_return(cre_hash)
-    # has a valid user to register
-    uc_reg
-  end
-
   it 'present user params enable registering check' do
     # hash = { 'user' => { 'email' => 'some' } }
     expect_any_instance_of(UserManager).to receive(:register)
@@ -67,6 +60,9 @@ describe UsersController do
   context 'when creating user' do
     before do
       allow_any_instance_of(described_class).to receive(:params).and_return(cre_hash)
+      # has a valid user to create
+      allow_any_instance_of(UserManager).to receive(:login).and_return(true)
+      # temporarily stub login to check find_and_login call
     end
 
     it 'creates user' do
@@ -75,6 +71,16 @@ describe UsersController do
       expect(usr.name.eql?('nn') && usr.lname.eql?('nl') && usr.pass.eql?('-4'))
         .to be true
     end
+
+    it 'rejects signing in with wrong params' do
+      out = subject.send(:find_and_login)
+      expect(out).to be false
+    end
+
+    it '' do
+      out = subject.send(:parse_login)
+      expect(out).to be false
+    end
   end
 
   it 'deletes user' do
@@ -82,6 +88,23 @@ describe UsersController do
     post :destroy
     usr = User.find_by(email: 'tg@gmail.com')
     expect(usr).to be nil
+  end
+
+  context 'when logging in' do
+    before do
+      allow_any_instance_of(described_class).to receive(:params).and_return(login_hash)
+      # has a valid user to login
+    end
+
+    it 'accepts login attempt' do
+      out = subject.send(:find_and_login)
+      expect(out).to be true
+    end
+
+    it 'actually signs the user in' do
+      subject.send(:find_and_login)
+      expect(subject.current_user[:email]).to eq 'ar@gmail.com'
+    end
   end
 
   it 'covers mutation +super' do

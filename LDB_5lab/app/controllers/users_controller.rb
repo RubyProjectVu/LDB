@@ -25,8 +25,10 @@ class UsersController < ApplicationController
 
   def find_and_login
     @user = User.find_by(email: params.fetch(:user).fetch(:email))
-    return true if sign_in(@user)
-
+    if @user
+      sign_in(@user)
+      return true
+    end
     false
   end
 
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
     result = UserManager.new.login(params.fetch(:user).fetch(:email),
                                    params.fetch(:user).fetch(:pass))
     if result
-      return false unless find_and_login
+      false unless find_and_login
     end
   end
 end
