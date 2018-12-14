@@ -8,6 +8,11 @@ describe WgsController do
     { :wg => { :member => 'naujas' }, :id => id }
   end
 
+  let(:new_tsk_hsh) do
+    id = WorkGroup.find_by(name: 'Antra grupe').id
+    { :wg => { :task => 300 }, :id => id }
+  end
+
   let(:new_proj) do
     id = Project.find_by(name: 'Projektas2').id
     { :wg => { :projid => id, :name => 'naujas', :budget => '121' } }
@@ -29,17 +34,10 @@ describe WgsController do
     expect(wgm).to be nil
   end
 
-  it 'task is actually created' do
-    id = WorkGroup.find_by(name: 'Antra grupe').id
-    post :addtsk, params: { :wg => { :task => 300 }, :id => id }
-    wgt = WorkGroupTask.find_by(wgid: id, task: 300)
-    expect(wgt).not_to be nil
-  end
-
   it 'task is actually removed' do
     id = WorkGroup.find_by(name: 'Darbo grupe').id
-    post :remtsk, params: { :wg => { :task => 'Task2' }, :id => id }
-    wgt = WorkGroupTask.find_by(wgid: id, task: 'Task2')
+    post :remtsk, params: { :task => 58, :id => 5050 }
+    wgt = WorkGroupTask.find_by(wgid: 5050, task: 58)
     expect(wgt).to be nil
   end
 
@@ -75,6 +73,18 @@ describe WgsController do
     it 'member is actually added' do
       subject.send(:addmem)
       wgm = WorkGroupMember.find_by(wgid: new_mem_hsh[:id], member: 'naujas')
+      expect(wgm).not_to be nil
+    end
+  end
+
+  context 'new task created' do
+    before do
+      allow_any_instance_of(described_class).to receive(:params).and_return(new_tsk_hsh)
+    end
+
+    it 'task is actually added' do
+      subject.send(:addtsk)
+      wgm = WorkGroupTask.find_by(wgid: new_tsk_hsh[:id], task: 300)
       expect(wgm).not_to be nil
     end
   end

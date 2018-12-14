@@ -117,7 +117,7 @@ describe WorkGroup do
     gr.add_group_task(100)
     gr.add_group_task(150)
     gr.remove_group_task(100)
-    expect(gr.tasks_getter).to eq [150]
+    expect(gr.tasks_getter).to eq [58, 150]
   end
 
   it 'manages multiple tasks by the id' do
@@ -125,7 +125,7 @@ describe WorkGroup do
     described_class.find_by(name: 'Antra grupe').add_group_task(160)
     described_class.find_by(name: 'Antra grupe').remove_group_task(160)
     expect(described_class.find_by(name: 'Antra grupe').tasks_getter)
-      .to eq [150]
+      .to eq [58, 150]
   end
 
   it 'false if no task to delete' do

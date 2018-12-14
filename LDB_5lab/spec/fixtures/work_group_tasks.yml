@@ -1,7 +1,11 @@
 Entry1:
- wgid: WG1
- task: Task1
+ wgid: 5010
+ task: 60
 
 Entry2:
- wgid: WG1
- task: Task2
+ wgid: 5010
+ task: 59
+
+Entry3:
+ wgid: 5050
+ task: 58

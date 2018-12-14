@@ -14,13 +14,11 @@ class WgsController < ApplicationController
   end
 
   def addtsk
-    if params[:wg]
-      WorkGroup.find_by(id: params[:id]).add_group_task(params[:wg][:task])
-    end
+    WorkGroup.find_by(id: params.fetch(:id)).add_group_task(params.fetch(:wg).fetch(:task))
   end
 
   def remtsk
-    WorkGroup.find_by(id: params[:id]).remove_group_task(params[:task])
+    WorkGroup.find_by(id: params.fetch(:id)).remove_group_task(params.fetch(:task))
   end
 
   def addmem
