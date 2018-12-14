@@ -14,7 +14,6 @@ class WgsController < ApplicationController
   end
 
   def addtsk
-    render 'addtsk' unless params[:wg]
     if params[:wg]
       WorkGroup.find_by(id: params[:id]).add_group_task(params[:wg][:task])
     end
@@ -25,9 +24,8 @@ class WgsController < ApplicationController
   end
 
   def addmem
-    render 'addmem' unless params[:wg]
-    if params[:wg]
-      WorkGroup.find_by(id: params[:id]).add_group_member(params[:wg][:member])
+    if params.key?(:wg)
+      WorkGroup.find_by(id: params.fetch(:id)).add_group_member(params.fetch(:wg).fetch(:member))
     end
   end
 

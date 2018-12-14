@@ -4,7 +4,7 @@ require_relative '../rails_helper'
 
 describe WgsController do
   let(:new_mem_hsh) do
-    id = WorkGroup.find_by(name: 'Antra grupe').id
+    id = WorkGroup.find_by(name: 'Darbo grupe').id
     { :wg => { :member => 'naujas' }, :id => id }
   end
 
@@ -21,6 +21,27 @@ describe WgsController do
   it 'VIEWS TEST: create witn no params renders view' do
     expect(subject).to receive(:render).and_call_original
     get :create, params: { }
+  end
+
+  it 'member is actually removed' do
+    id = WorkGroup.find_by(name: 'Antra grupe').id
+    post :remmem, params: { :member => 'dude@mr.eu', :id => id }
+    wgm = WorkGroupMember.find_by(wgid: id)
+    expect(wgm).to be nil
+  end
+
+  it 'task is actually created' do
+    id = WorkGroup.find_by(name: 'Antra grupe').id
+    post :addtsk, params: { :wg => { :task => 300 }, :id => id }
+    wgt = WorkGroupTask.find_by(wgid: id, task: 300)
+    expect(wgt).not_to be nil
+  end
+
+  it 'task is actually removed' do
+    id = WorkGroup.find_by(name: 'Darbo grupe').id
+    post :remtsk, params: { :wg => { :task => 'Task2' }, :id => id }
+    wgt = WorkGroupTask.find_by(wgid: id, task: 'Task2')
+    expect(wgt).to be nil
   end
 
   context 'new wg created' do

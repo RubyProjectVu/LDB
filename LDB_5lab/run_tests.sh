@@ -19,4 +19,4 @@ rubocop
 echo 'Mutant...'
 # sleep 2
 # Models: BudgetManager NotesManager Notification Order Project ProjectManager ProjectMember ProvidedMaterial Provider Search User UserManager WorkGroup WorkGroupManager WorkGroupMember WorkGroupTask Certificate Graph Task || Controllers: UsersController WelcomeController WgsController
-bundle exec mutant --include app --use rspec WgsController -j 1
+bundle exec mutant --include app --use rspec WgsController#remmem -j 1
