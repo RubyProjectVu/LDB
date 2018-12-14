@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get '/tasks/index', to: 'tasks#index'
   get '/tasks/create', to: 'tasks#create'
+  get '/tasks/destroy', to: 'tasks#destroy'
   post '/tasks/create', to: 'tasks#create' # with params this time
 
   get '/orders/index', to: 'orders#index'
