@@ -55,7 +55,7 @@ describe ProjectManager do
     id = (Project.find_by name: 'Projektas2').id
     id2 = (Project.find_by name: 'Projektas1').id
     expect(pm.list_projects)
-      .to match_array ["#{id}:Projektas2", "#{id2}:Projektas1"]
+      .to match_array ["101050:act", "#{id}:Projektas2", "#{id2}:Projektas1"]
   end
 
   it 'project save returns state' do

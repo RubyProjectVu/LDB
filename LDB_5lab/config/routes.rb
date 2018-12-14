@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get '/wgs/index', to: 'wgs#index'
   get '/wgs/create', to: 'wgs#create'
   post '/wgs/create', to: 'wgs#create' # with params this time
-  post '/wgs/destroy', to: 'wgs#destroy'
+  match '/wgs/destroy', to: 'wgs#destroy', via: [:get, :post]
   get 'wgs/addmem', to: 'wgs#addmem'
   post 'wgs/addmem', to: 'wgs#addmem' # with params this time
   get 'wgs/remmem', to: 'wgs#remmem'

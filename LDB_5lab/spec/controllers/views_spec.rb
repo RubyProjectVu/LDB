@@ -27,3 +27,23 @@ describe UsersController do
     expect(response.body).to match("Email: tg@gmail.com")
   end
 end
+
+describe WgsController do
+  include Devise::Test::ControllerHelpers
+  render_views
+
+  let(:upd_hash) do
+    { :user => { :email => 'tg@gmail.com', :pass => '-4',
+                 :name => 'nn', :lname => 'nl' } }
+  end
+
+  before do
+    # allow_any_instance_of(described_class).to receive(:params).and_return(upd_hash)
+    # has a hash to render values from
+  end
+
+  it 'renders hidden id to pass later' do
+    get :addmem
+    expect(response.body).to match("input type=\"hidden\" name=\"id\" id=\"id\"")
+  end
+end

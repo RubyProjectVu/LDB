@@ -60,4 +60,13 @@ describe Provider do
     expect(described_class.new(name: 'WoodWorks').materials_by_provider)
       .to eq %w[Planks Boards]
   end
+
+  it 'retrieves all names' do
+    expect(described_class.new(name: 's').all_names)
+      .to eq %w[Choppers SteelPool WoodWorks]
+  end
+
+  it 'false if no name specified' do
+    expect(described_class.new.all_names).to be false
+  end
 end

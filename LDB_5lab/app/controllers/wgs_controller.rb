@@ -1,17 +1,6 @@
 class WgsController < ApplicationController
   def index
     @projects = Project.where(manager: current_user['email'])
-    if params[:method].eql?('create')
-      create
-    elsif params[:method].eql?('destroy')
-      destroy
-    end
-  end
-
-  def show
-  end
-
-  def new
   end
 
   def create
@@ -22,12 +11,6 @@ class WgsController < ApplicationController
     else
       render 'create'
     end
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def addtsk

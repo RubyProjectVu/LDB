@@ -8,6 +8,8 @@ require 'mail'
 # Documentation about class User
 class Provider < ApplicationRecord
   def all_names
+    return false unless name
+
     arr = []
     Provider.all.each do |prov|
       arr.push(prov.name)

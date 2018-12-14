@@ -69,6 +69,12 @@ describe WorkGroup do
     expect(gr.budget).to eq 85
   end
 
+  it 'updates self budget 3' do
+    gr = described_class.find_by(name: 'Trecia grupe')
+    gr.project_budget_setter(10)
+    expect(described_class.find_by(name: 'Trecia grupe').budget).to eq 10
+  end
+
   it 'updates project budget' do
     Project.create(id: 5555, budget: 1000)
     Project.create(id: 5554, budget: 2000)
