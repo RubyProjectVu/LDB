@@ -24,9 +24,8 @@ describe WgsController do
   end
 
   it 'member is actually removed' do
-    id = WorkGroup.find_by(name: 'Antra grupe').id
-    post :remmem, params: { :member => 'dude@mr.eu', :id => id }
-    wgm = WorkGroupMember.find_by(wgid: id)
+    post :remmem, params: { :member => 'some@mail.com', :id => 5020 }
+    wgm = WorkGroupMember.find_by(wgid: 5020)
     expect(wgm).to be nil
   end
 
@@ -86,5 +85,13 @@ describe WgsController do
     post :destroy, params: hash
     wg = WorkGroup.find_by(name: 'Trecia grupe')
     expect(wg).to be nil
+  end
+
+  it 'removal resets the project\'s budget' do
+    id = WorkGroup.find_by(name: 'Trecia grupe').id
+    hash = { :id => id }
+    post :destroy, params: hash
+    proj = Project.find_by(id: 101050).budget
+    expect(proj).to eq 5010
   end
 end

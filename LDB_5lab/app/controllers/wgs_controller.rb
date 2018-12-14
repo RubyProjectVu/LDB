@@ -30,12 +30,12 @@ class WgsController < ApplicationController
   end
 
   def remmem
-    WorkGroup.find_by(id: params[:id]).remove_group_member(params[:member])
+    WorkGroup.find_by(id: params.fetch(:id)).remove_group_member(params.fetch(:member))
   end
 
   def destroy
-    wgr = WorkGroup.find_by(id: params[:id])
+    wgr = WorkGroup.find_by(id: params.fetch(:id))
     wgr.project_budget_setter(0)
-    WorkGroup.find_by(id: params[:id]).destroy
+    WorkGroup.find_by(id: params.fetch(:id)).destroy
   end
 end
