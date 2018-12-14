@@ -1,9 +1,0 @@
-
-tst:
-  project_id: someid
-  group_name: tst
-  members:
-  - memb@r.tst
-  tasks:
-  - tst
-  budget: 101
