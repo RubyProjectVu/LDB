@@ -27,7 +27,6 @@ describe UsersController do
   end
 
   it 'present user params enable registering check' do
-    # hash = { 'user' => { 'email' => 'some' } }
     expect_any_instance_of(UserManager).to receive(:register)
     get :create, params: cre_hash
   end

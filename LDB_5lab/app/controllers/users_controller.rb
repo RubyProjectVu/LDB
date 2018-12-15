@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   def create
     if params.key?(:user)
-      UserManager.new.register([params.fetch(:user).fetch(:name),
-                                params.fetch(:user).fetch(:lname)],
-                               params.fetch(:user).fetch(:email),
-                               params.fetch(:user).fetch(:pass))
+      hash = params.fetch(:user)
+      UserManager.new.register([hash.fetch(:name),
+                                hash.fetch(:lname)],
+                               hash.fetch(:email),
+                               hash.fetch(:pass))
     end
   end
 

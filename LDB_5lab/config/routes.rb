@@ -12,11 +12,17 @@ Rails.application.routes.draw do
   post 'users/update', to: 'users#update'
 
   match '/projects?method=create', to: 'projects#create', via: [:get, :post]
+  match '/projects/create', to: 'projects#create', via: [:get, :post]
   match '/projects?id=*&method=edit', to: 'projects#edit', via: [:get, :post]
-  get '/projects/update', to: 'projects#edit'
+  get 'projects/:id', to: 'projects#update'
+  post 'projects/:id', to: 'projects#update' # with params this time
+  post 'projects/destroy', to: 'projects#destroy'
+  get '/projects/update', to: 'projects#update'
+  get '/projects/edit', to: 'projects#update'
   post '/projects/update', to: 'projects#update'
-  get '/projects/addmem', to: 'projects#addmem'
-  post '/projects/addmem', to: 'projects#addmem'
+  get '/projects/addmem/:id', to: 'projects#addmem'
+  post '/projects/addmem/:id', to: 'projects#addmem'
+  post '/projects/addmem/', to: 'projects#addmem' # test requirement
 
   get '/projmems/index', to: 'projmems#index'
 

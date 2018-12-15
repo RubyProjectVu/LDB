@@ -5,7 +5,7 @@ require_relative '../rails_helper'
 describe TasksController do
   include Devise::Test::ControllerHelpers
 
-  it 'VIEWS TEST: addmem renders view' do
+  it 'VIEWS TEST: create renders view' do
     post :create
     expect(response).to render_template(:create)
   end
