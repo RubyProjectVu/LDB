@@ -26,10 +26,10 @@ Komanda: Diamond
 
 - Leisti testus su ```run_tests.sh```
 
-- [ ] LDB_5lab padengimas: (2 ctr liko padengti)%
-- [ ] 48/50 GET/POST testu
-- [x] 10/10 stubs kontroleriams
+- [ ] LDB_5lab padengimas: (reikia patikrinamojo leidimo)%
+- [x] 65/50 GET/POST testu
+- [x] 11/10 stubs kontroleriams
 - [x] 10/10 mocks kontroleriams
-- [ ] 20/25 views testai
+- [x] 26/25 views testai
 - [x] reek klaidos: 0
-- [ ] rubocop klaidos: 200+
+- [ ] rubocop klaidos: 60+
