@@ -2,7 +2,7 @@
 <%= form_for :material, :url => { :action => 'addof' }, :html=>{:class=>"user-form"} do |form| %>
  <p>
    <%= form.label :name %><br>
-   <%= form.select :name, Provider.new.all_names %>
+   <%= form.select :name, Provider.new(name: 's').all_names %>
  </p>
   <p>
    <%= form.label :material %><br>

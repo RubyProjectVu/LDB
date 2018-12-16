@@ -22,8 +22,15 @@ SimpleCov.start 'rails'
 
 RSpec.configure do |config|
   config.warnings = false
+  # should suppress :initialize receve warnings - these are needed to cover
+  # super call mutations on empty methods that are connected with routes
+
   RSpec::Expectations.configuration.on_potential_false_positives = :nothing
+  # suppress warnings on not_to raises - these are needed to cover .key? mutations,
+  # since the method is routed to again after post
+
   config.include Capybara::DSL
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

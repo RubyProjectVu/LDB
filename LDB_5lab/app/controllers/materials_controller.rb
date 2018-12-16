@@ -4,41 +4,24 @@ class MaterialsController < ApplicationController
     @providers = Provider.all
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def addof
-    if params[:material]
-      ProvidedMaterial.create(name: params[:material][:name], material: params[:material][:material], unit: params[:material][:unit], ppu: params[:material][:ppu].to_f)
+    if params.key?(:material)
+      hash = params.fetch(:material)
+      ProvidedMaterial.create(name: hash.fetch(:name), material: hash.fetch(:material), unit: hash.fetch(:unit), ppu: hash.fetch(:ppu))
     end
   end
 
   def remof
-    ProvidedMaterial.find_by(id: params[:id]).destroy
+    ProvidedMaterial.find_by(id: params.fetch(:id)).destroy
   end
 
   def addprov
-    if params[:material]
-      Provider.create(name: params[:material][:name])
+    if params.key?(:material)
+      Provider.create(name: params.fetch(:material).fetch(:name))
     end
   end
 
   def remprov
-    Provider.find_by(id: params[:id]).destroy
+    Provider.find_by(id: params.fetch(:id)).destroy
   end
 end
