@@ -16,6 +16,12 @@ offer3:
  unit: 6520
  ppu: 48
 
+offer6:
+ name: fake
+ material: Supports
+ unit: 10
+ ppu: 300
+
 offer4:
  name: SteelPool
  material: Supports

@@ -19,6 +19,6 @@ rubocop
 echo 'Mutant...'
 # sleep 2
 
-# Models: BudgetManager NotesManager Notification Order Project ProjectManager ProjectMember ProvidedMaterial Provider Search User UserManager WorkGroup WorkGroupManager WorkGroupMember WorkGroupTask Certificate Graph Task || Controllers: ProjectsController ProjmemsController SearchController TasksController UsersController WelcomeController WgsController ->this gets stuck for ~60s on #destroy, so no worries
+# Models: BudgetManager NotesManager Notification Order Project ProjectManager ProjectMember ProvidedMaterial Provider Search User UserManager WorkGroup WorkGroupManager WorkGroupMember WorkGroupTask Certificate Graph Task || Controllers: OrdersController MaterialsController ProjectsController ProjmemsController SearchController TasksController UsersController WelcomeController WgsController ->this gets stuck for ~60s on #destroy, so no worries. Same with OrdersController#destroy.
 
-bundle exec mutant --include app --use rspec MaterialsController -j 1
+bundle exec mutant --include app --use rspec UsersController -j 1

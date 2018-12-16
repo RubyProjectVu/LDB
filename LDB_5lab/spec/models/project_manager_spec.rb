@@ -55,7 +55,7 @@ describe ProjectManager do
     id = (Project.find_by name: 'Projektas2').id
     id2 = (Project.find_by name: 'Projektas1').id
     expect(pm.list_projects)
-      .to match_array ["2018:nilly", "201050:act8", "101050:act",
+      .to match_array ['2018:nilly', '201050:act8', '101050:act',
                        "#{id}:Projektas2", "#{id2}:Projektas1"]
   end
 
@@ -68,7 +68,7 @@ describe ProjectManager do
     ProjectMember.create(projid: 1001, member: 'wow@com')
     ProjectMember.create(projid: 1001, member: 'pop@com')
     hash = pm.gen_projects_and_members_hash
-    expect(hash).to eq 0 => 3, 101050 => 2, 201050 => 1, 1001 => 2
+    expect(hash).to eq 0 => 3, 101_050 => 2, 201_050 => 1, 1001 => 2
   end
 
   it 'state false stops generating' do

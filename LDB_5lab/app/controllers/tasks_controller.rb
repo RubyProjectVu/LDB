@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
+# handles tasks
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
   end
 
   def create
-    if params.key?(:task)
-      Task.create(task: params.fetch(:task).fetch(:task))
-    end
+    Task.create(task: params.fetch(:task).fetch(:task)) if params.key?(:task)
   end
 
   def destroy

@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
+# handles users
 class UsersController < ApplicationController
   def create
-    if params.key?(:user)
-      hash = params.fetch(:user)
-      UserManager.new.register([hash.fetch(:name),
-                                hash.fetch(:lname)],
-                               hash.fetch(:email),
-                               hash.fetch(:pass))
-    end
+    return unless params.key?(:user)
+
+    @hash = params.fetch(:user)
+    UserManager.new.register([@hash.fetch(:name),
+                              @hash.fetch(:lname)],
+                             @hash.fetch(:email),
+                             @hash.fetch(:pass))
   end
 
   def show
@@ -14,10 +17,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    @hash = params.fetch(:user)
     usr = User.find_by(email: current_user['email'])
-    usr.name = params.fetch(:user).fetch(:name)
-    usr.lname = params.fetch(:user).fetch(:lname)
-    usr.password_set(params.fetch(:user).fetch(:pass))
+    usr.name = @hash.fetch(:name)
+    usr.lname = @hash.fetch(:lname)
+    usr.password_set(@hash.fetch(:pass))
   end
 
   def destroy
@@ -34,10 +38,10 @@ class UsersController < ApplicationController
   end
 
   def parse_login
-    result = UserManager.new.login(params.fetch(:user).fetch(:email),
-                                   params.fetch(:user).fetch(:pass))
-    if result
-      false unless find_and_login
-    end
+    usr = params.fetch(:user)
+    result = UserManager.new.login(usr.fetch(:email), usr.fetch(:pass))
+    return unless result
+
+    false unless find_and_login
   end
 end

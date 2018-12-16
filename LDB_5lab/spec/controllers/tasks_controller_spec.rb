@@ -11,12 +11,12 @@ describe TasksController do
   end
 
   it 'task is actually created' do
-    post :create, params: { :task => { :task => 'naujas' } }
+    post :create, params: { task: { task: 'naujas' } }
     expect(Task.find_by(task: 'naujas')).not_to be nil
   end
 
   it 'task is actually deleted' do
-    post :destroy, params: { :task => 'do not read this' }
+    post :destroy, params: { task: 'do not read this' }
     expect(Task.find_by(task: 'do not read this')).to be nil
   end
 end

@@ -6,45 +6,48 @@ describe ProjectsController do
   include Devise::Test::ControllerHelpers
   fixtures :all
 
-  it 'covers mutation -if key' do
-    expect { post :update, params: { } }.not_to raise_error(NoMethodError)
-  end
-
   let(:newpr) do
-    { :project => { :manager => 'tg@gmail.com', :id => '201812',
-                    :status => 'Proposed', :name => 'nauj', :budget => 809 } }
+    { project: { manager: 'tg@gmail.com', id: '201812',
+                 status: 'Proposed', name: 'nauj', budget: 809 } }
   end
 
   let(:edt) do
-    { :project => { :manager => 'ar@mail.com', :id => '201050', :budget => 21,
-                    :status => 'Postponed', :name => 'act8t' } }
+    { project: { manager: 'ar@mail.com', id: '201050', budget: 21,
+                 status: 'Postponed', name: 'act8t' } }
+  end
+
+  it 'covers mutation -if key' do
+    expect { post :update, params: {} }.not_to raise_error(NoMethodError)
   end
 
   it 'actually deletes project' do
-    post :destroy, params: { :id => '201050' }
-    proj = Project.find_by(id: 201050)
+    post :destroy, params: { id: '201_050' }
+    proj = Project.find_by(id: 201_050)
     expect(proj).to be nil
   end
 
   it 'member is actually added' do
     expect_any_instance_of(Project).to receive(:add_member).with('naujas')
-    post :addmem, params: {:project => { :member => 'naujas' },
-                           :id => '201050' }
+    post :addmem, params: { project: { member: 'naujas' },
+                            id: '201_050' }
   end
 
   it 'member is not added with empty params' do
     expect_any_instance_of(Project).not_to receive(:add_member)
-    post :addmem, params: { }
+    post :addmem, params: {}
   end
 
   it 'member name is written' do
-    post :addmem, params: {:project => { :member => 'naujas' },
-                           :id => '201050' }
-    expect(ProjectMember.find_by(projid: 201050, member: 'naujas').member)
+    post :addmem, params: { project: { member: 'naujas' },
+                            id: '201_050' }
+    expect(ProjectMember.find_by(projid: 201_050, member: 'naujas').member)
       .to eq 'naujas'
   end
 
   context 'when creating a project' do
+    # rubocop complains without this
+    subject(:subj) { described_class.new }
+
     before do
       allow_any_instance_of(described_class)
         .to receive(:params).and_return(newpr)
@@ -52,19 +55,19 @@ describe ProjectsController do
     end
 
     it 'actually creates project - manager' do
-      subject.send(:create)
+      subj.send(:create)
       proj = Project.find_by(name: 'nauj')
       expect(proj.manager).to eq 'tg@gmail.com'
     end
 
     it 'actually creates project - budget' do
-      subject.send(:create)
+      subj.send(:create)
       proj = Project.find_by(name: 'nauj')
       expect(proj.budget).to eq 809.0
     end
 
     it 'actually creates project - status' do
-      subject.send(:create)
+      subj.send(:create)
       proj = Project.find_by(name: 'nauj')
       expect(proj.status).to eq 'Proposed'
     end
@@ -72,7 +75,8 @@ describe ProjectsController do
 
   context 'when editing a project' do
     before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(edt)
+      allow_any_instance_of(described_class)
+        .to receive(:params).and_return(edt)
       # hashes passed for editing current project
     end
 
@@ -107,12 +111,13 @@ describe ProjectsController do
     it 'actually edits the budget' do
       post :update
       proj = Project.find_by(id: edt[:project][:id])
-      expect(proj.budget).to eql 21.0
+      expect(proj.budget).to be 21.0
     end
   end
 
   it 'also covers -if key mutation' do
     sign_in(User.find_by(email: 'ar@gmail.com'))
-    expect {post :update}.not_to raise_error(ActionController::ParameterMissing)
+    expect { post :update }
+      .not_to raise_error(ActionController::ParameterMissing)
   end
 end

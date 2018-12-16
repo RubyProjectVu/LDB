@@ -5,17 +5,17 @@ require_relative '../rails_helper'
 describe WgsController do
   let(:new_mem_hsh) do
     id = WorkGroup.find_by(name: 'Darbo grupe').id
-    { :wg => { :member => 'naujas' }, :id => id }
+    { wg: { member: 'naujas' }, id: id }
   end
 
   let(:new_tsk_hsh) do
     id = WorkGroup.find_by(name: 'Antra grupe').id
-    { :wg => { :task => 300 }, :id => id }
+    { wg: { task: 300 }, id: id }
   end
 
   let(:new_proj) do
-    id = 102050
-    { :wg => { :projid => id, :name => 'Trecia grupe', :budget => '121' } }
+    id = 102_050
+    { wg: { projid: id, name: 'Trecia grupe', budget: '121' } }
   end
 
   it 'VIEWS TEST: addmem renders view' do
@@ -24,20 +24,20 @@ describe WgsController do
   end
 
   it 'member is actually removed' do
-    post :remmem, params: { :member => 'some@mail.com', :id => 5020 }
-    wgm = WorkGroupMember.find_by(wgid: 5020)
+    post :remmem, params: { member: 'some@mail.com', id: 5_020 }
+    wgm = WorkGroupMember.find_by(wgid: 5_020)
     expect(wgm).to be nil
   end
 
   it 'task is actually removed' do
-    id = WorkGroup.find_by(name: 'Darbo grupe').id
-    post :remtsk, params: { :task => 58, :id => 5050 }
-    wgt = WorkGroupTask.find_by(wgid: 5050, task: 58)
+    post :remtsk, params: { task: 58, id: 5_050 }
+    wgt = WorkGroupTask.find_by(wgid: 5_050, task: 58)
     expect(wgt).to be nil
   end
 
   it 'empty params - no creation. covers mutation \'-if\'' do
-    expect {visit 'wgs/create'}.not_to raise_error(ActionController::ParameterMissing)
+    expect { visit 'wgs/create' }
+      .not_to raise_error(ActionController::ParameterMissing)
   end
 
   context 'new wg created' do
@@ -66,7 +66,8 @@ describe WgsController do
 
   context 'new member created' do
     before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(new_mem_hsh)
+      allow_any_instance_of(described_class).to receive(:params)
+        .and_return(new_mem_hsh)
     end
 
     it 'member is actually added' do
@@ -78,7 +79,8 @@ describe WgsController do
 
   context 'new task created' do
     before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(new_tsk_hsh)
+      allow_any_instance_of(described_class).to receive(:params)
+        .and_return(new_tsk_hsh)
     end
 
     it 'task is actually added' do
@@ -89,17 +91,17 @@ describe WgsController do
   end
 
   it 'actually removes wg' do
-    hash = { :id => 5020 }
+    hash = { id: 5_020 }
     post :destroy, params: hash
-    wg = WorkGroup.find_by(id: 5020)
+    wg = WorkGroup.find_by(id: 5_020)
     expect(wg).to be nil
   end
 
   it 'removal resets the project\'s budget' do
     id = WorkGroup.find_by(name: 'Trecia grupe').id
-    hash = { :id => id }
+    hash = { id: id }
     post :destroy, params: hash
-    proj = Project.find_by(id: 101050).budget
+    proj = Project.find_by(id: 101_050).budget
     expect(proj).to eq 5010
   end
 end

@@ -34,3 +34,8 @@ AllCops:
     - 'Gemfile'
     - 'Rakefile'
     - 'config.ru'
+
+# Disabling _any_instance_of: controllers supply instance-based methods
+# that are called without actual object during get/post requests.
+RSpec/AnyInstance:
+  Enabled: false

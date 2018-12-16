@@ -13,17 +13,17 @@ describe UsersController do
   end
 
   let(:upd_hash) do
-    { :user => { :email => 'ar@gmail.com', :pass => '-4',
-                 :name => 'nn', :lname => 'nl' } }
+    { user: { email: 'ar@gmail.com', pass: '-4',
+              name: 'nn', lname: 'nl' } }
   end
 
   let(:cre_hash) do
-    { :user => { :email => 'new@g.com', :pass => '-4',
-                 :name => 'nn', :lname => 'nl' } }
+    { user: { email: 'new@g.com', pass: '-4',
+              name: 'nn', lname: 'nl' } }
   end
 
   let(:login_hash) do
-    { :user => { :email => 'ar@gmail.com', :pass => 'p4ssw1rd' } }
+    { user: { email: 'ar@gmail.com', pass: 'p4ssw1rd' } }
   end
 
   it 'present user params enable registering check' do
@@ -57,8 +57,11 @@ describe UsersController do
   end
 
   context 'when creating user' do
+    subject(:subj) { described_class.new }
+
     before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(cre_hash)
+      allow_any_instance_of(described_class).to receive(:params)
+        .and_return(cre_hash)
       # has a valid user to create
       allow_any_instance_of(UserManager).to receive(:login).and_return(true)
       # temporarily stub login to check find_and_login call
@@ -67,17 +70,18 @@ describe UsersController do
     it 'creates user' do
       post :create
       usr = User.find_by(email: 'new@g.com')
-      expect(usr.name.eql?('nn') && usr.lname.eql?('nl') && usr.pass.eql?('-4'))
+      expect(usr.name.eql?('nn') && usr.lname.eql?('nl') &&
+             usr.pass.eql?('-4'))
         .to be true
     end
 
     it 'rejects signing in with wrong params' do
-      out = subject.send(:find_and_login)
+      out = subj.send(:find_and_login)
       expect(out).to be false
     end
 
-    it '' do
-      out = subject.send(:parse_login)
+    it 'returns false with nonexisting user' do
+      out = subj.send(:parse_login)
       expect(out).to be false
     end
   end
@@ -87,23 +91,6 @@ describe UsersController do
     post :destroy
     usr = User.find_by(email: 'tg@gmail.com')
     expect(usr).to be nil
-  end
-
-  context 'when logging in' do
-    before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(login_hash)
-      # has a valid user to login
-    end
-
-    it 'accepts login attempt' do
-      out = subject.send(:find_and_login)
-      expect(out).to be true
-    end
-
-    it 'actually signs the user in' do
-      subject.send(:find_and_login)
-      expect(subject.current_user[:email]).to eq 'ar@gmail.com'
-    end
   end
 
   it 'covers mutation +super' do

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# handles materials
 class MaterialsController < ApplicationController
   def index
     @materials = ProvidedMaterial.all
@@ -5,10 +8,13 @@ class MaterialsController < ApplicationController
   end
 
   def addof
-    if params.key?(:material)
-      hash = params.fetch(:material)
-      ProvidedMaterial.create(name: hash.fetch(:name), material: hash.fetch(:material), unit: hash.fetch(:unit), ppu: hash.fetch(:ppu))
-    end
+    return unless params.key?(:material)
+
+    @materials = params.fetch(:material)
+    ProvidedMaterial.create(name: @materials.fetch(:name),
+                            material: @materials.fetch(:material),
+                            unit: @materials.fetch(:unit),
+                            ppu: @materials.fetch(:ppu))
   end
 
   def remof
@@ -16,9 +22,9 @@ class MaterialsController < ApplicationController
   end
 
   def addprov
-    if params.key?(:material)
-      Provider.create(name: params.fetch(:material).fetch(:name))
-    end
+    return unless params.key?(:material)
+
+    Provider.create(name: params.fetch(:material).fetch(:name))
   end
 
   def remprov
