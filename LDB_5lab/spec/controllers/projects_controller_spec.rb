@@ -80,6 +80,13 @@ describe ProjectsController do
       # hashes passed for editing current project
     end
 
+    it do
+      controller.bdgts
+      expect(assigns(:proj)).to eq manager: 'ar@mail.com', id: '201050',
+                                   budget: 21, status: 'Postponed',
+                                   name: 'act8t'
+    end
+
     it 'present params used in post update' do
       expect_any_instance_of(BudgetManager).to receive(:budgets_setter)
       post :update

@@ -40,51 +40,61 @@ describe WgsController do
       .not_to raise_error(ActionController::ParameterMissing)
   end
 
-  context 'new wg created' do
+  context 'when new wg created' do
+    subject(:subj) { described_class.new }
+
     before do
-      allow_any_instance_of(described_class).to receive(:params).and_return(new_proj)
+      allow_any_instance_of(described_class).to receive(:params)
+        .and_return(new_proj)
+      # has a valid new wg to create
     end
 
     it 'actually creates the group' do
-      subject.send(:create)
-      wg = WorkGroup.find_by(name: 'Trecia grupe', projid: new_proj[:wg][:projid])
+      subj.send(:create)
+      wg = WorkGroup.find_by(name: 'Trecia grupe',
+                             projid: new_proj[:wg][:projid])
       expect(wg).not_to be nil
     end
 
     it 'actually sets its budget' do
-      subject.send(:create)
-      wg = WorkGroup.find_by(name: 'Trecia grupe', projid: new_proj[:wg][:projid])
+      subj.send(:create)
+      wg = WorkGroup.find_by(name: 'Trecia grupe',
+                             projid: new_proj[:wg][:projid])
       expect(wg.budget).to eq 121
     end
 
     it 'actually sets projects budget' do
-      subject.send(:create)
+      subj.send(:create)
       proj = Project.find_by(id: new_proj[:wg][:projid])
-      expect(proj.budget).to eq 34879.11
+      expect(proj.budget).to eq 34_879.11
     end
   end
 
-  context 'new member created' do
+  context 'when new member created' do
+    subject(:subje) { described_class.new }
+
     before do
       allow_any_instance_of(described_class).to receive(:params)
         .and_return(new_mem_hsh)
     end
 
     it 'member is actually added' do
-      subject.send(:addmem)
+      subje.send(:addmem)
       wgm = WorkGroupMember.find_by(wgid: new_mem_hsh[:id], member: 'naujas')
       expect(wgm).not_to be nil
     end
   end
 
-  context 'new task created' do
+  context 'when new task created' do
+    subject(:subjec) { described_class.new }
+
     before do
       allow_any_instance_of(described_class).to receive(:params)
         .and_return(new_tsk_hsh)
     end
 
     it 'task is actually added' do
-      subject.send(:addtsk)
+      subjec.send(:addtsk)
       wgm = WorkGroupTask.find_by(wgid: new_tsk_hsh[:id], task: 300)
       expect(wgm).not_to be nil
     end

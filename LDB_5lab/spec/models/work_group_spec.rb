@@ -71,8 +71,8 @@ describe WorkGroup do
 
   it 'updates self budget 3' do
     gr = described_class.find_by(name: 'Trecia grupe')
-    gr.project_budget_setter(10)
-    expect(described_class.find_by(name: 'Trecia grupe').budget).to eq 10
+    gr.project_budget_setter(11)
+    expect(described_class.find_by(name: 'Trecia grupe').budget).to eq 11
   end
 
   it 'updates project budget' do
@@ -107,8 +107,8 @@ describe WorkGroup do
   it 'creates and removes task' do
     described_class.create(name: 'test')
     gr = described_class.find_by(name: 'test')
-    gr.add_group_task(100)
-    gr.remove_group_task(100)
+    gr.add_group_task(59)
+    gr.remove_group_task(59)
     expect(gr.tasks_getter).to eq []
   end
 
